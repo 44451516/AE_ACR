@@ -12,11 +12,11 @@ using Dalamud.Game.ClientState.Objects.Types;
 
 namespace AE_ACR.GLA.SlotResolvers;
 
-public class GCD_Base : ISlotResolver
+public class GCD_Base : GLABaseSlotResolvers
 {
     public static uint LastBaseGcd => Core.Resolve<MemApiSpell>().GetLastComboSpellId();
 
-    public int Check()
+    public override int Check()
     {
         return 0;
     }
@@ -24,35 +24,35 @@ public class GCD_Base : ISlotResolver
     private Spell GetAOEGCDSpell()
     {
         var aoeCount = TargetHelper.GetNearbyEnemyCount(5);
-        if (aoeCount >= 2 && Data.Data.全蚀斩TotalEclipse.IsUnlock())
+        if (aoeCount >= 2 && 全蚀斩TotalEclipse.IsUnlock())
         {
-            return Data.Data.全蚀斩TotalEclipse.OriginalHook();
+            return 全蚀斩TotalEclipse.OriginalHook();
         }
 
         if (Core.Me.TargetObject is IBattleChara battleChara)
         {
-            if (Data.Data.投盾ShieldLob.IsUnlock() && TargetHelper.GetTargetDistanceFromMeTest2D(battleChara, Core.Me) >= 10)
+            if (投盾ShieldLob.IsUnlock() && TargetHelper.GetTargetDistanceFromMeTest2D(battleChara, Core.Me) >= 10)
             {
-                return Data.Data.投盾ShieldLob.GetSpell();
+                return 投盾ShieldLob.GetSpell();
             }
         }
 
 
-        if (LastBaseGcd == Data.Data.先锋剑FastBlade && Data.Data.暴乱剑RiotBlade.IsUnlock())
+        if (LastBaseGcd == 先锋剑FastBlade && 暴乱剑RiotBlade.IsUnlock())
         {
-            return Data.Data.暴乱剑RiotBlade.GetSpell();
+            return 暴乱剑RiotBlade.GetSpell();
         }
 
-        if (LastBaseGcd == Data.Data.暴乱剑RiotBlade && Data.Data.战女神之怒RageOfHalone.IsUnlock())
+        if (LastBaseGcd == 暴乱剑RiotBlade && 战女神之怒RageOfHalone.IsUnlock())
         {
-            return Data.Data.战女神之怒RageOfHalone.GetSpell();
+            return 战女神之怒RageOfHalone.GetSpell();
         }
 
 
-        return Data.Data.先锋剑FastBlade.OriginalHook();
+        return 先锋剑FastBlade.OriginalHook();
     }
 
-    public void Build(Slot slot)
+    public override void Build(Slot slot)
     {
         Spell spell = GetAOEGCDSpell();
         slot.Add(spell);

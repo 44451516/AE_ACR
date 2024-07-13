@@ -11,13 +11,13 @@ using Dalamud.Game.ClientState.Objects.Types;
 
 namespace AE_ACR.GLA.SlotResolvers
 {
-    public class Ability_厄运流转 : GLABaseSlotResolvers
+    public class Ability_深奥之灵 : GLABaseSlotResolvers
     {
         public override int Check()
         {
             if (CanWeave())
             {
-                if (厄运流转CircleOfScorn.ActionReady() && TargetHelper.GetNearbyEnemyCount(5) > 0)
+                if (深奥之灵SpiritsWithin.ActionReady())
                 {
                     return 0;
                 }
@@ -29,7 +29,7 @@ namespace AE_ACR.GLA.SlotResolvers
 
         public override void Build(Slot slot)
         {
-            slot.Add(厄运流转CircleOfScorn.OriginalHook());
+            slot.Add(深奥之灵SpiritsWithin.OriginalHook());
         }
     }
 }

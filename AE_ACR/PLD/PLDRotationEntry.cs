@@ -26,6 +26,7 @@ public class PLDRotationEntry : IRotationEntry
         new(new Ability_安魂祈祷(), SlotMode.OffGcd),
         new(new Ability_深奥之灵(), SlotMode.OffGcd),
         new(new Ability_厄运流转(), SlotMode.OffGcd),
+        new(new Ability_深奥之灵(), SlotMode.OffGcd),
         // new(new Ability_铁壁(), SlotMod
         // .
         // e.OffGcd),
@@ -53,8 +54,8 @@ public class PLDRotationEntry : IRotationEntry
 
         var rot = new Rotation(SlotResolvers)
         {
-            // TargetJob = Jobs.Marauder,
-            TargetJob = Jobs.Paladin,
+            TargetJob = Jobs.Marauder,
+            // TargetJob = Jobs.Paladin,
             AcrType = AcrType.Normal,
             MinLevel = 1,
             MaxLevel = 100,
@@ -88,7 +89,7 @@ public class PLDRotationEntry : IRotationEntry
 
         //添加QT分页 第一个参数是分页标题 第二个是分页里的内容
         // QT.AddTab("Dev", DrawQtDev);
-        // QT.AddTab("通用", DrawQtGeneral);
+        QT.AddTab("通用", DrawQtGeneral);
 
         // 添加QT开关 第二个参数是默认值 (开or关) 第三个参数是鼠标悬浮时的tips
         // QT.AddQt(QTKey.UseBaseGcd, true, "是否使用基础的Gcd");
@@ -130,6 +131,10 @@ public class PLDRotationEntry : IRotationEntry
 
     public void DrawQtGeneral(JobViewWindow jobViewWindow)
     {
+        // ImGui.Text($"赎罪剑Atonement3 : {PLDBaseSlotResolvers.赎罪剑Atonement3.OriginalHook().Id}");
+        // ImGui.Text($"赎罪剑Atonement2 : {PLDBaseSlotResolvers.赎罪剑Atonement2.OriginalHook().Id}");
+        // ImGui.Text($"赎罪剑Atonement1 : {PLDBaseSlotResolvers.赎罪剑Atonement1.OriginalHook().Id}");
+   
     }
 
     public void DrawQtDev(JobViewWindow jobViewWindow)

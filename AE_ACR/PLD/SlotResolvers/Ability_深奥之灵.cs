@@ -1,30 +1,20 @@
-﻿using AE_ACR_DRK;
-using AE_ACR_DRK_Setting;
-using AE_ACR.utils;
-using AEAssist;
-using AEAssist.CombatRoutine;
+﻿using AE_ACR.utils;
 using AEAssist.CombatRoutine.Module;
-using AEAssist.CombatRoutine.Module.Target;
-using AEAssist.Extension;
 using AEAssist.Helper;
-using AEAssist.JobApi;
-using AEAssist.MemoryApi;
-using Dalamud.Game.ClientState.Objects.Types;
 
 namespace AE_ACR.PLD.SlotResolvers
 {
     public class Ability_深奥之灵 : PLDBaseSlotResolvers
     {
-
         public override int Check()
         {
             if (CanWeave())
             {
-                if (厄运流转CircleOfScorn.OriginalHookActionReady() && TargetHelper.GetNearbyEnemyCount(5) > 0)
+                if (深奥之灵SpiritsWithin.OriginalHookActionReady())
                 {
                     if (HasEffect(Buffs.FightOrFlight))
                     {
-                        if (安魂祈祷Requiescat.IsUnlock())
+                        if (深奥之灵SpiritsWithin.IsUnlock())
                         {
                             if (GetCooldownRemainingTime(安魂祈祷Requiescat) > 40)
                             {
@@ -50,7 +40,7 @@ namespace AE_ACR.PLD.SlotResolvers
 
         public override void Build(Slot slot)
         {
-            slot.Add(厄运流转CircleOfScorn.OriginalHook());
+            slot.Add(深奥之灵SpiritsWithin.OriginalHook());
         }
     }
 }

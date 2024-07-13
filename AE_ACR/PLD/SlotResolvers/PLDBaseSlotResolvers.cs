@@ -29,6 +29,7 @@ public abstract class PLDBaseSlotResolvers : BaseIslotResolver
         战逃反应FightOrFlight = 20,
         赎罪剑Atonement3 = 36919,
         赎罪剑Atonement2 = 36918,
+        赎罪剑Atonement1 = 16460,
         赎罪剑Atonement = 16460,
         调停Intervene = 16461,
         盾阵Sheltron = 3542,
@@ -44,12 +45,14 @@ public abstract class PLDBaseSlotResolvers : BaseIslotResolver
             FightOrFlight = 76,
             悔罪预备 = 3019,
             DivineMight = 2673,
-            HolySheltron = 2674,
+            圣盾阵 = 2674,
+            
             沥血剑BUFFGoringBladeReady = 3847,
             赎罪剑Atonement1BUFF = 1902,
             赎罪剑Atonement2BUFF = 3827,
             赎罪剑Atonement3BUFF = 3828,
             预警 = 74,
+            
             留空 = 0;
     }
 }

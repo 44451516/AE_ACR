@@ -11,14 +11,12 @@ using Dalamud.Game.ClientState.Objects.Types;
 
 namespace AE_ACR.GLA.SlotResolvers
 {
-    public class Ability_钢铁信念 : ISlotResolver
+    public class Ability_钢铁信念 : GLABaseSlotResolvers
     {
-        public static uint LastBaseGcd => Core.Resolve<MemApiSpell>().GetLastComboSpellId();
-        public static uint LastSpell => Core.Resolve<MemApiSpellCastSuccess>().LastSpell;
 
-        public int Check()
+        public override int Check()
         {
-            if (Data.Data.钢铁信念.ActionReady())
+            if (钢铁信念.ActionReady())
             {
                 return 0;
             }
@@ -27,9 +25,9 @@ namespace AE_ACR.GLA.SlotResolvers
         }
 
 
-        public void Build(Slot slot)
+        public override void Build(Slot slot)
         {
-            slot.Add(Data.Data.钢铁信念.OriginalHook());
+            slot.Add(钢铁信念.OriginalHook());
         }
     }
 }

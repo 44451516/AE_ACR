@@ -11,14 +11,14 @@ using Dalamud.Game.ClientState.Objects.Types;
 
 namespace AE_ACR.GLA.SlotResolvers
 {
-    public class Ability_战逃反应 : ISlotResolver
+    public class Ability_战逃反应 : GLABaseSlotResolvers
     {
      
-        public int Check()
+        public override int Check()
         {
             if (BaseIslotResolver.CanWeave())
             {
-                if (Data.Data.战逃反应FightOrFlight.ActionReady())
+                if (战逃反应FightOrFlight.ActionReady())
                 {
                     return 0;
                 }
@@ -28,9 +28,9 @@ namespace AE_ACR.GLA.SlotResolvers
         }
 
 
-        public void Build(Slot slot)
+        public override void Build(Slot slot)
         {
-            slot.Add(Data.Data.战逃反应FightOrFlight.OriginalHook());
+            slot.Add(战逃反应FightOrFlight.OriginalHook());
         }
     }
 }

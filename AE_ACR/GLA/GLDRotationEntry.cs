@@ -22,10 +22,12 @@ public class GLDRotationEntry : IRotationEntry
     // pvp环境下 全都强制认为是通用队列
     private List<SlotResolverData> SlotResolvers = new()
     {
-        new(new Ability_厄运流转(), SlotMode.OffGcd),
         new(new Ability_战逃反应(), SlotMode.OffGcd),
+        new(new Ability_厄运流转(), SlotMode.OffGcd),
+        new(new Ability_深奥之灵(), SlotMode.OffGcd),
         new(new Ability_铁壁(), SlotMode.OffGcd),
         new(new Ability_预警(), SlotMode.OffGcd),
+        // new(new Ability_预警(), SlotMode.OffGcd),
     
 
         // gcd队列

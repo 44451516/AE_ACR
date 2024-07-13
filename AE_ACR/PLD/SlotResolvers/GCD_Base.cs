@@ -1,14 +1,8 @@
-using AE_ACR_DRK_Setting;
-using AE_ACR.PLD.Data;
 using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
-using AEAssist.Extension;
 using AEAssist.Helper;
-using AEAssist.JobApi;
-using AEAssist.MemoryApi;
-using Dalamud.Game.ClientState.Objects.Types;
 
 namespace AE_ACR.PLD.SlotResolvers;
 
@@ -47,6 +41,33 @@ public class GCD_Base : PLDBaseSlotResolvers
                 return 日珥斩Prominence.OriginalHook();
             }
         }
+
+        if (GetCooldownRemainingTime(战逃反应FightOrFlight) >= 15 && RaidBuff.爆发期())
+        {
+            if (HasEffect(Buffs.赎罪剑Atonement3BUFF))
+            {
+                return 赎罪剑Atonement.OriginalHook();
+            }
+
+            if (HasEffect(Buffs.DivineMight)
+                && GetResourceCost(圣灵HolySpirit) <= Core.Me.CurrentMp)
+            {
+                return 圣灵HolySpirit.OriginalHook();
+            }
+
+
+            if (HasEffect(Buffs.赎罪剑Atonement2BUFF))
+            {
+                return 赎罪剑Atonement.OriginalHook();
+            }
+
+
+            if (HasEffect(Buffs.赎罪剑Atonement1BUFF))
+            {
+                return 赎罪剑Atonement.OriginalHook();
+            }
+        }
+
 
         if (HasEffect(Buffs.FightOrFlight) && 王权剑RoyalAuthority.IsUnlock())
         {
