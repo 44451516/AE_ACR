@@ -19,7 +19,7 @@ using ImGuiNET;
 namespace AE_ACR.GLA;
 
 // 重要 类一定要Public声明才会被查找到
-internal class RotationEntry : IRotationEntry
+public class GLDRotationEntry : IRotationEntry
 {
     public string AuthorName { get; set; } = "44451516";
 
@@ -30,22 +30,12 @@ internal class RotationEntry : IRotationEntry
     // pvp环境下 全都强制认为是通用队列
     private List<SlotResolverData> SlotResolvers = new()
     {
-        // offGcd队列
-        new(new DK_Ability_掠影示现(), SlotMode.OffGcd),
-        new(new DK_Ability_暗黑波动_AOE(), SlotMode.OffGcd),
-        new(new DK_Ability_暗黑锋(), SlotMode.OffGcd),
-        new(new DK_Ability_嗜血(), SlotMode.OffGcd),
-        new(new DK_Ability_吸血深渊(), SlotMode.OffGcd),
-        new(new DK_Ability_精雕怒斩(), SlotMode.OffGcd),
-        new(new DK_Ability_暗影使者(), SlotMode.OffGcd),
-        new(new DK_Ability_腐秽大地(), SlotMode.OffGcd),
+        new(new Ability_先锋剑(), SlotMode.OffGcd),
+        new(new Ability_战逃反应(), SlotMode.OffGcd),
+    
 
         // gcd队列
-        new(new DK_GCD_蔑视厌恶(), SlotMode.Gcd),
-        new(new DK_GCD_寂灭(), SlotMode.Gcd),
-        new(new DK_GCD_血溅(), SlotMode.Gcd),
-        new(new DK_GCD_AOE_Base(), SlotMode.Gcd),
-        new(new DK_GCD_Base(), SlotMode.Gcd),
+        new(new GCD_Base(), SlotMode.Gcd),
     };
 
 
@@ -96,8 +86,8 @@ internal class RotationEntry : IRotationEntry
         QT.SetUpdateAction(OnUIUpdate); // 设置QT中的Update回调 不需要就不设置
 
         //添加QT分页 第一个参数是分页标题 第二个是分页里的内容
-        QT.AddTab("Dev", DrawQtDev);
-        QT.AddTab("通用", DrawQtGeneral);
+        // QT.AddTab("Dev", DrawQtDev);
+        // QT.AddTab("通用", DrawQtGeneral);
 
         // 添加QT开关 第二个参数是默认值 (开or关) 第三个参数是鼠标悬浮时的tips
         // QT.AddQt(QTKey.UseBaseGcd, true, "是否使用基础的Gcd");
@@ -139,35 +129,7 @@ internal class RotationEntry : IRotationEntry
 
     public void DrawQtGeneral(JobViewWindow jobViewWindow)
     {
-        ImGui.Text($"GetRecastTime:{Core.Resolve<MemApiSpell>().GetRecastTime(Data.Data.疾跑).TotalSeconds}");
-        ImGui.Text($"GetRecastTimeElapsed:{Core.Resolve<MemApiSpell>().GetRecastTimeElapsed(Data.Data.疾跑)}");
-        ImGui.Text($"GetCooldownRemainingTime:{Data.Data.疾跑.GetCooldownRemainingTime()}");
-        ImGui.Text($"GetCooldown:{Core.Resolve<MemApiSpell>().GetCooldown(Data.Data.疾跑).TotalSeconds}");
-
-
-        ImGui.Text($"LastSpell : {Core.Resolve<MemApiSpellCastSuccess>().LastSpell}");
-        ImGui.Text($"LastAbility :  {Core.Resolve<MemApiSpellCastSuccess>().LastAbility}");
-        ImGui.Text($"LastGcd : {Core.Resolve<MemApiSpellCastSuccess>().LastGcd}");
-        ImGui.Text($"GetLastComboSpellId : {Core.Resolve<MemApiSpell>().GetLastComboSpellId()}");
-
-        ImGui.Text($"战斗时间1 : {CombatTime.Instance.combatStart}");
-        ImGui.Text($"战斗时间2 : {CombatTime.Instance.combatEnd}");
-        ImGui.Text($"战斗时间3 : {CombatTime.Instance.CombatEngageDuration().TotalSeconds}");
-        ImGui.Text($"暗黑时间 : {Core.Resolve<JobApi_DarkKnight>().DarksideTimeRemaining}");
-        ImGui.Text($"暗黑时间 : {Core.Resolve<MemApiSpell>().CheckActionChange(Data.Data.暗黑锋).GetSpell().Id} - {Core.Resolve<MemApiSpell>().CheckActionChange(Data.Data.EdgeOfShadow).GetSpell().Id}");
-        ImGui.Text($"LastSpell : {Core.Resolve<MemApiSpellCastSuccess>().LastSpell}");
-        ImGui.Text($"刚魂StalwartSoul : {Data.Data.刚魂StalwartSoul.IsUnlock()}");
-        ImGui.Text($"Scorn : {GameObjectExtension.HasAura(Core.Me, Data.Data.Buffs.Scorn, 0)}");
-        ImGui.Text($"IsUnlock : {Data.Data.蔑视厌恶Disesteem.IsUnlock()}");
-        ImGui.Text($"血乱Delirium : {Data.Data.血乱Delirium.GetCooldownRemainingTime()}");
-        ImGui.Text($"血溅Bloodspiller : {Data.Data.血溅Bloodspiller.GetCooldownRemainingTime()}");
-        ImGui.Text($"LivingShadow : {Data.Data.LivingShadow.GetCooldownRemainingTime()}");
-
-
-        ImGui.Text($"自身中心数量 : {TargetHelper.GetNearbyEnemyCount(5)}");
-        IBattleChara? battleChara = Core.Me.GetCurrTarget();
-        ImGui.Text($"目标中心数量 : {TargetHelper.GetNearbyEnemyCount(battleChara, 5, 5)}");
-        ImGui.Text($"血乱buff计时器 : {Core.Resolve<MemApiBuff>().GetAuraTimeleft(Core.Me, Data.Data.Buffs.血乱Delirium, true)}");
+       
     }
 
     public void DrawQtDev(JobViewWindow jobViewWindow)

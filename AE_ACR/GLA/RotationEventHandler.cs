@@ -21,7 +21,7 @@ public class RotationEventHandler : IRotationEventHandler
         // 重置战斗中缓存的数据
         CombatTime.Instance = new();
         // QT的设置重置为默认值
-        DKRotationEntry.QT.Reset();
+        GLDRotationEntry.QT.Reset();
     }
 
     public async Task OnNoTarget()

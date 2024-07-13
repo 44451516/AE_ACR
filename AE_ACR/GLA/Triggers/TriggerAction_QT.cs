@@ -20,7 +20,7 @@ internal class TriggerAction_QT : ITriggerAction
 
     public TriggerAction_QT()
     {
-        _qtArray = DKRotationEntry.QT.GetQtArray();
+        _qtArray = GLDRotationEntry.QT.GetQtArray();
     }
 
     public bool Draw()
@@ -42,7 +42,7 @@ internal class TriggerAction_QT : ITriggerAction
 
     public bool Handle()
     {
-        DKRotationEntry.QT.SetQt(Key, Value);
+        GLDRotationEntry.QT.SetQt(Key, Value);
         return true;
     }
 }
