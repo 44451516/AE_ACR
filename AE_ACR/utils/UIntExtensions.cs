@@ -1,24 +1,26 @@
 ﻿using AEAssist;
+using AEAssist.CombatRoutine;
+using AEAssist.Helper;
 using AEAssist.MemoryApi;
 
 namespace AE_ACR.utils
 {
     internal static class UIntExtensions
     {
-        internal static double GetCooldownRemainingTime(this uint value)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="actionID"></param>
+        /// <param name="weaveTime"> 毫秒</param>
+        /// <returns></returns>
+        public static bool CanWeave(int weaveTime = 660)
         {
+            if (GCDHelper.GetGCDCooldown() < weaveTime)
+            {
+                return true;
+            }
 
-            return Core.Resolve<MemApiSpell>().GetCooldown(value).TotalSeconds;
-
-            // var recastTimeElapsed = Core.Resolve<MemApiSpell>().GetRecastTimeElapsed(value);
-            // if (recastTimeElapsed == 0)
-            // {
-            //     return 0;
-            // }
-            // else
-            // {
-            //     return Core.Resolve<MemApiSpell>().GetRecastTimeElapsed(value) - recastTimeElapsed;
-            // }
+            return false;
         }
     }
 }

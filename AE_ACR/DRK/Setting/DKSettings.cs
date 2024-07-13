@@ -19,7 +19,7 @@ public class DKSettings
 
     public static void Build(string settingPath)
     {
-        path = Path.Combine(settingPath, nameof(DKSettings), "DK.json");
+        path = Path.Combine(settingPath, nameof(DKSettings) + "DK.json");
         if (!File.Exists(path))
         {
             Instance = new DKSettings();
