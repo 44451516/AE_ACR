@@ -1,7 +1,7 @@
-using AE_ACR_DRK_Setting;
-using AE_ACR_DRK_Triggers;
-using AE_ACR_DRK.SlotResolvers;
-using AE_ACR.DRK.SlotResolvers;
+using AE_ACR.GLA.Data;
+using AE_ACR.GLA.Setting;
+using AE_ACR.GLA.SlotResolvers;
+using AE_ACR.GLA.Triggers;
 using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine;
@@ -11,20 +11,18 @@ using AEAssist.Extension;
 using AEAssist.Helper;
 using AEAssist.JobApi;
 using AEAssist.MemoryApi;
-using AEAssist.Verify;
 using Dalamud.Game.ClientState.Objects.Types;
 using Dalamud.IoC;
 using Dalamud.Plugin.Services;
 using ImGuiNET;
 
-namespace AE_ACR_DRK;
+namespace AE_ACR.GLA;
 
 // 重要 类一定要Public声明才会被查找到
-public class DKRotationEntry : IRotationEntry
+internal class RotationEntry : IRotationEntry
 {
     public string AuthorName { get; set; } = "44451516";
 
-    [PluginService] internal static IChatGui ChatGui { get; private set; } = null!;
 
     // 逻辑从上到下判断，通用队列是无论如何都会判断的 
     // gcd则在可以使用gcd时判断
@@ -59,22 +57,21 @@ public class DKRotationEntry : IRotationEntry
 
 
         // 初始化设置
-        DKSettings.Build(settingFolder);
+        Settings.Build(settingFolder);
         // 初始化QT （依赖了设置的数据）
         BuildQT();
 
         var rot = new Rotation(SlotResolvers)
         {
-            // TargetJob = Jobs.Marauder,
-            TargetJob = Jobs.DarkKnight,
-            AcrType = AcrType.Both,
-            MinLevel = 30,
+            TargetJob = Jobs.Gladiator,
+            AcrType = AcrType.Normal,
+            MinLevel = 1,
             MaxLevel = 100,
-            Description = "DK先行版",
+            Description = "剑术师练级用",
         };
 
         // 添加各种事件回调
-        rot.SetRotationEventHandler(new DKRotationEventHandler());
+        rot.SetRotationEventHandler(new RotationEventHandler());
         // 添加QT开关的时间轴行为
         rot.AddTriggerAction(new TriggerAction_QT());
 
@@ -95,7 +92,7 @@ public class DKRotationEntry : IRotationEntry
     {
         // JobViewSave是AE底层提供的QT设置存档类 在你自己的设置里定义即可
         // 第二个参数是你设置文件的Save类 第三个参数是QT窗口标题
-        QT = new JobViewWindow(DKSettings.Instance.JobViewSave, DKSettings.Instance.Save, "AE DK [仅作为开发示范]");
+        QT = new JobViewWindow(Settings.Instance.JobViewSave, Settings.Instance.Save, "AE DK [仅作为开发示范]");
         QT.SetUpdateAction(OnUIUpdate); // 设置QT中的Update回调 不需要就不设置
 
         //添加QT分页 第一个参数是分页标题 第二个是分页里的内容
@@ -133,7 +130,7 @@ public class DKRotationEntry : IRotationEntry
     // 设置界面
     public void OnDrawSetting()
     {
-        DKSettingUI.Instance.Draw();
+        SettingUI.Instance.Draw();
     }
 
     public void OnUIUpdate()
@@ -142,10 +139,10 @@ public class DKRotationEntry : IRotationEntry
 
     public void DrawQtGeneral(JobViewWindow jobViewWindow)
     {
-        ImGui.Text($"GetRecastTime:{Core.Resolve<MemApiSpell>().GetRecastTime(DKData.疾跑).TotalSeconds}");
-        ImGui.Text($"GetRecastTimeElapsed:{Core.Resolve<MemApiSpell>().GetRecastTimeElapsed(DKData.疾跑)}");
-        ImGui.Text($"GetCooldownRemainingTime:{DKData.疾跑.GetCooldownRemainingTime()}");
-        ImGui.Text($"GetCooldown:{Core.Resolve<MemApiSpell>().GetCooldown(DKData.疾跑).TotalSeconds}");
+        ImGui.Text($"GetRecastTime:{Core.Resolve<MemApiSpell>().GetRecastTime(Data.Data.疾跑).TotalSeconds}");
+        ImGui.Text($"GetRecastTimeElapsed:{Core.Resolve<MemApiSpell>().GetRecastTimeElapsed(Data.Data.疾跑)}");
+        ImGui.Text($"GetCooldownRemainingTime:{Data.Data.疾跑.GetCooldownRemainingTime()}");
+        ImGui.Text($"GetCooldown:{Core.Resolve<MemApiSpell>().GetCooldown(Data.Data.疾跑).TotalSeconds}");
 
 
         ImGui.Text($"LastSpell : {Core.Resolve<MemApiSpellCastSuccess>().LastSpell}");
@@ -157,20 +154,20 @@ public class DKRotationEntry : IRotationEntry
         ImGui.Text($"战斗时间2 : {CombatTime.Instance.combatEnd}");
         ImGui.Text($"战斗时间3 : {CombatTime.Instance.CombatEngageDuration().TotalSeconds}");
         ImGui.Text($"暗黑时间 : {Core.Resolve<JobApi_DarkKnight>().DarksideTimeRemaining}");
-        ImGui.Text($"暗黑时间 : {Core.Resolve<MemApiSpell>().CheckActionChange(DKData.暗黑锋).GetSpell().Id} - {Core.Resolve<MemApiSpell>().CheckActionChange(DKData.EdgeOfShadow).GetSpell().Id}");
+        ImGui.Text($"暗黑时间 : {Core.Resolve<MemApiSpell>().CheckActionChange(Data.Data.暗黑锋).GetSpell().Id} - {Core.Resolve<MemApiSpell>().CheckActionChange(Data.Data.EdgeOfShadow).GetSpell().Id}");
         ImGui.Text($"LastSpell : {Core.Resolve<MemApiSpellCastSuccess>().LastSpell}");
-        ImGui.Text($"刚魂StalwartSoul : {DKData.刚魂StalwartSoul.IsUnlock()}");
-        ImGui.Text($"Scorn : {GameObjectExtension.HasAura(Core.Me, DKData.Buffs.Scorn, 0)}");
-        ImGui.Text($"IsUnlock : {DKData.蔑视厌恶Disesteem.IsUnlock()}");
-        ImGui.Text($"血乱Delirium : {DKData.血乱Delirium.GetCooldownRemainingTime()}");
-        ImGui.Text($"血溅Bloodspiller : {DKData.血溅Bloodspiller.GetCooldownRemainingTime()}");
-        ImGui.Text($"LivingShadow : {DKData.LivingShadow.GetCooldownRemainingTime()}");
+        ImGui.Text($"刚魂StalwartSoul : {Data.Data.刚魂StalwartSoul.IsUnlock()}");
+        ImGui.Text($"Scorn : {GameObjectExtension.HasAura(Core.Me, Data.Data.Buffs.Scorn, 0)}");
+        ImGui.Text($"IsUnlock : {Data.Data.蔑视厌恶Disesteem.IsUnlock()}");
+        ImGui.Text($"血乱Delirium : {Data.Data.血乱Delirium.GetCooldownRemainingTime()}");
+        ImGui.Text($"血溅Bloodspiller : {Data.Data.血溅Bloodspiller.GetCooldownRemainingTime()}");
+        ImGui.Text($"LivingShadow : {Data.Data.LivingShadow.GetCooldownRemainingTime()}");
 
 
         ImGui.Text($"自身中心数量 : {TargetHelper.GetNearbyEnemyCount(5)}");
         IBattleChara? battleChara = Core.Me.GetCurrTarget();
         ImGui.Text($"目标中心数量 : {TargetHelper.GetNearbyEnemyCount(battleChara, 5, 5)}");
-        ImGui.Text($"血乱buff计时器 : {Core.Resolve<MemApiBuff>().GetAuraTimeleft(Core.Me, DKData.Buffs.血乱Delirium, true)}");
+        ImGui.Text($"血乱buff计时器 : {Core.Resolve<MemApiBuff>().GetAuraTimeleft(Core.Me, Data.Data.Buffs.血乱Delirium, true)}");
     }
 
     public void DrawQtDev(JobViewWindow jobViewWindow)
