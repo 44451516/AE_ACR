@@ -13,7 +13,7 @@ namespace AE_ACR.ALL.SlotResolvers
 
         public int Check()
         {
-            if (UIntExtensions.CanWeave())
+            if (BaseIslotResolver.CanWeave())
             {
                 
                 if (ALLData.雪仇.ActionReady() && TargetHelper.GetNearbyEnemyCount(5) >= 6)

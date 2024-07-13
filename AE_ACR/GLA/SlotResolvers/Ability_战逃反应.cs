@@ -16,7 +16,7 @@ namespace AE_ACR.GLA.SlotResolvers
      
         public int Check()
         {
-            if (UIntExtensions.CanWeave())
+            if (BaseIslotResolver.CanWeave())
             {
                 if (Data.Data.战逃反应FightOrFlight.ActionReady())
                 {

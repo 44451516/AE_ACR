@@ -14,7 +14,7 @@ namespace AE_ACR.ALL.SlotResolvers
 
         public int Check()
         {
-            if (UIntExtensions.CanWeave())
+            if (BaseIslotResolver.CanWeave())
             {
                 //判断多少人打自己？ 再判断铁壁的id
                 if (ALLData.Buffs.亲疏自行.GetBuffRemainingTime() > 500)

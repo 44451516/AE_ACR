@@ -20,7 +20,12 @@ namespace AE_ACR.utils
 
         internal static bool ActionReady(this uint value)
         {
-            return value.IsUnlock() && value.IsLevelEnough() && value.ActionReady();
+            return value.OriginalHook().Id.IsUnlock() && value.IsLevelEnough() && value.ActionReady();
+        }
+        internal static bool OriginalHookActionReady(this uint value)
+        {
+            uint id = value.OriginalHook().Id;
+            return id.IsUnlock() && id.IsLevelEnough() && id.ActionReady();
         }
 
         internal static bool WasLastAction(this uint value)
@@ -39,5 +44,20 @@ namespace AE_ACR.utils
             return Core.Resolve<MemApiBuff>().GetAuraTimeleft(Core.Me, value, true);
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="actionID"></param>
+        /// <param name="weaveTime"> 毫秒</param>
+        /// <returns></returns>
+        public static bool CanWeave(int weaveTime = 660)
+        {
+            if (GCDHelper.GetGCDCooldown() < weaveTime)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }
