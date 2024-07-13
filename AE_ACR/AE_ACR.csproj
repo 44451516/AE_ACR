@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <AppendRuntimeIdentifierTo0utputPath>false</AppendRuntimeIdentifierTo0utputPath>
+
+        <DalamudLibPath>$(appdata)\XIVLauncher\addon\Hooks\dev\</DalamudLibPath>
+
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <AssemblyName>44451516</AssemblyName>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <OutputPath>F:\下载\AEAssist3.0 国际服EA版本 0710_2\ACR\44451516</OutputPath>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+        <OutputPath>F:\下载\AEAssist3.0 国际服EA版本 0710_2\ACR\44451516</OutputPath>
+    </PropertyGroup>
+
+
+    <ItemGroup>
+        <Reference Include="Dalamud">
+            <HintPath>$(DalamudLibPath)\Dalamud.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+
+        <Reference Include="ImGui.NET">
+            <HintPath>$(DalamudLibPath)\ImGui.NET.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+
+        <Reference Include="AEAssist.dll">
+            <HintPath>F:\下载\AEAssist3.0 国际服EA版本 0710_2\AEAssistENVersion\AEAssist\AEAssist.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+
+        <Reference Include="Newtonsoft.Json">
+            <HintPath>F:\下载\AEAssist3.0 国际服EA版本 0710_2\AEAssistENVersion\AEAssist\Newtonsoft.Json.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+    </ItemGroup>
+
+</Project>

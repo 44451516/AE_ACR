@@ -1,0 +1,6 @@
+.vs/
+*.v2
+.idea
+*.user
+/AE_ACR/obj/
+AE_ACR.sln.DotSettings.user
