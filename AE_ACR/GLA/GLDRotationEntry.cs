@@ -1,19 +1,11 @@
-using AE_ACR.GLA.Data;
+using AE_ACR.ALL.SlotResolvers;
 using AE_ACR.GLA.Setting;
 using AE_ACR.GLA.SlotResolvers;
 using AE_ACR.GLA.Triggers;
 using AE_ACR.utils;
-using AEAssist;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.CombatRoutine.View.JobView;
-using AEAssist.Extension;
-using AEAssist.Helper;
-using AEAssist.JobApi;
-using AEAssist.MemoryApi;
-using Dalamud.Game.ClientState.Objects.Types;
-using Dalamud.IoC;
-using Dalamud.Plugin.Services;
 using ImGuiNET;
 
 namespace AE_ACR.GLA;
@@ -30,8 +22,10 @@ public class GLDRotationEntry : IRotationEntry
     // pvp环境下 全都强制认为是通用队列
     private List<SlotResolverData> SlotResolvers = new()
     {
-        new(new Ability_先锋剑(), SlotMode.OffGcd),
+        new(new Ability_厄运流转(), SlotMode.OffGcd),
         new(new Ability_战逃反应(), SlotMode.OffGcd),
+        new(new Ability_铁壁(), SlotMode.OffGcd),
+        new(new Ability_预警(), SlotMode.OffGcd),
     
 
         // gcd队列

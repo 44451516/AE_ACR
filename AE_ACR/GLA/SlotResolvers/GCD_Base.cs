@@ -8,6 +8,7 @@ using AEAssist.Extension;
 using AEAssist.Helper;
 using AEAssist.JobApi;
 using AEAssist.MemoryApi;
+using Dalamud.Game.ClientState.Objects.Types;
 
 namespace AE_ACR.GLA.SlotResolvers;
 
@@ -17,7 +18,6 @@ public class GCD_Base : ISlotResolver
 
     public int Check()
     {
-
         return 0;
     }
 
@@ -28,6 +28,15 @@ public class GCD_Base : ISlotResolver
         {
             return Data.Data.全蚀斩TotalEclipse.OriginalHook();
         }
+
+        if (Core.Me.TargetObject is IBattleChara battleChara)
+        {
+            if (Data.Data.投盾ShieldLob.IsUnlock() && TargetHelper.GetTargetDistanceFromMeTest2D(battleChara, Core.Me) >= 10)
+            {
+                return Data.Data.投盾ShieldLob.GetSpell();
+            }
+        }
+
 
         if (LastBaseGcd == Data.Data.先锋剑FastBlade && Data.Data.暴乱剑RiotBlade.IsUnlock())
         {

@@ -29,12 +29,12 @@ namespace AE_ACR.utils
         }
         
         
-        internal static bool HasEffect(this uint value)
+        internal static bool HasEffect(this ushort value)
         {
             return GameObjectExtension.HasAura(Core.Me, value);
         }
 
-        internal static int GetBuffRemainingTime(this uint value)
+        internal static int GetBuffRemainingTime(this ushort value)
         {
             return Core.Resolve<MemApiBuff>().GetAuraTimeleft(Core.Me, value, true);
         }

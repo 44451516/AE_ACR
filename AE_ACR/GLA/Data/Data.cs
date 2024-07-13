@@ -10,6 +10,8 @@ public class Data
         投盾ShieldLob = 24,
         战逃反应FightOrFlight = 20,
         全蚀斩TotalEclipse = 7381,
+        预警 = 17,
+        钢铁信念 = 28,
         留空 = 0;
 
     public static class Buffs
@@ -17,6 +19,7 @@ public class Data
         public const ushort
             
             FightOrFlight = 76,
+            预警 = 74,
             留空 = 0;
     }
 }

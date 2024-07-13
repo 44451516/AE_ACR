@@ -11,19 +11,16 @@ using Dalamud.Game.ClientState.Objects.Types;
 
 namespace AE_ACR.GLA.SlotResolvers
 {
-    public class Ability_厄运流转 : ISlotResolver
+    public class Ability_钢铁信念 : ISlotResolver
     {
         public static uint LastBaseGcd => Core.Resolve<MemApiSpell>().GetLastComboSpellId();
         public static uint LastSpell => Core.Resolve<MemApiSpellCastSuccess>().LastSpell;
 
         public int Check()
         {
-            if (UIntExtensions.CanWeave())
+            if (Data.Data.钢铁信念.ActionReady())
             {
-                if (Data.Data.厄运流转CircleOfScorn.ActionReady() && TargetHelper.GetNearbyEnemyCount(5) > 0)
-                {
-                    return 0;
-                }
+                return 0;
             }
 
             return -1;
@@ -32,7 +29,7 @@ namespace AE_ACR.GLA.SlotResolvers
 
         public void Build(Slot slot)
         {
-            slot.Add(Data.Data.厄运流转CircleOfScorn.OriginalHook());
+            slot.Add(Data.Data.钢铁信念.OriginalHook());
         }
     }
 }
