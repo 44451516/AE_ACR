@@ -1,10 +1,12 @@
 #region
 
+using AE_ACR.PLD.Setting;
 using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.Helper;
+using Dalamud.Game.ClientState.Objects.Types;
 
 #endregion
 
@@ -61,7 +63,6 @@ public class GCD_Base : PLDBaseSlotResolvers
 
             if (HasEffect(Buffs.Requiescat) && 圣灵HolySpirit.IsUnlock() && GetResourceCost(圣灵HolySpirit) <= Core.Me.CurrentMp)
             {
-                AELoggerUtils.Log("圣灵2");
                 return 圣灵HolySpirit.OriginalHook();
             }
         }
@@ -73,42 +74,61 @@ public class GCD_Base : PLDBaseSlotResolvers
             if (HasEffect(Buffs.DivineMight)
                 && GetResourceCost(圣灵HolySpirit) <= Core.Me.CurrentMp)
             {
-                AELoggerUtils.Log("圣灵3");
                 return 圣灵HolySpirit.OriginalHook();
             }
 
 
-            if (HasEffect(Buffs.赎罪剑Atonement2BUFF)) return 赎罪剑Atonement.OriginalHook();
+            if (HasEffect(Buffs.赎罪剑Atonement2BUFF))
+            {
+                return 赎罪剑Atonement.OriginalHook();
+            }
 
 
-            if (HasEffect(Buffs.赎罪剑Atonement1BUFF)) return 赎罪剑Atonement.OriginalHook();
+            if (HasEffect(Buffs.赎罪剑Atonement1BUFF))
+            {
+                return 赎罪剑Atonement.OriginalHook();
+            }
+        }
+
+        if (PLDSettings.Instance.日常模式)
+        {
+            if (Core.Me.TargetObject is IBattleChara battleChara)
+            {
+                if (投盾ShieldLob.IsUnlock() && TargetHelper.GetTargetDistanceFromMeTest2D(battleChara, Core.Me) >= 10)
+                {
+                    return 投盾ShieldLob.GetSpell();
+                }
+            }
+
         }
 
 
-        // if (Core.Me.TargetObject is IBattleChara battleChara)
-        // {
-        //     if (投盾ShieldLob.IsUnlock() && TargetHelper.GetTargetDistanceFromMeTest2D(battleChara, Core.Me) >= 10)
-        //     {
-        //         return 投盾ShieldLob.GetSpell();
-        //     }
-        // }
+        if (lastComboActionID == 先锋剑FastBlade && 暴乱剑RiotBlade.IsUnlock())
+        {
+            return 暴乱剑RiotBlade.OriginalHook();
+        }
 
-
-        if (lastComboActionID == 先锋剑FastBlade && 暴乱剑RiotBlade.IsUnlock()) return 暴乱剑RiotBlade.OriginalHook();
-
-        if (HasEffect(Buffs.赎罪剑Atonement1BUFF) || HasEffect(Buffs.赎罪剑Atonement2BUFF)) return 赎罪剑Atonement.OriginalHook();
+        if (HasEffect(Buffs.赎罪剑Atonement1BUFF) || HasEffect(Buffs.赎罪剑Atonement2BUFF))
+        {
+            return 赎罪剑Atonement.OriginalHook();
+        }
 
 
         if (HasEffect(Buffs.DivineMight))
         {
-            AELoggerUtils.Log("圣灵4");
             return 圣灵HolySpirit.OriginalHook();
         }
 
-        if (HasEffect(Buffs.赎罪剑Atonement1BUFF) || HasEffect(Buffs.赎罪剑Atonement2BUFF) || HasEffect(Buffs.赎罪剑Atonement3BUFF)) return 赎罪剑Atonement.OriginalHook();
+        if (HasEffect(Buffs.赎罪剑Atonement1BUFF) || HasEffect(Buffs.赎罪剑Atonement2BUFF) || HasEffect(Buffs.赎罪剑Atonement3BUFF))
+        {
+            return 赎罪剑Atonement.OriginalHook();
+        }
 
 
-        if (lastComboActionID == 暴乱剑RiotBlade && 战女神之怒RageOfHalone.IsUnlock()) return 战女神之怒RageOfHalone.OriginalHook();
+        if (lastComboActionID == 暴乱剑RiotBlade && 战女神之怒RageOfHalone.IsUnlock())
+        {
+            return 战女神之怒RageOfHalone.OriginalHook();
+        }
 
 
         return 先锋剑FastBlade.OriginalHook();

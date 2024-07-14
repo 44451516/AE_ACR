@@ -17,12 +17,21 @@ public class Ability_安魂祈祷 : PLDBaseSlotResolvers
         }
 
         if (CanWeave())
+        {
             if (安魂祈祷Requiescat.OriginalHookActionReady())
             {
-                if (WasLastAction(战逃反应FightOrFlight)) return 0;
+                if (WasLastAction(战逃反应FightOrFlight))
+                {
+                    return 0;
+                }
 
-                if (HasEffect(Buffs.FightOrFlight)) return 0;
+                if (HasEffect(Buffs.FightOrFlight))
+                {
+                    return 0;
+                }
             }
+        }
+
 
         return -1;
     }

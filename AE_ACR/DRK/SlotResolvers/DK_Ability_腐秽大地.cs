@@ -42,16 +42,11 @@ public class DK_Ability_腐秽大地 : DRKBaseSlotResolvers
             return -1;
 
 
-        if (腐秽大地SaltedEarth.ActionReady())
+        if (腐秽大地SaltedEarth.OriginalHookActionReady())
         {
             return 0;
         }
-        if (腐秽黑暗.ActionReady() && HasEffect(Buffs.腐秽黑暗))
-        {
-            return 0;
-        }
-
-
+        
         return -3;
     }
 
