@@ -4,7 +4,6 @@ using AE_ACR.GLA.Setting;
 using AE_ACR.GLA.SlotResolvers;
 using AE_ACR.GLA.SlotResolvers.减伤;
 using AE_ACR.GLA.Triggers;
-using AE_ACR.utils;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.CombatRoutine.View.JobView;
@@ -14,33 +13,26 @@ using ImGuiNET;
 
 namespace AE_ACR.GLA;
 
-// 重要 类一定要Public声明才会被查找到
 public class GLARotationEntry : IRotationEntry
 {
-    // 逻辑从上到下判断，通用队列是无论如何都会判断的 
-    // gcd则在可以使用gcd时判断
-    // offGcd则在不可以使用gcd 且没达到gcd内插入能力技上限时判断
-    // pvp环境下 全都强制认为是通用队列
+    public string AuthorName { get; set; } = "44451516";
     private readonly List<SlotResolverData> SlotResolvers = new()
     {
         new SlotResolverData(new Ability_钢铁信念(), SlotMode.Always),
         new SlotResolverData(new Ability_战逃反应(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_厄运流转(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_深奥之灵(), SlotMode.OffGcd),
+        
         new SlotResolverData(new Ability_铁壁(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_预警(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_血仇(), SlotMode.OffGcd),
-        // new(new Ability_预警(), SlotMode.OffGcd),
-
-
-        // gcd队列
+        new SlotResolverData(new Ability_挑衅(), SlotMode.OffGcd),
+        
         new SlotResolverData(new GCD_Base(), SlotMode.Gcd)
     };
 
     // 声明当前要使用的UI的实例 示例里使用QT
     public static JobViewWindow QT { get; private set; }
-    public string AuthorName { get; set; } = "44451516";
-
 
     public Rotation Build(string settingFolder)
     {

@@ -85,6 +85,11 @@ public abstract class DRKBaseSlotResolvers : TankBaseIslotResolver
     {
         return DKSettings.Instance.日常模式;
     }
+    
+    public static bool 是否日常模式()
+    {
+        return DKSettings.Instance.日常模式;
+    }
 
     public static bool getQTValue(string key)
     {

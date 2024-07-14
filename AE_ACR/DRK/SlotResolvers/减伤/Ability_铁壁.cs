@@ -21,9 +21,11 @@ public class Ability_铁壁 : DRKBaseSlotResolvers
 
         if (CanWeave())
         {
-          
+
             if (暗影墙.ActionReady())
+            {
                 return -1;
+            }
 
          
             if (Buffs.暗影墙.GetBuffRemainingTime() > 0.5f)

@@ -50,6 +50,7 @@ public class DRKRotationEntry : IRotationEntry
 
         new SlotResolverData(new Ability_亲疏自行(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_雪仇(), SlotMode.OffGcd),
+        new SlotResolverData(new Ability_挑衅(), SlotMode.OffGcd),
 
         new SlotResolverData(new DK_Ability_掠影示现(), SlotMode.OffGcd),
         new SlotResolverData(new DK_Ability_暗黑波动_AOE(), SlotMode.OffGcd),
@@ -128,8 +129,11 @@ public class DRKRotationEntry : IRotationEntry
 
         //添加QT分页 第一个参数是分页标题 第二个是分页里的内容
  
-        QT.AddTab("通用", DrawQtGeneral);
+  
+#if DEBUG
         QT.AddTab("Dev", DrawQtDev);
+#endif
+        QT.AddTab("通用", DrawQtGeneral);
         // QT.AddTab("Dev2", DrawQtDev);
         
         QT.AddQt(BaseQTKey.停手, false, "是否使用基础的Gcd");

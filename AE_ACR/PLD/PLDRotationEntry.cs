@@ -3,6 +3,7 @@
 using AE_ACR.Base;
 using AE_ACR.PLD.Setting;
 using AE_ACR.PLD.SlotResolvers;
+using AE_ACR.PLD.SlotResolvers.减伤;
 using AE_ACR.PLD.Triggers;
 using AE_ACR.utils;
 using AEAssist;
@@ -34,6 +35,7 @@ public class PLDRotationEntry : IRotationEntry
         new SlotResolverData(new Ability_圣盾阵(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_亲疏自行(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_雪仇(), SlotMode.OffGcd),
+        new SlotResolverData(new Ability_挑衅(), SlotMode.OffGcd),
 
 
         new SlotResolverData(new Ability_战逃反应(), SlotMode.OffGcd),
@@ -114,7 +116,9 @@ public class PLDRotationEntry : IRotationEntry
         QT.SetUpdateAction(OnUIUpdate); // 设置QT中的Update回调 不需要就不设置
 
         //添加QT分页 第一个参数是分页标题 第二个是分页里的内容
-        // QT.AddTab("Dev", DrawQtDev);
+#if DEBUG
+        QT.AddTab("Dev", DrawQtDev);
+#endif
         QT.AddTab("通用", DrawQtGeneral);
 
         // 添加QT开关 第二个参数是默认值 (开or关) 第三个参数是鼠标悬浮时的tips

@@ -4,7 +4,9 @@ using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.Extension;
+using AEAssist.Helper;
 using AEAssist.JobApi;
+using Dalamud.Game.ClientState.Objects.Types;
 
 #endregion
 
@@ -22,25 +24,53 @@ public class Ability_圣盾阵 : PLDBaseSlotResolvers
 
         if (CanWeave())
         {
-            if (神圣领域.ActionReady()) 
+            // if (神圣领域.ActionReady())
+            // {
+            //     return -1;
+            // }
+
+
+            if (Buffs.神圣领域.GetBuffRemainingTime() > 0.5f)
+            {
                 return -1;
+            }
 
-
-            if (Buffs.神圣领域.GetBuffRemainingTime() > 0.5f) 
+            if (Buffs.预警.GetBuffRemainingTime() > 0.5f)
+            {
                 return -1;
+            }
 
-            if (Buffs.预警.GetBuffRemainingTime() > 0.5f) 
+            if (Buffs.预警v2.GetBuffRemainingTime() > 0.5f)
+            {
                 return -1;
+            }
 
-            if (Buffs.预警v2.GetBuffRemainingTime() > 0.5f) 
+            if (Buffs.壁垒.GetBuffRemainingTime() > 0.5f)
+            {
                 return -1;
-
-            if (Buffs.壁垒.GetBuffRemainingTime() > 0.5f) 
-                return -1;
+            }
 
 
-            if (圣盾阵.ActionReady() && Core.Resolve<JobApi_Paladin>().Oath >= 50 && attackMeCount() >= 5 && Core.Me.CurrentHpPercent() < 0.88f) 
-                return 0;
+            if (圣盾阵.OriginalHookActionReady() && Core.Resolve<JobApi_Paladin>().Oath >= 50)
+            {
+                if (Core.Me.CurrentHpPercent() < 0.88f)
+                {
+                    if (attackMeCount() >= 3)
+                    {
+                        return 0;
+                    }
+                
+                    if (Core.Me.TargetObject is IBattleChara target)
+                    {
+                        if (TargetHelper.IsBoss(target))
+                        {
+                            return 0;
+                        }
+                    }
+                }
+               
+            }
+
         }
 
         return -1;

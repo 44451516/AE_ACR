@@ -44,4 +44,9 @@
         </Reference>
     </ItemGroup>
 
+
+    <ItemGroup>
+      <Folder Include="Base\Tanke\" />
+    </ItemGroup>
+
 </Project>
