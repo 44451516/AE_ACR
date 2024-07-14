@@ -1,17 +1,35 @@
-﻿using AEAssist.CombatRoutine.View.JobView;
+﻿#region
+
+using AEAssist.CombatRoutine.View.JobView;
 using AEAssist.Helper;
 using AEAssist.IO;
+
+#endregion
 
 namespace AE_ACR_DRK_Setting;
 
 /// <summary>
-/// 配置文件适合放一些一般不会在战斗中随时调整的开关数据
-/// 如果一些开关需要在战斗中调整 或者提供给时间轴操作 那就用QT
-/// 非开关类型的配置都放配置里 比如诗人绝峰能量配置
+///     配置文件适合放一些一般不会在战斗中随时调整的开关数据
+///     如果一些开关需要在战斗中调整 或者提供给时间轴操作 那就用QT
+///     非开关类型的配置都放配置里 比如诗人绝峰能量配置
 /// </summary>
 public class DKSettings
 {
     public static DKSettings Instance;
+
+
+    public int 保留蓝量 = 3000;
+    public int 爆发目标血量 = 20;
+    public bool 留资源 = false;
+    public float 能力技爆发延时 = 5f;
+    public float GCD爆发延时 = 7f;
+
+    public JobViewSave JobViewSave = new(); // QT设置存档
+
+    public int get爆发目标血量()
+    {
+        return 爆发目标血量 * 10000;
+    }
 
     #region 标准模板代码 可以直接复制后改掉类名即可
 
@@ -45,18 +63,4 @@ public class DKSettings
     }
 
     #endregion
-
-
-    public int 保留蓝量 = 3000;
-    public bool 留资源 = false;
-    public float 能力技爆发延时 = 5f;
-    public float GCD爆发延时 = 7f;
-    public int 爆发目标血量 = 20;
-
-    public int get爆发目标血量()
-    {
-        return 爆发目标血量 * 10000;
-    }
-
-    public JobViewSave JobViewSave = new(); // QT设置存档
 }

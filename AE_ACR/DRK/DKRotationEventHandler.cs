@@ -1,11 +1,15 @@
+#region
+
 using AE_ACR.utils;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
 
+#endregion
+
 namespace AE_ACR_DRK;
 
 /// <summary>
-/// 事件回调处理类 参考接口里的方法注释
+///     事件回调处理类 参考接口里的方法注释
 /// </summary>
 public class DKRotationEventHandler : IRotationEventHandler
 {

@@ -1,12 +1,15 @@
-using AE_ACR_DRK;
+#region
+
 using AE_ACR.utils;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
 
+#endregion
+
 namespace AE_ACR.GLA;
 
 /// <summary>
-/// 事件回调处理类 参考接口里的方法注释
+///     事件回调处理类 参考接口里的方法注释
 /// </summary>
 public class RotationEventHandler : IRotationEventHandler
 {
@@ -39,7 +42,8 @@ public class RotationEventHandler : IRotationEventHandler
 
     public void OnBattleUpdate(int currTimeInMs)
     {
-        if (CombatTime.Instance.combatStart == DateTime.MinValue) CombatTime.Instance.combatStart = DateTime.Now;
+        if (CombatTime.Instance.combatStart == DateTime.MinValue)
+            CombatTime.Instance.combatStart = DateTime.Now;
 
         CombatTime.Instance.UpdateCombatTimer();
     }

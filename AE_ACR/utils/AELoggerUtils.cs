@@ -1,4 +1,8 @@
-﻿using AEAssist;
+﻿#region
+
+using AEAssist;
+
+#endregion
 
 namespace AE_ACR.utils;
 

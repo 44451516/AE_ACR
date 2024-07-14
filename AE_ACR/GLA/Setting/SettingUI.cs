@@ -1,5 +1,3 @@
-using ImGuiNET;
-
 namespace AE_ACR.GLA.Setting;
 
 public class SettingUI

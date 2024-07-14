@@ -1,13 +1,16 @@
-﻿using AE_ACR_DRK;
+﻿#region
+
+using AE_ACR_DRK;
 using AE_ACR_DRK_Setting;
 using AE_ACR.utils;
 using AEAssist;
-using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.Extension;
 using AEAssist.Helper;
 using AEAssist.JobApi;
 using AEAssist.MemoryApi;
+
+#endregion
 
 namespace AE_ACR.DRK.SlotResolvers;
 
@@ -24,7 +27,7 @@ public class DK_GCD_蔑视厌恶 : ISlotResolver
         if (DKSettings.Instance.GCD爆发延时 > CombatTime.Instance.CombatEngageDuration().TotalSeconds) return -1;
 
 
-        if (GameObjectExtension.HasAura(Core.Me, DKData.Buffs.Scorn, 0)) return 0;
+        if (Core.Me.HasAura(DKData.Buffs.Scorn)) return 0;
 
 
         return -1;

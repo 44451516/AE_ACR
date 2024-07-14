@@ -1,3 +1,5 @@
+#region
+
 using AE_ACR_DRK_Setting;
 using AEAssist;
 using AEAssist.CombatRoutine;
@@ -5,6 +7,8 @@ using AEAssist.CombatRoutine.Module;
 using AEAssist.Helper;
 using AEAssist.JobApi;
 using AEAssist.MemoryApi;
+
+#endregion
 
 namespace AE_ACR_DRK.SlotResolvers;
 
@@ -20,6 +24,15 @@ public class DK_GCD_Base : ISlotResolver
         return 0;
     }
 
+
+    // 将指定技能加入技能队列中
+    public void Build(Slot slot)
+
+    {
+        var spell = GetBaseGCD();
+        slot.Add(spell);
+    }
+
     public static Spell GetBaseGCD()
     {
         // 如果自己有直线射击预备buff 或者最近1秒内使用过纷乱
@@ -29,7 +42,7 @@ public class DK_GCD_Base : ISlotResolver
         // }
         // return GetHeavyShot();
         // return AurasDefine.SearingLight;
-        if (LastBaseGcd == DKData.单体1HardSlash) return SpellHelper.GetSpell(DKData.单体2SyphonStrike);
+        if (LastBaseGcd == DKData.单体1HardSlash) return DKData.单体2SyphonStrike.GetSpell();
 
         if (LastBaseGcd == DKData.单体2SyphonStrike && DKSettings.Instance.留资源 == false)
             if (Core.Resolve<JobApi_DarkKnight>().Blood >= 80 && DKData.血溅Bloodspiller.IsUnlock())
@@ -40,18 +53,9 @@ public class DK_GCD_Base : ISlotResolver
             }
 
 
-        if (LastBaseGcd == DKData.单体2SyphonStrike) return SpellHelper.GetSpell(DKData.单体3Souleater);
+        if (LastBaseGcd == DKData.单体2SyphonStrike) return DKData.单体3Souleater.GetSpell();
 
 
-        return SpellHelper.GetSpell(DKData.单体1HardSlash);
-    }
-
-
-    // 将指定技能加入技能队列中
-    public void Build(Slot slot)
-
-    {
-        var spell = GetBaseGCD();
-        slot.Add(spell);
+        return DKData.单体1HardSlash.GetSpell();
     }
 }

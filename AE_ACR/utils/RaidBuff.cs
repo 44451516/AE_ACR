@@ -1,6 +1,10 @@
+#region
+
 using AEAssist;
 using AEAssist.Extension;
 using Dalamud.Game.ClientState.Objects.Types;
+
+#endregion
 
 namespace AE_ACR.utils;
 
@@ -22,17 +26,17 @@ public class RaidBuff
 
     public static bool 爆发期()
     {
-        if (GameObjectExtension.HasAura(Core.Me, 强化药, 0)) return true;
+        if (Core.Me.HasAura(强化药)) return true;
 
-        if (GameObjectExtension.HasAura(Core.Me, 灼热之光, 0)) return true;
+        if (Core.Me.HasAura(灼热之光)) return true;
 
-        if (GameObjectExtension.HasAura(Core.Me, 技巧舞步结束TechnicalFinish, 0)) return true;
+        if (Core.Me.HasAura(技巧舞步结束TechnicalFinish)) return true;
 
         if (Core.Me.TargetObject is IBattleChara battleChara)
         {
-            if (GameObjectExtension.HasAura(battleChara, 攻其不备, 0)) return true;
+            if (battleChara.HasAura(攻其不备)) return true;
 
-            if (GameObjectExtension.HasAura(battleChara, 连环计, 0)) return true;
+            if (battleChara.HasAura(连环计)) return true;
         }
 
         return false;

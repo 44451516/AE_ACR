@@ -1,9 +1,11 @@
-﻿using AE_ACR.GLA.Data;
+﻿#region
+
+using AE_ACR.GLA.Data;
 using AE_ACR.utils;
-using AEAssist;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.Helper;
-using AEAssist.MemoryApi;
+
+#endregion
 
 namespace AE_ACR.ALL.SlotResolvers;
 

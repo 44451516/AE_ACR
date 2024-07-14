@@ -1,26 +1,26 @@
+#region
+
 using AE_ACR.ALL.SlotResolvers;
 using AE_ACR.GLA.Setting;
 using AE_ACR.GLA.SlotResolvers;
 using AE_ACR.GLA.Triggers;
-using AE_ACR.utils;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.CombatRoutine.View.JobView;
 using ImGuiNET;
+
+#endregion
 
 namespace AE_ACR.GLA;
 
 // 重要 类一定要Public声明才会被查找到
 public class GLDRotationEntry : IRotationEntry
 {
-    public string AuthorName { get; set; } = "44451516";
-
-
     // 逻辑从上到下判断，通用队列是无论如何都会判断的 
     // gcd则在可以使用gcd时判断
     // offGcd则在不可以使用gcd 且没达到gcd内插入能力技上限时判断
     // pvp环境下 全都强制认为是通用队列
-    private List<SlotResolverData> SlotResolvers = new()
+    private readonly List<SlotResolverData> SlotResolvers = new()
     {
         new SlotResolverData(new Ability_钢铁信念(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_战逃反应(), SlotMode.OffGcd),
@@ -34,6 +34,10 @@ public class GLDRotationEntry : IRotationEntry
         // gcd队列
         new SlotResolverData(new GCD_Base(), SlotMode.Gcd)
     };
+
+    // 声明当前要使用的UI的实例 示例里使用QT
+    public static JobViewWindow QT { get; private set; }
+    public string AuthorName { get; set; } = "44451516";
 
 
     public Rotation Build(string settingFolder)
@@ -65,13 +69,22 @@ public class GLDRotationEntry : IRotationEntry
         return rot;
     }
 
-    // 声明当前要使用的UI的实例 示例里使用QT
-    public static JobViewWindow QT { get; private set; }
-
     // 如果你不想用QT 可以自行创建一个实现IRotationUI接口的类
     public IRotationUI GetRotationUI()
     {
         return QT;
+    }
+
+    // 设置界面
+    public void OnDrawSetting()
+    {
+        SettingUI.Instance.Draw();
+    }
+
+
+    public void Dispose()
+    {
+        // 释放需要释放的东西 没有就留空
     }
 
     // 构造函数里初始化QT
@@ -114,12 +127,6 @@ public class GLDRotationEntry : IRotationEntry
         */
     }
 
-    // 设置界面
-    public void OnDrawSetting()
-    {
-        SettingUI.Instance.Draw();
-    }
-
     public void OnUIUpdate()
     {
     }
@@ -131,14 +138,16 @@ public class GLDRotationEntry : IRotationEntry
     public void DrawQtDev(JobViewWindow jobViewWindow)
     {
         ImGui.Text("画Dev信息");
-        foreach (var v in jobViewWindow.GetQtArray()) ImGui.Text($"Qt按钮: {v}");
+        foreach (var v in jobViewWindow.GetQtArray())
+        {
+            ImGui.Text($"Qt按钮: {v}");
+        }
 
-        foreach (var v in jobViewWindow.GetHotkeyArray()) ImGui.Text($"Hotkey按钮: {v}");
-    }
 
+        foreach (var v in jobViewWindow.GetHotkeyArray())
+        {
+            ImGui.Text($"Hotkey按钮: {v}");
+        }
 
-    public void Dispose()
-    {
-        // 释放需要释放的东西 没有就留空
     }
 }

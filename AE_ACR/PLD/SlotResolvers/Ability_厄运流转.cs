@@ -1,6 +1,10 @@
-﻿using AE_ACR.utils;
+﻿#region
+
+using AE_ACR.utils;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.Helper;
+
+#endregion
 
 namespace AE_ACR.PLD.SlotResolvers;
 
@@ -25,8 +29,7 @@ public class Ability_厄运流转 : PLDBaseSlotResolvers
                     }
                 }
 
-                if (GetCooldownRemainingTime(战逃反应FightOrFlight) > 20 &&
-                    GetCooldownRemainingTime(战逃反应FightOrFlight) < 40)
+                if (GetCooldownRemainingTime(战逃反应FightOrFlight) > 20 && GetCooldownRemainingTime(战逃反应FightOrFlight) < 40)
                     return 0;
             }
 

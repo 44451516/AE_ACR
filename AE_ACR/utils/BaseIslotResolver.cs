@@ -1,4 +1,6 @@
-﻿using AEAssist;
+﻿#region
+
+using AEAssist;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.CombatRoutine.Module.Target;
 using AEAssist.Extension;
@@ -6,12 +8,23 @@ using AEAssist.Helper;
 using AEAssist.MemoryApi;
 using Dalamud.Game.ClientState.Objects.Types;
 
+#endregion
+
 namespace AE_ACR.utils;
 
 public abstract class BaseIslotResolver : ISlotResolver
 {
     public static uint lastComboActionID => Core.Resolve<MemApiSpell>().GetLastComboSpellId();
     public static double comboTime => Core.Resolve<MemApiSpell>().GetComboTimeLeft().TotalSeconds;
+
+
+    // public static bool getsads()
+    // {
+    //     return BaseQTKey.QT.GetQt("百花");
+    // }
+
+    public abstract int Check();
+    public abstract void Build(Slot slot);
 
     public static bool IsMoving()
     {
@@ -89,13 +102,4 @@ public abstract class BaseIslotResolver : ISlotResolver
 
         return count;
     }
-
-
-    // public static bool getsads()
-    // {
-    //     return BaseQTKey.QT.GetQt("百花");
-    // }
-
-    public abstract int Check();
-    public abstract void Build(Slot slot);
 }

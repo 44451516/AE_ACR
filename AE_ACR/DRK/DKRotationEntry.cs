@@ -1,3 +1,5 @@
+#region
+
 using AE_ACR_DRK_Setting;
 using AE_ACR_DRK_Triggers;
 using AE_ACR_DRK.SlotResolvers;
@@ -11,26 +13,22 @@ using AEAssist.Extension;
 using AEAssist.Helper;
 using AEAssist.JobApi;
 using AEAssist.MemoryApi;
-using AEAssist.Verify;
-using Dalamud.Game.ClientState.Objects.Types;
 using Dalamud.IoC;
 using Dalamud.Plugin.Services;
 using ImGuiNET;
+
+#endregion
 
 namespace AE_ACR_DRK;
 
 // 重要 类一定要Public声明才会被查找到
 public class DKRotationEntry : IRotationEntry
 {
-    public string AuthorName { get; set; } = "44451516";
-
-    [PluginService] internal static IChatGui ChatGui { get; private set; } = null!;
-
     // 逻辑从上到下判断，通用队列是无论如何都会判断的 
     // gcd则在可以使用gcd时判断
     // offGcd则在不可以使用gcd 且没达到gcd内插入能力技上限时判断
     // pvp环境下 全都强制认为是通用队列
-    private List<SlotResolverData> SlotResolvers = new()
+    private readonly List<SlotResolverData> SlotResolvers = new()
     {
         // offGcd队列
         new SlotResolverData(new DK_Ability_掠影示现(), SlotMode.OffGcd),
@@ -49,6 +47,13 @@ public class DKRotationEntry : IRotationEntry
         new SlotResolverData(new DK_GCD_AOE_Base(), SlotMode.Gcd),
         new SlotResolverData(new DK_GCD_Base(), SlotMode.Gcd)
     };
+
+    [PluginService]
+    internal static IChatGui ChatGui { get; private set; } = null!;
+
+    // 声明当前要使用的UI的实例 示例里使用QT
+    public static JobViewWindow QT { get; private set; }
+    public string AuthorName { get; set; } = "44451516";
 
 
     public Rotation Build(string settingFolder)
@@ -81,13 +86,22 @@ public class DKRotationEntry : IRotationEntry
         return rot;
     }
 
-    // 声明当前要使用的UI的实例 示例里使用QT
-    public static JobViewWindow QT { get; private set; }
-
     // 如果你不想用QT 可以自行创建一个实现IRotationUI接口的类
     public IRotationUI GetRotationUI()
     {
         return QT;
+    }
+
+    // 设置界面
+    public void OnDrawSetting()
+    {
+        DKSettingUI.Instance.Draw();
+    }
+
+
+    public void Dispose()
+    {
+        // 释放需要释放的东西 没有就留空
     }
 
     // 构造函数里初始化QT
@@ -130,12 +144,6 @@ public class DKRotationEntry : IRotationEntry
         */
     }
 
-    // 设置界面
-    public void OnDrawSetting()
-    {
-        DKSettingUI.Instance.Draw();
-    }
-
     public void OnUIUpdate()
     {
     }
@@ -160,7 +168,7 @@ public class DKRotationEntry : IRotationEntry
         ImGui.Text($"暗黑时间 : {Core.Resolve<MemApiSpell>().CheckActionChange(DKData.暗黑锋).GetSpell().Id} - {Core.Resolve<MemApiSpell>().CheckActionChange(DKData.EdgeOfShadow).GetSpell().Id}");
         ImGui.Text($"LastSpell : {Core.Resolve<MemApiSpellCastSuccess>().LastSpell}");
         ImGui.Text($"刚魂StalwartSoul : {DKData.刚魂StalwartSoul.IsUnlock()}");
-        ImGui.Text($"Scorn : {GameObjectExtension.HasAura(Core.Me, DKData.Buffs.Scorn, 0)}");
+        ImGui.Text($"Scorn : {Core.Me.HasAura(DKData.Buffs.Scorn)}");
         ImGui.Text($"IsUnlock : {DKData.蔑视厌恶Disesteem.IsUnlock()}");
         ImGui.Text($"血乱Delirium : {DKData.血乱Delirium.GetCooldownRemainingTime()}");
         ImGui.Text($"血溅Bloodspiller : {DKData.血溅Bloodspiller.GetCooldownRemainingTime()}");
@@ -176,14 +184,16 @@ public class DKRotationEntry : IRotationEntry
     public void DrawQtDev(JobViewWindow jobViewWindow)
     {
         ImGui.Text("画Dev信息");
-        foreach (var v in jobViewWindow.GetQtArray()) ImGui.Text($"Qt按钮: {v}");
+        foreach (var v in jobViewWindow.GetQtArray())
+        {
+            ImGui.Text($"Qt按钮: {v}");
+        }
 
-        foreach (var v in jobViewWindow.GetHotkeyArray()) ImGui.Text($"Hotkey按钮: {v}");
-    }
 
+        foreach (var v in jobViewWindow.GetHotkeyArray())
+        {
+            ImGui.Text($"Hotkey按钮: {v}");
+        }
 
-    public void Dispose()
-    {
-        // 释放需要释放的东西 没有就留空
     }
 }

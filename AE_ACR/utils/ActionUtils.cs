@@ -1,8 +1,12 @@
-﻿using AEAssist;
+﻿#region
+
+using AEAssist;
 using AEAssist.CombatRoutine;
 using AEAssist.Extension;
 using AEAssist.Helper;
 using AEAssist.MemoryApi;
+
+#endregion
 
 namespace AE_ACR.utils;
 
@@ -37,7 +41,7 @@ internal static class ActionUtils
 
     internal static bool HasEffect(this ushort value)
     {
-        return GameObjectExtension.HasAura(Core.Me, value);
+        return Core.Me.HasAura(value);
     }
 
     internal static int GetBuffRemainingTime(this ushort value)
@@ -46,7 +50,6 @@ internal static class ActionUtils
     }
 
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="actionID"></param>
     /// <param name="weaveTime"> 毫秒</param>

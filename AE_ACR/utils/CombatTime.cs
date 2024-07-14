@@ -4,9 +4,10 @@ namespace AE_ACR.utils;
 // 举例： 诗人需要记录上一次的双dot什么时候上的/吃了多少强化资源，来决定是否在恰当的时候立即刷新双dot
 public class CombatTime
 {
-    public TimeSpan combatDuration = new();
-    public DateTime combatStart = DateTime.MinValue;
+    public static CombatTime Instance = new();
+    public TimeSpan combatDuration;
     public DateTime combatEnd;
+    public DateTime combatStart = DateTime.MinValue;
 
     public TimeSpan CombatEngageDuration()
     {
@@ -18,6 +19,4 @@ public class CombatTime
         combatEnd = DateTime.Now;
         combatDuration = combatEnd - combatStart;
     }
-
-    public static CombatTime Instance = new();
 }

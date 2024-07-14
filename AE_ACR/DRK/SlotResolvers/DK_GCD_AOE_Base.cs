@@ -1,11 +1,14 @@
+#region
+
 using AE_ACR_DRK_Setting;
 using AEAssist;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
-using AEAssist.Extension;
 using AEAssist.Helper;
 using AEAssist.JobApi;
 using AEAssist.MemoryApi;
+
+#endregion
 
 namespace AE_ACR_DRK.SlotResolvers;
 
@@ -25,6 +28,12 @@ public class DK_GCD_AOE_Base : ISlotResolver
         return -1;
     }
 
+    public void Build(Slot slot)
+    {
+        var spell = GetAOEGCDSpell();
+        slot.Add(spell);
+    }
+
     private Spell GetAOEGCDSpell()
     {
         if (LastBaseGcd == DKData.释放Unleash && DKSettings.Instance.留资源 == false)
@@ -39,11 +48,5 @@ public class DK_GCD_AOE_Base : ISlotResolver
             return DKData.刚魂StalwartSoul.GetSpell();
 
         return DKData.释放Unleash.GetSpell();
-    }
-
-    public void Build(Slot slot)
-    {
-        var spell = GetAOEGCDSpell();
-        slot.Add(spell);
     }
 }

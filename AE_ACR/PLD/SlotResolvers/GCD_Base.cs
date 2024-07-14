@@ -1,8 +1,12 @@
+#region
+
 using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.Helper;
+
+#endregion
 
 namespace AE_ACR.PLD.SlotResolvers;
 
@@ -42,9 +46,7 @@ public class GCD_Base : PLDBaseSlotResolvers
             }
 
 
-            if (lastComboActionID == 王权剑RoyalAuthority && (HasEffect(Buffs.赎罪剑Atonement1BUFF) ||
-                                                           HasEffect(Buffs.赎罪剑Atonement2BUFF) ||
-                                                           HasEffect(Buffs.赎罪剑Atonement3BUFF)))
+            if (lastComboActionID == 王权剑RoyalAuthority && (HasEffect(Buffs.赎罪剑Atonement1BUFF) || HasEffect(Buffs.赎罪剑Atonement2BUFF) || HasEffect(Buffs.赎罪剑Atonement3BUFF)))
                 return 赎罪剑Atonement.OriginalHook();
 
             if (HasEffect(Buffs.赎罪剑Atonement2BUFF) || HasEffect(Buffs.赎罪剑Atonement3BUFF)) return 赎罪剑Atonement.OriginalHook();

@@ -1,7 +1,11 @@
-﻿using AE_ACR.utils;
+﻿#region
+
+using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.Extension;
+
+#endregion
 
 namespace AE_ACR.PLD.SlotResolvers;
 

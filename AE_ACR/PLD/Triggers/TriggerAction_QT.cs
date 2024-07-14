@@ -1,6 +1,10 @@
+#region
+
 using AEAssist.CombatRoutine.Trigger;
 using AEAssist.GUI;
 using ImGuiNET;
+
+#endregion
 
 namespace AE_ACR.PLD.Triggers;
 

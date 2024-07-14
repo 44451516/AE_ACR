@@ -1,6 +1,10 @@
-﻿using AEAssist.CombatRoutine.View.JobView;
+﻿#region
+
+using AEAssist.CombatRoutine.View.JobView;
 using AEAssist.Helper;
 using AEAssist.IO;
+
+#endregion
 
 namespace AE_ACR.PLD.Setting;
 
