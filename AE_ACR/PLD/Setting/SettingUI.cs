@@ -1,5 +1,3 @@
-using ImGuiNET;
-
 namespace AE_ACR.PLD.Setting;
 
 public class SettingUI
@@ -9,6 +7,5 @@ public class SettingUI
 
     public void Draw()
     {
-      
     }
 }

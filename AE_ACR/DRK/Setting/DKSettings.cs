@@ -33,7 +33,7 @@ public class DKSettings
         }
         catch (Exception e)
         {
-            Instance = new();
+            Instance = new DKSettings();
             LogHelper.Error(e.ToString());
         }
     }

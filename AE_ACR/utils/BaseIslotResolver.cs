@@ -21,10 +21,7 @@ public abstract class BaseIslotResolver : ISlotResolver
 
     public static bool CanWeave(int weaveTime = 660)
     {
-        if (GCDHelper.GetGCDCooldown() > weaveTime)
-        {
-            return true;
-        }
+        if (GCDHelper.GetGCDCooldown() > weaveTime) return true;
 
         return false;
     }
@@ -56,36 +53,24 @@ public abstract class BaseIslotResolver : ISlotResolver
 
     public static float getTargetObjectDistance()
     {
-        if (Core.Me.TargetObject == null)
-        {
-            return -1;
-        }
+        if (Core.Me.TargetObject == null) return -1;
 
-        if (Core.Me.TargetObject is IBattleChara targetObject)
-        {
-            return Core.Me.Distance(targetObject);
-        }
+        if (Core.Me.TargetObject is IBattleChara targetObject) return Core.Me.Distance(targetObject);
 
         return -1;
     }
 
     public static int EnemysIn12DebuffByStatusId(uint StatusId)
     {
-        int count = 0;
-        Dictionary<uint, IBattleChara> instanceEnemysIn12 = TargetMgr.Instance.EnemysIn12;
+        var count = 0;
+        var instanceEnemysIn12 = TargetMgr.Instance.EnemysIn12;
         foreach (var keyValuePair in instanceEnemysIn12)
         {
             var battleChara = keyValuePair.Value;
             if (battleChara.CanAttack())
-            {
                 foreach (var statuse in battleChara.StatusList)
-                {
                     if (statuse.StatusId == StatusId)
-                    {
                         count++;
-                    }
-                }
-            }
         }
 
         return count;
@@ -93,17 +78,13 @@ public abstract class BaseIslotResolver : ISlotResolver
 
     public static int attackMeCount()
     {
-        int count = 0;
+        var count = 0;
         foreach (var keyValuePair in TargetMgr.Instance.EnemysIn25)
         {
             var battleChara = keyValuePair.Value;
             if (battleChara.CanAttack())
-            {
                 if (battleChara.TargetObjectId == Core.Me.GameObjectId)
-                {
                     count++;
-                }
-            }
         }
 
         return count;

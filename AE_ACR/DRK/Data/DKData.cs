@@ -37,7 +37,7 @@ public class DKData
         嗜血BloodWeapon = 3625,
         疾跑 = 3,
         Unmend = 3624;
-    
+
 
     public static class Buffs
     {

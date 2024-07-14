@@ -9,27 +9,22 @@ using AEAssist.JobApi;
 using AEAssist.MemoryApi;
 using Dalamud.Game.ClientState.Objects.Types;
 
-namespace AE_ACR.GLA.SlotResolvers
+namespace AE_ACR.GLA.SlotResolvers;
+
+public class Ability_深奥之灵 : GLABaseSlotResolvers
 {
-    public class Ability_深奥之灵 : GLABaseSlotResolvers
+    public override int Check()
     {
-        public override int Check()
-        {
-            if (CanWeave())
-            {
-                if (深奥之灵SpiritsWithin.ActionReady())
-                {
-                    return 0;
-                }
-            }
+        if (CanWeave())
+            if (深奥之灵SpiritsWithin.ActionReady())
+                return 0;
 
-            return -1;
-        }
+        return -1;
+    }
 
 
-        public override void Build(Slot slot)
-        {
-            slot.Add(深奥之灵SpiritsWithin.OriginalHook());
-        }
+    public override void Build(Slot slot)
+    {
+        slot.Add(深奥之灵SpiritsWithin.OriginalHook());
     }
 }

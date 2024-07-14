@@ -22,35 +22,19 @@ public class RaidBuff
 
     public static bool 爆发期()
     {
-        if (GameObjectExtension.HasAura(Core.Me, 强化药, 0))
-        {
-            return true;
-        }
+        if (GameObjectExtension.HasAura(Core.Me, 强化药, 0)) return true;
 
-        if (GameObjectExtension.HasAura(Core.Me, 灼热之光, 0))
-        {
-            return true;
-        }
+        if (GameObjectExtension.HasAura(Core.Me, 灼热之光, 0)) return true;
 
-        if (GameObjectExtension.HasAura(Core.Me, 技巧舞步结束TechnicalFinish, 0))
-        {
-            return true;
-        }
+        if (GameObjectExtension.HasAura(Core.Me, 技巧舞步结束TechnicalFinish, 0)) return true;
 
         if (Core.Me.TargetObject is IBattleChara battleChara)
         {
-            if (GameObjectExtension.HasAura(battleChara, 攻其不备, 0))
-            {
-                return true;
-            }
+            if (GameObjectExtension.HasAura(battleChara, 攻其不备, 0)) return true;
 
-            if (GameObjectExtension.HasAura(battleChara, 连环计, 0))
-            {
-                return true;
-            }
-
+            if (GameObjectExtension.HasAura(battleChara, 连环计, 0)) return true;
         }
-        
+
         return false;
     }
 }

@@ -8,7 +8,10 @@ public class CombatTime
     public DateTime combatStart = DateTime.MinValue;
     public DateTime combatEnd;
 
-    public TimeSpan CombatEngageDuration() => combatDuration;
+    public TimeSpan CombatEngageDuration()
+    {
+        return combatDuration;
+    }
 
     public void UpdateCombatTimer()
     {

@@ -22,17 +22,17 @@ public class GLDRotationEntry : IRotationEntry
     // pvp环境下 全都强制认为是通用队列
     private List<SlotResolverData> SlotResolvers = new()
     {
-        new(new Ability_钢铁信念(), SlotMode.OffGcd),
-        new(new Ability_战逃反应(), SlotMode.OffGcd),
-        new(new Ability_厄运流转(), SlotMode.OffGcd),
-        new(new Ability_深奥之灵(), SlotMode.OffGcd),
-        new(new Ability_铁壁(), SlotMode.OffGcd),
-        new(new Ability_预警(), SlotMode.OffGcd),
+        new SlotResolverData(new Ability_钢铁信念(), SlotMode.OffGcd),
+        new SlotResolverData(new Ability_战逃反应(), SlotMode.OffGcd),
+        new SlotResolverData(new Ability_厄运流转(), SlotMode.OffGcd),
+        new SlotResolverData(new Ability_深奥之灵(), SlotMode.OffGcd),
+        new SlotResolverData(new Ability_铁壁(), SlotMode.OffGcd),
+        new SlotResolverData(new Ability_预警(), SlotMode.OffGcd),
         // new(new Ability_预警(), SlotMode.OffGcd),
 
 
         // gcd队列
-        new(new GCD_Base(), SlotMode.Gcd),
+        new SlotResolverData(new GCD_Base(), SlotMode.Gcd)
     };
 
 
@@ -54,7 +54,7 @@ public class GLDRotationEntry : IRotationEntry
             AcrType = AcrType.Normal,
             MinLevel = 1,
             MaxLevel = 100,
-            Description = "剑术师练级用",
+            Description = "剑术师练级用"
         };
 
         // 添加各种事件回调
@@ -131,15 +131,9 @@ public class GLDRotationEntry : IRotationEntry
     public void DrawQtDev(JobViewWindow jobViewWindow)
     {
         ImGui.Text("画Dev信息");
-        foreach (var v in jobViewWindow.GetQtArray())
-        {
-            ImGui.Text($"Qt按钮: {v}");
-        }
+        foreach (var v in jobViewWindow.GetQtArray()) ImGui.Text($"Qt按钮: {v}");
 
-        foreach (var v in jobViewWindow.GetHotkeyArray())
-        {
-            ImGui.Text($"Hotkey按钮: {v}");
-        }
+        foreach (var v in jobViewWindow.GetHotkeyArray()) ImGui.Text($"Hotkey按钮: {v}");
     }
 
 

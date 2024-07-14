@@ -2,27 +2,22 @@
 using AEAssist.CombatRoutine.Module;
 using AEAssist.Helper;
 
-namespace AE_ACR.GLA.SlotResolvers
+namespace AE_ACR.GLA.SlotResolvers;
+
+public class Ability_厄运流转 : GLABaseSlotResolvers
 {
-    public class Ability_厄运流转 : GLABaseSlotResolvers
+    public override int Check()
     {
-        public override int Check()
-        {
-            if (CanWeave())
-            {
-                if (厄运流转CircleOfScorn.ActionReady() && TargetHelper.GetNearbyEnemyCount(5) > 0)
-                {
-                    return 0;
-                }
-            }
+        if (CanWeave())
+            if (厄运流转CircleOfScorn.ActionReady() && TargetHelper.GetNearbyEnemyCount(5) > 0)
+                return 0;
 
-            return -1;
-        }
+        return -1;
+    }
 
 
-        public override void Build(Slot slot)
-        {
-            slot.Add(厄运流转CircleOfScorn.OriginalHook());
-        }
+    public override void Build(Slot slot)
+    {
+        slot.Add(厄运流转CircleOfScorn.OriginalHook());
     }
 }

@@ -8,47 +8,32 @@ using AEAssist.Helper;
 using AEAssist.JobApi;
 using AEAssist.MemoryApi;
 
-namespace AE_ACR.DRK.SlotResolvers
+namespace AE_ACR.DRK.SlotResolvers;
+
+public class DK_Ability_嗜血 : ISlotResolver
 {
-	public class DK_Ability_嗜血 : ISlotResolver
-	{
-		public int Check()
-		{
-			if (GCDHelper.GetGCDCooldown() < 600)
-			{
-				return -1;
-			}
-			
-			var darksideTimeRemaining = Core.Resolve<JobApi_DarkKnight>().DarksideTimeRemaining;
+    public int Check()
+    {
+        if (GCDHelper.GetGCDCooldown() < 600) return -1;
 
-			if (darksideTimeRemaining == 0)
-			{
-				return -2;
-			}
-			
-			if (DKSettings.Instance.能力技爆发延时 > CombatTime.Instance.CombatEngageDuration().TotalSeconds)
-			{
-				return -1;
-			}
+        var darksideTimeRemaining = Core.Resolve<JobApi_DarkKnight>().DarksideTimeRemaining;
 
-			
-			
-			if (Core.Resolve<MemApiSpell>().CheckActionChange(DKData.嗜血BloodWeapon).IsReady() == true)
-			{
-				return 0;
-			}
+        if (darksideTimeRemaining == 0) return -2;
 
-			
-			return -1;
-		}
+        if (DKSettings.Instance.能力技爆发延时 > CombatTime.Instance.CombatEngageDuration().TotalSeconds) return -1;
 
 
-		public void Build(Slot slot)
-		{
-			Spell spell = Core.Resolve<MemApiSpell>().CheckActionChange(DKData.嗜血BloodWeapon).GetSpell();
+        if (Core.Resolve<MemApiSpell>().CheckActionChange(DKData.嗜血BloodWeapon).IsReady() == true) return 0;
 
-			slot.Add(spell);
-			
-		}
-	}
+
+        return -1;
+    }
+
+
+    public void Build(Slot slot)
+    {
+        var spell = Core.Resolve<MemApiSpell>().CheckActionChange(DKData.嗜血BloodWeapon).GetSpell();
+
+        slot.Add(spell);
+    }
 }

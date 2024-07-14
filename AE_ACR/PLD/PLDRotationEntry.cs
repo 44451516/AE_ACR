@@ -16,31 +16,28 @@ namespace AE_ACR.PLD;
 // 重要 类一定要Public声明才会被查找到
 public class PLDRotationEntry : IRotationEntry
 {
-    public string AuthorName { get; set; } = "44451516";
-
-
     // 逻辑从上到下判断，通用队列是无论如何都会判断的 
     // gcd则在可以使用gcd时判断
     // offGcd则在不可以使用gcd 且没达到gcd内插入能力技上限时判断
     // pvp环境下 全都强制认为是通用队列
-    private List<SlotResolverData> SlotResolvers = new()
+    private readonly List<SlotResolverData> SlotResolvers = new()
     {
-        new(new Ability_神圣领域(), SlotMode.OffGcd),
-        new(new Ability_预警(), SlotMode.OffGcd),
-        new(new Ability_铁壁(), SlotMode.OffGcd),
-        new(new Ability_壁垒(), SlotMode.OffGcd),
-        
-        new(new Ability_圣盾阵(), SlotMode.OffGcd),
-        new(new Ability_亲疏自行(), SlotMode.OffGcd),
-        new(new Ability_雪仇(), SlotMode.OffGcd),
-        
-        
-        new(new Ability_战逃反应(), SlotMode.OffGcd),
-        new(new Ability_安魂祈祷(), SlotMode.OffGcd),
-        new(new Ability_深奥之灵(), SlotMode.OffGcd),
-        new(new Ability_厄运流转(), SlotMode.OffGcd),
-        new(new Ability_深奥之灵(), SlotMode.OffGcd),
-        
+        new SlotResolverData(new Ability_神圣领域(), SlotMode.OffGcd),
+        new SlotResolverData(new Ability_预警(), SlotMode.OffGcd),
+        new SlotResolverData(new Ability_铁壁(), SlotMode.OffGcd),
+        new SlotResolverData(new Ability_壁垒(), SlotMode.OffGcd),
+
+        new SlotResolverData(new Ability_圣盾阵(), SlotMode.OffGcd),
+        new SlotResolverData(new Ability_亲疏自行(), SlotMode.OffGcd),
+        new SlotResolverData(new Ability_雪仇(), SlotMode.OffGcd),
+
+
+        new SlotResolverData(new Ability_战逃反应(), SlotMode.OffGcd),
+        new SlotResolverData(new Ability_安魂祈祷(), SlotMode.OffGcd),
+        new SlotResolverData(new Ability_深奥之灵(), SlotMode.OffGcd),
+        new SlotResolverData(new Ability_厄运流转(), SlotMode.OffGcd),
+        new SlotResolverData(new Ability_深奥之灵(), SlotMode.OffGcd),
+
         // new(new Ability_铁壁(), SlotMod
         // .
         // e.OffGcd),
@@ -48,10 +45,14 @@ public class PLDRotationEntry : IRotationEntry
 
 
         // gcd队列
-        new(new GCD_沥血剑(), SlotMode.Gcd),
-        new(new GCD_大宝剑连击(), SlotMode.Gcd),
-        new(new GCD_Base(), SlotMode.Gcd),
+        new SlotResolverData(new GCD_沥血剑(), SlotMode.Gcd),
+        new SlotResolverData(new GCD_大宝剑连击(), SlotMode.Gcd),
+        new SlotResolverData(new GCD_Base(), SlotMode.Gcd)
     };
+
+    // 声明当前要使用的UI的实例 示例里使用QT
+    public static JobViewWindow QT { get; private set; }
+    public string AuthorName { get; set; } = "44451516";
 
 
     public Rotation Build(string settingFolder)
@@ -74,7 +75,7 @@ public class PLDRotationEntry : IRotationEntry
             AcrType = AcrType.Normal,
             MinLevel = 1,
             MaxLevel = 100,
-            Description = "骑士",
+            Description = "骑士"
         };
 
         // 添加各种事件回调
@@ -85,13 +86,22 @@ public class PLDRotationEntry : IRotationEntry
         return rot;
     }
 
-    // 声明当前要使用的UI的实例 示例里使用QT
-    public static JobViewWindow QT { get; private set; }
-
     // 如果你不想用QT 可以自行创建一个实现IRotationUI接口的类
     public IRotationUI GetRotationUI()
     {
         return QT;
+    }
+
+    // 设置界面
+    public void OnDrawSetting()
+    {
+        SettingUI.Instance.Draw();
+    }
+
+
+    public void Dispose()
+    {
+        // 释放需要释放的东西 没有就留空
     }
 
     // 构造函数里初始化QT
@@ -107,8 +117,8 @@ public class PLDRotationEntry : IRotationEntry
         QT.AddTab("通用", DrawQtGeneral);
 
         // 添加QT开关 第二个参数是默认值 (开or关) 第三个参数是鼠标悬浮时的tips
-        QT.AddQt(PlDQTKey.停手, false, "是否使用基础的Gcd");
-        QT.AddQt(PlDQTKey.减伤, true);
+        QT.AddQt(BaseQTKey.停手, false, "是否使用基础的Gcd");
+        QT.AddQt(BaseQTKey.减伤, true);
         // QT.AddQt(QTKey.Test2, false);
         // QT.AddQt(QTKey.UsePotion,false);
 
@@ -134,12 +144,6 @@ public class PLDRotationEntry : IRotationEntry
         */
     }
 
-    // 设置界面
-    public void OnDrawSetting()
-    {
-        SettingUI.Instance.Draw();
-    }
-
     public void OnUIUpdate()
     {
     }
@@ -162,31 +166,19 @@ public class PLDRotationEntry : IRotationEntry
         // }
 
         var Oath = Core.Resolve<JobApi_Paladin>().Oath;
-        
+
         ImGui.Text($"大保健连击Confiteor : {PLDBaseSlotResolvers.大保健连击Confiteor.OriginalHook().Id}");
         ImGui.Text($"赎罪剑Atonement1 : {PLDBaseSlotResolvers.赎罪剑Atonement1.OriginalHook().Id}");
         ImGui.Text($"GCD : {GCDHelper.GetGCDCooldown()}");
         ImGui.Text($"能量值 : {Oath}");
-        ImGui.Text($"圣灵buff : {PLDBaseSlotResolvers.GetBuffRemainingTime(PLDBaseSlotResolvers.Buffs.DivineMight)}");
+        ImGui.Text($"圣灵buff : {BaseIslotResolver.GetBuffRemainingTime(PLDBaseSlotResolvers.Buffs.DivineMight)}");
     }
 
     public void DrawQtDev(JobViewWindow jobViewWindow)
     {
         ImGui.Text("画Dev信息");
-        foreach (var v in jobViewWindow.GetQtArray())
-        {
-            ImGui.Text($"Qt按钮: {v}");
-        }
+        foreach (var v in jobViewWindow.GetQtArray()) ImGui.Text($"Qt按钮: {v}");
 
-        foreach (var v in jobViewWindow.GetHotkeyArray())
-        {
-            ImGui.Text($"Hotkey按钮: {v}");
-        }
-    }
-
-
-    public void Dispose()
-    {
-        // 释放需要释放的东西 没有就留空
+        foreach (var v in jobViewWindow.GetHotkeyArray()) ImGui.Text($"Hotkey按钮: {v}");
     }
 }

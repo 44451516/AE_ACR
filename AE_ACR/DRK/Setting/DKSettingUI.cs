@@ -27,9 +27,6 @@ public class DKSettingUI
         // ImGuiHelper.LeftInputFloat("GCD爆发延时", ref DKSettings.Instance.GCD爆发延时);
         ImGui.Checkbox("123不打血溅", ref DKSettings.Instance.留资源);
 
-        if (ImGui.Button("Save[保存]"))
-        {
-            DKSettings.Instance.Save();
-        }
+        if (ImGui.Button("Save[保存]")) DKSettings.Instance.Save();
     }
 }

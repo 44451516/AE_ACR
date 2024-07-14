@@ -33,21 +33,21 @@ public class DKRotationEntry : IRotationEntry
     private List<SlotResolverData> SlotResolvers = new()
     {
         // offGcd队列
-        new(new DK_Ability_掠影示现(), SlotMode.OffGcd),
-        new(new DK_Ability_暗黑波动_AOE(), SlotMode.OffGcd),
-        new(new DK_Ability_暗黑锋(), SlotMode.OffGcd),
-        new(new DK_Ability_嗜血(), SlotMode.OffGcd),
-        new(new DK_Ability_吸血深渊(), SlotMode.OffGcd),
-        new(new DK_Ability_精雕怒斩(), SlotMode.OffGcd),
-        new(new DK_Ability_暗影使者(), SlotMode.OffGcd),
-        new(new DK_Ability_腐秽大地(), SlotMode.OffGcd),
+        new SlotResolverData(new DK_Ability_掠影示现(), SlotMode.OffGcd),
+        new SlotResolverData(new DK_Ability_暗黑波动_AOE(), SlotMode.OffGcd),
+        new SlotResolverData(new DK_Ability_暗黑锋(), SlotMode.OffGcd),
+        new SlotResolverData(new DK_Ability_嗜血(), SlotMode.OffGcd),
+        new SlotResolverData(new DK_Ability_吸血深渊(), SlotMode.OffGcd),
+        new SlotResolverData(new DK_Ability_精雕怒斩(), SlotMode.OffGcd),
+        new SlotResolverData(new DK_Ability_暗影使者(), SlotMode.OffGcd),
+        new SlotResolverData(new DK_Ability_腐秽大地(), SlotMode.OffGcd),
 
         // gcd队列
-        new(new DK_GCD_蔑视厌恶(), SlotMode.Gcd),
-        new(new DK_GCD_寂灭(), SlotMode.Gcd),
-        new(new DK_GCD_血溅(), SlotMode.Gcd),
-        new(new DK_GCD_AOE_Base(), SlotMode.Gcd),
-        new(new DK_GCD_Base(), SlotMode.Gcd),
+        new SlotResolverData(new DK_GCD_蔑视厌恶(), SlotMode.Gcd),
+        new SlotResolverData(new DK_GCD_寂灭(), SlotMode.Gcd),
+        new SlotResolverData(new DK_GCD_血溅(), SlotMode.Gcd),
+        new SlotResolverData(new DK_GCD_AOE_Base(), SlotMode.Gcd),
+        new SlotResolverData(new DK_GCD_Base(), SlotMode.Gcd)
     };
 
 
@@ -70,7 +70,7 @@ public class DKRotationEntry : IRotationEntry
             AcrType = AcrType.Both,
             MinLevel = 30,
             MaxLevel = 100,
-            Description = "DK先行版",
+            Description = "DK先行版"
         };
 
         // 添加各种事件回调
@@ -168,7 +168,7 @@ public class DKRotationEntry : IRotationEntry
 
 
         ImGui.Text($"自身中心数量 : {TargetHelper.GetNearbyEnemyCount(5)}");
-        IBattleChara? battleChara = Core.Me.GetCurrTarget();
+        var battleChara = Core.Me.GetCurrTarget();
         ImGui.Text($"目标中心数量 : {TargetHelper.GetNearbyEnemyCount(battleChara, 5, 5)}");
         ImGui.Text($"血乱buff计时器 : {Core.Resolve<MemApiBuff>().GetAuraTimeleft(Core.Me, DKData.Buffs.血乱Delirium, true)}");
     }
@@ -176,15 +176,9 @@ public class DKRotationEntry : IRotationEntry
     public void DrawQtDev(JobViewWindow jobViewWindow)
     {
         ImGui.Text("画Dev信息");
-        foreach (var v in jobViewWindow.GetQtArray())
-        {
-            ImGui.Text($"Qt按钮: {v}");
-        }
+        foreach (var v in jobViewWindow.GetQtArray()) ImGui.Text($"Qt按钮: {v}");
 
-        foreach (var v in jobViewWindow.GetHotkeyArray())
-        {
-            ImGui.Text($"Hotkey按钮: {v}");
-        }
+        foreach (var v in jobViewWindow.GetHotkeyArray()) ImGui.Text($"Hotkey按钮: {v}");
     }
 
 

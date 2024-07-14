@@ -9,6 +9,5 @@ public class SettingUI
 
     public void Draw()
     {
-      
     }
 }

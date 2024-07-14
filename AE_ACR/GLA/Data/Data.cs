@@ -2,7 +2,7 @@
 
 public class Data
 {
-    public const uint 
+    public const uint
         先锋剑FastBlade = 9,
         暴乱剑RiotBlade = 15,
         战女神之怒RageOfHalone = 21,
@@ -17,7 +17,6 @@ public class Data
     public static class Buffs
     {
         public const ushort
-            
             FightOrFlight = 76,
             预警 = 74,
             留空 = 0;

@@ -44,6 +44,27 @@ public abstract class PLDBaseSlotResolvers : BaseIslotResolver
         测试 = 31,
         留空 = 0;
 
+    public static int 周围敌人雪仇数量()
+    {
+        return EnemysIn12DebuffByStatusId(Buffs.雪仇);
+    }
+
+    public static bool 是否停手()
+    {
+        return getQTValue(BaseQTKey.停手);
+    }
+
+    public static bool 是否减伤()
+    {
+        return getQTValue(BaseQTKey.减伤);
+    }
+
+
+    public static bool getQTValue(string key)
+    {
+        return PLDRotationEntry.QT.GetQt(key);
+    }
+
     public static class Buffs
     {
         public const ushort
@@ -64,26 +85,5 @@ public abstract class PLDBaseSlotResolvers : BaseIslotResolver
             赎罪剑Atonement2BUFF = 3827,
             赎罪剑Atonement3BUFF = 3828,
             留空 = 0;
-    }
-
-    public static int 周围敌人雪仇数量()
-    {
-        return EnemysIn12DebuffByStatusId(Buffs.雪仇);
-    }
-
-    public static bool 是否停手()
-    {
-        return getQTValue(PlDQTKey.停手);
-    }
-
-    public static bool 是否减伤()
-    {
-        return getQTValue(PlDQTKey.减伤);
-    }
-
-
-    public static bool getQTValue(string key)
-    {
-        return PLDRotationEntry.QT.GetQt(key);
     }
 }

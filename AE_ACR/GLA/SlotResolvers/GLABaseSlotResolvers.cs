@@ -2,9 +2,9 @@
 
 namespace AE_ACR.GLA.SlotResolvers;
 
-public abstract class GLABaseSlotResolvers :BaseIslotResolver
+public abstract class GLABaseSlotResolvers : BaseIslotResolver
 {
-    public const uint 
+    public const uint
         先锋剑FastBlade = 9,
         暴乱剑RiotBlade = 15,
         战女神之怒RageOfHalone = 21,
@@ -20,7 +20,6 @@ public abstract class GLABaseSlotResolvers :BaseIslotResolver
     public static class Buffs
     {
         public const ushort
-            
             FightOrFlight = 76,
             预警 = 74,
             钢铁信念 = 79,

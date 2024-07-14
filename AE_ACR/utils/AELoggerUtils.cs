@@ -4,7 +4,7 @@ namespace AE_ACR.utils;
 
 internal class AELoggerUtils
 {
-    public static AeLogger _AeLogger = new AeLogger();
+    public static AeLogger _AeLogger = new();
 
     public static void init()
     {
@@ -19,9 +19,6 @@ internal class AELoggerUtils
         isOutLog = true;
 #endif
 
-        if (isOutLog)
-        {
-            _AeLogger.LogError(text);
-        }
+        if (isOutLog) _AeLogger.LogError(text);
     }
 }

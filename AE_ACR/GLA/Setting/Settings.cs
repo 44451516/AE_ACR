@@ -33,7 +33,7 @@ public class Settings
         }
         catch (Exception e)
         {
-            Instance = new();
+            Instance = new Settings();
             LogHelper.Error(e.ToString());
         }
     }
@@ -46,7 +46,6 @@ public class Settings
 
     #endregion
 
-    
 
     public JobViewSave JobViewSave = new(); // QT设置存档
 }

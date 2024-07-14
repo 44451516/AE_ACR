@@ -18,7 +18,7 @@ public class DKRotationEventHandler : IRotationEventHandler
     public void OnResetBattle()
     {
         // 重置战斗中缓存的数据
-        CombatTime.Instance = new();
+        CombatTime.Instance = new CombatTime();
         // QT的设置重置为默认值
         DKRotationEntry.QT.Reset();
     }
@@ -38,10 +38,7 @@ public class DKRotationEventHandler : IRotationEventHandler
 
     public void OnBattleUpdate(int currTimeInMs)
     {
-        if (CombatTime.Instance.combatStart == DateTime.MinValue)
-        {
-            CombatTime.Instance.combatStart = DateTime.Now;
-        }
+        if (CombatTime.Instance.combatStart == DateTime.MinValue) CombatTime.Instance.combatStart = DateTime.Now;
 
         CombatTime.Instance.UpdateCombatTimer();
     }
