@@ -14,7 +14,6 @@ public class Ability_预警 : GLABaseSlotResolvers
     {
         if (CanWeave())
         {
-            //判断多少人打自己？ 再判断铁壁的id
             if (TankBuffs.亲疏自行.GetBuffRemainingTime() > 0.5f) 
                 return -1;
 

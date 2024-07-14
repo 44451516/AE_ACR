@@ -18,6 +18,7 @@ public class Ability_厄运流转 : PLDBaseSlotResolvers
         }
 
         if (CanWeave())
+        {
             if (厄运流转CircleOfScorn.OriginalHookActionReady() && TargetHelper.GetNearbyEnemyCount(5) > 0)
             {
                 if (HasEffect(Buffs.FightOrFlight))
@@ -33,8 +34,12 @@ public class Ability_厄运流转 : PLDBaseSlotResolvers
                 }
 
                 if (GetCooldownRemainingTime(战逃反应FightOrFlight) > 20 && GetCooldownRemainingTime(战逃反应FightOrFlight) < 40)
+                {
                     return 0;
+                }
             }
+        }
+
 
         return -1;
     }

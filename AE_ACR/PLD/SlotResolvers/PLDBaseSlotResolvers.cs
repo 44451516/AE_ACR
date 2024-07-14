@@ -47,7 +47,12 @@ public abstract class PLDBaseSlotResolvers : TankBaseIslotResolver
         测试 = 31,
         留空 = 0;
 
- 
+
+    public static bool 是否使用突进()
+    {
+        return getQTValue(BaseQTKey.突进);
+    }
+
 
     public static bool 是否停手()
     {

@@ -43,6 +43,7 @@ public class PLDRotationEntry : IRotationEntry
         new SlotResolverData(new Ability_深奥之灵(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_厄运流转(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_深奥之灵(), SlotMode.OffGcd),
+        new SlotResolverData(new Ability_调停(), SlotMode.OffGcd),
 
         // new(new Ability_铁壁(), SlotMod
         // .
@@ -123,7 +124,8 @@ public class PLDRotationEntry : IRotationEntry
 
         // 添加QT开关 第二个参数是默认值 (开or关) 第三个参数是鼠标悬浮时的tips
         QT.AddQt(BaseQTKey.停手, false, "是否使用基础的Gcd");
-        QT.AddQt(BaseQTKey.减伤, true);
+        // QT.AddQt(BaseQTKey.减伤, true);
+        QT.AddQt(BaseQTKey.突进, true);
         // QT.AddQt(QTKey.Test2, false);
         // QT.AddQt(QTKey.UsePotion,false);
 
@@ -195,5 +197,7 @@ public class PLDRotationEntry : IRotationEntry
         ImGui.Text($"GCD : {GCDHelper.GetGCDCooldown()}");
         ImGui.Text($"能量值 : {Oath}");
         ImGui.Text($"圣灵buff : {BaseIslotResolver.GetBuffRemainingTime(PLDBaseSlotResolvers.Buffs.DivineMight)}");
+        ImGui.Text($"ActionReady : {PLDBaseSlotResolvers.深奥之灵SpiritsWithin.ActionReady()}");
+        ImGui.Text($"OriginalHook : {PLDBaseSlotResolvers.深奥之灵SpiritsWithin.OriginalHookActionReady()}");
     }
 }

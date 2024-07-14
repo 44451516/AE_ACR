@@ -20,13 +20,16 @@ public class Ability_深奥之灵 : PLDBaseSlotResolvers
         
         if (CanWeave())
         {
-            if (深奥之灵SpiritsWithin.OriginalHookActionReady())
+            if (深奥之灵SpiritsWithin.ActionReady())
             {
                 if (HasEffect(Buffs.FightOrFlight))
                 {
                     if (深奥之灵SpiritsWithin.IsUnlock())
                     {
-                        if (GetCooldownRemainingTime(安魂祈祷Requiescat) > 40) return 0;
+                        if (GetCooldownRemainingTime(安魂祈祷Requiescat) > 40)
+                        {
+                            return 0;
+                        }
                     }
                     else
                     {

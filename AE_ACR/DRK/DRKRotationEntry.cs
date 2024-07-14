@@ -208,8 +208,8 @@ public class DRKRotationEntry : IRotationEntry
         // }
         ImGui.Text($"GetRecastTime:{Core.Resolve<MemApiSpell>().GetRecastTime(DRKBaseSlotResolvers.疾跑).TotalSeconds}");
         ImGui.Text($"GetRecastTimeElapsed:{Core.Resolve<MemApiSpell>().GetRecastTimeElapsed(DRKBaseSlotResolvers.疾跑)}");
-        ImGui.Text($"GetCooldownRemainingTime:{DRKBaseSlotResolvers.疾跑.GetCooldownRemainingTime()}");
-        ImGui.Text($"GetCooldown:{Core.Resolve<MemApiSpell>().GetCooldown(DRKBaseSlotResolvers.疾跑).TotalSeconds}");
+        ImGui.Text($"GetCooldownRemainingTime:{DRKBaseSlotResolvers.Shadowbringer暗影使者.GetCooldownRemainingTime()}");
+        ImGui.Text($"ActionReady:{DRKBaseSlotResolvers.Shadowbringer暗影使者.ActionReady()}");
 
 
         ImGui.Text($"LastSpell : {Core.Resolve<MemApiSpellCastSuccess>().LastSpell}");
