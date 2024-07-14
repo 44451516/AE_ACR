@@ -2,6 +2,7 @@
 
 using AE_ACR_DRK;
 using AE_ACR_DRK_Setting;
+using AE_ACR.Base;
 using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine.Module;
@@ -21,21 +22,34 @@ public class DK_Ability_腐秽大地 : DRKBaseSlotResolvers
         {
             return Flag_停手;
         }
-        
-        if (CanWeave()) 
+
+        if (getQTValue(BaseQTKey.攒资源))
+        {
+            return Flag_攒资源;
+        }
+
+        if (!CanWeave())
+        {
             return -1;
+        }
 
         var darksideTimeRemaining = Core.Resolve<JobApi_DarkKnight>().DarksideTimeRemaining;
 
-        if (darksideTimeRemaining == 0) 
+        if (darksideTimeRemaining == 0)
             return -2;
 
-        if (DKSettings.Instance.能力技爆发延时 > CombatTime.Instance.CombatEngageDuration().TotalSeconds) 
+        if (DKSettings.Instance.能力技爆发延时 > CombatTime.Instance.CombatEngageDuration().TotalSeconds)
             return -1;
 
 
-        if (Core.Resolve<MemApiSpell>().CheckActionChange(腐秽大地SaltedEarth).IsReady()) 
+        if (腐秽大地SaltedEarth.ActionReady())
+        {
             return 0;
+        }
+        if (腐秽黑暗.ActionReady() && HasEffect(Buffs.腐秽黑暗))
+        {
+            return 0;
+        }
 
 
         return -3;

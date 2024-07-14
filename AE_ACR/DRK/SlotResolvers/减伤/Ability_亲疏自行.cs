@@ -14,22 +14,18 @@ public class Ability_亲疏自行 : DRKBaseSlotResolvers
 {
     public override int Check()
     {
-        if (是否减伤())
+        if (!是否减伤())
         {
             return Flag_减伤;
         }
 
         if (CanWeave())
         {
-            
-            
             if (铁壁.ActionReady())
                 return -1;
 
             if (暗影墙.ActionReady())
                 return -1;
-
-            
 
             if (TankBuffs.铁壁.GetBuffRemainingTime() > 0.5f)
                 return -1;

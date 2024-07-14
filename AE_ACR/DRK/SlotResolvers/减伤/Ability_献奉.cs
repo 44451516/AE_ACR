@@ -13,7 +13,7 @@ public class Ability_献奉 : DRKBaseSlotResolvers
 {
     public override int Check()
     {
-        if (是否减伤())
+        if (!是否减伤())
         {
             return Flag_减伤;
         }

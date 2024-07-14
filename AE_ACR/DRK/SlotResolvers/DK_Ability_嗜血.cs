@@ -2,6 +2,7 @@
 
 using AE_ACR_DRK;
 using AE_ACR_DRK_Setting;
+using AE_ACR.Base;
 using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine.Module;
@@ -22,7 +23,13 @@ public class DK_Ability_嗜血 : DRKBaseSlotResolvers
             return Flag_停手;
         }
         
-        if (CanWeave())
+        if (getQTValue(BaseQTKey.攒资源))
+        {
+            return Flag_攒资源;
+        }
+
+
+        if (!CanWeave())
         {
             return -1;
         }
@@ -34,8 +41,10 @@ public class DK_Ability_嗜血 : DRKBaseSlotResolvers
         if (DKSettings.Instance.能力技爆发延时 > CombatTime.Instance.CombatEngageDuration().TotalSeconds)
             return -1;
 
-        if (Core.Resolve<MemApiSpell>().CheckActionChange(嗜血BloodWeapon).IsReady())
+        if (嗜血BloodWeapon.ActionReady())
+        {
             return 0;
+        }
 
         return -1;
     }

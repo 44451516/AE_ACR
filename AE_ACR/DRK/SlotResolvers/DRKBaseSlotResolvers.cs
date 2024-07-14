@@ -1,6 +1,7 @@
 ﻿#region
 
 using AE_ACR_DRK;
+using AE_ACR_DRK_Setting;
 using AE_ACR.Base;
 using AE_ACR.PLD;
 using AE_ACR.utils;
@@ -37,7 +38,7 @@ public abstract class DRKBaseSlotResolvers : TankBaseIslotResolver
         //弗雷
         LivingShadow = 16472,
         蔑视厌恶Disesteem = 36932,
-        SaltAndDarkness = 25755,
+        腐秽黑暗 = 25755,
         Oblation = 25754,
         Shadowbringer暗影使者 = 25757,
         // Shadowbringer = 29738,
@@ -50,6 +51,7 @@ public abstract class DRKBaseSlotResolvers : TankBaseIslotResolver
         至黑之夜 = 7393,
         行尸走肉 = 3636,
         献奉 = 25754,
+        深恶痛绝 = 3629,
         Unmend = 3624;
 
 
@@ -63,12 +65,14 @@ public abstract class DRKBaseSlotResolvers : TankBaseIslotResolver
             //血乱
             血乱Delirium = 3836,
             Scorn = 3837,
+            腐秽黑暗 = 749,
             SaltedEarth = 749,
             出生入死 = 3255,
             暗影墙 = 747,
             暗影墙v2 = 747,
             献奉 = 2682,
             弃明投暗 = 746,
+            深恶痛绝 = 743,
             留空 = 0;
     }
 
@@ -79,7 +83,7 @@ public abstract class DRKBaseSlotResolvers : TankBaseIslotResolver
 
     public static bool 是否减伤()
     {
-        return getQTValue(BaseQTKey.减伤);
+        return DKSettings.Instance.日常模式;
     }
 
     public static bool getQTValue(string key)

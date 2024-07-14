@@ -23,7 +23,7 @@ public class GLARotationEntry : IRotationEntry
     // pvp环境下 全都强制认为是通用队列
     private readonly List<SlotResolverData> SlotResolvers = new()
     {
-        new SlotResolverData(new Ability_钢铁信念(), SlotMode.OffGcd),
+        new SlotResolverData(new Ability_钢铁信念(), SlotMode.Always),
         new SlotResolverData(new Ability_战逃反应(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_厄运流转(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_深奥之灵(), SlotMode.OffGcd),

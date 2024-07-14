@@ -2,6 +2,7 @@
 
 using AE_ACR_DRK;
 using AE_ACR_DRK_Setting;
+using AE_ACR.Base;
 using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine.Module;
@@ -22,11 +23,20 @@ public class DK_Ability_暗影使者 : DRKBaseSlotResolvers
             return Flag_停手;
         }
         
-        if (CanWeave()) 
+        if (getQTValue(BaseQTKey.攒资源))
+        {
+            return Flag_攒资源;
+        }
+        
+        if (!CanWeave())
+        {
             return -1;
+        }
 
-        if (LastSpell == Shadowbringer暗影使者) 
+        if (LastSpell == Shadowbringer暗影使者)
+        {
             return -1;
+        }
 
 
         var darksideTimeRemaining = Core.Resolve<JobApi_DarkKnight>().DarksideTimeRemaining;
@@ -38,7 +48,7 @@ public class DK_Ability_暗影使者 : DRKBaseSlotResolvers
             return -1;
 
 
-        if (Core.Resolve<MemApiSpell>().CheckActionChange(Shadowbringer暗影使者).IsReady()) 
+        if (Shadowbringer暗影使者.ActionReady()) 
             return 0;
 
 

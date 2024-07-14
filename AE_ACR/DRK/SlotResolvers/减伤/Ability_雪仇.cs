@@ -14,7 +14,7 @@ public class Ability_雪仇 : DRKBaseSlotResolvers
 {
     public override int Check()
     {
-        if (是否减伤())
+        if (!是否减伤())
         {
             return Flag_减伤;
         }
@@ -27,7 +27,7 @@ public class Ability_雪仇 : DRKBaseSlotResolvers
 
             if (暗影墙.ActionReady())
                 return -1;
-            
+
             if (TankBuffs.铁壁.GetBuffRemainingTime() > 0.5f)
                 return -1;
 

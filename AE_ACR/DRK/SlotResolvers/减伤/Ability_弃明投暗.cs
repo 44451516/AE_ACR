@@ -13,7 +13,7 @@ public class Ability_弃明投暗 : DRKBaseSlotResolvers
 {
     public override int Check()
     {
-        if (是否减伤())
+        if (!是否减伤())
         {
             return Flag_减伤;
         }
@@ -23,14 +23,11 @@ public class Ability_弃明投暗 : DRKBaseSlotResolvers
             if (Buffs.暗影墙v2.GetBuffRemainingTime() > 0.5f)
                 return -1;
 
-
             if (Buffs.暗影墙v2.GetBuffRemainingTime() > 0.5f)
                 return -1;
 
-
             if (TankBuffs.亲疏自行.GetBuffRemainingTime() > 500)
                 return -1;
-
 
             if (弃明投暗.ActionReady() && attackMeCount() >= 5 && Core.Me.CurrentHpPercent() < 0.89f)
                 return 0;

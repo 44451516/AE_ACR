@@ -2,6 +2,7 @@
 
 using AE_ACR_DRK;
 using AE_ACR_DRK_Setting;
+using AE_ACR.Base;
 using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine.Module;
@@ -22,8 +23,16 @@ public class DK_Ability_精雕怒斩 : DRKBaseSlotResolvers
             return Flag_停手;
         }
         
-        if (CanWeave()) 
+        if (getQTValue(BaseQTKey.攒资源))
+        {
+            return Flag_攒资源;
+        }
+        
+        
+        if (!CanWeave())
+        {
             return -1;
+        }
 
         var darksideTimeRemaining = Core.Resolve<JobApi_DarkKnight>().DarksideTimeRemaining;
 
@@ -38,8 +47,10 @@ public class DK_Ability_精雕怒斩 : DRKBaseSlotResolvers
             return -1;
 
 
-        if (Core.Resolve<MemApiSpell>().CheckActionChange(精雕怒斩CarveAndSpit).IsReady()) 
+        if (精雕怒斩CarveAndSpit.ActionReady())
+        {
             return 0;
+        }
 
 
         return -1;

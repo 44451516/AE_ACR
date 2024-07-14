@@ -23,6 +23,7 @@ public class DKSettingUI
         ImGui.SetNextItemWidth(150f);
         ImGui.InputFloat("GCD爆发延时", ref DkSettings.GCD爆发延时);
         
-        if (ImGui.Button("Save[保存]")) DKSettings.Instance.Save();
+        if (ImGui.Button("Save[保存]")) 
+            DKSettings.Instance.Save();
     }
 }

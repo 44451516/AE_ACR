@@ -14,7 +14,7 @@ public class Ability_铁壁 : DRKBaseSlotResolvers
 {
     public override int Check()
     {
-        if (是否减伤())
+        if (!是否减伤())
         {
             return Flag_减伤;
         }

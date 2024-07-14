@@ -1,6 +1,7 @@
 #region
 
 using AE_ACR_DRK_Setting;
+using AE_ACR.Base;
 using AE_ACR.DRK.SlotResolvers;
 using AE_ACR.utils;
 using AEAssist;
@@ -24,8 +25,13 @@ public class DK_GCD_血溅 : DRKBaseSlotResolvers
         {
             return Flag_停手;
         }
+
+        if (getQTValue(BaseQTKey.攒资源))
+        {
+            return Flag_攒资源;
+        }
         
-        if (血溅Bloodspiller.IsUnlock())
+        if (!血溅Bloodspiller.IsUnlock())
         {
             return -1;
         }
@@ -44,6 +50,7 @@ public class DK_GCD_血溅 : DRKBaseSlotResolvers
             {
                 if (Blood > 50 || Core.Me.HasAura(Buffs.血乱Delirium))
                 {
+                    AELoggerUtils.Log("血溅1");
                     return 0;
                 }
             }
@@ -51,20 +58,29 @@ public class DK_GCD_血溅 : DRKBaseSlotResolvers
 
 
         if (DKSettings.Instance.GCD爆发延时 > CombatTime.Instance.CombatEngageDuration().TotalSeconds)
+        {
             return -1;
+        }
 
 
         if (Blood > 50 || Core.Me.HasAura(Buffs.血乱Delirium))
         {
             //防止血溅没有打完
             if (Core.Resolve<MemApiBuff>().GetAuraTimeleft(Core.Me, Buffs.血乱Delirium, true) < 8000)
+            {
                 return 0;
+            }
 
-            if (RaidBuff.爆发期()) return 0;
+            if (RaidBuff.爆发期())
+            {
+                return 0;
+            }
 
 
             if (Blood >= 70 && Core.Me.HasAura(Buffs.嗜血BloodWeapon))
+            {
                 return 0;
+            }
 
 
             return -1;

@@ -1,6 +1,8 @@
 ﻿#region
 
 using AE_ACR_DRK;
+using AE_ACR.Base;
+using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.Helper;
@@ -19,8 +21,15 @@ public class DK_Ability_掠影示现 : DRKBaseSlotResolvers
             return Flag_停手;
         }
         
-        if (CanWeave()) 
+        if (getQTValue(BaseQTKey.攒资源))
+        {
+            return Flag_攒资源;
+        }
+        
+        if (!CanWeave())
+        {
             return -1;
+        }
 
         var darksideTimeRemaining = Core.Resolve<JobApi_DarkKnight>().DarksideTimeRemaining;
 
@@ -28,7 +37,7 @@ public class DK_Ability_掠影示现 : DRKBaseSlotResolvers
             return -2;
 
 
-        if (LivingShadow.IsReady()) 
+        if (LivingShadow.ActionReady()) 
             return 0;
 
 

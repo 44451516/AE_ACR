@@ -39,6 +39,7 @@ public class DRKRotationEntry : IRotationEntry
     private readonly List<SlotResolverData> SlotResolvers = new()
     {
         // offGcd队列
+        new SlotResolverData(new Ability_深恶痛绝(), SlotMode.Always),
         new SlotResolverData(new Ability_行尸走肉(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_暗影墙(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_铁壁(), SlotMode.OffGcd),
@@ -122,17 +123,19 @@ public class DRKRotationEntry : IRotationEntry
     {
         // JobViewSave是AE底层提供的QT设置存档类 在你自己的设置里定义即可
         // 第二个参数是你设置文件的Save类 第三个参数是QT窗口标题
-        QT = new JobViewWindow(DKSettings.Instance.JobViewSave, DKSettings.Instance.Save, "AE DK [仅作为开发示范]");
+        QT = new JobViewWindow(DKSettings.Instance.JobViewSave, DKSettings.Instance.Save, "DK");
         QT.SetUpdateAction(OnUIUpdate); // 设置QT中的Update回调 不需要就不设置
 
         //添加QT分页 第一个参数是分页标题 第二个是分页里的内容
-        QT.AddTab("Dev", DrawQtDev);
+ 
         QT.AddTab("通用", DrawQtGeneral);
+        QT.AddTab("Dev", DrawQtDev);
+        // QT.AddTab("Dev2", DrawQtDev);
         
         QT.AddQt(BaseQTKey.停手, false, "是否使用基础的Gcd");
-        QT.AddQt(BaseQTKey.减伤, true);
-        QT.AddQt(BaseQTKey.攒资源, false,"攒资源不会卸暗血");
-        
+        // QT.AddQt(BaseQTKey.减伤, true);
+        QT.AddQt(BaseQTKey.攒资源, false, "攒资源不会卸暗血");
+
 
         // 添加QT开关 第二个参数是默认值 (开or关) 第三个参数是鼠标悬浮时的tips
         // QT.AddQt(QTKey.UseBaseGcd, true, "是否使用基础的Gcd");
@@ -168,6 +171,37 @@ public class DRKRotationEntry : IRotationEntry
 
     public void DrawQtGeneral(JobViewWindow jobViewWindow)
     {
+        DKSettings DkSettings = DKSettings.Instance;
+        ImGui.Text("日常模式会持续开盾，和自动减伤");
+        ImGui.SetNextItemWidth(150f);
+        ImGui.Checkbox("日常模式", ref DkSettings.日常模式);
+        
+        ImGui.SetNextItemWidth(150f);
+        ImGui.InputInt("保留蓝量", ref DkSettings.保留蓝量, 0, 10000);
+        ImGui.SetNextItemWidth(150f);
+        ImGui.InputInt("目标小于多少血打完所有资源[单位万]", ref DkSettings.爆发目标血量, 0, 100);
+        ImGui.SetNextItemWidth(150f);
+        ImGui.InputFloat("能力技爆发延时", ref DkSettings.能力技爆发延时);
+        ImGui.SetNextItemWidth(150f);
+        ImGui.InputFloat("GCD爆发延时", ref DkSettings.GCD爆发延时);
+        
+        if (ImGui.Button("Save[保存]")) 
+            DKSettings.Instance.Save();
+    }
+
+    public void DrawQtDev(JobViewWindow jobViewWindow)
+    {
+        // ImGui.Text("画Dev信息");
+        // foreach (var v in jobViewWindow.GetQtArray())
+        // {
+        //     ImGui.Text($"Qt按钮: {v}");
+        // }
+        //
+        //
+        // foreach (var v in jobViewWindow.GetHotkeyArray())
+        // {
+        //     ImGui.Text($"Hotkey按钮: {v}");
+        // }
         ImGui.Text($"GetRecastTime:{Core.Resolve<MemApiSpell>().GetRecastTime(DRKBaseSlotResolvers.疾跑).TotalSeconds}");
         ImGui.Text($"GetRecastTimeElapsed:{Core.Resolve<MemApiSpell>().GetRecastTimeElapsed(DRKBaseSlotResolvers.疾跑)}");
         ImGui.Text($"GetCooldownRemainingTime:{DRKBaseSlotResolvers.疾跑.GetCooldownRemainingTime()}");
@@ -197,21 +231,8 @@ public class DRKRotationEntry : IRotationEntry
         var battleChara = Core.Me.GetCurrTarget();
         ImGui.Text($"目标中心数量 : {TargetHelper.GetNearbyEnemyCount(battleChara, 5, 5)}");
         ImGui.Text($"血乱buff计时器 : {Core.Resolve<MemApiBuff>().GetAuraTimeleft(Core.Me, DRKBaseSlotResolvers.Buffs.血乱Delirium, true)}");
-    }
-
-    public void DrawQtDev(JobViewWindow jobViewWindow)
-    {
-        ImGui.Text("画Dev信息");
-        foreach (var v in jobViewWindow.GetQtArray())
-        {
-            ImGui.Text($"Qt按钮: {v}");
-        }
-
-
-        foreach (var v in jobViewWindow.GetHotkeyArray())
-        {
-            ImGui.Text($"Hotkey按钮: {v}");
-        }
-
+        ImGui.Text($"腐秽大地SaltedEarth : {DRKBaseSlotResolvers.腐秽大地SaltedEarth.ActionReady()}");
+        ImGui.Text($"腐秽黑暗 : {DRKBaseSlotResolvers.腐秽黑暗.ActionReady()}");
+        ImGui.Text($"OriginalHook : {DRKBaseSlotResolvers.腐秽大地SaltedEarth.OriginalHook()}");
     }
 }

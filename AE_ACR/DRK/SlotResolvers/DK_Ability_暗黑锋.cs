@@ -1,6 +1,7 @@
 ﻿#region
 
 using AE_ACR_DRK_Setting;
+using AE_ACR.Base;
 using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine.Module;
@@ -23,11 +24,19 @@ public class DK_Ability_暗黑锋 : DRKBaseSlotResolvers
             return Flag_停手;
         }
         
-        if (CanWeave())
+        if (getQTValue(BaseQTKey.攒资源))
+        {
+            return Flag_攒资源;
+        }
+
+
+        if (!CanWeave())
         {
             return -1;
         }
-
+        
+        
+      
 
         if (LastSpell == Core.Resolve<MemApiSpell>().CheckActionChange(暗黑锋).GetSpell().Id)
         {
@@ -91,7 +100,7 @@ public class DK_Ability_暗黑锋 : DRKBaseSlotResolvers
             }
 
             //泄蓝
-            if (血乱Delirium.GetCooldownRemainingTime() > 40 && Core.Me.CurrentMp >= DKSettings.Instance.保留蓝量 + 3000)
+            if (血乱Delirium.GetCooldownRemainingTime() > 40 && 暗黑锋.ActionReady() && Core.Me.CurrentMp >= DKSettings.Instance.保留蓝量 + 3000)
             {
                 return 0;
             }

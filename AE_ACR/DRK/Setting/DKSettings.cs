@@ -22,6 +22,7 @@ public class DKSettings
     public int 爆发目标血量 = 20;
     public float 能力技爆发延时 = 5f;
     public float GCD爆发延时 = 7f;
+    public bool 日常模式 = false;
 
     public JobViewSave JobViewSave = new(); // QT设置存档
 

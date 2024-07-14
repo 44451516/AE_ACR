@@ -19,6 +19,7 @@ public abstract class BaseIslotResolver : ISlotResolver
     public const int
         Flag_停手 = -100,
         Flag_减伤 = -101,
+        Flag_攒资源 = -102,
         留空 = 3624;
 
 

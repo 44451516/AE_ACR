@@ -1,5 +1,6 @@
 ﻿#region
 
+using AE_ACR.Base;
 using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine.Module;
@@ -19,9 +20,17 @@ public class DK_Ability_吸血深渊 : DRKBaseSlotResolvers
         {
             return Flag_停手;
         }
+        
+        if (getQTValue(BaseQTKey.攒资源))
+        {
+            return Flag_攒资源;
+        }
 
-        if (CanWeave())
+
+        if (!CanWeave())
+        {
             return -1;
+        }
 
         var darksideTimeRemaining = Core.Resolve<JobApi_DarkKnight>().DarksideTimeRemaining;
 
@@ -34,7 +43,7 @@ public class DK_Ability_吸血深渊 : DRKBaseSlotResolvers
             return -4;
 
 
-        if (AbyssalDrain.IsReady() && TargetHelper.GetNearbyEnemyCount(battleChara, 5, 5) >= 3)
+        if (AbyssalDrain.ActionReady() && TargetHelper.GetNearbyEnemyCount(battleChara, 5, 5) >= 3)
             return 0;
 
         return -5;

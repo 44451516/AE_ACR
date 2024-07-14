@@ -4,8 +4,11 @@ using AE_ACR.PLD.SlotResolvers;
 using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine.Module;
+using AEAssist.CombatRoutine.Module.Target;
 using AEAssist.Extension;
+using AEAssist.Helper;
 using AEAssist.JobApi;
+using Dalamud.Game.ClientState.Objects.Types;
 
 #endregion
 
@@ -15,7 +18,7 @@ public class Ability_黑盾 : DRKBaseSlotResolvers
 {
     public override int Check()
     {
-        if (是否减伤())
+        if (!是否减伤())
         {
             return Flag_减伤;
         }
@@ -29,8 +32,26 @@ public class Ability_黑盾 : DRKBaseSlotResolvers
             if (Buffs.暗影墙v2.GetBuffRemainingTime() > 0.5f)
                 return -1;
 
-            if (至黑之夜.ActionReady() && Core.Me.CurrentMp >= 3000 && attackMeCount() >= 5 && Core.Me.CurrentHpPercent() < 0.88f)
-                return 0;
+            if (至黑之夜.ActionReady() && Core.Me.CurrentMp >= 3000)
+            {
+                if (Core.Me.CurrentHpPercent() < 0.88f)
+                {
+                    if (attackMeCount() >= 3)
+                    {
+                        return 0;
+                    }
+                    
+                    if (Core.Me.TargetObject is IBattleChara target)
+                    {
+                        if (TargetHelper.IsBoss(target))
+                        {
+                            return 0;
+                        }
+                    }
+
+                }
+            }
+
         }
 
         return -1;

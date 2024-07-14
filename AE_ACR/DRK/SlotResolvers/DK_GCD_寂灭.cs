@@ -1,5 +1,6 @@
 #region
 
+using AE_ACR.Base;
 using AE_ACR.DRK.SlotResolvers;
 using AE_ACR.utils;
 using AEAssist;
@@ -22,7 +23,12 @@ public class DK_GCD_寂灭 : DRKBaseSlotResolvers
             return Flag_停手;
         }
         
-        if (寂灭Quietus.IsUnlock())
+        if (getQTValue(BaseQTKey.攒资源))
+        {
+            return Flag_攒资源;
+        }
+        
+        if (!寂灭Quietus.IsUnlock())
         {
             return -1;
         }
