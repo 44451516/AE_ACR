@@ -41,7 +41,7 @@ public class Ability_亲疏自行 : DRKBaseSlotResolvers
                 return -1;
 
 
-            if (亲疏自行.ActionReady() && attackMeCount() >= 5 && Core.Me.CurrentHpPercent() < 0.99f)
+            if (亲疏自行.ActionReady() && attackMeCount() >= 3 && Core.Me.CurrentHpPercent() < 0.99f)
                 return 0;
         }
 
