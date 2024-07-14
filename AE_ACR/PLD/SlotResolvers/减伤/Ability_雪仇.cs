@@ -48,7 +48,7 @@ public class Ability_雪仇 : PLDBaseSlotResolvers
                 return -1;
 
 
-            if (雪仇.ActionReady() && attackMeCount() >= 5 && Core.Me.CurrentHpPercent() < 0.99f)
+            if (雪仇.ActionReady() && attackMeCount() >= 3 && Core.Me.CurrentHpPercent() < 0.99f)
                 return 0;
         }
 

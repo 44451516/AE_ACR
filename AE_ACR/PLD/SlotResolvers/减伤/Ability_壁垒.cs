@@ -38,7 +38,7 @@ public class Ability_壁垒 : PLDBaseSlotResolvers
                 return -1;
 
 
-            if (壁垒.ActionReady() && attackMeCount() >= 5 && Core.Me.CurrentHpPercent() < 0.89f) 
+            if (壁垒.ActionReady() && attackMeCount() >= 3 && Core.Me.CurrentHpPercent() < 0.89f) 
                 return 0;
         }
 

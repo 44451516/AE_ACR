@@ -40,11 +40,10 @@ public abstract class PLDBaseSlotResolvers : TankBaseIslotResolver
         调停Intervene = 16461,
         盾阵Sheltron = 3542,
         预警 = 17,
-        壁垒 = 28,
-        圣盾阵 = 28,
-        神圣领域 = 28,
+        壁垒 = 22,
+        圣盾阵 = 3542,
+        神圣领域 = 30,
         钢铁信念 = 28,
-        测试 = 31,
         留空 = 0;
 
 

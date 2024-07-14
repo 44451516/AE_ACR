@@ -41,7 +41,7 @@ public class Ability_神圣领域 : PLDBaseSlotResolvers
                 return -1;
 
 
-            if (神圣领域.ActionReady() && attackMeCount() >= 5 && Core.Me.CurrentHpPercent() < 0.65f) 
+            if (神圣领域.ActionReady() && attackMeCount() >= 4 && Core.Me.CurrentHpPercent() < 0.65f) 
                 return 0;
         }
 

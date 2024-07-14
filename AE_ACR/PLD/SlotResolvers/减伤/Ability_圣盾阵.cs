@@ -37,23 +37,23 @@ public class Ability_圣盾阵 : PLDBaseSlotResolvers
 
             if (Buffs.预警.GetBuffRemainingTime() > 0.5f)
             {
-                return -1;
+                return -2;
             }
 
             if (Buffs.预警v2.GetBuffRemainingTime() > 0.5f)
             {
-                return -1;
+                return -3;
             }
 
             if (Buffs.壁垒.GetBuffRemainingTime() > 0.5f)
             {
-                return -1;
+                return -4;
             }
 
 
             if (圣盾阵.OriginalHookActionReady() && Core.Resolve<JobApi_Paladin>().Oath >= 50)
             {
-                if (Core.Me.CurrentHpPercent() < 0.88f)
+                if (Core.Me.CurrentHpPercent() <= 0.65f)
                 {
                     if (attackMeCount() >= 3)
                     {
