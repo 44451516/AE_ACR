@@ -22,7 +22,7 @@ using ImGuiNET;
 namespace AE_ACR_DRK;
 
 // 重要 类一定要Public声明才会被查找到
-public class DKRotationEntry : IRotationEntry
+public class DRKRotationEntry : IRotationEntry
 {
     // 逻辑从上到下判断，通用队列是无论如何都会判断的 
     // gcd则在可以使用gcd时判断
@@ -79,7 +79,7 @@ public class DKRotationEntry : IRotationEntry
         };
 
         // 添加各种事件回调
-        rot.SetRotationEventHandler(new DKRotationEventHandler());
+        rot.SetRotationEventHandler(new DRKRotationEventHandler());
         // 添加QT开关的时间轴行为
         rot.AddTriggerAction(new TriggerAction_QT());
 

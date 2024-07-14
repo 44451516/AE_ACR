@@ -22,7 +22,7 @@ public class TriggerAction_QT : ITriggerAction
 
     public TriggerAction_QT()
     {
-        _qtArray = DKRotationEntry.QT.GetQtArray();
+        _qtArray = DRKRotationEntry.QT.GetQtArray();
     }
 
     public string DisplayName { get; } = "DK/QT";
@@ -45,7 +45,7 @@ public class TriggerAction_QT : ITriggerAction
 
     public bool Handle()
     {
-        DKRotationEntry.QT.SetQt(Key, Value);
+        DRKRotationEntry.QT.SetQt(Key, Value);
         return true;
     }
 }

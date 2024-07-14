@@ -1,7 +1,9 @@
+using AE_ACR.utils;
+
 namespace AE_ACR_DRK;
 
 // 直接定义好 方便编码
-public static class QTKey
+public class DRKQTKey : BaseQTKey
 {
     public const string UseBaseGcd = "使用基础Gcd";
     public const string Test1 = "Test1";

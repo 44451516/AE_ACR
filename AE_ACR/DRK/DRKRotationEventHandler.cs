@@ -11,7 +11,7 @@ namespace AE_ACR_DRK;
 /// <summary>
 ///     事件回调处理类 参考接口里的方法注释
 /// </summary>
-public class DKRotationEventHandler : IRotationEventHandler
+public class DRKRotationEventHandler : IRotationEventHandler
 {
     public async Task OnPreCombat()
     {
@@ -24,7 +24,7 @@ public class DKRotationEventHandler : IRotationEventHandler
         // 重置战斗中缓存的数据
         CombatTime.Instance = new CombatTime();
         // QT的设置重置为默认值
-        DKRotationEntry.QT.Reset();
+        DRKRotationEntry.QT.Reset();
     }
 
     public async Task OnNoTarget()
