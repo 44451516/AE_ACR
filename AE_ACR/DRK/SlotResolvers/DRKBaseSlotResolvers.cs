@@ -1,6 +1,15 @@
-﻿namespace AE_ACR_DRK;
+﻿#region
 
-public class DKData
+using AE_ACR_DRK;
+using AE_ACR.Base;
+using AE_ACR.PLD;
+using AE_ACR.utils;
+
+#endregion
+
+namespace AE_ACR.DRK.SlotResolvers;
+
+public abstract class DRKBaseSlotResolvers : TankBaseIslotResolver
 {
     public const uint
         //单体连击1
@@ -36,6 +45,11 @@ public class DKData
         //BloodWeapon
         嗜血BloodWeapon = 3625,
         疾跑 = 3,
+        弃明投暗 = 3634,
+        暗影墙 = 3636,
+        至黑之夜 = 7393,
+        行尸走肉 = 3636,
+        献奉 = 25754,
         Unmend = 3624;
 
 
@@ -49,6 +63,27 @@ public class DKData
             //血乱
             血乱Delirium = 3836,
             Scorn = 3837,
-            SaltedEarth = 749;
+            SaltedEarth = 749,
+            出生入死 = 3255,
+            暗影墙 = 747,
+            暗影墙v2 = 747,
+            献奉 = 2682,
+            弃明投暗 = 746,
+            留空 = 0;
+    }
+
+    public static bool 是否停手()
+    {
+        return getQTValue(BaseQTKey.停手);
+    }
+
+    public static bool 是否减伤()
+    {
+        return getQTValue(BaseQTKey.减伤);
+    }
+
+    public static bool getQTValue(string key)
+    {
+        return DRKRotationEntry.QT.GetQt(key);
     }
 }

@@ -21,7 +21,7 @@ internal class TriggerAction_QT : ITriggerAction
 
     public TriggerAction_QT()
     {
-        _qtArray = GLDRotationEntry.QT.GetQtArray();
+        _qtArray = GLARotationEntry.QT.GetQtArray();
     }
 
     public string DisplayName { get; } = "GLA/QT";
@@ -44,7 +44,7 @@ internal class TriggerAction_QT : ITriggerAction
 
     public bool Handle()
     {
-        GLDRotationEntry.QT.SetQt(Key, Value);
+        GLARotationEntry.QT.SetQt(Key, Value);
         return true;
     }
 }

@@ -20,7 +20,6 @@ public class DKSettings
 
     public int 保留蓝量 = 3000;
     public int 爆发目标血量 = 20;
-    public bool 留资源 = false;
     public float 能力技爆发延时 = 5f;
     public float GCD爆发延时 = 7f;
 

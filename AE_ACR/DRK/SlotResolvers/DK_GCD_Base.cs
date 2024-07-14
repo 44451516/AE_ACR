@@ -1,6 +1,8 @@
 #region
 
 using AE_ACR_DRK_Setting;
+using AE_ACR.Base;
+using AE_ACR.DRK.SlotResolvers;
 using AEAssist;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
@@ -12,21 +14,24 @@ using AEAssist.MemoryApi;
 
 namespace AE_ACR_DRK.SlotResolvers;
 
-public class DK_GCD_Base : ISlotResolver
+public class DK_GCD_Base : DRKBaseSlotResolvers
 {
-    public static uint LastBaseGcd => Core.Resolve<MemApiSpell>().GetLastComboSpellId();
-
-    // 返回>=0表示检测通过 即将调用Build方法
-    public int Check()
+    public override int Check()
     {
-        if (Core.Resolve<MemApiSpell>().GetLastComboSpellId() == DKData.释放Unleash) return -1;
+        if (是否停手())
+        {
+            return Flag_停手;
+        }
+        
+        if (Core.Resolve<MemApiSpell>().GetLastComboSpellId() == 释放Unleash)
+        {
+            return -1;
+        }
 
         return 0;
     }
 
-
-    // 将指定技能加入技能队列中
-    public void Build(Slot slot)
+    public override void Build(Slot slot)
 
     {
         var spell = GetBaseGCD();
@@ -35,27 +40,24 @@ public class DK_GCD_Base : ISlotResolver
 
     public static Spell GetBaseGCD()
     {
-        // 如果自己有直线射击预备buff 或者最近1秒内使用过纷乱
-        // if (Core.Me.HasAura(AurasDefine.SearingLight) || SpellsDefine.Provoke.RecentlyUsed())
-        // {
-        // return GetStraighterShot();
-        // }
-        // return GetHeavyShot();
-        // return AurasDefine.SearingLight;
-        if (LastBaseGcd == DKData.单体1HardSlash) return DKData.单体2SyphonStrike.GetSpell();
+        if (lastComboActionID == 单体1HardSlash)
+        {
+            return 单体2SyphonStrike.GetSpell();
+        }
 
-        if (LastBaseGcd == DKData.单体2SyphonStrike && DKSettings.Instance.留资源 == false)
-            if (Core.Resolve<JobApi_DarkKnight>().Blood >= 80 && DKData.血溅Bloodspiller.IsUnlock())
+        if (lastComboActionID == 单体2SyphonStrike && getQTValue(BaseQTKey.攒资源) == false)
+        {
+            if (Core.Resolve<JobApi_DarkKnight>().Blood >= 80 && 血溅Bloodspiller.IsUnlock())
             {
-                var spell = Core.Resolve<MemApiSpell>().CheckActionChange(DKData.血溅Bloodspiller).GetSpell();
-
+                var spell = Core.Resolve<MemApiSpell>().CheckActionChange(血溅Bloodspiller).GetSpell();
                 return spell;
             }
+        }
 
-
-        if (LastBaseGcd == DKData.单体2SyphonStrike) return DKData.单体3Souleater.GetSpell();
-
-
-        return DKData.单体1HardSlash.GetSpell();
+        if (lastComboActionID == 单体2SyphonStrike)
+        {
+            return 单体3Souleater.GetSpell();
+        }
+        return 单体1HardSlash.GetSpell();
     }
 }

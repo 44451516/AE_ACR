@@ -13,11 +13,16 @@ using AEAssist.MemoryApi;
 
 namespace AE_ACR.DRK.SlotResolvers;
 
-public class DK_Ability_嗜血 : ISlotResolver
+public class DK_Ability_嗜血 : DRKBaseSlotResolvers
 {
-    public int Check()
+    public override int Check()
     {
-        if (GCDHelper.GetGCDCooldown() < 600)
+        if (是否停手())
+        {
+            return Flag_停手;
+        }
+        
+        if (CanWeave())
         {
             return -1;
         }
@@ -29,15 +34,14 @@ public class DK_Ability_嗜血 : ISlotResolver
         if (DKSettings.Instance.能力技爆发延时 > CombatTime.Instance.CombatEngageDuration().TotalSeconds)
             return -1;
 
-        if (Core.Resolve<MemApiSpell>().CheckActionChange(DKData.嗜血BloodWeapon).IsReady())
+        if (Core.Resolve<MemApiSpell>().CheckActionChange(嗜血BloodWeapon).IsReady())
             return 0;
 
         return -1;
     }
 
-    public void Build(Slot slot)
+    public override void Build(Slot slot)
     {
-        var spell = Core.Resolve<MemApiSpell>().CheckActionChange(DKData.嗜血BloodWeapon).GetSpell();
-        slot.Add(spell);
+        slot.Add(嗜血BloodWeapon.OriginalHook());
     }
 }

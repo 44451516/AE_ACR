@@ -3,7 +3,10 @@
 using AE_ACR_DRK_Setting;
 using AE_ACR_DRK_Triggers;
 using AE_ACR_DRK.SlotResolvers;
+using AE_ACR.Base;
 using AE_ACR.DRK.SlotResolvers;
+using AE_ACR.DRK.SlotResolvers.减伤;
+using AE_ACR.PLD.SlotResolvers;
 using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine;
@@ -16,6 +19,9 @@ using AEAssist.MemoryApi;
 using Dalamud.IoC;
 using Dalamud.Plugin.Services;
 using ImGuiNET;
+using Ability_亲疏自行 = AE_ACR.DRK.SlotResolvers.减伤.Ability_亲疏自行;
+using Ability_铁壁 = AE_ACR.DRK.SlotResolvers.减伤.Ability_铁壁;
+using Ability_雪仇 = AE_ACR.DRK.SlotResolvers.减伤.Ability_雪仇;
 
 #endregion
 
@@ -24,6 +30,8 @@ namespace AE_ACR_DRK;
 // 重要 类一定要Public声明才会被查找到
 public class DRKRotationEntry : IRotationEntry
 {
+    public string AuthorName { get; set; } = "44451516";
+
     // 逻辑从上到下判断，通用队列是无论如何都会判断的 
     // gcd则在可以使用gcd时判断
     // offGcd则在不可以使用gcd 且没达到gcd内插入能力技上限时判断
@@ -31,6 +39,17 @@ public class DRKRotationEntry : IRotationEntry
     private readonly List<SlotResolverData> SlotResolvers = new()
     {
         // offGcd队列
+        new SlotResolverData(new Ability_行尸走肉(), SlotMode.OffGcd),
+        new SlotResolverData(new Ability_暗影墙(), SlotMode.OffGcd),
+        new SlotResolverData(new Ability_铁壁(), SlotMode.OffGcd),
+        new SlotResolverData(new Ability_弃明投暗(), SlotMode.OffGcd),
+
+        new SlotResolverData(new Ability_黑盾(), SlotMode.OffGcd),
+        new SlotResolverData(new Ability_献奉(), SlotMode.OffGcd),
+
+        new SlotResolverData(new Ability_亲疏自行(), SlotMode.OffGcd),
+        new SlotResolverData(new Ability_雪仇(), SlotMode.OffGcd),
+
         new SlotResolverData(new DK_Ability_掠影示现(), SlotMode.OffGcd),
         new SlotResolverData(new DK_Ability_暗黑波动_AOE(), SlotMode.OffGcd),
         new SlotResolverData(new DK_Ability_暗黑锋(), SlotMode.OffGcd),
@@ -48,13 +67,7 @@ public class DRKRotationEntry : IRotationEntry
         new SlotResolverData(new DK_GCD_Base(), SlotMode.Gcd)
     };
 
-    [PluginService]
-    internal static IChatGui ChatGui { get; private set; } = null!;
-
-    // 声明当前要使用的UI的实例 示例里使用QT
     public static JobViewWindow QT { get; private set; }
-    public string AuthorName { get; set; } = "44451516";
-
 
     public Rotation Build(string settingFolder)
     {
@@ -115,6 +128,11 @@ public class DRKRotationEntry : IRotationEntry
         //添加QT分页 第一个参数是分页标题 第二个是分页里的内容
         QT.AddTab("Dev", DrawQtDev);
         QT.AddTab("通用", DrawQtGeneral);
+        
+        QT.AddQt(BaseQTKey.停手, false, "是否使用基础的Gcd");
+        QT.AddQt(BaseQTKey.减伤, true);
+        QT.AddQt(BaseQTKey.攒资源, false,"攒资源不会卸暗血");
+        
 
         // 添加QT开关 第二个参数是默认值 (开or关) 第三个参数是鼠标悬浮时的tips
         // QT.AddQt(QTKey.UseBaseGcd, true, "是否使用基础的Gcd");
@@ -150,10 +168,10 @@ public class DRKRotationEntry : IRotationEntry
 
     public void DrawQtGeneral(JobViewWindow jobViewWindow)
     {
-        ImGui.Text($"GetRecastTime:{Core.Resolve<MemApiSpell>().GetRecastTime(DKData.疾跑).TotalSeconds}");
-        ImGui.Text($"GetRecastTimeElapsed:{Core.Resolve<MemApiSpell>().GetRecastTimeElapsed(DKData.疾跑)}");
-        ImGui.Text($"GetCooldownRemainingTime:{DKData.疾跑.GetCooldownRemainingTime()}");
-        ImGui.Text($"GetCooldown:{Core.Resolve<MemApiSpell>().GetCooldown(DKData.疾跑).TotalSeconds}");
+        ImGui.Text($"GetRecastTime:{Core.Resolve<MemApiSpell>().GetRecastTime(DRKBaseSlotResolvers.疾跑).TotalSeconds}");
+        ImGui.Text($"GetRecastTimeElapsed:{Core.Resolve<MemApiSpell>().GetRecastTimeElapsed(DRKBaseSlotResolvers.疾跑)}");
+        ImGui.Text($"GetCooldownRemainingTime:{DRKBaseSlotResolvers.疾跑.GetCooldownRemainingTime()}");
+        ImGui.Text($"GetCooldown:{Core.Resolve<MemApiSpell>().GetCooldown(DRKBaseSlotResolvers.疾跑).TotalSeconds}");
 
 
         ImGui.Text($"LastSpell : {Core.Resolve<MemApiSpellCastSuccess>().LastSpell}");
@@ -165,20 +183,20 @@ public class DRKRotationEntry : IRotationEntry
         ImGui.Text($"战斗时间2 : {CombatTime.Instance.combatEnd}");
         ImGui.Text($"战斗时间3 : {CombatTime.Instance.CombatEngageDuration().TotalSeconds}");
         ImGui.Text($"暗黑时间 : {Core.Resolve<JobApi_DarkKnight>().DarksideTimeRemaining}");
-        ImGui.Text($"暗黑时间 : {Core.Resolve<MemApiSpell>().CheckActionChange(DKData.暗黑锋).GetSpell().Id} - {Core.Resolve<MemApiSpell>().CheckActionChange(DKData.EdgeOfShadow).GetSpell().Id}");
+        ImGui.Text($"暗黑时间 : {Core.Resolve<MemApiSpell>().CheckActionChange(DRKBaseSlotResolvers.暗黑锋).GetSpell().Id} - {Core.Resolve<MemApiSpell>().CheckActionChange(DRKBaseSlotResolvers.EdgeOfShadow).GetSpell().Id}");
         ImGui.Text($"LastSpell : {Core.Resolve<MemApiSpellCastSuccess>().LastSpell}");
-        ImGui.Text($"刚魂StalwartSoul : {DKData.刚魂StalwartSoul.IsUnlock()}");
-        ImGui.Text($"Scorn : {Core.Me.HasAura(DKData.Buffs.Scorn)}");
-        ImGui.Text($"IsUnlock : {DKData.蔑视厌恶Disesteem.IsUnlock()}");
-        ImGui.Text($"血乱Delirium : {DKData.血乱Delirium.GetCooldownRemainingTime()}");
-        ImGui.Text($"血溅Bloodspiller : {DKData.血溅Bloodspiller.GetCooldownRemainingTime()}");
-        ImGui.Text($"LivingShadow : {DKData.LivingShadow.GetCooldownRemainingTime()}");
+        ImGui.Text($"刚魂StalwartSoul : {DRKBaseSlotResolvers.刚魂StalwartSoul.IsUnlock()}");
+        ImGui.Text($"Scorn : {Core.Me.HasAura(DRKBaseSlotResolvers.Buffs.Scorn)}");
+        ImGui.Text($"IsUnlock : {DRKBaseSlotResolvers.蔑视厌恶Disesteem.IsUnlock()}");
+        ImGui.Text($"血乱Delirium : {DRKBaseSlotResolvers.血乱Delirium.GetCooldownRemainingTime()}");
+        ImGui.Text($"血溅Bloodspiller : {DRKBaseSlotResolvers.血溅Bloodspiller.GetCooldownRemainingTime()}");
+        ImGui.Text($"LivingShadow : {DRKBaseSlotResolvers.LivingShadow.GetCooldownRemainingTime()}");
 
 
         ImGui.Text($"自身中心数量 : {TargetHelper.GetNearbyEnemyCount(5)}");
         var battleChara = Core.Me.GetCurrTarget();
         ImGui.Text($"目标中心数量 : {TargetHelper.GetNearbyEnemyCount(battleChara, 5, 5)}");
-        ImGui.Text($"血乱buff计时器 : {Core.Resolve<MemApiBuff>().GetAuraTimeleft(Core.Me, DKData.Buffs.血乱Delirium, true)}");
+        ImGui.Text($"血乱buff计时器 : {Core.Resolve<MemApiBuff>().GetAuraTimeleft(Core.Me, DRKBaseSlotResolvers.Buffs.血乱Delirium, true)}");
     }
 
     public void DrawQtDev(JobViewWindow jobViewWindow)

@@ -1,22 +1,26 @@
 ﻿#region
 
-using AE_ACR_DRK;
+using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.Extension;
 using AEAssist.Helper;
 using AEAssist.JobApi;
-using AEAssist.MemoryApi;
 
 #endregion
 
 namespace AE_ACR.DRK.SlotResolvers;
 
-public class DK_Ability_吸血深渊 : ISlotResolver
+public class DK_Ability_吸血深渊 : DRKBaseSlotResolvers
 {
-    public int Check()
+    public override int Check()
     {
-        if (GCDHelper.GetGCDCooldown() < 600)
+        if (是否停手())
+        {
+            return Flag_停手;
+        }
+
+        if (CanWeave())
             return -1;
 
         var darksideTimeRemaining = Core.Resolve<JobApi_DarkKnight>().DarksideTimeRemaining;
@@ -30,18 +34,15 @@ public class DK_Ability_吸血深渊 : ISlotResolver
             return -4;
 
 
-        if (Core.Resolve<MemApiSpell>().CheckActionChange(DKData.AbyssalDrain).IsReady()
-            && TargetHelper.GetNearbyEnemyCount(battleChara, 5, 5) >= 3)
+        if (AbyssalDrain.IsReady() && TargetHelper.GetNearbyEnemyCount(battleChara, 5, 5) >= 3)
             return 0;
 
         return -5;
     }
 
 
-    public void Build(Slot slot)
+    public override void Build(Slot slot)
     {
-        var spell = Core.Resolve<MemApiSpell>().CheckActionChange(DKData.AbyssalDrain).GetSpell();
-
-        slot.Add(spell);
+        slot.Add(AbyssalDrain.OriginalHook());
     }
 }

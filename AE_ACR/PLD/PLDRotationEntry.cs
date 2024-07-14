@@ -1,5 +1,6 @@
 #region
 
+using AE_ACR.Base;
 using AE_ACR.PLD.Setting;
 using AE_ACR.PLD.SlotResolvers;
 using AE_ACR.PLD.Triggers;
@@ -20,10 +21,7 @@ namespace AE_ACR.PLD;
 // 重要 类一定要Public声明才会被查找到
 public class PLDRotationEntry : IRotationEntry
 {
-    // 逻辑从上到下判断，通用队列是无论如何都会判断的 
-    // gcd则在可以使用gcd时判断
-    // offGcd则在不可以使用gcd 且没达到gcd内插入能力技上限时判断
-    // pvp环境下 全都强制认为是通用队列
+    public string AuthorName { get; set; } = "44451516";
     private readonly List<SlotResolverData> SlotResolvers = new()
     {
         new SlotResolverData(new Ability_神圣领域(), SlotMode.OffGcd),
@@ -53,12 +51,7 @@ public class PLDRotationEntry : IRotationEntry
         new SlotResolverData(new GCD_大宝剑连击(), SlotMode.Gcd),
         new SlotResolverData(new GCD_Base(), SlotMode.Gcd)
     };
-
-    // 声明当前要使用的UI的实例 示例里使用QT
     public static JobViewWindow QT { get; private set; }
-    public string AuthorName { get; set; } = "44451516";
-
-
     public Rotation Build(string settingFolder)
     {
 #if DEBUG

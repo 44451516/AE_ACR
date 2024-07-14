@@ -1,6 +1,4 @@
-﻿using AE_ACR.utils;
-
-namespace AE_ACR.Base;
+﻿namespace AE_ACR.Base;
 
 public abstract class TankBaseIslotResolver :BaseIslotResolver
 {
@@ -10,7 +8,7 @@ public abstract class TankBaseIslotResolver :BaseIslotResolver
             铁壁 = 1191,
             亲疏自行 = 1209,
             雪仇 = 1193,
-            留空1 = 0;
+            留空 = 0;
     }
     
     public const uint

@@ -13,33 +13,41 @@ using AEAssist.MemoryApi;
 
 namespace AE_ACR.DRK.SlotResolvers;
 
-public class DK_Ability_精雕怒斩 : ISlotResolver
+public class DK_Ability_精雕怒斩 : DRKBaseSlotResolvers
 {
-    public int Check()
+    public override int Check()
     {
-        if (GCDHelper.GetGCDCooldown() < 600) return -1;
+        if (是否停手())
+        {
+            return Flag_停手;
+        }
+        
+        if (CanWeave()) 
+            return -1;
 
         var darksideTimeRemaining = Core.Resolve<JobApi_DarkKnight>().DarksideTimeRemaining;
 
-        if (darksideTimeRemaining == 0) return -2;
+        if (darksideTimeRemaining == 0) 
+            return -2;
 
 
-        if (Core.Resolve<MemApiSpell>().CheckActionChange(DKData.精雕怒斩CarveAndSpit).IsReady() == false) return -3;
+        if (Core.Resolve<MemApiSpell>().CheckActionChange(精雕怒斩CarveAndSpit).IsReady() == false) 
+            return -3;
 
-        if (DKSettings.Instance.能力技爆发延时 > CombatTime.Instance.CombatEngageDuration().TotalSeconds) return -1;
+        if (DKSettings.Instance.能力技爆发延时 > CombatTime.Instance.CombatEngageDuration().TotalSeconds) 
+            return -1;
 
 
-        if (Core.Resolve<MemApiSpell>().CheckActionChange(DKData.精雕怒斩CarveAndSpit).IsReady()) return 0;
+        if (Core.Resolve<MemApiSpell>().CheckActionChange(精雕怒斩CarveAndSpit).IsReady()) 
+            return 0;
 
 
         return -1;
     }
 
 
-    public void Build(Slot slot)
+    public override void Build(Slot slot)
     {
-        var spell = Core.Resolve<MemApiSpell>().CheckActionChange(DKData.精雕怒斩CarveAndSpit).GetSpell();
-
-        slot.Add(spell);
+        slot.Add(精雕怒斩CarveAndSpit.OriginalHook());
     }
 }

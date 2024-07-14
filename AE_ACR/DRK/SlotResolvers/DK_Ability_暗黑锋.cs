@@ -1,6 +1,5 @@
 ﻿#region
 
-using AE_ACR_DRK;
 using AE_ACR_DRK_Setting;
 using AE_ACR.utils;
 using AEAssist;
@@ -15,20 +14,22 @@ using Dalamud.Game.ClientState.Objects.Types;
 
 namespace AE_ACR.DRK.SlotResolvers;
 
-public class DK_Ability_暗黑锋 : ISlotResolver
+public class DK_Ability_暗黑锋 : DRKBaseSlotResolvers
 {
-    public static uint LastBaseGcd => Core.Resolve<MemApiSpell>().GetLastComboSpellId();
-    public static uint LastSpell => Core.Resolve<MemApiSpellCastSuccess>().LastSpell;
-
-    public int Check()
+    public override int Check()
     {
-        if (GCDHelper.GetGCDCooldown() < 600)
+        if (是否停手())
+        {
+            return Flag_停手;
+        }
+        
+        if (CanWeave())
         {
             return -1;
         }
 
 
-        if (LastSpell == Core.Resolve<MemApiSpell>().CheckActionChange(DKData.暗黑锋).GetSpell().Id)
+        if (LastSpell == Core.Resolve<MemApiSpell>().CheckActionChange(暗黑锋).GetSpell().Id)
         {
             return -1;
         }
@@ -63,17 +64,17 @@ public class DK_Ability_暗黑锋 : ISlotResolver
                 return 0;
             }
 
-            if (Core.Me.CurrentMp >= 9200 && LastBaseGcd == DKData.单体2SyphonStrike)
+            if (Core.Me.CurrentMp >= 9200 && lastComboActionID == 单体2SyphonStrike)
             {
                 return 0;
             }
 
-            if (Core.Me.CurrentMp >= 8600 && LastBaseGcd == DKData.单体2SyphonStrike && Core.Me.HasAura(DKData.Buffs.嗜血BloodWeapon))
+            if (Core.Me.CurrentMp >= 8600 && lastComboActionID == 单体2SyphonStrike && Core.Me.HasAura(Buffs.嗜血BloodWeapon))
             {
                 return 0;
             }
 
-            if (Core.Me.CurrentMp >= 9200 && Core.Me.HasAura(DKData.Buffs.嗜血BloodWeapon))
+            if (Core.Me.CurrentMp >= 9200 && Core.Me.HasAura(Buffs.嗜血BloodWeapon))
             {
                 return 0;
             }
@@ -90,7 +91,7 @@ public class DK_Ability_暗黑锋 : ISlotResolver
             }
 
             //泄蓝
-            if (DKData.血乱Delirium.GetCooldownRemainingTime() > 40 && Core.Me.CurrentMp >= DKSettings.Instance.保留蓝量 + 3000)
+            if (血乱Delirium.GetCooldownRemainingTime() > 40 && Core.Me.CurrentMp >= DKSettings.Instance.保留蓝量 + 3000)
             {
                 return 0;
             }
@@ -99,8 +100,8 @@ public class DK_Ability_暗黑锋 : ISlotResolver
         return -1;
     }
 
-    public void Build(Slot slot)
+    public override void Build(Slot slot)
     {
-        slot.Add(Core.Resolve<MemApiSpell>().CheckActionChange(DKData.暗黑锋).GetSpell());
+        slot.Add(暗黑锋.OriginalHook());
     }
 }

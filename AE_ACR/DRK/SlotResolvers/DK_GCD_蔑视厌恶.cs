@@ -14,30 +14,37 @@ using AEAssist.MemoryApi;
 
 namespace AE_ACR.DRK.SlotResolvers;
 
-public class DK_GCD_蔑视厌恶 : ISlotResolver
+public class DK_GCD_蔑视厌恶 : DRKBaseSlotResolvers
 {
-    public int Check()
+    public override int Check()
     {
+        if (是否停手())
+        {
+            return Flag_停手;
+        }
+
         var darksideTimeRemaining = Core.Resolve<JobApi_DarkKnight>().DarksideTimeRemaining;
 
-        if (darksideTimeRemaining == 0) return -1;
+        if (darksideTimeRemaining == 0)
+            return -1;
 
-        if (DKData.蔑视厌恶Disesteem.IsReady() == false) return -1;
+        if (蔑视厌恶Disesteem.IsReady() == false)
+            return -1;
 
-        if (DKSettings.Instance.GCD爆发延时 > CombatTime.Instance.CombatEngageDuration().TotalSeconds) return -1;
+        if (DKSettings.Instance.GCD爆发延时 > CombatTime.Instance.CombatEngageDuration().TotalSeconds)
+            return -1;
 
 
-        if (Core.Me.HasAura(DKData.Buffs.Scorn)) return 0;
+        if (Core.Me.HasAura(Buffs.Scorn))
+            return 0;
 
 
         return -1;
     }
 
-
-    // 将指定技能加入技能队列中
-    public void Build(Slot slot)
+    public override void Build(Slot slot)
     {
-        var spell = Core.Resolve<MemApiSpell>().CheckActionChange(DKData.蔑视厌恶Disesteem).GetSpell();
+        var spell = Core.Resolve<MemApiSpell>().CheckActionChange(蔑视厌恶Disesteem).GetSpell();
         slot.Add(spell);
     }
 }

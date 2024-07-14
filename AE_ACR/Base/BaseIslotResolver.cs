@@ -1,5 +1,6 @@
 ﻿#region
 
+using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.CombatRoutine.Module.Target;
@@ -10,18 +11,24 @@ using Dalamud.Game.ClientState.Objects.Types;
 
 #endregion
 
-namespace AE_ACR.utils;
+namespace AE_ACR.Base;
 
 public abstract class BaseIslotResolver : ISlotResolver
 {
+    //Flag
+    public const int
+        Flag_停手 = -100,
+        Flag_减伤 = -101,
+        留空 = 3624;
+
+
+
     public static uint lastComboActionID => Core.Resolve<MemApiSpell>().GetLastComboSpellId();
     public static double comboTime => Core.Resolve<MemApiSpell>().GetComboTimeLeft().TotalSeconds;
 
+    public static uint LastAction => Core.Resolve<MemApiSpellCastSuccess>().LastSpell;
+    public static uint LastSpell => Core.Resolve<MemApiSpellCastSuccess>().LastSpell;
 
-    // public static bool getsads()
-    // {
-    //     return BaseQTKey.QT.GetQt("百花");
-    // }
 
     public abstract int Check();
     public abstract void Build(Slot slot);

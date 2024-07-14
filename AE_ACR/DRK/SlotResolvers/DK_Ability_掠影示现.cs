@@ -10,26 +10,34 @@ using AEAssist.JobApi;
 
 namespace AE_ACR.DRK.SlotResolvers;
 
-public class DK_Ability_掠影示现 : ISlotResolver
+public class DK_Ability_掠影示现 : DRKBaseSlotResolvers
 {
-    public int Check()
+    public override int Check()
     {
-        if (GCDHelper.GetGCDCooldown() < 600) return -1;
+        if (是否停手())
+        {
+            return Flag_停手;
+        }
+        
+        if (CanWeave()) 
+            return -1;
 
         var darksideTimeRemaining = Core.Resolve<JobApi_DarkKnight>().DarksideTimeRemaining;
 
-        if (darksideTimeRemaining == 0) return -2;
+        if (darksideTimeRemaining == 0) 
+            return -2;
 
 
-        if (DKData.LivingShadow.IsReady()) return 0;
+        if (LivingShadow.IsReady()) 
+            return 0;
 
 
         return -1;
     }
 
 
-    public void Build(Slot slot)
+    public override void Build(Slot slot)
     {
-        slot.Add(DKData.LivingShadow.GetSpell());
+        slot.Add(LivingShadow.GetSpell());
     }
 }
