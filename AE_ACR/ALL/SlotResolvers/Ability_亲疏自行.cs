@@ -15,7 +15,7 @@ namespace AE_ACR.ALL.SlotResolvers
         {
             if (CanWeave())
             {
-                if (ALLData.Buffs.铁壁.GetBuffRemainingTime() > 500)
+                if (ALLData.Buffs.铁壁.GetBuffRemainingTime() > 0.5f)
                 {
                     return -1;
                 }

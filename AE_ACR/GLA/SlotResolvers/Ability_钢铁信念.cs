@@ -13,10 +13,9 @@ namespace AE_ACR.GLA.SlotResolvers
 {
     public class Ability_钢铁信念 : GLABaseSlotResolvers
     {
-
         public override int Check()
         {
-            if (钢铁信念.ActionReady())
+            if (!HasEffect(Buffs.钢铁信念) && 钢铁信念.ActionReady())
             {
                 return 0;
             }

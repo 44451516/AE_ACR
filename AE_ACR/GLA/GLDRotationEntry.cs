@@ -22,13 +22,14 @@ public class GLDRotationEntry : IRotationEntry
     // pvp环境下 全都强制认为是通用队列
     private List<SlotResolverData> SlotResolvers = new()
     {
+        new(new Ability_钢铁信念(), SlotMode.OffGcd),
         new(new Ability_战逃反应(), SlotMode.OffGcd),
         new(new Ability_厄运流转(), SlotMode.OffGcd),
         new(new Ability_深奥之灵(), SlotMode.OffGcd),
         new(new Ability_铁壁(), SlotMode.OffGcd),
         new(new Ability_预警(), SlotMode.OffGcd),
         // new(new Ability_预警(), SlotMode.OffGcd),
-    
+
 
         // gcd队列
         new(new GCD_Base(), SlotMode.Gcd),
@@ -78,7 +79,7 @@ public class GLDRotationEntry : IRotationEntry
     {
         // JobViewSave是AE底层提供的QT设置存档类 在你自己的设置里定义即可
         // 第二个参数是你设置文件的Save类 第三个参数是QT窗口标题
-        QT = new JobViewWindow(Settings.Instance.JobViewSave, Settings.Instance.Save, "AE DK [仅作为开发示范]");
+        QT = new JobViewWindow(Settings.Instance.JobViewSave, Settings.Instance.Save, "GLA");
         QT.SetUpdateAction(OnUIUpdate); // 设置QT中的Update回调 不需要就不设置
 
         //添加QT分页 第一个参数是分页标题 第二个是分页里的内容
@@ -125,7 +126,6 @@ public class GLDRotationEntry : IRotationEntry
 
     public void DrawQtGeneral(JobViewWindow jobViewWindow)
     {
-       
     }
 
     public void DrawQtDev(JobViewWindow jobViewWindow)

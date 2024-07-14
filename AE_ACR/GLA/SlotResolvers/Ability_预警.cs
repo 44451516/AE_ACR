@@ -1,9 +1,7 @@
 ﻿using AE_ACR.ALL;
 using AE_ACR.utils;
-using AEAssist;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.Helper;
-using AEAssist.MemoryApi;
 
 namespace AE_ACR.GLA.SlotResolvers
 {
@@ -19,7 +17,7 @@ namespace AE_ACR.GLA.SlotResolvers
                     return -1;
                 }
 
-                if (ALLData.Buffs.铁壁.GetBuffRemainingTime() > 500)
+                if (ALLData.Buffs.铁壁.GetBuffRemainingTime() > 0.5f)
                 {
                     return -1;
                 }

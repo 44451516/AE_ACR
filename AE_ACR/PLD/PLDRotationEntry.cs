@@ -1,12 +1,15 @@
-using AE_ACR.ALL.SlotResolvers;
 using AE_ACR.PLD.Setting;
 using AE_ACR.PLD.SlotResolvers;
 using AE_ACR.PLD.Triggers;
 using AE_ACR.utils;
+using AEAssist;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.CombatRoutine.View.JobView;
+using AEAssist.Helper;
+using AEAssist.JobApi;
 using ImGuiNET;
+using Ability_铁壁 = AE_ACR.PLD.SlotResolvers.Ability_铁壁;
 
 namespace AE_ACR.PLD;
 
@@ -22,11 +25,22 @@ public class PLDRotationEntry : IRotationEntry
     // pvp环境下 全都强制认为是通用队列
     private List<SlotResolverData> SlotResolvers = new()
     {
+        new(new Ability_神圣领域(), SlotMode.OffGcd),
+        new(new Ability_预警(), SlotMode.OffGcd),
+        new(new Ability_铁壁(), SlotMode.OffGcd),
+        new(new Ability_壁垒(), SlotMode.OffGcd),
+        
+        new(new Ability_圣盾阵(), SlotMode.OffGcd),
+        new(new Ability_亲疏自行(), SlotMode.OffGcd),
+        new(new Ability_雪仇(), SlotMode.OffGcd),
+        
+        
         new(new Ability_战逃反应(), SlotMode.OffGcd),
         new(new Ability_安魂祈祷(), SlotMode.OffGcd),
         new(new Ability_深奥之灵(), SlotMode.OffGcd),
         new(new Ability_厄运流转(), SlotMode.OffGcd),
         new(new Ability_深奥之灵(), SlotMode.OffGcd),
+        
         // new(new Ability_铁壁(), SlotMod
         // .
         // e.OffGcd),
@@ -54,8 +68,9 @@ public class PLDRotationEntry : IRotationEntry
 
         var rot = new Rotation(SlotResolvers)
         {
-            TargetJob = Jobs.Marauder,
-            // TargetJob = Jobs.Paladin,
+            // TargetJob = Jobs.Marauder,
+            // TargetJob = Jobs.Gladiator,
+            TargetJob = Jobs.Paladin,
             AcrType = AcrType.Normal,
             MinLevel = 1,
             MaxLevel = 100,
@@ -84,7 +99,7 @@ public class PLDRotationEntry : IRotationEntry
     {
         // JobViewSave是AE底层提供的QT设置存档类 在你自己的设置里定义即可
         // 第二个参数是你设置文件的Save类 第三个参数是QT窗口标题
-        QT = new JobViewWindow(Settings.Instance.JobViewSave, Settings.Instance.Save, "AE DK [仅作为开发示范]");
+        QT = new JobViewWindow(Settings.Instance.JobViewSave, Settings.Instance.Save, "PLD");
         QT.SetUpdateAction(OnUIUpdate); // 设置QT中的Update回调 不需要就不设置
 
         //添加QT分页 第一个参数是分页标题 第二个是分页里的内容
@@ -92,8 +107,8 @@ public class PLDRotationEntry : IRotationEntry
         QT.AddTab("通用", DrawQtGeneral);
 
         // 添加QT开关 第二个参数是默认值 (开or关) 第三个参数是鼠标悬浮时的tips
-        // QT.AddQt(QTKey.UseBaseGcd, true, "是否使用基础的Gcd");
-        // QT.AddQt(QTKey.Test1, true);
+        QT.AddQt(PlDQTKey.停手, false, "是否使用基础的Gcd");
+        QT.AddQt(PlDQTKey.减伤, true);
         // QT.AddQt(QTKey.Test2, false);
         // QT.AddQt(QTKey.UsePotion,false);
 
@@ -131,10 +146,28 @@ public class PLDRotationEntry : IRotationEntry
 
     public void DrawQtGeneral(JobViewWindow jobViewWindow)
     {
-        // ImGui.Text($"赎罪剑Atonement3 : {PLDBaseSlotResolvers.赎罪剑Atonement3.OriginalHook().Id}");
-        // ImGui.Text($"赎罪剑Atonement2 : {PLDBaseSlotResolvers.赎罪剑Atonement2.OriginalHook().Id}");
-        // ImGui.Text($"赎罪剑Atonement1 : {PLDBaseSlotResolvers.赎罪剑Atonement1.OriginalHook().Id}");
-   
+        // {
+        //     GCHandle handle = GCHandle.Alloc(QT);
+        //
+        //     var pin = GCHandle.ToIntPtr(handle);
+        //
+        //     ImGui.Text($"赎罪剑Atonement3 : {pin}");
+        // }
+        // {
+        //     GCHandle handle = GCHandle.Alloc(GLDRotationEntry.QT);
+        //
+        //     var pin = GCHandle.ToIntPtr(handle);
+        //
+        //     ImGui.Text($"赎罪剑Atonement3 : {pin}");
+        // }
+
+        var Oath = Core.Resolve<JobApi_Paladin>().Oath;
+        
+        ImGui.Text($"大保健连击Confiteor : {PLDBaseSlotResolvers.大保健连击Confiteor.OriginalHook().Id}");
+        ImGui.Text($"赎罪剑Atonement1 : {PLDBaseSlotResolvers.赎罪剑Atonement1.OriginalHook().Id}");
+        ImGui.Text($"GCD : {GCDHelper.GetGCDCooldown()}");
+        ImGui.Text($"能量值 : {Oath}");
+        ImGui.Text($"圣灵buff : {PLDBaseSlotResolvers.GetBuffRemainingTime(PLDBaseSlotResolvers.Buffs.DivineMight)}");
     }
 
     public void DrawQtDev(JobViewWindow jobViewWindow)

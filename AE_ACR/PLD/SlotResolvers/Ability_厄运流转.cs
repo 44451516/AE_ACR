@@ -17,6 +17,11 @@ namespace AE_ACR.PLD.SlotResolvers
     {
         public override int Check()
         {
+            if (是否停手())
+            {
+                return -1;
+            }
+
             if (CanWeave())
             {
                 if (厄运流转CircleOfScorn.OriginalHookActionReady() && TargetHelper.GetNearbyEnemyCount(5) > 0)

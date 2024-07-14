@@ -8,7 +8,7 @@ namespace AE_ACR.GLA.Triggers;
 //这个类也可以完全复制 改一下上面的namespace和对QT的引用就行
 internal class TriggerAction_QT : ITriggerAction
 {
-    public string DisplayName { get; } = "DK/QT";
+    public string DisplayName { get; } = "GLA/QT";
     public string Remark { get; set; }
     
     public string Key = "";

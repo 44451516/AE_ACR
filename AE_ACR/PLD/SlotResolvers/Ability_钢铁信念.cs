@@ -18,7 +18,12 @@ namespace AE_ACR.PLD.SlotResolvers
 
         public override int Check()
         {
-            if (Data.Data.钢铁信念.ActionReady())
+            if (是否停手())
+            {
+                return -1;
+            }
+            
+            if (钢铁信念.ActionReady())
             {
                 return 0;
             }
@@ -29,7 +34,7 @@ namespace AE_ACR.PLD.SlotResolvers
 
         public override void Build(Slot slot)
         {
-            slot.Add(Data.Data.钢铁信念.OriginalHook());
+            slot.Add(钢铁信念.OriginalHook());
         }
     }
 }

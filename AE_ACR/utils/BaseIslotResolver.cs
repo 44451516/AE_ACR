@@ -1,5 +1,6 @@
 ﻿using AEAssist;
 using AEAssist.CombatRoutine.Module;
+using AEAssist.CombatRoutine.Module.Target;
 using AEAssist.Extension;
 using AEAssist.Helper;
 using AEAssist.MemoryApi;
@@ -20,7 +21,7 @@ public abstract class BaseIslotResolver : ISlotResolver
 
     public static bool CanWeave(int weaveTime = 660)
     {
-        if (GCDHelper.GetGCDCooldown() < weaveTime)
+        if (GCDHelper.GetGCDCooldown() > weaveTime)
         {
             return true;
         }
@@ -33,9 +34,9 @@ public abstract class BaseIslotResolver : ISlotResolver
         return value.HasEffect();
     }
 
-    public static int GetBuffRemainingTime(ushort value)
+    public static double GetBuffRemainingTime(ushort value)
     {
-        return value.GetBuffRemainingTime();
+        return value.GetBuffRemainingTime() / 1000d;
     }
 
     public static double GetCooldownRemainingTime(uint value)
@@ -67,6 +68,52 @@ public abstract class BaseIslotResolver : ISlotResolver
 
         return -1;
     }
+
+    public static int EnemysIn12DebuffByStatusId(uint StatusId)
+    {
+        int count = 0;
+        Dictionary<uint, IBattleChara> instanceEnemysIn12 = TargetMgr.Instance.EnemysIn12;
+        foreach (var keyValuePair in instanceEnemysIn12)
+        {
+            var battleChara = keyValuePair.Value;
+            if (battleChara.CanAttack())
+            {
+                foreach (var statuse in battleChara.StatusList)
+                {
+                    if (statuse.StatusId == StatusId)
+                    {
+                        count++;
+                    }
+                }
+            }
+        }
+
+        return count;
+    }
+
+    public static int attackMeCount()
+    {
+        int count = 0;
+        foreach (var keyValuePair in TargetMgr.Instance.EnemysIn25)
+        {
+            var battleChara = keyValuePair.Value;
+            if (battleChara.CanAttack())
+            {
+                if (battleChara.TargetObjectId == Core.Me.GameObjectId)
+                {
+                    count++;
+                }
+            }
+        }
+
+        return count;
+    }
+
+
+    // public static bool getsads()
+    // {
+    //     return BaseQTKey.QT.GetQt("百花");
+    // }
 
     public abstract int Check();
     public abstract void Build(Slot slot);

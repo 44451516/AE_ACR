@@ -9,8 +9,7 @@ namespace AE_ACR.ALL.SlotResolvers
 {
     public class Ability_铁壁 : ISlotResolver
     {
-        public static uint LastBaseGcd => Core.Resolve<MemApiSpell>().GetLastComboSpellId();
-        public static uint LastSpell => Core.Resolve<MemApiSpellCastSuccess>().LastSpell;
+  
 
         public int Check()
         {
@@ -21,7 +20,7 @@ namespace AE_ACR.ALL.SlotResolvers
                 {
                     return -1;
                 }
-                if (Data.Buffs.预警.GetBuffRemainingTime() > 500)
+                if (Data.Buffs.预警.GetBuffRemainingTime() > 0.5f)
                 {
                     return -1;
                 }

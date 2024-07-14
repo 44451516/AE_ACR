@@ -19,7 +19,7 @@ public class Settings
 
     public static void Build(string settingPath)
     {
-        path = Path.Combine(settingPath, nameof(Settings) + "GLA.json");
+        path = Path.Combine(settingPath, nameof(Settings) + "PLD.json");
         if (!File.Exists(path))
         {
             Instance = new Settings();

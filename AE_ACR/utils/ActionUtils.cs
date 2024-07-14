@@ -20,20 +20,21 @@ namespace AE_ACR.utils
 
         internal static bool ActionReady(this uint value)
         {
-            return value.OriginalHook().Id.IsUnlock() && value.IsLevelEnough() && value.ActionReady();
+            return value.IsUnlock() && value.IsLevelEnough() && value.IsReady();
         }
+
         internal static bool OriginalHookActionReady(this uint value)
         {
             uint id = value.OriginalHook().Id;
-            return id.IsUnlock() && id.IsLevelEnough() && id.ActionReady();
+            return id.IsUnlock() && id.IsLevelEnough() && id.IsReady();
         }
 
         internal static bool WasLastAction(this uint value)
         {
             return Core.Resolve<MemApiSpellCastSuccess>().LastSpell == value;
         }
-        
-        
+
+
         internal static bool HasEffect(this ushort value)
         {
             return GameObjectExtension.HasAura(Core.Me, value);
@@ -43,7 +44,7 @@ namespace AE_ACR.utils
         {
             return Core.Resolve<MemApiBuff>().GetAuraTimeleft(Core.Me, value, true);
         }
-        
+
         /// <summary>
         /// 
         /// </summary>

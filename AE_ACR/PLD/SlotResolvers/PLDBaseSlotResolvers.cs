@@ -34,6 +34,12 @@ public abstract class PLDBaseSlotResolvers : BaseIslotResolver
         调停Intervene = 16461,
         盾阵Sheltron = 3542,
         预警 = 17,
+        壁垒 = 28,
+        圣盾阵 = 28,
+        铁壁 = 7531,
+        亲疏自行 = 7548,
+        雪仇 = 7535,
+        神圣领域 = 28,
         钢铁信念 = 28,
         测试 = 31,
         留空 = 0;
@@ -41,18 +47,43 @@ public abstract class PLDBaseSlotResolvers : BaseIslotResolver
     public static class Buffs
     {
         public const ushort
+            铁壁 = 1191,
+            亲疏自行 = 1209,
+            圣盾阵 = 2674,
+            预警 = 74,
+            预警v2 = 3830,
+            神圣领域 = 82,
+            壁垒 = 77,
+            雪仇 = 1193,
             Requiescat = 1368,
             FightOrFlight = 76,
             悔罪预备 = 3019,
             DivineMight = 2673,
-            圣盾阵 = 2674,
-            
             沥血剑BUFFGoringBladeReady = 3847,
             赎罪剑Atonement1BUFF = 1902,
             赎罪剑Atonement2BUFF = 3827,
             赎罪剑Atonement3BUFF = 3828,
-            预警 = 74,
-            
             留空 = 0;
+    }
+
+    public static int 周围敌人雪仇数量()
+    {
+        return EnemysIn12DebuffByStatusId(Buffs.雪仇);
+    }
+
+    public static bool 是否停手()
+    {
+        return getQTValue(PlDQTKey.停手);
+    }
+
+    public static bool 是否减伤()
+    {
+        return getQTValue(PlDQTKey.减伤);
+    }
+
+
+    public static bool getQTValue(string key)
+    {
+        return PLDRotationEntry.QT.GetQt(key);
     }
 }

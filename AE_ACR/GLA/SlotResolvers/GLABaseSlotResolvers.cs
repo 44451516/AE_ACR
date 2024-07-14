@@ -23,6 +23,7 @@ public abstract class GLABaseSlotResolvers :BaseIslotResolver
             
             FightOrFlight = 76,
             预警 = 74,
+            钢铁信念 = 79,
             留空 = 0;
     }
 }

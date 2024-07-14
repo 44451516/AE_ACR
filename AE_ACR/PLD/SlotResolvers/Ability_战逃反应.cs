@@ -15,6 +15,11 @@ namespace AE_ACR.PLD.SlotResolvers
     {
         public override int Check()
         {
+            if (是否停手())
+            {
+                return -1;
+            }
+
             if (CanWeave())
             {
                 if (战逃反应FightOrFlight.ActionReady())

@@ -14,8 +14,6 @@ namespace AE_ACR.GLA.SlotResolvers;
 
 public class GCD_Base : GLABaseSlotResolvers
 {
-    public static uint LastBaseGcd => Core.Resolve<MemApiSpell>().GetLastComboSpellId();
-
     public override int Check()
     {
         return 0;
@@ -29,21 +27,23 @@ public class GCD_Base : GLABaseSlotResolvers
             return 全蚀斩TotalEclipse.OriginalHook();
         }
 
-        if (Core.Me.TargetObject is IBattleChara battleChara)
-        {
-            if (投盾ShieldLob.IsUnlock() && TargetHelper.GetTargetDistanceFromMeTest2D(battleChara, Core.Me) >= 10)
-            {
-                return 投盾ShieldLob.GetSpell();
-            }
-        }
+        // if (Core.Me.TargetObject is IBattleChara battleChara)
+        // {
+        //     if (投盾ShieldLob.IsUnlock() && getTargetObjectDistance() >= 10)
+        //     {
+        //         return 投盾ShieldLob.GetSpell();
+        //     }
+        // }
+        //
+        //
 
 
-        if (LastBaseGcd == 先锋剑FastBlade && 暴乱剑RiotBlade.IsUnlock())
+        if (lastComboActionID == 先锋剑FastBlade && 暴乱剑RiotBlade.IsUnlock())
         {
             return 暴乱剑RiotBlade.GetSpell();
         }
 
-        if (LastBaseGcd == 暴乱剑RiotBlade && 战女神之怒RageOfHalone.IsUnlock())
+        if (lastComboActionID == 暴乱剑RiotBlade && 战女神之怒RageOfHalone.IsUnlock())
         {
             return 战女神之怒RageOfHalone.GetSpell();
         }
