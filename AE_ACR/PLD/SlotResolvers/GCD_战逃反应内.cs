@@ -12,7 +12,11 @@ public class GCD_战逃反应内 : PLDBaseSlotResolvers
 {
     public override int Check()
     {
-        if (是否停手()) return -1;
+        if (是否停手())
+        {
+            return Flag_停手;
+        }
+
 
         if (HasEffect(Buffs.FightOrFlight)) return 0;
 

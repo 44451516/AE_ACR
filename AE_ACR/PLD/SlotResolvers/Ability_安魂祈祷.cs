@@ -11,7 +11,10 @@ public class Ability_安魂祈祷 : PLDBaseSlotResolvers
 {
     public override int Check()
     {
-        if (是否停手()) return -1;
+        if (是否停手())
+        {
+            return Flag_停手;
+        }
 
         if (CanWeave())
             if (安魂祈祷Requiescat.OriginalHookActionReady())

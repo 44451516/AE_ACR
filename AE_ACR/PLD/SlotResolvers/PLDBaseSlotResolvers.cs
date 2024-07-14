@@ -1,6 +1,7 @@
 ﻿#region
 
 using AE_ACR.Base;
+using AE_ACR.PLD.Setting;
 using AE_ACR.utils;
 
 #endregion
@@ -55,7 +56,7 @@ public abstract class PLDBaseSlotResolvers : TankBaseIslotResolver
 
     public static bool 是否减伤()
     {
-        return getQTValue(BaseQTKey.减伤);
+        return PLDSettings.Instance.日常模式;
     }
 
 
@@ -77,6 +78,7 @@ public abstract class PLDBaseSlotResolvers : TankBaseIslotResolver
             悔罪预备 = 3019,
             DivineMight = 2673,
             沥血剑BUFFGoringBladeReady = 3847,
+            钢铁信念 = 79,
             赎罪剑Atonement1BUFF = 1902,
             赎罪剑Atonement2BUFF = 3827,
             赎罪剑Atonement3BUFF = 3828,

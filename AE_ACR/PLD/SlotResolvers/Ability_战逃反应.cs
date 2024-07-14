@@ -12,7 +12,10 @@ public class Ability_战逃反应 : PLDBaseSlotResolvers
 {
     public override int Check()
     {
-        if (是否停手()) return -1;
+        if (是否停手())
+        {
+            return Flag_停手;
+        }
 
         if (CanWeave())
             if (战逃反应FightOrFlight.ActionReady())

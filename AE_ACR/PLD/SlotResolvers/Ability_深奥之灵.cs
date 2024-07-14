@@ -12,10 +12,14 @@ public class Ability_深奥之灵 : PLDBaseSlotResolvers
 {
     public override int Check()
     {
+        if (是否停手())
+        {
+            return Flag_停手;
+        }
+
+        
         if (CanWeave())
         {
-            if (是否停手()) return -1;
-
             if (深奥之灵SpiritsWithin.OriginalHookActionReady())
             {
                 if (HasEffect(Buffs.FightOrFlight))

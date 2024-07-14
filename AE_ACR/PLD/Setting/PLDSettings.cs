@@ -13,9 +13,12 @@ namespace AE_ACR.PLD.Setting;
 ///     如果一些开关需要在战斗中调整 或者提供给时间轴操作 那就用QT
 ///     非开关类型的配置都放配置里 比如诗人绝峰能量配置
 /// </summary>
-public class Settings
+public class PLDSettings
 {
-    public static Settings Instance;
+    
+    public bool 日常模式 = false;
+    
+    public static PLDSettings Instance;
 
 
     public JobViewSave JobViewSave = new(); // QT设置存档
@@ -26,21 +29,21 @@ public class Settings
 
     public static void Build(string settingPath)
     {
-        path = Path.Combine(settingPath, nameof(Settings) + "PLD.json");
+        path = Path.Combine(settingPath, nameof(PLDSettings) + "PLD.json");
         if (!File.Exists(path))
         {
-            Instance = new Settings();
+            Instance = new PLDSettings();
             Instance.Save();
             return;
         }
 
         try
         {
-            Instance = JsonHelper.FromJson<Settings>(File.ReadAllText(path));
+            Instance = JsonHelper.FromJson<PLDSettings>(File.ReadAllText(path));
         }
         catch (Exception e)
         {
-            Instance = new Settings();
+            Instance = new PLDSettings();
             LogHelper.Error(e.ToString());
         }
     }

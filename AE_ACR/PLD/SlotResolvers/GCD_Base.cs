@@ -14,7 +14,11 @@ public class GCD_Base : PLDBaseSlotResolvers
 {
     public override int Check()
     {
-        if (是否停手()) return -1;
+        if (是否停手())
+        {
+            return Flag_停手;
+        }
+
 
         return 0;
     }

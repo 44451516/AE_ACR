@@ -14,8 +14,11 @@ public class Ability_圣盾阵 : PLDBaseSlotResolvers
 {
     public override int Check()
     {
-        if (是否减伤()) 
-            return -1;
+        if (!是否减伤())
+        {
+            return Flag_减伤;
+        }
+
 
         if (CanWeave())
         {

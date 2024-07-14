@@ -14,7 +14,10 @@ public class GCD_大宝剑连击 : PLDBaseSlotResolvers
     public override int Check()
     {
         if (是否停手())
-            return -1;
+        {
+            return Flag_停手;
+        }
+
 
         if (HasEffect(Buffs.Requiescat) && GetResourceCost(大保健连击Confiteor) < Core.Me.CurrentMp)
         {

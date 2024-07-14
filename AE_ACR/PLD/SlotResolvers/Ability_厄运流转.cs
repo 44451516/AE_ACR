@@ -12,7 +12,10 @@ public class Ability_厄运流转 : PLDBaseSlotResolvers
 {
     public override int Check()
     {
-        if (是否停手()) return -1;
+        if (是否停手())
+        {
+            return Flag_停手;
+        }
 
         if (CanWeave())
             if (厄运流转CircleOfScorn.OriginalHookActionReady() && TargetHelper.GetNearbyEnemyCount(5) > 0)

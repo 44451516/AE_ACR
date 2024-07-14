@@ -1,5 +1,6 @@
 ﻿#region
 
+using AE_ACR.PLD.Setting;
 using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine.Module;
@@ -11,14 +12,13 @@ namespace AE_ACR.PLD.SlotResolvers;
 
 public class Ability_钢铁信念 : PLDBaseSlotResolvers
 {
-    public static uint LastBaseGcd => Core.Resolve<MemApiSpell>().GetLastComboSpellId();
-    public static uint LastSpell => Core.Resolve<MemApiSpellCastSuccess>().LastSpell;
-
     public override int Check()
     {
-        if (是否停手()) return -1;
+        if (PLDSettings.Instance.日常模式 && !HasEffect(Buffs.钢铁信念) && 钢铁信念.ActionReady())
+        {
+            return 0;
+        }
 
-        if (钢铁信念.ActionReady()) return 0;
 
         return -1;
     }

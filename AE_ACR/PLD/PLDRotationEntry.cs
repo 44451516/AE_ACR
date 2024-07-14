@@ -22,8 +22,10 @@ namespace AE_ACR.PLD;
 public class PLDRotationEntry : IRotationEntry
 {
     public string AuthorName { get; set; } = "44451516";
+
     private readonly List<SlotResolverData> SlotResolvers = new()
     {
+        new SlotResolverData(new Ability_钢铁信念(), SlotMode.Always),
         new SlotResolverData(new Ability_神圣领域(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_预警(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_铁壁(), SlotMode.OffGcd),
@@ -51,7 +53,9 @@ public class PLDRotationEntry : IRotationEntry
         new SlotResolverData(new GCD_大宝剑连击(), SlotMode.Gcd),
         new SlotResolverData(new GCD_Base(), SlotMode.Gcd)
     };
+
     public static JobViewWindow QT { get; private set; }
+
     public Rotation Build(string settingFolder)
     {
 #if DEBUG
@@ -60,7 +64,7 @@ public class PLDRotationEntry : IRotationEntry
 
 
         // 初始化设置
-        Settings.Build(settingFolder);
+        PLDSettings.Build(settingFolder);
         // 初始化QT （依赖了设置的数据）
         BuildQT();
 
@@ -92,7 +96,7 @@ public class PLDRotationEntry : IRotationEntry
     // 设置界面
     public void OnDrawSetting()
     {
-        SettingUI.Instance.Draw();
+        PLDSettingUI.Instance.Draw();
     }
 
 
@@ -106,7 +110,7 @@ public class PLDRotationEntry : IRotationEntry
     {
         // JobViewSave是AE底层提供的QT设置存档类 在你自己的设置里定义即可
         // 第二个参数是你设置文件的Save类 第三个参数是QT窗口标题
-        QT = new JobViewWindow(Settings.Instance.JobViewSave, Settings.Instance.Save, "PLD");
+        QT = new JobViewWindow(PLDSettings.Instance.JobViewSave, PLDSettings.Instance.Save, "PLD");
         QT.SetUpdateAction(OnUIUpdate); // 设置QT中的Update回调 不需要就不设置
 
         //添加QT分页 第一个参数是分页标题 第二个是分页里的内容
@@ -147,6 +151,18 @@ public class PLDRotationEntry : IRotationEntry
 
     public void DrawQtGeneral(JobViewWindow jobViewWindow)
     {
+
+        PLDSettings PLDSettings = PLDSettings.Instance;
+        ImGui.Text("日常模式会持续开盾，和自动减伤");
+        ImGui.SetNextItemWidth(150f);
+        ImGui.Checkbox("日常模式", ref PLDSettings.日常模式);
+
+
+        if (ImGui.Button("Save[保存]"))
+        {
+            PLDSettings.Instance.Save();
+        }
+
         // {
         //     GCHandle handle = GCHandle.Alloc(QT);
         //
@@ -162,6 +178,12 @@ public class PLDRotationEntry : IRotationEntry
         //     ImGui.Text($"赎罪剑Atonement3 : {pin}");
         // }
 
+
+    }
+
+    public void DrawQtDev(JobViewWindow jobViewWindow)
+    {
+        ImGui.Text("画Dev信息");
         var Oath = Core.Resolve<JobApi_Paladin>().Oath;
 
         ImGui.Text($"大保健连击Confiteor : {PLDBaseSlotResolvers.大保健连击Confiteor.OriginalHook().Id}");
@@ -169,13 +191,5 @@ public class PLDRotationEntry : IRotationEntry
         ImGui.Text($"GCD : {GCDHelper.GetGCDCooldown()}");
         ImGui.Text($"能量值 : {Oath}");
         ImGui.Text($"圣灵buff : {BaseIslotResolver.GetBuffRemainingTime(PLDBaseSlotResolvers.Buffs.DivineMight)}");
-    }
-
-    public void DrawQtDev(JobViewWindow jobViewWindow)
-    {
-        ImGui.Text("画Dev信息");
-        foreach (var v in jobViewWindow.GetQtArray()) ImGui.Text($"Qt按钮: {v}");
-
-        foreach (var v in jobViewWindow.GetHotkeyArray()) ImGui.Text($"Hotkey按钮: {v}");
     }
 }

@@ -11,9 +11,16 @@ public class GCD_沥血剑 : PLDBaseSlotResolvers
 {
     public override int Check()
     {
-        if (是否停手()) return -1;
+        if (是否停手())
+        {
+            return Flag_停手;
+        }
 
-        if (HasEffect(Buffs.沥血剑BUFFGoringBladeReady)) return 0;
+
+        if (HasEffect(Buffs.沥血剑BUFFGoringBladeReady))
+        {
+            return 0;
+        }
 
         return -1;
     }
