@@ -1,8 +1,8 @@
 #region
 
-using AE_ACR.ALL.SlotResolvers;
 using AE_ACR.GLA.Setting;
 using AE_ACR.GLA.SlotResolvers;
+using AE_ACR.GLA.SlotResolvers.减伤;
 using AE_ACR.GLA.Triggers;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
@@ -28,6 +28,7 @@ public class GLDRotationEntry : IRotationEntry
         new SlotResolverData(new Ability_深奥之灵(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_铁壁(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_预警(), SlotMode.OffGcd),
+        new SlotResolverData(new Ability_血仇(), SlotMode.OffGcd),
         // new(new Ability_预警(), SlotMode.OffGcd),
 
 

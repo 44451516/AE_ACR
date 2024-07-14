@@ -20,8 +20,7 @@ public class Ability_亲疏自行 : PLDBaseSlotResolvers
         {
             if (神圣领域.ActionReady())
                 return -1;
-
-
+            
             if (铁壁.ActionReady())
                 return -1;
 
@@ -31,7 +30,7 @@ public class Ability_亲疏自行 : PLDBaseSlotResolvers
             if (Buffs.神圣领域.GetBuffRemainingTime() > 0.5f)
                 return -1;
 
-            if (Buffs.铁壁.GetBuffRemainingTime() > 0.5f)
+            if (TankBuffs.铁壁.GetBuffRemainingTime() > 0.5f)
                 return -1;
 
 

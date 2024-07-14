@@ -4,7 +4,6 @@ namespace AE_ACR.utils;
 public class BaseQTKey
 {
     public const string 停手 = "停手";
-
     public const string 减伤 = "减伤";
     // public const string UsePotion = "爆发药";
     // public const string Test2 = "Test2";

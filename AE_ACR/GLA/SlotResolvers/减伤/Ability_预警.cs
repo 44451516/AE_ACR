@@ -1,6 +1,5 @@
 ﻿#region
 
-using AE_ACR.ALL;
 using AE_ACR.utils;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.Helper;
@@ -16,13 +15,13 @@ public class Ability_预警 : GLABaseSlotResolvers
         if (CanWeave())
         {
             //判断多少人打自己？ 再判断铁壁的id
-            if (ALLData.Buffs.亲疏自行.GetBuffRemainingTime() > 500) 
+            if (TankBuffs.亲疏自行.GetBuffRemainingTime() > 0.5f) 
                 return -1;
 
-            if (ALLData.Buffs.铁壁.GetBuffRemainingTime() > 0.5f) 
+            if (TankBuffs.铁壁.GetBuffRemainingTime() > 0.5f) 
                 return -1;
 
-            if (预警.ActionReady() && TargetHelper.GetNearbyEnemyCount(5) >= 6) 
+            if (预警.ActionReady() && TargetHelper.GetNearbyEnemyCount(5) >= 4) 
                 return 0;
         }
 

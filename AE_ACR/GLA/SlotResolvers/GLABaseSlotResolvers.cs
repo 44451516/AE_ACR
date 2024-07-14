@@ -1,12 +1,13 @@
 ﻿#region
 
+using AE_ACR.Base;
 using AE_ACR.utils;
 
 #endregion
 
 namespace AE_ACR.GLA.SlotResolvers;
 
-public abstract class GLABaseSlotResolvers : BaseIslotResolver
+public abstract class GLABaseSlotResolvers : TankBaseIslotResolver
 {
     public const uint
         先锋剑FastBlade = 9,

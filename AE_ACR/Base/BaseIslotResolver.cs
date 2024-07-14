@@ -66,10 +66,15 @@ public abstract class BaseIslotResolver : ISlotResolver
 
     public static float getTargetObjectDistance()
     {
-        if (Core.Me.TargetObject == null) return -1;
+        if (Core.Me.TargetObject == null)
+        {
+            return -1;
+        }
 
-        if (Core.Me.TargetObject is IBattleChara targetObject) return Core.Me.Distance(targetObject);
-
+        if (Core.Me.TargetObject is IBattleChara targetObject)
+        {
+            return Core.Me.Distance(targetObject);
+        }
         return -1;
     }
 
@@ -81,9 +86,15 @@ public abstract class BaseIslotResolver : ISlotResolver
         {
             var battleChara = keyValuePair.Value;
             if (battleChara.CanAttack())
+            {
                 foreach (var statuse in battleChara.StatusList)
+                {
                     if (statuse.StatusId == StatusId)
+                    {
                         count++;
+                    }
+                }
+            }
         }
 
         return count;
@@ -96,8 +107,12 @@ public abstract class BaseIslotResolver : ISlotResolver
         {
             var battleChara = keyValuePair.Value;
             if (battleChara.CanAttack())
+            {
                 if (battleChara.TargetObjectId == Core.Me.GameObjectId)
+                {
                     count++;
+                }
+            }
         }
 
         return count;

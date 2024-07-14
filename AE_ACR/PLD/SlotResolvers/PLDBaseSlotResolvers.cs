@@ -1,12 +1,13 @@
 ﻿#region
 
+using AE_ACR.Base;
 using AE_ACR.utils;
 
 #endregion
 
 namespace AE_ACR.PLD.SlotResolvers;
 
-public abstract class PLDBaseSlotResolvers : BaseIslotResolver
+public abstract class PLDBaseSlotResolvers : TankBaseIslotResolver
 {
     public const uint
         先锋剑FastBlade = 9,
@@ -40,18 +41,12 @@ public abstract class PLDBaseSlotResolvers : BaseIslotResolver
         预警 = 17,
         壁垒 = 28,
         圣盾阵 = 28,
-        铁壁 = 7531,
-        亲疏自行 = 7548,
-        雪仇 = 7535,
         神圣领域 = 28,
         钢铁信念 = 28,
         测试 = 31,
         留空 = 0;
 
-    public static int 周围敌人雪仇数量()
-    {
-        return EnemysIn12DebuffByStatusId(Buffs.雪仇);
-    }
+ 
 
     public static bool 是否停手()
     {
@@ -72,14 +67,11 @@ public abstract class PLDBaseSlotResolvers : BaseIslotResolver
     public static class Buffs
     {
         public const ushort
-            铁壁 = 1191,
-            亲疏自行 = 1209,
             圣盾阵 = 2674,
             预警 = 74,
             预警v2 = 3830,
             神圣领域 = 82,
             壁垒 = 77,
-            雪仇 = 1193,
             Requiescat = 1368,
             FightOrFlight = 76,
             悔罪预备 = 3019,
