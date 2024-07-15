@@ -13,6 +13,7 @@ public abstract class ASTBaseSlotResolvers : 治疗BaseIslotResolver
         落陷凶星 = 25871,
         AOE = 25872,
         群奶 = 3600,
+        阳星相位 = 3601,
         先天禀赋 = 3614,
         天星冲日 = 16553,
         
@@ -41,6 +42,7 @@ public abstract class ASTBaseSlotResolvers : 治疗BaseIslotResolver
             FightOrFlight = 76,
             预警 = 74,
             钢铁信念 = 79,
+            医技buff=836,
             留空 = 0;
     }
 }

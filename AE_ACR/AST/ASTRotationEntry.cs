@@ -36,11 +36,12 @@ public class ASTRotationEntry : IRotationEntry
         new SlotResolverData(new Ability_地星(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_出卡1(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_出卡4(), SlotMode.OffGcd),
+        new SlotResolverData(new Ability_出卡3(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_抽卡(), SlotMode.OffGcd),
         
         new SlotResolverData(new GCD_奶自己(), SlotMode.Gcd),
-        new SlotResolverData(new GCD_奶T(), SlotMode.Gcd),
         new SlotResolverData(new GCD_群奶治疗(), SlotMode.Gcd),
+        new SlotResolverData(new GCD_奶T(), SlotMode.Gcd),
         new SlotResolverData(new GCD_Base(), SlotMode.Gcd)
     };
 

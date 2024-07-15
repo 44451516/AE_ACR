@@ -16,9 +16,14 @@ public class GCD_奶自己 : ASTBaseSlotResolvers
 {
     public override int Check()
     {
-        if (Core.Me.CurrentHpPercent() <= 0.5f)
+        
+
+        if (Core.Me.CurrentHpPercent() <= 0.99f)
         {
-            return 0;
+            if (attackMeCount() > 0)
+            {
+                return 0;
+            }
         }
 
         return -1;
