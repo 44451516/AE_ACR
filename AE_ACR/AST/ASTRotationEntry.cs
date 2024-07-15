@@ -40,6 +40,7 @@ public class ASTRotationEntry : IRotationEntry
         new SlotResolverData(new Ability_抽卡(), SlotMode.OffGcd),
         
         new SlotResolverData(new GCD_奶自己(), SlotMode.Gcd),
+        new SlotResolverData(new Ability_中间学派(), SlotMode.OffGcd),
         new SlotResolverData(new GCD_群奶治疗(), SlotMode.Gcd),
         new SlotResolverData(new GCD_奶T(), SlotMode.Gcd),
         new SlotResolverData(new GCD_Base(), SlotMode.Gcd)
@@ -66,7 +67,7 @@ public class ASTRotationEntry : IRotationEntry
             AcrType = AcrType.Normal,
             MinLevel = 1,
             MaxLevel = 100,
-            Description = "AST练级"
+            Description = "亲信用的，不想精修了"
         };
 
         // 添加各种事件回调

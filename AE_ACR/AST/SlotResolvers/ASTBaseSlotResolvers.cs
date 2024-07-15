@@ -33,6 +33,9 @@ public abstract class ASTBaseSlotResolvers : 治疗BaseIslotResolver
         Play4 = 37022,
         抽卡 = 37017,
         抽卡2 = 37018,
+        王冠之领主 = 7444,
+        王冠之贵妇 = 7445,
+        中间学派 = 16559,
         
         留空 = 0;
 

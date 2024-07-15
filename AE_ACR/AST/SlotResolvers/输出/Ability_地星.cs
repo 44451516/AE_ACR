@@ -18,7 +18,7 @@ public class Ability_地星 : ASTBaseSlotResolvers
     {
         if (CanWeave())
         {
-            if (地星.OriginalHookActionReady())
+            if (地星.ActionReady())
             {
                 return 0;
             }
