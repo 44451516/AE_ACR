@@ -16,6 +16,11 @@ public class GCD_奶T : ASTBaseSlotResolvers
 {
     public override int Check()
     {
+        if (是否停手())
+        {
+            return Flag_停手;
+        }
+        
         var 目标 = PartyHelper.CastableAlliesWithin30 //周围30米
             .Where(r => r.CurrentHp > 0 && r.IsTank() && r.CurrentHpPercent() <= 0.35f) //且 不具有几个buff 且不具有list中的buff 3秒
             .OrderBy(r => r.CurrentHpPercent()) //排序

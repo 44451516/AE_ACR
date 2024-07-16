@@ -37,9 +37,7 @@ public class Ability_出卡4 : ASTBaseSlotResolvers
 
                 if (目标 != null && 目标.IsValid())
                 {
-
                     return 0;
-
                 }
 
             }

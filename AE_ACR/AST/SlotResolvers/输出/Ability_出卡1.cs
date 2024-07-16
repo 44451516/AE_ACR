@@ -7,6 +7,7 @@ using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.Extension;
 using AEAssist.Helper;
+using Dalamud.Game.ClientState.Objects.Types;
 
 #endregion
 
@@ -23,7 +24,7 @@ public class Ability_出卡1 : ASTBaseSlotResolvers
 
         if (CanWeave())
         {
-            if (Play1.OriginalHookActionReady())
+            if (Play1.OriginalHook().Id is 近战卡 or 远程卡)
             {
                 return 0;
             }
@@ -34,6 +35,32 @@ public class Ability_出卡1 : ASTBaseSlotResolvers
 
     public override void Build(Slot slot)
     {
-        slot.Add(Play1.OriginalHook());
+        IBattleChara? RealbattleChara = null;
+        if (Play1.OriginalHook().Id == 近战卡)
+        {
+            var battleChara = PartyHelper.CastableAlliesWithin30 //周围30米
+                .Where(r => r.CurrentHp > 0 && !r.IsMelee()).FirstOrDefault();
+
+            if (battleChara != null && battleChara.IsValid())
+            {
+                RealbattleChara = battleChara;
+            }
+        }
+        else if (Play1.OriginalHook().Id == 远程卡)
+        {
+            var battleChara = PartyHelper.CastableAlliesWithin30 //周围30米
+                .Where(r => r.CurrentHp > 0 && r.IsRanged()).FirstOrDefault();
+
+            if (battleChara != null && battleChara.IsValid())
+            {
+                RealbattleChara = battleChara;
+            }
+        }
+        else
+        {
+            RealbattleChara = Core.Me;
+        }
+
+        slot.Add(new Spell(Play1.OriginalHook().Id, RealbattleChara));
     }
 }

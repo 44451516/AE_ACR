@@ -4,11 +4,14 @@ using AE_ACR.AST.Setting;
 using AE_ACR.AST.SlotResolvers;
 using AE_ACR.AST.Triggers;
 using AE_ACR.GLA.Setting;
+using AE_ACR.GLA.SlotResolvers;
 using AE_ACR.GLA.SlotResolvers.减伤;
+using AE_ACR.utils;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.CombatRoutine.View.JobView;
 using ImGuiNET;
+using GCD_Base = AE_ACR.AST.SlotResolvers.GCD_Base;
 
 #endregion
 
@@ -105,7 +108,7 @@ public class ASTRotationEntry : IRotationEntry
         QT.SetUpdateAction(OnUIUpdate); // 设置QT中的Update回调 不需要就不设置
 
         //添加QT分页 第一个参数是分页标题 第二个是分页里的内容
-        // QT.AddTab("Dev", DrawQtDev);
+        QT.AddTab("Dev", DrawQtDev);
         // QT.AddTab("通用", DrawQtGeneral);
 
         // 添加QT开关 第二个参数是默认值 (开or关) 第三个参数是鼠标悬浮时的tips
@@ -146,17 +149,11 @@ public class ASTRotationEntry : IRotationEntry
 
     public void DrawQtDev(JobViewWindow jobViewWindow)
     {
-        ImGui.Text("画Dev信息");
-        foreach (var v in jobViewWindow.GetQtArray())
-        {
-            ImGui.Text($"Qt按钮: {v}");
-        }
-
-
-        foreach (var v in jobViewWindow.GetHotkeyArray())
-        {
-            ImGui.Text($"Hotkey按钮: {v}");
-        }
-
+        ImGui.Text($"落陷凶星1 : {ASTBaseSlotResolvers.落陷凶星.OriginalHook().Id}");
+        ImGui.Text($"dot1 : {ASTBaseSlotResolvers.Play1.OriginalHook().Id}");
+        ImGui.Text($"GetBuffRemainingTime : {ASTBaseSlotResolvers.GetBuffRemainingTime(ASTBaseSlotResolvers.DeBuffs.加速器炸弹)}");
+        ImGui.Text($"HasEffect : {ASTBaseSlotResolvers.HasEffect(ASTBaseSlotResolvers.DeBuffs.加速器炸弹)}");
+        // ImGui.Text($"AOE1 : {ASTBaseSlotResolvers.getTankHpOrderByPercent}");
+        // ImGui.Text($"AOE1 : {ASTBaseSlotResolvers.getTankHpOrderByPercent().Name}");
     }
 }

@@ -34,9 +34,6 @@ public class Ability_出卡3 : ASTBaseSlotResolvers
 
     public override void Build(Slot slot)
     {
-        //对T的目标设置
-        var 技能目标对T = PartyHelper.CastableAlliesWithin30.Where(r => r.CurrentHp > 0 && r.IsTank()).OrderBy(r => r.CurrentHpPercent()).FirstOrDefault();
-        slot.Add(new Spell(Play3.OriginalHook().Id, 技能目标对T));
-        
+        slot.Add(new Spell(Play3.OriginalHook().Id, getTankHpOrderByPercent()));
     }
 }

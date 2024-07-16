@@ -21,8 +21,15 @@ public abstract class BaseIslotResolver : ISlotResolver
         Flag_减伤 = -101,
         Flag_攒资源 = -102,
         留空 = 3624;
-
-
+    
+    public static class DeBuffs
+    {
+        public const ushort
+            加速器炸弹 = 3802,
+           
+            
+            留空 = 0;
+    }
 
     public static uint lastComboActionID => Core.Resolve<MemApiSpell>().GetLastComboSpellId();
     public static double comboTime => Core.Resolve<MemApiSpell>().GetComboTimeLeft().TotalSeconds;

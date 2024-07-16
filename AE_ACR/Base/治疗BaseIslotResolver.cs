@@ -1,4 +1,8 @@
-﻿namespace AE_ACR.Base;
+﻿using AEAssist.Extension;
+using AEAssist.Helper;
+using Dalamud.Game.ClientState.Objects.Types;
+
+namespace AE_ACR.Base;
 
 public abstract class 治疗BaseIslotResolver :BaseIslotResolver
 {
@@ -20,7 +24,18 @@ public abstract class 治疗BaseIslotResolver :BaseIslotResolver
         雪仇 = 7535,
         醒梦 = 7562,
         留空 = 0;
-    
+
+    public static IBattleChara? getTankHpOrderByPercent()
+    {
+        var battleChara = PartyHelper.CastableAlliesWithin30.Where(r => r.CurrentHp > 0 && r.IsTank()).OrderBy(r => r.CurrentHpPercent()).FirstOrDefault();
+        if (battleChara != null && battleChara.IsValid())
+        {
+            return battleChara;
+        }
+        
+        return null;
+    }
+
     public static int 周围敌人雪仇数量()
     {
         return EnemysIn12DebuffByStatusId(TankBuffs.雪仇);

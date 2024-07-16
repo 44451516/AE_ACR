@@ -1,6 +1,7 @@
 #region
 
 using AE_ACR.Base;
+using AE_ACR.GLA.SlotResolvers;
 using AE_ACR.PLD.Setting;
 using AE_ACR.PLD.SlotResolvers;
 using AE_ACR.PLD.SlotResolvers.减伤;
@@ -13,7 +14,13 @@ using AEAssist.CombatRoutine.View.JobView;
 using AEAssist.Helper;
 using AEAssist.JobApi;
 using ImGuiNET;
+using Ability_厄运流转 = AE_ACR.PLD.SlotResolvers.Ability_厄运流转;
+using Ability_战逃反应 = AE_ACR.PLD.SlotResolvers.Ability_战逃反应;
+using Ability_深奥之灵 = AE_ACR.PLD.SlotResolvers.Ability_深奥之灵;
+using Ability_钢铁信念 = AE_ACR.PLD.SlotResolvers.Ability_钢铁信念;
 using Ability_铁壁 = AE_ACR.PLD.SlotResolvers.Ability_铁壁;
+using Ability_预警 = AE_ACR.PLD.SlotResolvers.Ability_预警;
+using GCD_Base = AE_ACR.PLD.SlotResolvers.GCD_Base;
 
 #endregion
 
@@ -195,7 +202,8 @@ public class PLDRotationEntry : IRotationEntry
         // ImGui.Text($"大保健连击Confiteor : {PLDBaseSlotResolvers.大保健连击Confiteor.OriginalHook().Id}");
         // ImGui.Text($"赎罪剑Atonement1 : {PLDBaseSlotResolvers.赎罪剑Atonement1.OriginalHook().Id}");
         // ImGui.Text($"GCD : {GCDHelper.GetGCDCooldown()}");
-        ImGui.Text($"能量值 : {Oath}");
+
+        
         // ImGui.Text($"圣灵buff : {BaseIslotResolver.GetBuffRemainingTime(PLDBaseSlotResolvers.Buffs.DivineMight)}");
         // ImGui.Text($"ActionReady : {PLDBaseSlotResolvers.深奥之灵SpiritsWithin.ActionReady()}");
         // ImGui.Text($"OriginalHook : {PLDBaseSlotResolvers.深奥之灵SpiritsWithin.OriginalHookActionReady()}");

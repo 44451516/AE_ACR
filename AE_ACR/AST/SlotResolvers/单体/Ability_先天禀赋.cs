@@ -50,9 +50,8 @@ public class Ability_先天禀赋 : ASTBaseSlotResolvers
         }
         else
         {
-            //对T的目标设置
-            var 技能目标对T = PartyHelper.CastableAlliesWithin30.Where(r => r.CurrentHp > 0 && r.IsTank()).OrderBy(r => r.CurrentHpPercent()).FirstOrDefault();
-            slot.Add(new Spell(先天禀赋, 技能目标对T));
+            // slot.Add(new Spell(先天禀赋, getTankHpOrderByPercent));
+            slot.Add(new Spell(先天禀赋, getTankHpOrderByPercent()));
         }
 
 

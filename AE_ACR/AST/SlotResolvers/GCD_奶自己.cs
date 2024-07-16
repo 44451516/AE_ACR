@@ -16,7 +16,10 @@ public class GCD_奶自己 : ASTBaseSlotResolvers
 {
     public override int Check()
     {
-        
+        if (是否停手())
+        {
+            return Flag_停手;
+        }
 
         if (Core.Me.CurrentHpPercent() <= 0.99f)
         {
