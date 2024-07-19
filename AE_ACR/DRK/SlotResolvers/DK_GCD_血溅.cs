@@ -50,7 +50,7 @@ public class DK_GCD_血溅 : DRKBaseSlotResolvers
             {
                 if (Blood > 50 || Core.Me.HasAura(Buffs.血乱Delirium))
                 {
-                    AELoggerUtils.Log("血溅1");
+                    // AELoggerUtils.Log("血溅1");
                     return 0;
                 }
             }

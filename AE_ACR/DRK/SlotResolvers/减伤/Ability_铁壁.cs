@@ -26,21 +26,34 @@ public class Ability_铁壁 : DRKBaseSlotResolvers
             {
                 return -1;
             }
-
-         
-            if (Buffs.暗影墙.GetBuffRemainingTime() > 0.5f)
+            
+            if (暗影墙.GetCooldownRemainingTime() > 115)
+            {
                 return -1;
+            }
+
+
+            if (Buffs.暗影墙.GetBuffRemainingTime() > 0.5f)
+            {
+                return -1;
+            }
 
             if (Buffs.暗影墙v2.GetBuffRemainingTime() > 0.5f)
+            {
                 return -1;
-            
+            }
+
 
             if (TankBuffs.亲疏自行.GetBuffRemainingTime() > 0.5f)
+            {
                 return -1;
+            }
 
 
             if (铁壁.ActionReady() && attackMeCount() >= 3 && Core.Me.CurrentHpPercent() < 0.89f)
+            {
                 return 0;
+            }
         }
 
         return -1;

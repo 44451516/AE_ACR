@@ -55,6 +55,14 @@ public abstract class PLDBaseSlotResolvers : TankBaseIslotResolver
 
     public static bool 是否停手()
     {
+        if (HasEffect(DeBuffs.加速器炸弹))
+        {
+            if (GetBuffRemainingTime(DeBuffs.加速器炸弹) > 0 && GetBuffRemainingTime(DeBuffs.加速器炸弹) < 3)
+            {
+                return true;
+            }
+        }
+
         return getQTValue(BaseQTKey.停手);
     }
 

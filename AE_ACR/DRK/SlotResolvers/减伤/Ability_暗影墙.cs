@@ -18,16 +18,28 @@ public class Ability_暗影墙 : DRKBaseSlotResolvers
         {
             return Flag_减伤;
         }
+        
         if (CanWeave())
         {
-            if (TankBuffs.铁壁.GetBuffRemainingTime() > 0.5f)
+            if (铁壁.GetCooldownRemainingTime() > 85)
+            {
                 return -1;
+            }
+
+            if (TankBuffs.铁壁.GetBuffRemainingTime() > 0.5f)
+            {
+                return -1;
+            }
 
             if (TankBuffs.亲疏自行.GetBuffRemainingTime() > 0.5f)
+            {
                 return -1;
+            }
 
             if (暗影墙.ActionReady() && attackMeCount() >= 3 && Core.Me.CurrentHpPercent() < 0.89f)
+            {
                 return 0;
+            }
         }
 
         return -1;

@@ -6,9 +6,11 @@ using AE_ACR.Base;
 using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine.Module;
+using AEAssist.Extension;
 using AEAssist.Helper;
 using AEAssist.JobApi;
 using AEAssist.MemoryApi;
+using Dalamud.Game.ClientState.Objects.Types;
 
 #endregion
 
@@ -50,6 +52,14 @@ public class DK_Ability_暗影使者 : DRKBaseSlotResolvers
 
         if (Shadowbringer暗影使者.ActionReady())
         {
+            if (Core.Me.TargetObject is IBattleChara chara)
+            {
+                if (chara.CurrentHp <= DKSettings.Instance.get爆发目标血量())
+                {
+                    return 0;
+                }
+            }
+            
             if (RaidBuff.爆发期())
             {
                 return 0;
