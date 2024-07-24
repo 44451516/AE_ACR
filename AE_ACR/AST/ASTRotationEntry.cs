@@ -10,6 +10,7 @@ using AE_ACR.utils;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.CombatRoutine.View.JobView;
+using AEAssist.Helper;
 using ImGuiNET;
 using GCD_Base = AE_ACR.AST.SlotResolvers.GCD_Base;
 
@@ -156,6 +157,15 @@ public class ASTRotationEntry : IRotationEntry
         ImGui.Text($"dot1 : {ASTBaseSlotResolvers.Play1.OriginalHook().Id}");
         ImGui.Text($"GetBuffRemainingTime : {ASTBaseSlotResolvers.GetBuffRemainingTime(ASTBaseSlotResolvers.DeBuffs.加速器炸弹)}");
         ImGui.Text($"HasEffect : {ASTBaseSlotResolvers.HasEffect(ASTBaseSlotResolvers.DeBuffs.加速器炸弹)}");
+        
+        // var 目标 = PartyHelper.CastableAlliesWithin30.FirstOrDefault(r => r.CurrentHp == 0 || r.IsDead);
+        //
+        // if (目标 != null && 目标.IsValid())
+        // {
+        //     ImGui.Text($"HasEffect : {目标.Name}");
+        // }
+        
+        
         // ImGui.Text($"AOE1 : {ASTBaseSlotResolvers.getTankHpOrderByPercent}");
         // ImGui.Text($"AOE1 : {ASTBaseSlotResolvers.getTankHpOrderByPercent().Name}");
     }

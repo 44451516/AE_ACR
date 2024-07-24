@@ -22,8 +22,7 @@ public class GCD_生辰 : ASTBaseSlotResolvers
         }
 
 
-        var 目标 = PartyHelper.CastableAlliesWithin30 //周围30米
-            .Where(r => r.CurrentHp == 0 || r.IsDead).FirstOrDefault();
+        var 目标 = PartyHelper.DeadAllies.FirstOrDefault(r => r.CurrentHp == 0 || r.IsDead);
 
         if (目标 != null && 目标.IsValid())
         {
@@ -42,8 +41,7 @@ public class GCD_生辰 : ASTBaseSlotResolvers
             slot.Add(即刻咏唱.OriginalHook());
         }
 
-        var 目标 = PartyHelper.CastableAlliesWithin30 //周围30米
-            .Where(r => r.CurrentHp == 0 || r.IsDead).FirstOrDefault();
+        var 目标 = PartyHelper.DeadAllies.FirstOrDefault(r => r.CurrentHp == 0 || r.IsDead);
 
         if (目标 != null && 目标.IsValid())
         {

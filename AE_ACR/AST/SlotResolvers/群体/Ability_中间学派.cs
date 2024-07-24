@@ -22,7 +22,7 @@ public class Ability_中间学派 : ASTBaseSlotResolvers
 
         if (目标 != null && 目标.IsValid())
         {
-            if (中间学派.ActionReady())
+            if (中间学派.OriginalHookActionReady())
             {
                 return 0;
             }
