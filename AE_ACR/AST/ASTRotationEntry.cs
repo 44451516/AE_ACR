@@ -23,6 +23,7 @@ public class ASTRotationEntry : IRotationEntry
 
     private readonly List<SlotResolverData> SlotResolvers = new()
     {
+        new SlotResolverData(new GCD_生辰(), SlotMode.Always),
         new SlotResolverData(new Ability_醒梦(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_命运之轮(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_大宇宙(), SlotMode.OffGcd),
@@ -43,6 +44,7 @@ public class ASTRotationEntry : IRotationEntry
         new SlotResolverData(new Ability_抽卡(), SlotMode.OffGcd),
         
         new SlotResolverData(new GCD_奶自己(), SlotMode.Gcd),
+       
         new SlotResolverData(new Ability_中间学派(), SlotMode.OffGcd),
         new SlotResolverData(new GCD_群奶治疗(), SlotMode.Gcd),
         new SlotResolverData(new GCD_奶T(), SlotMode.Gcd),
@@ -109,6 +111,7 @@ public class ASTRotationEntry : IRotationEntry
 
         //添加QT分页 第一个参数是分页标题 第二个是分页里的内容
         QT.AddTab("Dev", DrawQtDev);
+        QT.AddTab("反馈建议", UIHelp.Feedback);
         // QT.AddTab("通用", DrawQtGeneral);
 
         // 添加QT开关 第二个参数是默认值 (开or关) 第三个参数是鼠标悬浮时的tips

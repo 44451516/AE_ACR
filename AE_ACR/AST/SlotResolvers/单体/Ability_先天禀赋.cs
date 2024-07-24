@@ -50,7 +50,6 @@ public class Ability_先天禀赋 : ASTBaseSlotResolvers
         }
         else
         {
-            // slot.Add(new Spell(先天禀赋, getTankHpOrderByPercent));
             slot.Add(new Spell(先天禀赋, getTankHpOrderByPercent()));
         }
 

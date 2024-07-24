@@ -128,6 +128,7 @@ public class PLDRotationEntry : IRotationEntry
         QT.AddTab("Dev", DrawQtDev);
 #endif
         QT.AddTab("通用", DrawQtGeneral);
+        QT.AddTab("反馈建议", UIHelp.Feedback);
 
         // 添加QT开关 第二个参数是默认值 (开or关) 第三个参数是鼠标悬浮时的tips
         QT.AddQt(BaseQTKey.停手, false, "是否使用基础的Gcd");

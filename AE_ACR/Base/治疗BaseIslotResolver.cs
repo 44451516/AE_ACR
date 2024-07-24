@@ -23,6 +23,7 @@ public abstract class 治疗BaseIslotResolver :BaseIslotResolver
         挑衅 = 7533,
         雪仇 = 7535,
         醒梦 = 7562,
+        即刻咏唱 =7561 ,
         留空 = 0;
 
     public static IBattleChara? getTankHpOrderByPercent()

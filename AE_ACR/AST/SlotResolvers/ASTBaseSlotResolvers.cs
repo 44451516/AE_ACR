@@ -32,6 +32,7 @@ public abstract class ASTBaseSlotResolvers : 治疗BaseIslotResolver
         地星 = 7439,
         Play1 = 37019,
         Play2 = 37020,
+        生辰 = 3606,
         Play3 = 37021,
         Play4 = 37022,
         抽卡 = 37017,

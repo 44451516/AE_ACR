@@ -128,14 +128,15 @@ public class DRKRotationEntry : IRotationEntry
         QT.SetUpdateAction(OnUIUpdate); // 设置QT中的Update回调 不需要就不设置
 
         //添加QT分页 第一个参数是分页标题 第二个是分页里的内容
- 
-  
+
+
 #if DEBUG
         QT.AddTab("Dev", DrawQtDev);
 #endif
         QT.AddTab("通用", DrawQtGeneral);
+        QT.AddTab("反馈建议", UIHelp.Feedback);
         // QT.AddTab("Dev2", DrawQtDev);
-        
+
         QT.AddQt(BaseQTKey.停手, false, "是否使用基础的Gcd");
         // QT.AddQt(BaseQTKey.减伤, true);
         QT.AddQt(BaseQTKey.攒资源, false, "攒资源不会卸暗血");
@@ -169,6 +170,8 @@ public class DRKRotationEntry : IRotationEntry
         */
     }
 
+
+
     public void OnUIUpdate()
     {
     }
@@ -179,7 +182,7 @@ public class DRKRotationEntry : IRotationEntry
         ImGui.Text("日常模式会持续开盾，和自动减伤");
         ImGui.SetNextItemWidth(150f);
         ImGui.Checkbox("日常模式", ref DkSettings.日常模式);
-        
+
         ImGui.SetNextItemWidth(150f);
         ImGui.InputInt("保留蓝量", ref DkSettings.保留蓝量, 0, 10000);
         ImGui.SetNextItemWidth(150f);
@@ -188,8 +191,8 @@ public class DRKRotationEntry : IRotationEntry
         ImGui.InputFloat("能力技爆发延时", ref DkSettings.能力技爆发延时);
         ImGui.SetNextItemWidth(150f);
         ImGui.InputFloat("GCD爆发延时", ref DkSettings.GCD爆发延时);
-        
-        if (ImGui.Button("Save[保存]")) 
+
+        if (ImGui.Button("Save[保存]"))
             DKSettings.Instance.Save();
     }
 
