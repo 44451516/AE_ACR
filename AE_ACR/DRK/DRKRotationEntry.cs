@@ -52,14 +52,15 @@ public class DRKRotationEntry : IRotationEntry
         new SlotResolverData(new Ability_雪仇(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_挑衅(), SlotMode.OffGcd),
 
+        new SlotResolverData(new DKUsePotion(), SlotMode.OffGcd),
+        new SlotResolverData(new DK_Ability_暗影使者(), SlotMode.OffGcd),
+        new SlotResolverData(new DK_Ability_腐秽大地(), SlotMode.OffGcd),
         new SlotResolverData(new DK_Ability_掠影示现(), SlotMode.OffGcd),
         new SlotResolverData(new DK_Ability_暗黑波动_AOE(), SlotMode.OffGcd),
         new SlotResolverData(new DK_Ability_暗黑锋(), SlotMode.OffGcd),
         new SlotResolverData(new DK_Ability_嗜血(), SlotMode.OffGcd),
         new SlotResolverData(new DK_Ability_吸血深渊(), SlotMode.OffGcd),
         new SlotResolverData(new DK_Ability_精雕怒斩(), SlotMode.OffGcd),
-        new SlotResolverData(new DK_Ability_暗影使者(), SlotMode.OffGcd),
-        new SlotResolverData(new DK_Ability_腐秽大地(), SlotMode.OffGcd),
 
         // gcd队列
         new SlotResolverData(new DK_GCD_蔑视厌恶(), SlotMode.Gcd),
@@ -137,9 +138,10 @@ public class DRKRotationEntry : IRotationEntry
         QT.AddTab("反馈建议", UIHelp.Feedback);
         // QT.AddTab("Dev2", DrawQtDev);
 
-        QT.AddQt(BaseQTKey.停手, false, "是否使用基础的Gcd");
-        // QT.AddQt(BaseQTKey.减伤, true);
-        QT.AddQt(BaseQTKey.攒资源, false, "攒资源不会卸暗血");
+        QT.AddQt(DRKQTKey.停手, false, "是否使用基础的Gcd");
+        QT.AddQt(DRKQTKey.攒资源, false, "攒资源不会卸暗血");
+        QT.AddQt(DRKQTKey.腐秽大地, true);
+        QT.AddQt(DRKQTKey.暗影使者, true);
 
 
         // 添加QT开关 第二个参数是默认值 (开or关) 第三个参数是鼠标悬浮时的tips

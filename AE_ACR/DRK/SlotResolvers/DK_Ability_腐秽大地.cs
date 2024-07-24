@@ -28,6 +28,11 @@ public class DK_Ability_腐秽大地 : DRKBaseSlotResolvers
             return Flag_攒资源;
         }
 
+        if (!getQTValue(DRKQTKey.腐秽大地))
+        {
+            return Flag_QT;
+        }
+
         if (!CanWeave())
         {
             return -1;
@@ -36,17 +41,21 @@ public class DK_Ability_腐秽大地 : DRKBaseSlotResolvers
         var darksideTimeRemaining = Core.Resolve<JobApi_DarkKnight>().DarksideTimeRemaining;
 
         if (darksideTimeRemaining == 0)
+        {
             return -2;
+        }
 
         if (DKSettings.Instance.能力技爆发延时 > CombatTime.Instance.CombatEngageDuration().TotalSeconds)
+        {
             return -1;
+        }
 
 
         if (腐秽大地SaltedEarth.OriginalHookActionReady())
         {
             return 0;
         }
-        
+
         return -3;
     }
 

@@ -71,7 +71,7 @@ public class DK_GCD_血溅 : DRKBaseSlotResolvers
                 return 0;
             }
 
-            if (RaidBuff.爆发期())
+            if (RaidBuff.爆发期_120())
             {
                 return 0;
             }

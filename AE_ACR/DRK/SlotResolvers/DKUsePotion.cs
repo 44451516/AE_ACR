@@ -1,13 +1,16 @@
 ﻿#region
 
+using AE_ACR.PLD;
+using AE_ACR.PLD.SlotResolvers;
 using AE_ACR.utils;
+using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
 
 #endregion
 
-namespace AE_ACR.PLD.SlotResolvers;
+namespace AE_ACR.DRK.SlotResolvers;
 
-public class Ability_安魂祈祷 : PLDBaseSlotResolvers
+public class DKUsePotion : DRKBaseSlotResolvers
 {
     public override int Check()
     {
@@ -16,34 +19,33 @@ public class Ability_安魂祈祷 : PLDBaseSlotResolvers
             return Flag_停手;
         }
 
-        if (!getQTValue(PlDQTKey.战逃安魂))
+        if (!getQTValue(PlDQTKey.爆发药))
         {
-            return Flag_QT;
+            return Flag_爆发药;
         }
+
 
         if (CanWeave())
         {
-
-            if (安魂祈祷Requiescat.OriginalHookActionReady())
+            if (爆发药冷却时间() == 0)
             {
-                if (WasLastAction(战逃反应FightOrFlight))
+                if (LivingShadow.ActionReady())
                 {
                     return 0;
                 }
-
-                if (HasEffect(Buffs.FightOrFlight))
+                if (GetCooldownRemainingTime(LivingShadow) < 5F)
                 {
                     return 0;
                 }
             }
-
         }
+
+
         return -1;
     }
 
-
     public override void Build(Slot slot)
     {
-        slot.Add(安魂祈祷Requiescat.OriginalHook());
+        slot.Add(Spell.CreatePotion());
     }
 }

@@ -98,7 +98,7 @@ public class GCD_Base : PLDBaseSlotResolvers
             }
         }
 
-        if (GetCooldownRemainingTime(战逃反应FightOrFlight) >= 15 * 1000 && RaidBuff.爆发期())
+        if (GetCooldownRemainingTime(战逃反应FightOrFlight) >= 15 && RaidBuff.爆发期_120())
         {
             if (HasEffect(Buffs.赎罪剑Atonement3BUFF)) return 赎罪剑Atonement.OriginalHook();
 

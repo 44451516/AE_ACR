@@ -25,7 +25,10 @@ public class Ability_厄运流转 : PLDBaseSlotResolvers
                 {
                     if (安魂祈祷Requiescat.IsUnlock())
                     {
-                        if (GetCooldownRemainingTime(安魂祈祷Requiescat) > 40) return 0;
+                        if (GetCooldownRemainingTime(安魂祈祷Requiescat) > 40)
+                        {
+                            return 0;
+                        }
                     }
                     else
                     {

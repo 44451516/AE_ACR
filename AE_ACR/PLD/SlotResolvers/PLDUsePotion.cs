@@ -1,14 +1,16 @@
 ﻿#region
 
 using AE_ACR.utils;
+using AEAssist;
+using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
-using AEAssist.Helper;
+using AEAssist.MemoryApi;
 
 #endregion
 
 namespace AE_ACR.PLD.SlotResolvers;
 
-public class Ability_战逃反应 : PLDBaseSlotResolvers
+public class PLDUsePotion : PLDBaseSlotResolvers
 {
     public override int Check()
     {
@@ -16,36 +18,24 @@ public class Ability_战逃反应 : PLDBaseSlotResolvers
         {
             return Flag_停手;
         }
-        
-        if (!getQTValue(PlDQTKey.战逃安魂))
+
+        if (!getQTValue(PlDQTKey.爆发药))
         {
-            return Flag_QT;
+            return Flag_爆发药;
         }
 
 
         if (CanWeave())
         {
-            if (战逃反应FightOrFlight.ActionReady())
+            if (爆发药冷却时间() == 0)
             {
-                if (!王权剑RoyalAuthority.IsUnlock())
+                if (lastComboActionID is 暴乱剑RiotBlade && 战逃反应FightOrFlight.ActionReady() && 安魂祈祷Requiescat.ActionReady())
                 {
                     return 0;
                 }
 
-                if (lastComboActionID == 全蚀斩TotalEclipse)
+                if (战逃反应FightOrFlight.GetCooldownRemainingTime() <= 5)
                 {
-                    var aoeCount = TargetHelper.GetNearbyEnemyCount(5);
-                    if (aoeCount >= 2)
-                    {
-                        return 0;
-                    }
-
-                }
-
-
-                if (王权剑RoyalAuthority.IsUnlock())
-                {
-                    //  战逃内 打三下赎罪剑
                     if (GetBuffRemainingTime(Buffs.赎罪剑Atonement1BUFF) >= 14)
                     {
                         return 0;
@@ -76,9 +66,8 @@ public class Ability_战逃反应 : PLDBaseSlotResolvers
         return -1;
     }
 
-
     public override void Build(Slot slot)
     {
-        slot.Add(战逃反应FightOrFlight.GetSpell());
+        slot.Add(Spell.CreatePotion());
     }
 }

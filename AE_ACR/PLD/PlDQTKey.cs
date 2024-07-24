@@ -14,5 +14,6 @@ public class PlDQTKey : BaseQTKey
     // public const string 减伤 = "减伤";
     // public const string 减伤 = "减伤";
     // public const string UsePotion = "爆发药";
-    public const string Test2 = "Test2";
+    public const string 大宝剑连击 = "大宝剑连击";
+    public const string 战逃安魂 = "战逃安魂";
 }

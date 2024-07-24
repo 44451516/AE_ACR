@@ -13,6 +13,7 @@ using AEAssist.CombatRoutine.Module;
 using AEAssist.CombatRoutine.View.JobView;
 using AEAssist.Helper;
 using AEAssist.JobApi;
+using AEAssist.MemoryApi;
 using ImGuiNET;
 using Ability_厄运流转 = AE_ACR.PLD.SlotResolvers.Ability_厄运流转;
 using Ability_战逃反应 = AE_ACR.PLD.SlotResolvers.Ability_战逃反应;
@@ -34,6 +35,7 @@ public class PLDRotationEntry : IRotationEntry
     private readonly List<SlotResolverData> SlotResolvers = new()
     {
         new SlotResolverData(new Ability_钢铁信念(), SlotMode.Always),
+        new SlotResolverData(new PLDUsePotion(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_神圣领域(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_预警(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_铁壁(), SlotMode.OffGcd),
@@ -82,6 +84,7 @@ public class PLDRotationEntry : IRotationEntry
         {
             // TargetJob = Jobs.Marauder,
             // TargetJob = Jobs.Gladiator,
+            // TargetJob = Jobs.WhiteMage,
             TargetJob = Jobs.Paladin,
             AcrType = AcrType.Normal,
             MinLevel = 1,
@@ -131,9 +134,11 @@ public class PLDRotationEntry : IRotationEntry
         QT.AddTab("反馈建议", UIHelp.Feedback);
 
         // 添加QT开关 第二个参数是默认值 (开or关) 第三个参数是鼠标悬浮时的tips
-        QT.AddQt(BaseQTKey.停手, false, "是否使用基础的Gcd");
+        QT.AddQt(PlDQTKey.停手, false, "是否使用基础的Gcd");
+        QT.AddQt(PlDQTKey.爆发药, false);
+        QT.AddQt(PlDQTKey.突进, true);
+        QT.AddQt(PlDQTKey.大宝剑连击, true);
         // QT.AddQt(BaseQTKey.减伤, true);
-        QT.AddQt(BaseQTKey.突进, true);
         // QT.AddQt(QTKey.Test2, false);
         // QT.AddQt(QTKey.UsePotion,false);
 
@@ -211,5 +216,8 @@ public class PLDRotationEntry : IRotationEntry
         ImGui.Text($"attackMeCount : {BaseIslotResolver.attackMeCount()}");
         ImGui.Text($"ActionReadyww : {PLDBaseSlotResolvers.圣盾阵.ActionReady()}");
         ImGui.Text($"OriginalHookActionReady : {PLDBaseSlotResolvers.圣盾阵.OriginalHookActionReady()}");
+        ImGui.Text($"OriginalHookActionReady1 : {PLDBaseSlotResolvers.GetCooldownRemainingTime(846)}");
+        ImGui.Text($"OriginalHookActionReady2 : {Core.Resolve<MemApiSpell>().GetCooldown(Spell.CreatePotion().Id).TotalSeconds}");
+        ImGui.Text($"OriginalHookActionReady3 : {PLDBaseSlotResolvers.GetCooldownRemainingTime(Spell.CreatePotion().Id)}");
     }
 }

@@ -16,27 +16,53 @@ public class RaidBuff
         强化药 = 49,
         灼热之光 = 2703,
         连环计 = 1221,
+        星空 = 3685,
+        占卜 = 1878,
+        义结金兰 = 1185,
+        战斗连祷 = 786,
 
         //忍者夺取
         攻其不备 = 3254,
+        罐毒之术 = 3849,
         受伤加重 = 638,
         技巧舞步结束TechnicalFinish = 1822,
         留空 = 0;
 
 
-    public static bool 爆发期()
+    public static bool 爆发期_120()
     {
-        if (Core.Me.HasAura(强化药)) return true;
+        //小于25f避免早打，反正爆发期很长
+        if (Core.Me.HasAura(强化药) && 强化药.GetBuffRemainingTime() / 1000f < 25f)
+            return true;
 
-        if (Core.Me.HasAura(灼热之光)) return true;
+        if (Core.Me.HasAura(灼热之光))
+            return true;
 
-        if (Core.Me.HasAura(技巧舞步结束TechnicalFinish)) return true;
+        if (Core.Me.HasAura(技巧舞步结束TechnicalFinish))
+            return true;
+
+        if (Core.Me.HasAura(星空))
+            return true;
+
+        if (Core.Me.HasAura(占卜))
+            return true;
+
+        if (Core.Me.HasAura(义结金兰))
+            return true;
+        
+        if (Core.Me.HasAura(战斗连祷))
+            return true;
 
         if (Core.Me.TargetObject is IBattleChara battleChara)
         {
-            if (battleChara.HasAura(攻其不备)) return true;
+            if (battleChara.HasAura(攻其不备)) 
+                return true;
 
-            if (battleChara.HasAura(连环计)) return true;
+            if (battleChara.HasAura(连环计)) 
+                return true; 
+            
+            if (battleChara.HasAura(罐毒之术)) 
+                return true;
         }
 
         return false;

@@ -20,14 +20,14 @@ public abstract class BaseIslotResolver : ISlotResolver
         Flag_停手 = -100,
         Flag_减伤 = -101,
         Flag_攒资源 = -102,
+        Flag_QT = -103,
+        Flag_爆发药 = -104,
         留空 = 3624;
-    
+
     public static class DeBuffs
     {
         public const ushort
             加速器炸弹 = 3802,
-           
-            
             留空 = 0;
     }
 
@@ -44,6 +44,12 @@ public abstract class BaseIslotResolver : ISlotResolver
     public static bool IsMoving()
     {
         return MoveHelper.IsMoving();
+    }
+
+
+    public static double 爆发药冷却时间()
+    {
+        return GetCooldownRemainingTime(846);
     }
 
 

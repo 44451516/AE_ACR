@@ -44,7 +44,7 @@ public abstract class PLDBaseSlotResolvers : TankBaseIslotResolver
         圣盾阵 = 3542,
         神圣领域 = 30,
         钢铁信念 = 28,
-        留空 = 0;
+        留空 = 16532;
 
 
     public static bool 是否使用突进()

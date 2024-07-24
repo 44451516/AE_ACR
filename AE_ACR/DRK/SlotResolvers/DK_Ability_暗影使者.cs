@@ -29,6 +29,13 @@ public class DK_Ability_暗影使者 : DRKBaseSlotResolvers
         {
             return Flag_攒资源;
         }
+        
+        
+        if (!getQTValue(DRKQTKey.暗影使者))
+        {
+            return Flag_QT;
+        }
+        
 
         if (!CanWeave())
         {
@@ -60,7 +67,7 @@ public class DK_Ability_暗影使者 : DRKBaseSlotResolvers
                 }
             }
             
-            if (RaidBuff.爆发期())
+            if (RaidBuff.爆发期_120())
             {
                 return 0;
             }

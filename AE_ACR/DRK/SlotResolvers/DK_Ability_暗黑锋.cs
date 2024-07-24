@@ -94,7 +94,7 @@ public class DK_Ability_暗黑锋 : DRKBaseSlotResolvers
             }
 
 
-            if (RaidBuff.爆发期())
+            if (RaidBuff.爆发期_120())
             {
                 return 0;
             }

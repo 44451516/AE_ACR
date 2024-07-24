@@ -17,28 +17,30 @@ public class Ability_调停 : PLDBaseSlotResolvers
             return Flag_停手;
         }
 
+        if (!是否使用突进())
+        {
+            return Flag_QT;
+        }
 
         if (CanWeave())
         {
-            if (是否使用突进())
+            if (调停Intervene.ActionReady() && !WasLastAction(调停Intervene))
             {
-                if (调停Intervene.ActionReady() && !WasLastAction(调停Intervene))
+                if (HasEffect(Buffs.FightOrFlight))
                 {
-                    if (HasEffect(Buffs.FightOrFlight))
-                    {
-                        return 0;
-                    }
-
-                    if (RaidBuff.爆发期())
-                    {
-                        return 0;
-                    }
-
-                    if (调停Intervene.GetCooldownRemainingTime() == 0)
-                    {
-                        return 0;
-                    }
+                    return 0;
                 }
+
+                if (RaidBuff.爆发期_120() && GetCooldownRemainingTime(战逃反应FightOrFlight) >= 15)
+                {
+                    return 0;
+                }
+
+                // if (调停Intervene.GetCooldownRemainingTime() == 0)
+                // {
+                //     return 0;
+                // }
+
             }
 
         }
