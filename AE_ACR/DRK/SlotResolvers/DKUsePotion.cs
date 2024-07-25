@@ -5,6 +5,7 @@ using AE_ACR.PLD.SlotResolvers;
 using AE_ACR.utils;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
+using AEAssist.Helper;
 
 #endregion
 
@@ -33,7 +34,8 @@ public class DKUsePotion : DRKBaseSlotResolvers
                 {
                     return 0;
                 }
-                if (GetCooldownRemainingTime(LivingShadow) < 5F)
+
+                if (LivingShadow.IsUnlock() && GetCooldownRemainingTime(LivingShadow) < 5F)
                 {
                     return 0;
                 }
