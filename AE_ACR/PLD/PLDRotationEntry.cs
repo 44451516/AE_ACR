@@ -138,6 +138,7 @@ public class PLDRotationEntry : IRotationEntry
         QT.AddQt(PlDQTKey.爆发药, false);
         QT.AddQt(PlDQTKey.突进, true);
         QT.AddQt(PlDQTKey.大宝剑连击, true);
+        QT.AddQt(PlDQTKey.战逃安魂, true);
         // QT.AddQt(BaseQTKey.减伤, true);
         // QT.AddQt(QTKey.Test2, false);
         // QT.AddQt(QTKey.UsePotion,false);

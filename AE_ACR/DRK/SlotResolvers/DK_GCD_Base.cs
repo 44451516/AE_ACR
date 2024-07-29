@@ -9,6 +9,7 @@ using AEAssist.CombatRoutine.Module;
 using AEAssist.Helper;
 using AEAssist.JobApi;
 using AEAssist.MemoryApi;
+using Dalamud.Game.ClientState.Objects.Types;
 
 #endregion
 
@@ -22,7 +23,7 @@ public class DK_GCD_Base : DRKBaseSlotResolvers
         {
             return Flag_停手;
         }
-        
+
         if (Core.Resolve<MemApiSpell>().GetLastComboSpellId() == 释放Unleash)
         {
             return -1;
@@ -40,6 +41,20 @@ public class DK_GCD_Base : DRKBaseSlotResolvers
 
     public static Spell GetBaseGCD()
     {
+        if (DKSettings.Instance.日常模式)
+        {
+            if (Core.Me.TargetObject is IBattleChara battleChara)
+            {
+                if (伤残.IsUnlock())
+                {
+                    if (TargetHelper.GetTargetDistanceFromMeTest2D(battleChara, Core.Me) is >= 10 and <= 15)
+                    {
+                        return 伤残.GetSpell();
+                    }
+                }
+            }
+        }
+
         if (lastComboActionID == 单体1HardSlash)
         {
             return 单体2SyphonStrike.GetSpell();

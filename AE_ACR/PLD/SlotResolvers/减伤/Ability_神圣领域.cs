@@ -22,7 +22,7 @@ public class Ability_神圣领域 : PLDBaseSlotResolvers
         if (CanWeave())
         {
             //判断多少人打自己？ 再判断铁壁的id
-            if (TankBuffs.亲疏自行.GetBuffRemainingTime() > 500) 
+            if (TankBuffs.亲疏自行.GetBuffRemainingTime() > 0.5F) 
                 return -1;
 
             if (TankBuffs.铁壁.GetBuffRemainingTime() > 0.5f) 

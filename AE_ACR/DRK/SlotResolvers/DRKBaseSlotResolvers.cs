@@ -52,7 +52,7 @@ public abstract class DRKBaseSlotResolvers : TankBaseIslotResolver
         行尸走肉 = 3636,
         献奉 = 25754,
         深恶痛绝 = 3629,
-        Unmend = 3624;
+        伤残 = 3624;
 
 
     public static class Buffs
