@@ -17,7 +17,7 @@ public class Ability_战逃反应 : PLDBaseSlotResolvers
             return Flag_停手;
         }
         
-        if (!getQTValue(PlDQTKey.战逃安魂))
+        if (!getQTValue(PLDQTKeyc.战逃安魂))
         {
             return Flag_QT;
         }

@@ -63,6 +63,8 @@ public class PLDRotationEntry : IRotationEntry
         // gcd队列
         new SlotResolverData(new GCD_沥血剑(), SlotMode.Gcd),
         new SlotResolverData(new GCD_大宝剑连击(), SlotMode.Gcd),
+        new SlotResolverData(new PLD_GCD_远程圣灵(), SlotMode.Gcd),
+        new SlotResolverData(new PLD_GCD_投盾(), SlotMode.Gcd),
         new SlotResolverData(new GCD_Base(), SlotMode.Gcd)
     };
 
@@ -134,11 +136,15 @@ public class PLDRotationEntry : IRotationEntry
         QT.AddTab("反馈建议", UIHelp.Feedback);
 
         // 添加QT开关 第二个参数是默认值 (开or关) 第三个参数是鼠标悬浮时的tips
-        QT.AddQt(PlDQTKey.停手, false, "是否使用基础的Gcd");
-        QT.AddQt(PlDQTKey.爆发药, false);
-        QT.AddQt(PlDQTKey.突进, true);
-        QT.AddQt(PlDQTKey.大宝剑连击, true);
-        QT.AddQt(PlDQTKey.战逃安魂, true);
+        QT.AddQt(PLDQTKeyc.停手, false, "是否使用基础的Gcd");
+        QT.AddQt(PLDQTKeyc.爆发药, false);
+        QT.AddQt(PLDQTKeyc.突进, true);
+        QT.AddQt(PLDQTKeyc.大宝剑连击, true);
+        QT.AddQt(PLDQTKeyc.战逃安魂, true);
+        QT.AddQt(PLDQTKeyc.远程投盾, false, "和目标距离过远的时候使用");
+        QT.AddQt(PLDQTKeyc.远程圣灵, false, "和目标距离过远的时候使用");
+        
+        
         // QT.AddQt(BaseQTKey.减伤, true);
         // QT.AddQt(QTKey.Test2, false);
         // QT.AddQt(QTKey.UsePotion,false);

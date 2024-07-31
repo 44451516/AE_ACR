@@ -47,7 +47,7 @@ public class DK_GCD_Base : DRKBaseSlotResolvers
             {
                 if (伤残.IsUnlock())
                 {
-                    if (TargetHelper.GetTargetDistanceFromMeTest2D(battleChara, Core.Me) is >= 10 and <= 15)
+                    if (TargetHelper.GetTargetDistanceFromMeTest2D(battleChara, Core.Me) is >= 10 and <= 20)
                     {
                         return 伤残.GetSpell();
                     }

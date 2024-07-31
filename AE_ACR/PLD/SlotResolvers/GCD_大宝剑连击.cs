@@ -18,12 +18,12 @@ public class GCD_大宝剑连击 : PLDBaseSlotResolvers
             return Flag_停手;
         }
 
-        if (!getQTValue(PlDQTKey.大宝剑连击))
+        if (!getQTValue(PLDQTKeyc.大宝剑连击))
         {
             return Flag_QT;
         }
 
-        if (HasEffect(Buffs.Requiescat) && GetResourceCost(大保健连击Confiteor) < Core.Me.CurrentMp)
+        if (HasEffect(Buffs.Requiescat) && GetResourceCost(大保健连击Confiteor) <= Core.Me.CurrentMp)
         {
             return 0;
         }

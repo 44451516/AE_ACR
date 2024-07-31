@@ -16,6 +16,7 @@ using AEAssist.Extension;
 using AEAssist.Helper;
 using AEAssist.JobApi;
 using AEAssist.MemoryApi;
+using Dalamud.Game.ClientState.Objects.Types;
 using Dalamud.IoC;
 using Dalamud.Plugin.Services;
 using ImGuiNET;
@@ -63,6 +64,7 @@ public class DRKRotationEntry : IRotationEntry
         new SlotResolverData(new DK_Ability_精雕怒斩(), SlotMode.OffGcd),
 
         // gcd队列
+        new SlotResolverData(new DK_GCD_伤残(), SlotMode.Gcd),
         new SlotResolverData(new DK_GCD_蔑视厌恶(), SlotMode.Gcd),
         new SlotResolverData(new DK_GCD_寂灭(), SlotMode.Gcd),
         new SlotResolverData(new DK_GCD_血溅(), SlotMode.Gcd),
@@ -142,6 +144,7 @@ public class DRKRotationEntry : IRotationEntry
         QT.AddQt(DRKQTKey.攒资源, false, "攒资源不会卸暗血");
         QT.AddQt(DRKQTKey.腐秽大地, true);
         QT.AddQt(DRKQTKey.暗影使者, true);
+        QT.AddQt(DRKQTKey.伤残, false, "和目标距离过远的时候使用");
 
 
         // 添加QT开关 第二个参数是默认值 (开or关) 第三个参数是鼠标悬浮时的tips
@@ -186,13 +189,14 @@ public class DRKRotationEntry : IRotationEntry
         ImGui.Checkbox("日常模式", ref DkSettings.日常模式);
 
         ImGui.SetNextItemWidth(150f);
-        ImGui.InputInt("保留蓝量", ref DkSettings.保留蓝量, 0, 10000);
+        ImGui.DragInt("保留蓝量", ref DkSettings.保留蓝量, 100, 0, 10000);
         ImGui.SetNextItemWidth(150f);
         ImGui.InputInt("目标小于多少血打完所有资源[单位万]", ref DkSettings.爆发目标血量, 0, 100);
         ImGui.SetNextItemWidth(150f);
         ImGui.InputFloat("能力技爆发延时", ref DkSettings.能力技爆发延时);
         ImGui.SetNextItemWidth(150f);
         ImGui.InputFloat("GCD爆发延时", ref DkSettings.GCD爆发延时);
+        ImGui.DragFloat("伤残阈值", ref DkSettings.伤残阈值, 0.1f, 5, 20f);
 
         if (ImGui.Button("Save[保存]"))
             DKSettings.Instance.Save();
@@ -211,6 +215,11 @@ public class DRKRotationEntry : IRotationEntry
         // {
         //     ImGui.Text($"Hotkey按钮: {v}");
         // }
+ 
+        
+        var battleChara = Core.Me.GetCurrTarget();
+        
+        // ImGui.Text($"目标距离:{TargetHelper.GetTargetDistanceFromMeTest2D(battleChara, Core.Me)}");
         ImGui.Text($"GetRecastTime:{Core.Resolve<MemApiSpell>().GetRecastTime(DRKBaseSlotResolvers.疾跑).TotalSeconds}");
         ImGui.Text($"GetRecastTimeElapsed:{Core.Resolve<MemApiSpell>().GetRecastTimeElapsed(DRKBaseSlotResolvers.疾跑)}");
         ImGui.Text($"GetCooldownRemainingTime:{DRKBaseSlotResolvers.Shadowbringer暗影使者.GetCooldownRemainingTime()}");
@@ -237,7 +246,6 @@ public class DRKRotationEntry : IRotationEntry
 
 
         ImGui.Text($"自身中心数量 : {TargetHelper.GetNearbyEnemyCount(5)}");
-        var battleChara = Core.Me.GetCurrTarget();
         ImGui.Text($"目标中心数量 : {TargetHelper.GetNearbyEnemyCount(battleChara, 5, 5)}");
         ImGui.Text($"血乱buff计时器 : {Core.Resolve<MemApiBuff>().GetAuraTimeleft(Core.Me, DRKBaseSlotResolvers.Buffs.血乱Delirium, true)}");
         ImGui.Text($"腐秽大地SaltedEarth : {DRKBaseSlotResolvers.腐秽大地SaltedEarth.ActionReady()}");

@@ -1,5 +1,6 @@
 ﻿#region
 
+using AE_ACR_DRK;
 using AE_ACR.PLD;
 using AE_ACR.PLD.SlotResolvers;
 using AE_ACR.utils;
@@ -20,7 +21,7 @@ public class DKUsePotion : DRKBaseSlotResolvers
             return Flag_停手;
         }
 
-        if (!getQTValue(PlDQTKey.爆发药))
+        if (!getQTValue(DRKQTKey.爆发药))
         {
             return Flag_爆发药;
         }

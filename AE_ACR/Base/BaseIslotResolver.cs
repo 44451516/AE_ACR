@@ -22,6 +22,7 @@ public abstract class BaseIslotResolver : ISlotResolver
         Flag_攒资源 = -102,
         Flag_QT = -103,
         Flag_爆发药 = -104,
+        Flag_远程技能QT = -106,
         留空 = 3624;
 
     public static class DeBuffs

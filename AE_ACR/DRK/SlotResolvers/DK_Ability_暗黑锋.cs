@@ -29,7 +29,11 @@ public class DK_Ability_暗黑锋 : DRKBaseSlotResolvers
             return Flag_攒资源;
         }
 
-
+        if (!暗黑锋.IsUnlock())
+        {
+            return -1;
+        }
+        
         if (!CanWeave())
         {
             return -1;
