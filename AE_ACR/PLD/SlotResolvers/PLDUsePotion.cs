@@ -19,7 +19,7 @@ public class PLDUsePotion : PLDBaseSlotResolvers
             return Flag_停手;
         }
 
-        if (!getQTValue(PLDQTKeyc.爆发药))
+        if (!getQTValue(PLDQTKey.爆发药))
         {
             return Flag_爆发药;
         }

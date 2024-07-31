@@ -16,7 +16,7 @@ public class Ability_安魂祈祷 : PLDBaseSlotResolvers
             return Flag_停手;
         }
 
-        if (!getQTValue(PLDQTKeyc.战逃安魂))
+        if (!getQTValue(PLDQTKey.战逃安魂))
         {
             return Flag_QT;
         }

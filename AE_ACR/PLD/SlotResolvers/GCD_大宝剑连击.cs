@@ -18,7 +18,7 @@ public class GCD_大宝剑连击 : PLDBaseSlotResolvers
             return Flag_停手;
         }
 
-        if (!getQTValue(PLDQTKeyc.大宝剑连击))
+        if (!getQTValue(PLDQTKey.大宝剑连击))
         {
             return Flag_QT;
         }

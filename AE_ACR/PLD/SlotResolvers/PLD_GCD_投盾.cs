@@ -23,7 +23,7 @@ public class PLD_GCD_投盾 : PLDBaseSlotResolvers
         }
 
 
-        if (getQTValue(PLDQTKeyc.远程投盾) == false)
+        if (getQTValue(PLDQTKey.远程投盾) == false)
         {
             return Flag_远程技能QT;
         }

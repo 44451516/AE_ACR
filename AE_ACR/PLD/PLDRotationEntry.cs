@@ -136,13 +136,13 @@ public class PLDRotationEntry : IRotationEntry
         QT.AddTab("反馈建议", UIHelp.Feedback);
 
         // 添加QT开关 第二个参数是默认值 (开or关) 第三个参数是鼠标悬浮时的tips
-        QT.AddQt(PLDQTKeyc.停手, false, "是否使用基础的Gcd");
-        QT.AddQt(PLDQTKeyc.爆发药, false);
-        QT.AddQt(PLDQTKeyc.突进, true);
-        QT.AddQt(PLDQTKeyc.大宝剑连击, true);
-        QT.AddQt(PLDQTKeyc.战逃安魂, true);
-        QT.AddQt(PLDQTKeyc.远程投盾, false, "和目标距离过远的时候使用");
-        QT.AddQt(PLDQTKeyc.远程圣灵, false, "和目标距离过远的时候使用");
+        QT.AddQt(PLDQTKey.停手, false, "是否使用基础的Gcd");
+        QT.AddQt(PLDQTKey.爆发药, false);
+        QT.AddQt(PLDQTKey.突进, true);
+        QT.AddQt(PLDQTKey.大宝剑连击, true);
+        QT.AddQt(PLDQTKey.战逃安魂, true);
+        QT.AddQt(PLDQTKey.远程投盾, false, "和目标距离过远的时候使用");
+        QT.AddQt(PLDQTKey.远程圣灵, false, "和目标距离过远的时候使用");
         
         
         // QT.AddQt(BaseQTKey.减伤, true);
