@@ -88,7 +88,7 @@ public class PLDRotationEntry : IRotationEntry
             // TargetJob = Jobs.Gladiator,
             // TargetJob = Jobs.WhiteMage,
             TargetJob = Jobs.Paladin,
-            AcrType = AcrType.Normal,
+            AcrType = AcrType.Both,
             MinLevel = 1,
             MaxLevel = 100,
             Description = "骑士"

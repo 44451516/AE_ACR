@@ -42,6 +42,11 @@
             <HintPath>F:\下载\AEAssist3.0 国际服EA版本 0710_2\AEAssistENVersion\AEAssist\Newtonsoft.Json.dll</HintPath>
             <Private>False</Private>
         </Reference>
+
+        <Reference Include="Newtonsoft.Json">
+            <HintPath>F:\下载\AEAssist3.0 国际服EA版本 0710_2\Plugins\Trust\Trust.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
     </ItemGroup>
 
 
