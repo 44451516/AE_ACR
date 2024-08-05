@@ -60,6 +60,12 @@ public class Ability_出卡1 : ASTBaseSlotResolvers
         {
             RealbattleChara = Core.Me;
         }
+        
+        if (RealbattleChara == null)
+        {
+            RealbattleChara = Core.Me;
+        }
+
 
         slot.Add(new Spell(Play1.OriginalHook().Id, RealbattleChara));
     }
