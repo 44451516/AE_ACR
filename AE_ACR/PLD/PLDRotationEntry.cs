@@ -61,6 +61,8 @@ public class PLDRotationEntry : IRotationEntry
 
 
         // gcd队列
+        new SlotResolverData(new GCD_优先圣灵(), SlotMode.Gcd),
+        new SlotResolverData(new GCD_优先赎罪(), SlotMode.Gcd),
         new SlotResolverData(new GCD_沥血剑(), SlotMode.Gcd),
         new SlotResolverData(new GCD_大宝剑连击(), SlotMode.Gcd),
         new SlotResolverData(new PLD_GCD_远程圣灵(), SlotMode.Gcd),
@@ -143,6 +145,9 @@ public class PLDRotationEntry : IRotationEntry
         QT.AddQt(PLDQTKey.战逃安魂, true);
         QT.AddQt(PLDQTKey.远程投盾, false, "和目标距离过远的时候使用");
         QT.AddQt(PLDQTKey.远程圣灵, false, "和目标距离过远的时候使用");
+        QT.AddQt(PLDQTKey.即刻战逃, false, "战逃好了就用");
+        QT.AddQt(PLDQTKey.优先圣灵, false);
+        QT.AddQt(PLDQTKey.优先赎罪, false);
         
         
         // QT.AddQt(BaseQTKey.减伤, true);

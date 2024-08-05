@@ -25,6 +25,11 @@ public class Ability_战逃反应 : PLDBaseSlotResolvers
 
         if (CanWeave())
         {
+            if (getQTValue(PLDQTKey.即刻战逃))
+            {
+                return 0;
+            }
+            
             if (战逃反应FightOrFlight.ActionReady())
             {
                 if (!王权剑RoyalAuthority.IsUnlock())

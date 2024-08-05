@@ -1,14 +1,13 @@
 #region
 
 using AE_ACR.utils;
-using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
 
 #endregion
 
 namespace AE_ACR.PLD.SlotResolvers;
 
-public class GCD_战逃反应内 : PLDBaseSlotResolvers
+public class GCD_优先圣灵 : PLDBaseSlotResolvers
 {
     public override int Check()
     {
@@ -18,19 +17,18 @@ public class GCD_战逃反应内 : PLDBaseSlotResolvers
         }
 
 
-        if (HasEffect(Buffs.FightOrFlight)) return 0;
+        if (getQTValue(PLDQTKey.优先圣灵))
+        {
+            return 0;
+        }
+
 
         return -1;
     }
 
-    private Spell GetAOEGCDSpell()
-    {
-        return 先锋剑FastBlade.OriginalHook();
-    }
 
     public override void Build(Slot slot)
     {
-        var spell = GetAOEGCDSpell();
-        slot.Add(spell);
+        slot.Add(圣灵HolySpirit.OriginalHook());
     }
 }
