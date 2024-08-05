@@ -1,7 +1,9 @@
 #region
 
 using AE_ACR.utils;
+using AEAssist;
 using AEAssist.CombatRoutine.Module;
+using AEAssist.Helper;
 
 #endregion
 
@@ -17,10 +19,16 @@ public class GCD_优先赎罪 : PLDBaseSlotResolvers
         }
 
 
-     
         if (getQTValue(PLDQTKey.优先赎罪))
         {
-            return 0;
+            if (赎罪剑Atonement.IsUnlock())
+            {
+                if (HasEffect(Buffs.赎罪剑Atonement1BUFF) || HasEffect(Buffs.赎罪剑Atonement2BUFF) || HasEffect(Buffs.赎罪剑Atonement3BUFF))
+                {
+                    return 0;
+                }
+            }
+
         }
 
 
