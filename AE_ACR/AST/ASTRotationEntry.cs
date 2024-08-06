@@ -157,6 +157,11 @@ public class ASTRotationEntry : IRotationEntry
         ImGui.Text($"dot1 : {ASTBaseSlotResolvers.Play1.OriginalHook().Id}");
         ImGui.Text($"GetBuffRemainingTime : {ASTBaseSlotResolvers.GetBuffRemainingTime(ASTBaseSlotResolvers.DeBuffs.加速器炸弹)}");
         ImGui.Text($"HasEffect : {ASTBaseSlotResolvers.HasEffect(ASTBaseSlotResolvers.DeBuffs.加速器炸弹)}");
+        ImGui.Text($"地星ActionReady : {ASTBaseSlotResolvers.地星.ActionReady()}");
+        ImGui.Text($"地星IsReady : {ASTBaseSlotResolvers.地星.IsReady()}");
+        ImGui.Text($"地星IsUnlock : {ASTBaseSlotResolvers.地星.IsUnlock()}");
+        ImGui.Text($"地星IsLevelEnough : {ASTBaseSlotResolvers.地星.IsLevelEnough()}");
+        ImGui.Text($"GetCooldownRemainingTime : {ASTBaseSlotResolvers.地星.GetCooldownRemainingTime()}");
         
         // var 目标 = PartyHelper.CastableAlliesWithin30.FirstOrDefault(r => r.CurrentHp == 0 || r.IsDead);
         //
