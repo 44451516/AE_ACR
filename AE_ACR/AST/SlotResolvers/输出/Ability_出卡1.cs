@@ -39,12 +39,24 @@ public class Ability_出卡1 : ASTBaseSlotResolvers
         if (Play1.OriginalHook().Id == 近战卡)
         {
             var battleChara = PartyHelper.CastableAlliesWithin30 //周围30米
-                .Where(r => r.CurrentHp > 0 && !r.IsMelee()).FirstOrDefault();
+                .Where(r => r.CurrentHp > 0 && r.IsMelee()).FirstOrDefault();
 
             if (battleChara != null && battleChara.IsValid())
             {
                 RealbattleChara = battleChara;
             }
+
+            if (battleChara == null)
+            {
+                battleChara = PartyHelper.CastableAlliesWithin30 //周围30米
+                    .Where(r => r.CurrentHp > 0 && r.IsTank()).FirstOrDefault();
+
+                if (battleChara != null && battleChara.IsValid())
+                {
+                    RealbattleChara = battleChara;
+                }
+            }
+
         }
         else if (Play1.OriginalHook().Id == 远程卡)
         {
@@ -60,7 +72,7 @@ public class Ability_出卡1 : ASTBaseSlotResolvers
         {
             RealbattleChara = Core.Me;
         }
-        
+
         if (RealbattleChara == null)
         {
             RealbattleChara = Core.Me;

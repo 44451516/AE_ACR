@@ -1,15 +1,16 @@
 ﻿using AEAssist;
 using AEAssist.Avoid;
+using AEAssist.Extension;
+using AEAssist.Helper;
 using AEAssist.MemoryApi;
+using Dalamud.Game.ClientState.Objects.Types;
 using Trust.DungeonController.Dungeon;
 using Trust.DungeonController.SpellReaction;
 
 namespace ScriptTest;
 
-public class ResolverTest : IResolverScript
+public class Trust100老1脚本_36382 : IResolverScript
 {
-  
-
     public void OnActive(DungeonController dungeonController, ResolverCondParams spellCondParams)
     {
 
@@ -24,8 +25,18 @@ public class ResolverTest : IResolverScript
             return;
         }
 
-  
-        // 让角色移动到安全区
-        SpellResolverMgr.Instance.AllResolvers[SpellResolverType.Move2SafeArea].OnUpdate(dungeonController, null);
+        foreach (var gameObject in ECHelper.Objects)
+        {
+            if (gameObject.DataId != 16756)
+                continue;
+
+            if (gameObject is IBattleChara battleChara)
+            {
+                if (battleChara.CastActionId == 36382)
+                {
+                    Core.Me.SetPos(battleChara.Position);
+                }
+            }
+        }
     }
 }

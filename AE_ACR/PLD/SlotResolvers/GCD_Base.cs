@@ -126,7 +126,7 @@ public class GCD_Base : PLDBaseSlotResolvers
             {
                 if (投盾ShieldLob.IsUnlock())
                 {
-                    if (TargetHelper.GetTargetDistanceFromMeTest2D(battleChara, Core.Me) is >= 10 and <= 15)
+                    if (TargetHelper.GetTargetDistanceFromMeTest2D(battleChara, Core.Me) is > 5 and <= 15)
                     {
                         return 投盾ShieldLob.GetSpell();
                     }

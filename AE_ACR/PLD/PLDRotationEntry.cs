@@ -187,7 +187,8 @@ public class PLDRotationEntry : IRotationEntry
         ImGui.Text("日常模式会持续开盾，和自动减伤");
         ImGui.SetNextItemWidth(150f);
         ImGui.Checkbox("日常模式", ref PLDSettings.日常模式);
-
+        ImGui.DragFloat("投盾阈值", ref PLDSettings.投盾阈值, 0.1f, 5, 20f);
+        ImGui.DragFloat("远程圣灵阈值", ref PLDSettings.远程圣灵阈值, 0.1f, 5, 20f);
 
         if (ImGui.Button("Save[保存]"))
         {

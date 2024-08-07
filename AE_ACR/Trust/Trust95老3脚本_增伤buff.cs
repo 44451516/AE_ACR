@@ -1,5 +1,4 @@
-﻿using System.Numerics;
-using AEAssist;
+﻿using AEAssist;
 using AEAssist.Avoid;
 using AEAssist.CombatRoutine.Module.Target;
 using AEAssist.Extension;
