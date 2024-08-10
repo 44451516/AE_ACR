@@ -1,7 +1,9 @@
-﻿using AEAssist;
+﻿using System.Numerics;
+using AEAssist;
 using AEAssist.Avoid;
 using AEAssist.CombatRoutine.Module.Target;
 using AEAssist.Extension;
+using AEAssist.Helper;
 using AEAssist.MemoryApi;
 using Dalamud.Game.ClientState.Objects.Types;
 using Trust.DungeonController.Dungeon;
@@ -11,8 +13,6 @@ namespace ScriptTest;
 
 public class Trust95老3脚本_增伤buff : IResolverScript
 {
-  
-
     public void OnActive(DungeonController dungeonController, ResolverCondParams spellCondParams)
     {
 
@@ -25,24 +25,45 @@ public class Trust95老3脚本_增伤buff : IResolverScript
         if (!AvoidManager.Instance.GetMap(mapBaseName, out var map))
         {
 
-            foreach (var C in mapBaseName)
-            {
-                
-            }
-
-            foreach (var keyValuePair in TargetMgr.Instance.EnemysIn20)
-            {
-                IBattleChara battleChara = keyValuePair.Value;
-                Core.Me.SetPos(battleChara.Position); 
-            }
-
-
+            return;
         }
-        
-       
 
-  
-        // 让角色移动到安全区
-        // SpellResolverMgr.Instance.AllResolvers[SpellResolverType.Move2SafeArea].OnUpdate(dungeonController, null);
+        IBattleChara? boss = null;
+
+        foreach (var gameObject in ECHelper.Objects)
+        {
+            if (gameObject.DataId == 16735)
+            {
+                if (gameObject is IBattleChara battleChara)
+                {
+                    boss = battleChara;
+                }
+            }
+        }
+
+        float speed = 0.1f;   
+        
+        foreach (var gameObject in ECHelper.Objects)
+        {
+            if (gameObject.DataId == 16738)
+            {
+
+                if (boss != null)
+                {
+                    
+                    float distance = Vector3.Distance(boss.Position, gameObject.Position);
+                    if (distance <= 10)
+                    {
+                        // 计算从小怪A到圆心B的方向向量
+                        Vector3 direction = (boss.Position - gameObject.Position);
+                        // 根据方向和速度计算小怪A的下一秒位置
+                        Vector3 newPosition = gameObject.Position + direction * speed;
+                        
+                        Core.Me.SetPos(newPosition);
+                    }
+                }
+
+            }
+        }
     }
 }
