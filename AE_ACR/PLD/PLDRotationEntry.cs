@@ -232,5 +232,11 @@ public class PLDRotationEntry : IRotationEntry
         ImGui.Text($"OriginalHookActionReady1 : {PLDBaseSlotResolvers.GetCooldownRemainingTime(846)}");
         ImGui.Text($"OriginalHookActionReady2 : {Core.Resolve<MemApiSpell>().GetCooldown(Spell.CreatePotion().Id).TotalSeconds}");
         ImGui.Text($"OriginalHookActionReady3 : {PLDBaseSlotResolvers.GetCooldownRemainingTime(Spell.CreatePotion().Id)}");
+
+        if (ImGui.Button("测试"))
+        {
+            NetworkHelper.SendStartBySelf(720915U);
+        }
+
     }
 }

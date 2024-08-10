@@ -15,6 +15,7 @@ public class 笔记
         //https://github.com/wuhao3359/plugin/blob/9543f27af1c86f16d5aa31282006cd62cb7a9ebb/AlphaProject/Helper/RepairHelper.cs#L9
         // Player.Object.GameObjectId;
         //盛夏农庄
+        // Maeloc  4297224801 1001277 1002376
         NetworkHelper.SendStartBySelf(720915U);
     }
 }
