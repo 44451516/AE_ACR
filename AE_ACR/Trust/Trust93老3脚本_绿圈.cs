@@ -25,7 +25,7 @@ public class Trust93老3脚本_绿圈 : IResolverScript
             return;
         }
 
-        const  float distance = 6; 
+        const  float distance = 8 ; 
 
         foreach (var agent in ECHelper.Objects)
         {
