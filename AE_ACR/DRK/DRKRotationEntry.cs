@@ -3,10 +3,8 @@
 using AE_ACR_DRK_Setting;
 using AE_ACR_DRK_Triggers;
 using AE_ACR_DRK.SlotResolvers;
-using AE_ACR.Base;
 using AE_ACR.DRK.SlotResolvers;
 using AE_ACR.DRK.SlotResolvers.减伤;
-using AE_ACR.PLD.SlotResolvers;
 using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine;
@@ -16,13 +14,7 @@ using AEAssist.Extension;
 using AEAssist.Helper;
 using AEAssist.JobApi;
 using AEAssist.MemoryApi;
-using Dalamud.Game.ClientState.Objects.Types;
-using Dalamud.IoC;
-using Dalamud.Plugin.Services;
 using ImGuiNET;
-using Ability_亲疏自行 = AE_ACR.DRK.SlotResolvers.减伤.Ability_亲疏自行;
-using Ability_铁壁 = AE_ACR.DRK.SlotResolvers.减伤.Ability_铁壁;
-using Ability_雪仇 = AE_ACR.DRK.SlotResolvers.减伤.Ability_雪仇;
 
 #endregion
 

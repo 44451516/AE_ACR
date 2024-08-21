@@ -33,6 +33,7 @@ public class Trust93老2脚本_分散逻辑 : IResolverScript
         
         if (AI.Instance.BattleData.CurrBattleTimeInMs >= 50 * 1000)
         {
+            //spl x=-53.139,y=-56.850,z=323.000f
             var vector3 = new Vector3(-53.139f, 323.000f, -56.850f);
             Core.Me.SetPos(vector3);
         }

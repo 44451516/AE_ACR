@@ -8,7 +8,7 @@ using AEAssist.MemoryApi;
 
 #endregion
 
-namespace AE_ACR.PLD.SlotResolvers;
+namespace AE_ACR.PLD.SlotResolvers.减伤;
 
 public class Ability_钢铁信念 : PLDBaseSlotResolvers
 {

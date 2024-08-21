@@ -10,7 +10,7 @@ using Dalamud.Game.ClientState.Objects.Types;
 
 #endregion
 
-namespace AE_ACR.PLD.SlotResolvers;
+namespace AE_ACR.PLD.SlotResolvers.减伤;
 
 public class Ability_圣盾阵 : PLDBaseSlotResolvers
 {

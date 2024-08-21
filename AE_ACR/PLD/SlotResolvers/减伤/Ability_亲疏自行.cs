@@ -7,7 +7,7 @@ using AEAssist.Extension;
 
 #endregion
 
-namespace AE_ACR.PLD.SlotResolvers;
+namespace AE_ACR.PLD.SlotResolvers.减伤;
 
 public class Ability_亲疏自行 : PLDBaseSlotResolvers
 {
