@@ -1,5 +1,4 @@
-﻿using System.Numerics;
-using AEAssist;
+﻿using AEAssist;
 using AEAssist.Avoid;
 using AEAssist.Helper;
 using AEAssist.MemoryApi;
@@ -9,8 +8,7 @@ using Trust.DungeonController.SpellReaction;
 
 namespace ScriptTest;
 
-//小怪直线
-public class Trust93老1脚本_36270 : IResolverScript
+public class Trust97老1脚本_小怪_钢铁_36570 : IResolverScript
 {
     public void OnActive(DungeonController dungeonController, ResolverCondParams spellCondParams)
     {
@@ -23,35 +21,40 @@ public class Trust93老1脚本_36270 : IResolverScript
         var mapBaseName = Core.Resolve<MemApiZoneInfo>().GetCurrZoneInfo().MapBaseName;
         if (!AvoidManager.Instance.GetMap(mapBaseName, out var map))
         {
+
             return;
         }
 
 
         foreach (var gameObject in ECHelper.Objects)
         {
-            if (gameObject.DataId != 16731)
+            if (gameObject.DataId != 16828)
                 continue;
 
             if (gameObject is IBattleChara battleChara)
             {
-                if (battleChara.CurrentCastTime >= 10.5 && battleChara.CurrentCastTime <= 11f)
+                if (battleChara.CastActionId == 36570)
                 {
-
-                    var bossPos = gameObject.Position;
-                    var dir = gameObject.Rotation.GetDirV3(0);
-                    bossPos = bossPos - dir * 2; // 防止脚底
-                    var 矩形长度 = 20;
-                    var 矩形宽度 = 18;
-
-                    map.AddDangerShape
-                    (
-                        gameObject.EntityId, new DangerShape
+                    if (battleChara.CurrentCastTime >= 7 && battleChara.CurrentCastTime <= 7.5f)
+                    {
+                        map.AddDangerShape
                         (
-                            RectShape.Create(bossPos, bossPos + dir * 矩形长度, 矩形宽度), TimeHelper.Now(), 2000
-                        ), true
-                    );
+                            gameObject.EntityId, new DangerShape
+                            (
+                                new CircleShape()
+                                {
+                                    Name = $"DangerFromPM {gameObject.Name}",
+                                    Origin = gameObject.Position,
+                                    Radius = 18f
+                                }, TimeHelper.Now(), 2000
+                            ), true
+                        );
+                    }
                 }
+
             }
+
+
         }
 
         // 让角色移动到安全区
