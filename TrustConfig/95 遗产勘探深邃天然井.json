@@ -905,8 +905,8 @@
               },
               {
                 "$type": "AEAssist.CombatRoutine.Trigger.Node.TreeDelayNode, AEAssist",
-                "DisplayName": "延迟[0.30]秒",
-                "Delay": 0.3,
+                "DisplayName": "延迟[0.10]秒",
+                "Delay": 0.1,
                 "GUID": "ede0682b-7456-463c-8a3b-24b56bf3680f",
                 "Important": true,
                 "Color": {
@@ -981,12 +981,42 @@
                     "SpellId": 36443,
                     "ResolverDatas": [
                       {
-                        "ResolverType": 1,
+                        "ResolverType": 7,
                         "ExData": {
-                          "$type": "Trust.DungeonController.SpellReaction.FollowNpcExData, Trust",
-                          "DontFollowTank": false
+                          "$type": "Trust.DungeonController.SpellReaction.DangerShapeExData, Trust",
+                          "AreaShapeType": 3,
+                          "AreaShape": {
+                            "$type": "AEAssist.Avoid.SectorShape, AEAssist",
+                            "Radius": 6.0,
+                            "Dir": {
+                              "X": 0.0,
+                              "Y": 0.0
+                            },
+                            "InitRotOffset": 0.0,
+                            "Angle": 20,
+                            "Origin": {
+                              "X": 1.0,
+                              "Y": 1.0,
+                              "Z": 1.0
+                            },
+                            "Name": null
+                          },
+                          "PointSelector": {
+                            "SelectType": 0,
+                            "FixedPoint": {
+                              "X": 0.0,
+                              "Y": 0.0,
+                              "Z": 0.0
+                            },
+                            "PointKey": null,
+                            "RelatedExDis": 0.0,
+                            "RelatedAngle": 0.0,
+                            "PresetGroups": [],
+                            "Args0": 0,
+                            "RecentTime": 1.0
+                          }
                         },
-                        "Remark": "",
+                        "Remark": "添加危险区",
                         "DelayInSec": 0.0,
                         "TimeInSec": 8.0
                       }
@@ -1023,9 +1053,9 @@
                         "ResolverType": 8,
                         "ExData": {
                           "$type": "Trust.DungeonController.SpellReaction.DisperseExData, Trust",
-                          "Distance": 12.0
+                          "Distance": 8.0
                         },
-                        "Remark": "",
+                        "Remark": "分散",
                         "DelayInSec": 4.0,
                         "TimeInSec": 3.0
                       }
@@ -1054,19 +1084,9 @@
                           "$type": "Trust.DungeonController.SpellReaction.FollowNpcExData, Trust",
                           "DontFollowTank": false
                         },
-                        "Remark": "",
+                        "Remark": "移动到安全区",
                         "DelayInSec": 0.0,
                         "TimeInSec": 5.0
-                      },
-                      {
-                        "ResolverType": 1,
-                        "ExData": {
-                          "$type": "Trust.DungeonController.SpellReaction.FollowNpcExData, Trust",
-                          "DontFollowTank": false
-                        },
-                        "Remark": "",
-                        "DelayInSec": 5.0,
-                        "TimeInSec": 4.0
                       }
                     ],
                     "JobsLimit": 0,
@@ -1755,9 +1775,9 @@
                         "ExData": {
                           "$type": "Trust.DungeonController.SpellReaction.ResolverTP2FixedPos, Trust",
                           "Pos": {
-                            "X": 103.0,
-                            "Y": -191.991,
-                            "Z": -426.0
+                            "X": 99.996,
+                            "Y": -191.99121,
+                            "Z": -440.0244
                           },
                           "UseCastPos": false
                         },
@@ -1821,6 +1841,21 @@
                           }
                         },
                         "Remark": "画危险区",
+                        "DelayInSec": 1.0,
+                        "TimeInSec": 3.0
+                      },
+                      {
+                        "ResolverType": 6,
+                        "ExData": {
+                          "$type": "Trust.DungeonController.SpellReaction.ResolverTP2FixedPos, Trust",
+                          "Pos": {
+                            "X": 100.136,
+                            "Y": -191.991,
+                            "Z": -427.017
+                          },
+                          "UseCastPos": false
+                        },
+                        "Remark": "TP到中间-安全区",
                         "DelayInSec": 1.0,
                         "TimeInSec": 3.0
                       }
@@ -1888,14 +1923,14 @@
                         "ExData": {
                           "$type": "Trust.DungeonController.SpellReaction.ResolverTP2FixedPos, Trust",
                           "Pos": {
-                            "X": 103.0,
-                            "Y": -191.991,
-                            "Z": -426.0
+                            "X": 100.13614,
+                            "Y": -191.99121,
+                            "Z": -427.0168
                           },
                           "UseCastPos": false
                         },
-                        "Remark": "TP回中间，避免吃不到奶",
-                        "DelayInSec": 2.0,
+                        "Remark": "TP到中间-安全区",
+                        "DelayInSec": 1.0,
                         "TimeInSec": 3.0
                       }
                     ],
@@ -2135,6 +2170,21 @@
                         "Remark": "移动到安全区",
                         "DelayInSec": 0.0,
                         "TimeInSec": 0.1
+                      },
+                      {
+                        "ResolverType": 6,
+                        "ExData": {
+                          "$type": "Trust.DungeonController.SpellReaction.ResolverTP2FixedPos, Trust",
+                          "Pos": {
+                            "X": 100.136,
+                            "Y": -191.991,
+                            "Z": -427.017
+                          },
+                          "UseCastPos": false
+                        },
+                        "Remark": "TP",
+                        "DelayInSec": 0.0,
+                        "TimeInSec": 0.1
                       }
                     ],
                     "JobsLimit": 0,
@@ -2300,6 +2350,21 @@
                         "Remark": "添加危险区",
                         "DelayInSec": 0.0,
                         "TimeInSec": 9.0
+                      },
+                      {
+                        "ResolverType": 6,
+                        "ExData": {
+                          "$type": "Trust.DungeonController.SpellReaction.ResolverTP2FixedPos, Trust",
+                          "Pos": {
+                            "X": 100.136,
+                            "Y": -191.991,
+                            "Z": -427.017
+                          },
+                          "UseCastPos": false
+                        },
+                        "Remark": "TP到指定位置",
+                        "DelayInSec": 0.0,
+                        "TimeInSec": 0.2
                       }
                     ],
                     "JobsLimit": 0,
@@ -2411,6 +2476,10 @@
     {
       "SpellId": 39122,
       "Remark": ""
+    },
+    {
+      "SpellId": 36450,
+      "Remark": "老2分散"
     }
   ],
   "Remark": "沼跃鱼 这位老哥写的",

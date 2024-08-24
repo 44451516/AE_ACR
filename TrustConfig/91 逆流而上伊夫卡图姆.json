@@ -1797,7 +1797,12 @@
       "Remark": ""
     }
   ],
-  "NeedIgnoreWhenAutoAddDangerArea": [],
+  "NeedIgnoreWhenAutoAddDangerArea": [
+    {
+      "SpellId": 36353,
+      "Remark": "老3分散"
+    }
+  ],
   "Remark": "",
   "TerritoryTypeId": 1167
 }

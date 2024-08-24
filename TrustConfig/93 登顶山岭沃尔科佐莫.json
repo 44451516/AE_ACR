@@ -1,5 +1,5 @@
 {
-  "Name": "93 [TDH] V7-关闭捡箱子使用",
+  "Name": "93 登顶山岭沃尔科佐莫",
   "AllSteps": [
     {
       "Remark": "",
@@ -389,7 +389,7 @@
         "Y": 89.0181,
         "Z": 25.642769
       },
-      "IgnoreBattleState": true,
+      "IgnoreBattleState": false,
       "ArriveActionType": 2,
       "ArriveActionData": {
         "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_BattleWithMonster, Trust",
@@ -1428,7 +1428,7 @@
                         },
                         "Remark": "分摊",
                         "DelayInSec": 1.0,
-                        "TimeInSec": 5.0
+                        "TimeInSec": 10.0
                       }
                     ],
                     "JobsLimit": 0,
@@ -1567,19 +1567,65 @@
                     "SpellId": 36307,
                     "ResolverDatas": [
                       {
-                        "ResolverType": 6,
+                        "ResolverType": 14,
                         "ExData": {
-                          "$type": "Trust.DungeonController.SpellReaction.ResolverTP2FixedPos, Trust",
-                          "Pos": {
-                            "X": -54.949646,
-                            "Y": 378.0,
-                            "Z": -199.70815
-                          },
-                          "UseCastPos": false
+                          "$type": "Trust.DungeonController.SpellReaction.CastSpellExData, Trust",
+                          "SpellConfigs": [
+                            {
+                              "Remark": "物理防鸡腿",
+                              "Category": 0,
+                              "SpellId": 7548,
+                              "CoolDowncheck": false,
+                              "CoolDowncheck_time": 0.0,
+                              "TargetType": 1,
+                              "IsPartyMember": true,
+                              "LimitJobType": 0,
+                              "LimitBuffIds": [],
+                              "LimitMaxHpType": 0,
+                              "LimitHpType": 0,
+                              "Location": {
+                                "X": 0.0,
+                                "Y": 0.0,
+                                "Z": 0.0
+                              },
+                              "TargetSelector": {
+                                "Enable": false,
+                                "Target": 0,
+                                "FilterDatas": [],
+                                "NeedTargetable": false,
+                                "PMIndex": 0
+                              }
+                            },
+                            {
+                              "Remark": "法系防鸡腿",
+                              "Category": 0,
+                              "SpellId": 7559,
+                              "CoolDowncheck": false,
+                              "CoolDowncheck_time": 0.0,
+                              "TargetType": 1,
+                              "IsPartyMember": true,
+                              "LimitJobType": 0,
+                              "LimitBuffIds": [],
+                              "LimitMaxHpType": 0,
+                              "LimitHpType": 0,
+                              "Location": {
+                                "X": 0.0,
+                                "Y": 0.0,
+                                "Z": 0.0
+                              },
+                              "TargetSelector": {
+                                "Enable": false,
+                                "Target": 0,
+                                "FilterDatas": [],
+                                "NeedTargetable": false,
+                                "PMIndex": 0
+                              }
+                            }
+                          ]
                         },
                         "Remark": "TP到场中等待击退",
-                        "DelayInSec": 6.5,
-                        "TimeInSec": 3.0
+                        "DelayInSec": 3.0,
+                        "TimeInSec": 4.0
                       }
                     ],
                     "JobsLimit": 0,
@@ -1594,7 +1640,7 @@
                     },
                     "Id": 13,
                     "Enable": true,
-                    "Remark": "36307-半场击退"
+                    "Remark": "36307-半场击退-读条-5.7"
                   },
                   {
                     "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
@@ -1735,6 +1781,6 @@
       "Remark": ""
     }
   ],
-  "Remark": "关闭捡箱子[不然小怪可能要死]-老2暴毙换装备吃食物",
+  "Remark": "关闭捡箱子-不然路上小怪暴毙",
   "TerritoryTypeId": 1193
 }

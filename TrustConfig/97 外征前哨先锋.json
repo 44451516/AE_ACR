@@ -1,5 +1,5 @@
 {
-  "Name": "97 [TND] 外征前哨 ヴァンガード Vanguard V2",
+  "Name": "97 [TND] V2",
   "AllSteps": [
     {
       "Remark": "",
@@ -660,9 +660,10 @@
   "DutyId": 28,
   "TrustVersion": 0,
   "Index": 0,
+  "DutyType": 1,
   "BossTriggerLines": [
     {
-      "Remark": "",
+      "Remark": "老1",
       "Root": {
         "DisplayName": "Start",
         "Childs": [
@@ -696,14 +697,48 @@
                     "SpellId": 36559,
                     "ResolverDatas": [
                       {
-                        "ResolverType": 1,
+                        "ResolverType": 7,
+                        "ExData": {
+                          "$type": "Trust.DungeonController.SpellReaction.DangerShapeExData, Trust",
+                          "AreaShapeType": 2,
+                          "AreaShape": {
+                            "$type": "AEAssist.Avoid.CircleShape, AEAssist",
+                            "Radius": 18.0,
+                            "Origin": {
+                              "X": 1.0,
+                              "Y": 1.0,
+                              "Z": 1.0
+                            },
+                            "Name": null
+                          },
+                          "PointSelector": {
+                            "SelectType": 0,
+                            "FixedPoint": {
+                              "X": 0.0,
+                              "Y": 0.0,
+                              "Z": 0.0
+                            },
+                            "PointKey": null,
+                            "RelatedExDis": 0.0,
+                            "RelatedAngle": 0.0,
+                            "PresetGroups": [],
+                            "Args0": 0,
+                            "RecentTime": 1.0
+                          }
+                        },
+                        "Remark": "添加危险区",
+                        "DelayInSec": 9.0,
+                        "TimeInSec": 1.5
+                      },
+                      {
+                        "ResolverType": 0,
                         "ExData": {
                           "$type": "Trust.DungeonController.SpellReaction.FollowNpcExData, Trust",
                           "DontFollowTank": false
                         },
-                        "Remark": "",
+                        "Remark": "移动到安全区",
                         "DelayInSec": 9.0,
-                        "TimeInSec": 3.0
+                        "TimeInSec": 2.0
                       }
                     ],
                     "JobsLimit": 0,
@@ -718,21 +753,55 @@
                     },
                     "Id": 5,
                     "Enable": true,
-                    "Remark": "高速機動"
+                    "Remark": "36559-BOSS超大范围钢铁"
                   },
                   {
                     "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
-                    "SpellId": 36563,
+                    "SpellId": 36564,
                     "ResolverDatas": [
                       {
-                        "ResolverType": 1,
+                        "ResolverType": 7,
+                        "ExData": {
+                          "$type": "Trust.DungeonController.SpellReaction.DangerShapeExData, Trust",
+                          "AreaShapeType": 2,
+                          "AreaShape": {
+                            "$type": "AEAssist.Avoid.CircleShape, AEAssist",
+                            "Radius": 18.0,
+                            "Origin": {
+                              "X": 1.0,
+                              "Y": 1.0,
+                              "Z": 1.0
+                            },
+                            "Name": null
+                          },
+                          "PointSelector": {
+                            "SelectType": 0,
+                            "FixedPoint": {
+                              "X": 0.0,
+                              "Y": 0.0,
+                              "Z": 0.0
+                            },
+                            "PointKey": null,
+                            "RelatedExDis": 0.0,
+                            "RelatedAngle": 0.0,
+                            "PresetGroups": [],
+                            "Args0": 0,
+                            "RecentTime": 1.0
+                          }
+                        },
+                        "Remark": "添加危险区",
+                        "DelayInSec": 9.0,
+                        "TimeInSec": 1.5
+                      },
+                      {
+                        "ResolverType": 0,
                         "ExData": {
                           "$type": "Trust.DungeonController.SpellReaction.FollowNpcExData, Trust",
                           "DontFollowTank": false
                         },
-                        "Remark": "",
+                        "Remark": "移动到安全区",
                         "DelayInSec": 9.0,
-                        "TimeInSec": 3.0
+                        "TimeInSec": 2.0
                       }
                     ],
                     "JobsLimit": 0,
@@ -747,7 +816,7 @@
                     },
                     "Id": 6,
                     "Enable": true,
-                    "Remark": "高速機動"
+                    "Remark": "36564-BOSS超大范围钢铁"
                   },
                   {
                     "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
@@ -776,11 +845,11 @@
                     },
                     "Id": 7,
                     "Enable": true,
-                    "Remark": "高速機動"
+                    "Remark": "39140-中间安全"
                   },
                   {
                     "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
-                    "SpellId": 37191,
+                    "SpellId": 36560,
                     "ResolverDatas": [
                       {
                         "ResolverType": 1,
@@ -805,50 +874,21 @@
                     },
                     "Id": 8,
                     "Enable": true,
-                    "Remark": "高速機動"
-                  },
-                  {
-                    "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
-                    "SpellId": 36564,
-                    "ResolverDatas": [
-                      {
-                        "ResolverType": 1,
-                        "ExData": {
-                          "$type": "Trust.DungeonController.SpellReaction.FollowNpcExData, Trust",
-                          "DontFollowTank": false
-                        },
-                        "Remark": "",
-                        "DelayInSec": 9.0,
-                        "TimeInSec": 3.0
-                      }
-                    ],
-                    "JobsLimit": 0,
-                    "DisplayName": "机制应对:监听技能",
-                    "GUID": "05b19762-19ae-40f3-841d-a854bb056da5",
-                    "Important": false,
-                    "Color": {
-                      "X": 1.0,
-                      "Y": 1.0,
-                      "Z": 0.4,
-                      "W": 1.0
-                    },
-                    "Id": 9,
-                    "Enable": true,
-                    "Remark": "高速機動"
+                    "Remark": "36560-中间安全"
                   },
                   {
                     "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
                     "SpellId": 36569,
                     "ResolverDatas": [
                       {
-                        "ResolverType": 1,
+                        "ResolverType": 18,
                         "ExData": {
-                          "$type": "Trust.DungeonController.SpellReaction.FollowNpcExData, Trust",
-                          "DontFollowTank": false
+                          "$type": "Trust.DungeonController.SpellReaction.ScriptResolverExData, Trust",
+                          "Script": "using AEAssist;\nusing AEAssist.Avoid;\nusing AEAssist.Helper;\nusing AEAssist.MemoryApi;\nusing Dalamud.Game.ClientState.Objects.Types;\nusing Trust.DungeonController.Dungeon;\nusing Trust.DungeonController.SpellReaction;\n\nnamespace ScriptTest;\n\n\npublic class Trust97老1脚本_场外直线_36569 : IResolverScript\n{\n    public void OnActive(DungeonController dungeonController, ResolverCondParams spellCondParams)\n    {\n\n    }\n\n    public void OnUpdate(DungeonController dungeonController)\n    {\n        // 先拿到当前场景的地图管理\n        var mapBaseName = Core.Resolve<MemApiZoneInfo>().GetCurrZoneInfo().MapBaseName;\n        if (!AvoidManager.Instance.GetMap(mapBaseName, out var map))\n        {\n            \n            return;\n        }\n        \n        \n        foreach (var gameObject in ECHelper.Objects)\n        {\n            if (gameObject.DataId != 16828)\n                continue;\n\n            if (gameObject is IBattleChara battleChara)\n            {\n                if (battleChara.CastActionId == 36569)\n                {\n                    if (battleChara.CurrentCastTime >= 4 && battleChara.CurrentCastTime <= 4.5f)\n                    {\n                        var bossPos = gameObject.Position;\n                        var dir = gameObject.Rotation.GetDirV3(0);\n                        bossPos = bossPos - dir * 2; // 防止脚底\n                        var 矩形长度 = 30f;\n                        var 矩形宽度 = 5.1f;\n\n                        map.AddDangerShape\n                        (\n                            gameObject.EntityId, new DangerShape\n                            (\n                                RectShape.Create(bossPos, bossPos + dir * 矩形长度, 矩形宽度), TimeHelper.Now(), 2000\n                            ), true\n                        );\n                    }\n                }\n             \n            }\n\n\n        }\n\n        // 让角色移动到安全区\n        SpellResolverMgr.Instance.AllResolvers[SpellResolverType.Move2SafeArea].OnUpdate(dungeonController, null);\n    }\n}"
                         },
-                        "Remark": "",
-                        "DelayInSec": 5.0,
-                        "TimeInSec": 3.0
+                        "Remark": "脚本",
+                        "DelayInSec": 0.0,
+                        "TimeInSec": 8.0
                       }
                     ],
                     "JobsLimit": 0,
@@ -861,9 +901,9 @@
                       "Z": 0.4,
                       "W": 1.0
                     },
-                    "Id": 10,
+                    "Id": 9,
                     "Enable": true,
-                    "Remark": "突進"
+                    "Remark": "36569-小怪-场外直线"
                   },
                   {
                     "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
@@ -875,9 +915,24 @@
                           "$type": "Trust.DungeonController.SpellReaction.FollowNpcExData, Trust",
                           "DontFollowTank": false
                         },
-                        "Remark": "",
-                        "DelayInSec": 8.0,
-                        "TimeInSec": 3.0
+                        "Remark": "跟随NPC",
+                        "DelayInSec": 0.0,
+                        "TimeInSec": 9.0
+                      },
+                      {
+                        "ResolverType": 6,
+                        "ExData": {
+                          "$type": "Trust.DungeonController.SpellReaction.ResolverTP2FixedPos, Trust",
+                          "Pos": {
+                            "X": -99.88189,
+                            "Y": 6.999998,
+                            "Z": 206.78464
+                          },
+                          "UseCastPos": false
+                        },
+                        "Remark": "TP到中间",
+                        "DelayInSec": 9.0,
+                        "TimeInSec": 5.0
                       }
                     ],
                     "JobsLimit": 0,
@@ -890,9 +945,38 @@
                       "Z": 0.4,
                       "W": 1.0
                     },
+                    "Id": 10,
+                    "Enable": true,
+                    "Remark": "36570-小怪-超大范围钢铁"
+                  },
+                  {
+                    "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
+                    "SpellId": 36572,
+                    "ResolverDatas": [
+                      {
+                        "ResolverType": 8,
+                        "ExData": {
+                          "$type": "Trust.DungeonController.SpellReaction.DisperseExData, Trust",
+                          "Distance": 8.0
+                        },
+                        "Remark": "远离队友",
+                        "DelayInSec": 4.0,
+                        "TimeInSec": 2.0
+                      }
+                    ],
+                    "JobsLimit": 0,
+                    "DisplayName": "机制应对:监听技能",
+                    "GUID": "7bfe7927-5b9b-4a2f-a212-18731113609e",
+                    "Important": false,
+                    "Color": {
+                      "X": 1.0,
+                      "Y": 1.0,
+                      "Z": 0.4,
+                      "W": 1.0
+                    },
                     "Id": 11,
                     "Enable": true,
-                    "Remark": "空襲"
+                    "Remark": "36572-分散"
                   }
                 ],
                 "GUID": "ccc86869-d695-4b62-999f-51d6e4c9c846",
@@ -951,7 +1035,7 @@
       }
     },
     {
-      "Remark": "",
+      "Remark": "老2",
       "Root": {
         "DisplayName": "Start",
         "Childs": [
@@ -1036,7 +1120,7 @@
                     },
                     "Id": 6,
                     "Enable": true,
-                    "Remark": "ターニングブラスターキャノン"
+                    "Remark": "37351-转圈圈?"
                   },
                   {
                     "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
@@ -1065,7 +1149,7 @@
                     },
                     "Id": 7,
                     "Enable": true,
-                    "Remark": "ターニングブラスターキャノン"
+                    "Remark": "37159-ターニングブラスターキャノン"
                   },
                   {
                     "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
@@ -1094,7 +1178,7 @@
                     },
                     "Id": 8,
                     "Enable": true,
-                    "Remark": "ターニングブラスターキャノン"
+                    "Remark": "37344-ターニングブラスターキャノン"
                   },
                   {
                     "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
@@ -1123,7 +1207,7 @@
                     },
                     "Id": 9,
                     "Enable": true,
-                    "Remark": "エレクトロワール"
+                    "Remark": "37160-エレクトロワール"
                   },
                   {
                     "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
@@ -1152,7 +1236,7 @@
                     },
                     "Id": 10,
                     "Enable": true,
-                    "Remark": "加速度爆弾付与"
+                    "Remark": "37150-加速度爆弾付与"
                   },
                   {
                     "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
@@ -1164,8 +1248,8 @@
                           "$type": "Trust.DungeonController.SpellReaction.FollowNpcExData, Trust",
                           "DontFollowTank": false
                         },
-                        "Remark": "",
-                        "DelayInSec": 7.0,
+                        "Remark": "正面直线",
+                        "DelayInSec": 5.0,
                         "TimeInSec": 3.0
                       }
                     ],
@@ -1181,7 +1265,7 @@
                     },
                     "Id": 11,
                     "Enable": true,
-                    "Remark": "ハイブラスターキャノン"
+                    "Remark": "37345-正面直线"
                   },
                   {
                     "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
@@ -1193,7 +1277,7 @@
                           "$type": "Trust.DungeonController.SpellReaction.DisperseExData, Trust",
                           "Distance": 8.5
                         },
-                        "Remark": "",
+                        "Remark": "远离队友",
                         "DelayInSec": 7.0,
                         "TimeInSec": 2.0
                       }
@@ -1210,7 +1294,7 @@
                     },
                     "Id": 12,
                     "Enable": true,
-                    "Remark": "トラッキングサンダー"
+                    "Remark": "37349-分散"
                   },
                   {
                     "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
@@ -1239,7 +1323,94 @@
                     },
                     "Id": 13,
                     "Enable": true,
-                    "Remark": "ジャマーフェンス "
+                    "Remark": "37149-ジャマーフェンス "
+                  },
+                  {
+                    "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
+                    "SpellId": 37156,
+                    "ResolverDatas": [
+                      {
+                        "ResolverType": 0,
+                        "ExData": {
+                          "$type": "Trust.DungeonController.SpellReaction.FollowNpcExData, Trust",
+                          "DontFollowTank": false
+                        },
+                        "Remark": "移动到安全区",
+                        "DelayInSec": 0.0,
+                        "TimeInSec": 3.0
+                      }
+                    ],
+                    "JobsLimit": 0,
+                    "DisplayName": "机制应对:监听技能",
+                    "GUID": "af6bfc87-56ee-403d-9987-74ce39701ce1",
+                    "Important": false,
+                    "Color": {
+                      "X": 1.0,
+                      "Y": 1.0,
+                      "Z": 0.4,
+                      "W": 1.0
+                    },
+                    "Id": 14,
+                    "Enable": true,
+                    "Remark": "37156-自动安全区"
+                  },
+                  {
+                    "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
+                    "SpellId": 37151,
+                    "ResolverDatas": [
+                      {
+                        "ResolverType": 0,
+                        "ExData": {
+                          "$type": "Trust.DungeonController.SpellReaction.FollowNpcExData, Trust",
+                          "DontFollowTank": false
+                        },
+                        "Remark": "移动到安全区",
+                        "DelayInSec": 0.0,
+                        "TimeInSec": 20.0
+                      }
+                    ],
+                    "JobsLimit": 0,
+                    "DisplayName": "机制应对:监听技能",
+                    "GUID": "af6bfc87-56ee-403d-9987-74ce39701ce1",
+                    "Important": false,
+                    "Color": {
+                      "X": 1.0,
+                      "Y": 1.0,
+                      "Z": 0.4,
+                      "W": 1.0
+                    },
+                    "Id": 15,
+                    "Enable": true,
+                    "Remark": "37151-加速器炸弹+直线"
+                  },
+                  {
+                    "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
+                    "SpellId": 37155,
+                    "ResolverDatas": [
+                      {
+                        "ResolverType": 0,
+                        "ExData": {
+                          "$type": "Trust.DungeonController.SpellReaction.FollowNpcExData, Trust",
+                          "DontFollowTank": false
+                        },
+                        "Remark": "移动到安全区",
+                        "DelayInSec": 0.0,
+                        "TimeInSec": 20.0
+                      }
+                    ],
+                    "JobsLimit": 0,
+                    "DisplayName": "机制应对:监听技能",
+                    "GUID": "af6bfc87-56ee-403d-9987-74ce39701ce1",
+                    "Important": false,
+                    "Color": {
+                      "X": 1.0,
+                      "Y": 1.0,
+                      "Z": 0.4,
+                      "W": 1.0
+                    },
+                    "Id": 16,
+                    "Enable": true,
+                    "Remark": "37155-加速器炸弹+直线"
                   }
                 ],
                 "GUID": "d8fa8d12-e357-4646-80e8-c9d813523b4d",
@@ -1266,7 +1437,7 @@
                   "Z": 0.4,
                   "W": 1.0
                 },
-                "Id": 14,
+                "Id": 17,
                 "Enable": true,
                 "Remark": "延迟一点时间 防止某机制一次性出现大量同id技能释放时 连续触发多轮监听和处理"
               }
@@ -1298,7 +1469,7 @@
       }
     },
     {
-      "Remark": "",
+      "Remark": "老3",
       "Root": {
         "DisplayName": "Start",
         "Childs": [
@@ -1329,7 +1500,7 @@
                 "Childs": [
                   {
                     "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
-                    "SpellId": 36574,
+                    "SpellId": 36575,
                     "ResolverDatas": [
                       {
                         "ResolverType": 7,
@@ -1367,10 +1538,127 @@
                             "RecentTime": 1.0
                           }
                         },
-                        "Remark": "",
-                        "DelayInSec": 2.0,
-                        "TimeInSec": 10.0
+                        "Remark": "添加危险区",
+                        "DelayInSec": 8.0,
+                        "TimeInSec": 3.0
+                      }
+                    ],
+                    "JobsLimit": 0,
+                    "DisplayName": "机制应对:监听技能",
+                    "GUID": "a5c73504-03d0-4257-8861-7fe41f2f94b4",
+                    "Important": false,
+                    "Color": {
+                      "X": 1.0,
+                      "Y": 1.0,
+                      "Z": 0.4,
+                      "W": 1.0
+                    },
+                    "Id": 5,
+                    "Enable": true,
+                    "Remark": "36575--前半-正面直线"
+                  },
+                  {
+                    "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
+                    "SpellId": 37922,
+                    "ResolverDatas": [
+                      {
+                        "ResolverType": 8,
+                        "ExData": {
+                          "$type": "Trust.DungeonController.SpellReaction.DisperseExData, Trust",
+                          "Distance": 8.0
+                        },
+                        "Remark": "远离队友",
+                        "DelayInSec": 4.0,
+                        "TimeInSec": 2.0
+                      }
+                    ],
+                    "JobsLimit": 0,
+                    "DisplayName": "机制应对:监听技能",
+                    "GUID": "da34a5bb-9279-4457-90a5-3470d4131586",
+                    "Important": false,
+                    "Color": {
+                      "X": 1.0,
+                      "Y": 1.0,
+                      "Z": 0.4,
+                      "W": 1.0
+                    },
+                    "Id": 6,
+                    "Enable": true,
+                    "Remark": "37922--前半-分散"
+                  },
+                  {
+                    "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
+                    "SpellId": 37198,
+                    "ResolverDatas": [
+                      {
+                        "ResolverType": 7,
+                        "ExData": {
+                          "$type": "Trust.DungeonController.SpellReaction.DangerShapeExData, Trust",
+                          "AreaShapeType": 0,
+                          "AreaShape": {
+                            "$type": "AEAssist.Avoid.SectorShape, AEAssist",
+                            "Radius": 20.0,
+                            "Dir": {
+                              "X": 0.0,
+                              "Y": 0.0
+                            },
+                            "InitRotOffset": 0.0,
+                            "Angle": 91,
+                            "Origin": {
+                              "X": 1.0,
+                              "Y": 1.0,
+                              "Z": 1.0
+                            },
+                            "Name": null
+                          },
+                          "PointSelector": {
+                            "SelectType": 0,
+                            "FixedPoint": {
+                              "X": 0.0,
+                              "Y": 0.0,
+                              "Z": 0.0
+                            },
+                            "PointKey": null,
+                            "RelatedExDis": 0.0,
+                            "RelatedAngle": 0.0,
+                            "PresetGroups": [],
+                            "Args0": 0,
+                            "RecentTime": 1.0
+                          }
+                        },
+                        "Remark": "添加危险区",
+                        "DelayInSec": 0.0,
+                        "TimeInSec": 4.0
                       },
+                      {
+                        "ResolverType": 0,
+                        "ExData": {
+                          "$type": "Trust.DungeonController.SpellReaction.FollowNpcExData, Trust",
+                          "DontFollowTank": false
+                        },
+                        "Remark": "移动到安全区",
+                        "DelayInSec": 0.0,
+                        "TimeInSec": 4.0
+                      }
+                    ],
+                    "JobsLimit": 0,
+                    "DisplayName": "机制应对:监听技能",
+                    "GUID": "c0561327-d4ed-42aa-8522-7e669f8acba1",
+                    "Important": false,
+                    "Color": {
+                      "X": 1.0,
+                      "Y": 1.0,
+                      "Z": 0.4,
+                      "W": 1.0
+                    },
+                    "Id": 7,
+                    "Enable": true,
+                    "Remark": "37198-后半-扇形"
+                  },
+                  {
+                    "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
+                    "SpellId": 36592,
+                    "ResolverDatas": [
                       {
                         "ResolverType": 7,
                         "ExData": {
@@ -1378,7 +1666,66 @@
                           "AreaShapeType": 3,
                           "AreaShape": {
                             "$type": "AEAssist.Avoid.SectorShape, AEAssist",
-                            "Radius": -1.0,
+                            "Radius": 5.0,
+                            "Dir": {
+                              "X": 0.0,
+                              "Y": 0.0
+                            },
+                            "InitRotOffset": 0.0,
+                            "Angle": 30,
+                            "Origin": {
+                              "X": 1.0,
+                              "Y": 1.0,
+                              "Z": 1.0
+                            },
+                            "Name": null
+                          },
+                          "PointSelector": {
+                            "SelectType": 0,
+                            "FixedPoint": {
+                              "X": 0.0,
+                              "Y": 0.0,
+                              "Z": 0.0
+                            },
+                            "PointKey": null,
+                            "RelatedExDis": 0.0,
+                            "RelatedAngle": 0.0,
+                            "PresetGroups": [],
+                            "Args0": 0,
+                            "RecentTime": 1.0
+                          }
+                        },
+                        "Remark": "添加危险区",
+                        "DelayInSec": 0.0,
+                        "TimeInSec": 4.2
+                      }
+                    ],
+                    "JobsLimit": 0,
+                    "DisplayName": "机制应对:监听技能",
+                    "GUID": "25d5fa5e-3690-4ddc-a353-3ca319f04752",
+                    "Important": false,
+                    "Color": {
+                      "X": 1.0,
+                      "Y": 1.0,
+                      "Z": 0.4,
+                      "W": 1.0
+                    },
+                    "Id": 8,
+                    "Enable": true,
+                    "Remark": "36592- 后半-正面小直线"
+                  },
+                  {
+                    "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
+                    "SpellId": 36593,
+                    "ResolverDatas": [
+                      {
+                        "ResolverType": 7,
+                        "ExData": {
+                          "$type": "Trust.DungeonController.SpellReaction.DangerShapeExData, Trust",
+                          "AreaShapeType": 3,
+                          "AreaShape": {
+                            "$type": "AEAssist.Avoid.SectorShape, AEAssist",
+                            "Radius": 50.0,
                             "Dir": {
                               "X": 0.0,
                               "Y": 0.0
@@ -1407,140 +1754,24 @@
                             "RecentTime": 1.0
                           }
                         },
-                        "Remark": "",
-                        "DelayInSec": 2.0,
-                        "TimeInSec": 10.0
+                        "Remark": "添加危险区",
+                        "DelayInSec": 0.0,
+                        "TimeInSec": 4.2
                       },
                       {
-                        "ResolverType": 8,
-                        "ExData": {
-                          "$type": "Trust.DungeonController.SpellReaction.DisperseExData, Trust",
-                          "Distance": 5.5
-                        },
-                        "Remark": "",
-                        "DelayInSec": 2.0,
-                        "TimeInSec": 11.0
-                      }
-                    ],
-                    "JobsLimit": 0,
-                    "DisplayName": "机制应对:监听技能",
-                    "GUID": "a5c73504-03d0-4257-8861-7fe41f2f94b4",
-                    "Important": false,
-                    "Color": {
-                      "X": 1.0,
-                      "Y": 1.0,
-                      "Z": 0.4,
-                      "W": 1.0
-                    },
-                    "Id": 5,
-                    "Enable": true,
-                    "Remark": "36574-ベインセイバー"
-                  },
-                  {
-                    "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
-                    "SpellId": 37198,
-                    "ResolverDatas": [
-                      {
-                        "ResolverType": 1,
+                        "ResolverType": 0,
                         "ExData": {
                           "$type": "Trust.DungeonController.SpellReaction.FollowNpcExData, Trust",
                           "DontFollowTank": false
                         },
-                        "Remark": "",
-                        "DelayInSec": 3.0,
-                        "TimeInSec": 3.0
+                        "Remark": "移动到安全区",
+                        "DelayInSec": 0.0,
+                        "TimeInSec": 5.0
                       }
                     ],
                     "JobsLimit": 0,
                     "DisplayName": "机制应对:监听技能",
-                    "GUID": "708538d8-2488-4220-ae17-2a3f626ccf49",
-                    "Important": false,
-                    "Color": {
-                      "X": 1.0,
-                      "Y": 1.0,
-                      "Z": 0.4,
-                      "W": 1.0
-                    },
-                    "Id": 6,
-                    "Enable": true,
-                    "Remark": "37198-シンセスレイン"
-                  },
-                  {
-                    "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
-                    "SpellId": 36579,
-                    "ResolverDatas": [
-                      {
-                        "ResolverType": 1,
-                        "ExData": {
-                          "$type": "Trust.DungeonController.SpellReaction.FollowNpcExData, Trust",
-                          "DontFollowTank": false
-                        },
-                        "Remark": "",
-                        "DelayInSec": 3.0,
-                        "TimeInSec": 3.0
-                      }
-                    ],
-                    "JobsLimit": 0,
-                    "DisplayName": "机制应对:监听技能",
-                    "GUID": "96c076a2-b5c5-48c5-a583-7f4409926d3c",
-                    "Important": false,
-                    "Color": {
-                      "X": 1.0,
-                      "Y": 1.0,
-                      "Z": 0.4,
-                      "W": 1.0
-                    },
-                    "Id": 7,
-                    "Enable": true,
-                    "Remark": "36579-シンセスリザー"
-                  },
-                  {
-                    "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
-                    "SpellId": 36584,
-                    "ResolverDatas": [
-                      {
-                        "ResolverType": 1,
-                        "ExData": {
-                          "$type": "Trust.DungeonController.SpellReaction.FollowNpcExData, Trust",
-                          "DontFollowTank": false
-                        },
-                        "Remark": "",
-                        "DelayInSec": 3.0,
-                        "TimeInSec": 3.0
-                      }
-                    ],
-                    "JobsLimit": 0,
-                    "DisplayName": "机制应对:监听技能",
-                    "GUID": "96c076a2-b5c5-48c5-a583-7f4409926d3c",
-                    "Important": false,
-                    "Color": {
-                      "X": 1.0,
-                      "Y": 1.0,
-                      "Z": 0.4,
-                      "W": 1.0
-                    },
-                    "Id": 8,
-                    "Enable": true,
-                    "Remark": "36584-シンセスリザー"
-                  },
-                  {
-                    "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
-                    "SpellId": 36589,
-                    "ResolverDatas": [
-                      {
-                        "ResolverType": 1,
-                        "ExData": {
-                          "$type": "Trust.DungeonController.SpellReaction.FollowNpcExData, Trust",
-                          "DontFollowTank": false
-                        },
-                        "Remark": "",
-                        "DelayInSec": 3.0,
-                        "TimeInSec": 10.0
-                      }
-                    ],
-                    "JobsLimit": 0,
-                    "DisplayName": "机制应对:监听技能",
-                    "GUID": "c8ef3550-00a6-406f-9afe-abc4261d99e5",
+                    "GUID": "25d5fa5e-3690-4ddc-a353-3ca319f04752",
                     "Important": false,
                     "Color": {
                       "X": 1.0,
@@ -1550,26 +1781,66 @@
                     },
                     "Id": 9,
                     "Enable": true,
-                    "Remark": "36589-フロントテイルセイバー"
+                    "Remark": "36593- 后半-背后直线？背后角度咋写"
                   },
                   {
                     "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
-                    "SpellId": 36592,
+                    "SpellId": 36591,
                     "ResolverDatas": [
                       {
-                        "ResolverType": 1,
+                        "ResolverType": 7,
+                        "ExData": {
+                          "$type": "Trust.DungeonController.SpellReaction.DangerShapeExData, Trust",
+                          "AreaShapeType": 3,
+                          "AreaShape": {
+                            "$type": "AEAssist.Avoid.SectorShape, AEAssist",
+                            "Radius": 50.0,
+                            "Dir": {
+                              "X": 0.0,
+                              "Y": 0.0
+                            },
+                            "InitRotOffset": 0.0,
+                            "Angle": 50,
+                            "Origin": {
+                              "X": 1.0,
+                              "Y": 1.0,
+                              "Z": 1.0
+                            },
+                            "Name": null
+                          },
+                          "PointSelector": {
+                            "SelectType": 0,
+                            "FixedPoint": {
+                              "X": 0.0,
+                              "Y": 0.0,
+                              "Z": 0.0
+                            },
+                            "PointKey": null,
+                            "RelatedExDis": 0.0,
+                            "RelatedAngle": 0.0,
+                            "PresetGroups": [],
+                            "Args0": 0,
+                            "RecentTime": 1.0
+                          }
+                        },
+                        "Remark": "添加危险区",
+                        "DelayInSec": 5.0,
+                        "TimeInSec": 6.0
+                      },
+                      {
+                        "ResolverType": 0,
                         "ExData": {
                           "$type": "Trust.DungeonController.SpellReaction.FollowNpcExData, Trust",
                           "DontFollowTank": false
                         },
-                        "Remark": "",
-                        "DelayInSec": 3.0,
-                        "TimeInSec": 10.0
+                        "Remark": "移动到安全区",
+                        "DelayInSec": 0.0,
+                        "TimeInSec": 11.0
                       }
                     ],
                     "JobsLimit": 0,
                     "DisplayName": "机制应对:监听技能",
-                    "GUID": "c8ef3550-00a6-406f-9afe-abc4261d99e5",
+                    "GUID": "e5f0027c-69a6-44b5-8bdf-d91c71ae244b",
                     "Important": false,
                     "Color": {
                       "X": 1.0,
@@ -1579,26 +1850,66 @@
                     },
                     "Id": 10,
                     "Enable": true,
-                    "Remark": "36592-フロントテイルセイバー"
+                    "Remark": "36591- 后半-正面大钢铁"
                   },
                   {
                     "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
-                    "SpellId": 36590,
+                    "SpellId": 36589,
                     "ResolverDatas": [
                       {
-                        "ResolverType": 1,
+                        "ResolverType": 7,
+                        "ExData": {
+                          "$type": "Trust.DungeonController.SpellReaction.DangerShapeExData, Trust",
+                          "AreaShapeType": 3,
+                          "AreaShape": {
+                            "$type": "AEAssist.Avoid.SectorShape, AEAssist",
+                            "Radius": 50.0,
+                            "Dir": {
+                              "X": 0.0,
+                              "Y": 0.0
+                            },
+                            "InitRotOffset": 0.0,
+                            "Angle": 50,
+                            "Origin": {
+                              "X": 1.0,
+                              "Y": 1.0,
+                              "Z": 1.0
+                            },
+                            "Name": null
+                          },
+                          "PointSelector": {
+                            "SelectType": 0,
+                            "FixedPoint": {
+                              "X": 0.0,
+                              "Y": 0.0,
+                              "Z": 0.0
+                            },
+                            "PointKey": null,
+                            "RelatedExDis": 0.0,
+                            "RelatedAngle": 0.0,
+                            "PresetGroups": [],
+                            "Args0": 0,
+                            "RecentTime": 1.0
+                          }
+                        },
+                        "Remark": "添加危险区",
+                        "DelayInSec": 0.0,
+                        "TimeInSec": 5.0
+                      },
+                      {
+                        "ResolverType": 0,
                         "ExData": {
                           "$type": "Trust.DungeonController.SpellReaction.FollowNpcExData, Trust",
                           "DontFollowTank": false
                         },
-                        "Remark": "",
-                        "DelayInSec": 3.0,
-                        "TimeInSec": 10.0
+                        "Remark": "移动到安全区",
+                        "DelayInSec": 0.0,
+                        "TimeInSec": 11.0
                       }
                     ],
                     "JobsLimit": 0,
                     "DisplayName": "机制应对:监听技能",
-                    "GUID": "25d5fa5e-3690-4ddc-a353-3ca319f04752",
+                    "GUID": "e5f0027c-69a6-44b5-8bdf-d91c71ae244b",
                     "Important": false,
                     "Color": {
                       "X": 1.0,
@@ -1608,26 +1919,66 @@
                     },
                     "Id": 11,
                     "Enable": true,
-                    "Remark": "36590- バックテイルセイバー"
+                    "Remark": "36589- 后半-正面大钢铁"
                   },
                   {
                     "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
-                    "SpellId": 36593,
+                    "SpellId": 36585,
                     "ResolverDatas": [
                       {
-                        "ResolverType": 1,
+                        "ResolverType": 7,
+                        "ExData": {
+                          "$type": "Trust.DungeonController.SpellReaction.DangerShapeExData, Trust",
+                          "AreaShapeType": 0,
+                          "AreaShape": {
+                            "$type": "AEAssist.Avoid.SectorShape, AEAssist",
+                            "Radius": 20.0,
+                            "Dir": {
+                              "X": 0.0,
+                              "Y": 0.0
+                            },
+                            "InitRotOffset": 0.0,
+                            "Angle": 100,
+                            "Origin": {
+                              "X": 1.0,
+                              "Y": 1.0,
+                              "Z": 1.0
+                            },
+                            "Name": null
+                          },
+                          "PointSelector": {
+                            "SelectType": 0,
+                            "FixedPoint": {
+                              "X": 0.0,
+                              "Y": 0.0,
+                              "Z": 0.0
+                            },
+                            "PointKey": null,
+                            "RelatedExDis": 0.0,
+                            "RelatedAngle": 0.0,
+                            "PresetGroups": [],
+                            "Args0": 0,
+                            "RecentTime": 1.0
+                          }
+                        },
+                        "Remark": "添加危险区",
+                        "DelayInSec": 0.0,
+                        "TimeInSec": 7.0
+                      },
+                      {
+                        "ResolverType": 0,
                         "ExData": {
                           "$type": "Trust.DungeonController.SpellReaction.FollowNpcExData, Trust",
                           "DontFollowTank": false
                         },
-                        "Remark": "",
-                        "DelayInSec": 3.0,
-                        "TimeInSec": 10.0
+                        "Remark": "移动到安全区",
+                        "DelayInSec": 0.0,
+                        "TimeInSec": 7.0
                       }
                     ],
                     "JobsLimit": 0,
                     "DisplayName": "机制应对:监听技能",
-                    "GUID": "25d5fa5e-3690-4ddc-a353-3ca319f04752",
+                    "GUID": "c0561327-d4ed-42aa-8522-7e669f8acba1",
                     "Important": false,
                     "Color": {
                       "X": 1.0,
@@ -1637,7 +1988,430 @@
                     },
                     "Id": 12,
                     "Enable": true,
-                    "Remark": "36593-バックテイルセイバー"
+                    "Remark": "36585-扇形"
+                  },
+                  {
+                    "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
+                    "SpellId": 36586,
+                    "ResolverDatas": [
+                      {
+                        "ResolverType": 7,
+                        "ExData": {
+                          "$type": "Trust.DungeonController.SpellReaction.DangerShapeExData, Trust",
+                          "AreaShapeType": 0,
+                          "AreaShape": {
+                            "$type": "AEAssist.Avoid.SectorShape, AEAssist",
+                            "Radius": 20.0,
+                            "Dir": {
+                              "X": 0.0,
+                              "Y": 0.0
+                            },
+                            "InitRotOffset": 0.0,
+                            "Angle": 100,
+                            "Origin": {
+                              "X": 1.0,
+                              "Y": 1.0,
+                              "Z": 1.0
+                            },
+                            "Name": null
+                          },
+                          "PointSelector": {
+                            "SelectType": 0,
+                            "FixedPoint": {
+                              "X": 0.0,
+                              "Y": 0.0,
+                              "Z": 0.0
+                            },
+                            "PointKey": null,
+                            "RelatedExDis": 0.0,
+                            "RelatedAngle": 0.0,
+                            "PresetGroups": [],
+                            "Args0": 0,
+                            "RecentTime": 1.0
+                          }
+                        },
+                        "Remark": "添加危险区",
+                        "DelayInSec": 0.0,
+                        "TimeInSec": 7.0
+                      }
+                    ],
+                    "JobsLimit": 0,
+                    "DisplayName": "机制应对:监听技能",
+                    "GUID": "c0561327-d4ed-42aa-8522-7e669f8acba1",
+                    "Important": false,
+                    "Color": {
+                      "X": 1.0,
+                      "Y": 1.0,
+                      "Z": 0.4,
+                      "W": 1.0
+                    },
+                    "Id": 13,
+                    "Enable": true,
+                    "Remark": "36586-扇形"
+                  },
+                  {
+                    "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
+                    "SpellId": 36587,
+                    "ResolverDatas": [
+                      {
+                        "ResolverType": 7,
+                        "ExData": {
+                          "$type": "Trust.DungeonController.SpellReaction.DangerShapeExData, Trust",
+                          "AreaShapeType": 0,
+                          "AreaShape": {
+                            "$type": "AEAssist.Avoid.SectorShape, AEAssist",
+                            "Radius": 20.0,
+                            "Dir": {
+                              "X": 0.0,
+                              "Y": 0.0
+                            },
+                            "InitRotOffset": 0.0,
+                            "Angle": 100,
+                            "Origin": {
+                              "X": 1.0,
+                              "Y": 1.0,
+                              "Z": 1.0
+                            },
+                            "Name": null
+                          },
+                          "PointSelector": {
+                            "SelectType": 0,
+                            "FixedPoint": {
+                              "X": 0.0,
+                              "Y": 0.0,
+                              "Z": 0.0
+                            },
+                            "PointKey": null,
+                            "RelatedExDis": 0.0,
+                            "RelatedAngle": 0.0,
+                            "PresetGroups": [],
+                            "Args0": 0,
+                            "RecentTime": 1.0
+                          }
+                        },
+                        "Remark": "添加危险区",
+                        "DelayInSec": 0.0,
+                        "TimeInSec": 7.0
+                      }
+                    ],
+                    "JobsLimit": 0,
+                    "DisplayName": "机制应对:监听技能",
+                    "GUID": "c0561327-d4ed-42aa-8522-7e669f8acba1",
+                    "Important": false,
+                    "Color": {
+                      "X": 1.0,
+                      "Y": 1.0,
+                      "Z": 0.4,
+                      "W": 1.0
+                    },
+                    "Id": 14,
+                    "Enable": true,
+                    "Remark": "36587-扇形"
+                  },
+                  {
+                    "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
+                    "SpellId": 36588,
+                    "ResolverDatas": [
+                      {
+                        "ResolverType": 7,
+                        "ExData": {
+                          "$type": "Trust.DungeonController.SpellReaction.DangerShapeExData, Trust",
+                          "AreaShapeType": 0,
+                          "AreaShape": {
+                            "$type": "AEAssist.Avoid.SectorShape, AEAssist",
+                            "Radius": 20.0,
+                            "Dir": {
+                              "X": 0.0,
+                              "Y": 0.0
+                            },
+                            "InitRotOffset": 0.0,
+                            "Angle": 100,
+                            "Origin": {
+                              "X": 1.0,
+                              "Y": 1.0,
+                              "Z": 1.0
+                            },
+                            "Name": null
+                          },
+                          "PointSelector": {
+                            "SelectType": 0,
+                            "FixedPoint": {
+                              "X": 0.0,
+                              "Y": 0.0,
+                              "Z": 0.0
+                            },
+                            "PointKey": null,
+                            "RelatedExDis": 0.0,
+                            "RelatedAngle": 0.0,
+                            "PresetGroups": [],
+                            "Args0": 0,
+                            "RecentTime": 1.0
+                          }
+                        },
+                        "Remark": "添加危险区",
+                        "DelayInSec": 0.0,
+                        "TimeInSec": 7.0
+                      }
+                    ],
+                    "JobsLimit": 0,
+                    "DisplayName": "机制应对:监听技能",
+                    "GUID": "c0561327-d4ed-42aa-8522-7e669f8acba1",
+                    "Important": false,
+                    "Color": {
+                      "X": 1.0,
+                      "Y": 1.0,
+                      "Z": 0.4,
+                      "W": 1.0
+                    },
+                    "Id": 15,
+                    "Enable": true,
+                    "Remark": "36588-扇形"
+                  },
+                  {
+                    "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
+                    "SpellId": 36580,
+                    "ResolverDatas": [
+                      {
+                        "ResolverType": 7,
+                        "ExData": {
+                          "$type": "Trust.DungeonController.SpellReaction.DangerShapeExData, Trust",
+                          "AreaShapeType": 0,
+                          "AreaShape": {
+                            "$type": "AEAssist.Avoid.SectorShape, AEAssist",
+                            "Radius": 20.0,
+                            "Dir": {
+                              "X": 0.0,
+                              "Y": 0.0
+                            },
+                            "InitRotOffset": 0.0,
+                            "Angle": 100,
+                            "Origin": {
+                              "X": 1.0,
+                              "Y": 1.0,
+                              "Z": 1.0
+                            },
+                            "Name": null
+                          },
+                          "PointSelector": {
+                            "SelectType": 0,
+                            "FixedPoint": {
+                              "X": 0.0,
+                              "Y": 0.0,
+                              "Z": 0.0
+                            },
+                            "PointKey": null,
+                            "RelatedExDis": 0.0,
+                            "RelatedAngle": 0.0,
+                            "PresetGroups": [],
+                            "Args0": 0,
+                            "RecentTime": 1.0
+                          }
+                        },
+                        "Remark": "添加危险区",
+                        "DelayInSec": 0.0,
+                        "TimeInSec": 7.0
+                      },
+                      {
+                        "ResolverType": 0,
+                        "ExData": {
+                          "$type": "Trust.DungeonController.SpellReaction.FollowNpcExData, Trust",
+                          "DontFollowTank": false
+                        },
+                        "Remark": "移动到安全区",
+                        "DelayInSec": 0.0,
+                        "TimeInSec": 7.0
+                      }
+                    ],
+                    "JobsLimit": 0,
+                    "DisplayName": "机制应对:监听技能",
+                    "GUID": "c0561327-d4ed-42aa-8522-7e669f8acba1",
+                    "Important": false,
+                    "Color": {
+                      "X": 1.0,
+                      "Y": 1.0,
+                      "Z": 0.4,
+                      "W": 1.0
+                    },
+                    "Id": 16,
+                    "Enable": true,
+                    "Remark": "36580-扇形"
+                  },
+                  {
+                    "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
+                    "SpellId": 36581,
+                    "ResolverDatas": [
+                      {
+                        "ResolverType": 7,
+                        "ExData": {
+                          "$type": "Trust.DungeonController.SpellReaction.DangerShapeExData, Trust",
+                          "AreaShapeType": 0,
+                          "AreaShape": {
+                            "$type": "AEAssist.Avoid.SectorShape, AEAssist",
+                            "Radius": 20.0,
+                            "Dir": {
+                              "X": 0.0,
+                              "Y": 0.0
+                            },
+                            "InitRotOffset": 0.0,
+                            "Angle": 100,
+                            "Origin": {
+                              "X": 1.0,
+                              "Y": 1.0,
+                              "Z": 1.0
+                            },
+                            "Name": null
+                          },
+                          "PointSelector": {
+                            "SelectType": 0,
+                            "FixedPoint": {
+                              "X": 0.0,
+                              "Y": 0.0,
+                              "Z": 0.0
+                            },
+                            "PointKey": null,
+                            "RelatedExDis": 0.0,
+                            "RelatedAngle": 0.0,
+                            "PresetGroups": [],
+                            "Args0": 0,
+                            "RecentTime": 1.0
+                          }
+                        },
+                        "Remark": "添加危险区",
+                        "DelayInSec": 0.0,
+                        "TimeInSec": 7.0
+                      }
+                    ],
+                    "JobsLimit": 0,
+                    "DisplayName": "机制应对:监听技能",
+                    "GUID": "c0561327-d4ed-42aa-8522-7e669f8acba1",
+                    "Important": false,
+                    "Color": {
+                      "X": 1.0,
+                      "Y": 1.0,
+                      "Z": 0.4,
+                      "W": 1.0
+                    },
+                    "Id": 17,
+                    "Enable": true,
+                    "Remark": "36581-扇形"
+                  },
+                  {
+                    "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
+                    "SpellId": 36582,
+                    "ResolverDatas": [
+                      {
+                        "ResolverType": 7,
+                        "ExData": {
+                          "$type": "Trust.DungeonController.SpellReaction.DangerShapeExData, Trust",
+                          "AreaShapeType": 0,
+                          "AreaShape": {
+                            "$type": "AEAssist.Avoid.SectorShape, AEAssist",
+                            "Radius": 20.0,
+                            "Dir": {
+                              "X": 0.0,
+                              "Y": 0.0
+                            },
+                            "InitRotOffset": 0.0,
+                            "Angle": 100,
+                            "Origin": {
+                              "X": 1.0,
+                              "Y": 1.0,
+                              "Z": 1.0
+                            },
+                            "Name": null
+                          },
+                          "PointSelector": {
+                            "SelectType": 0,
+                            "FixedPoint": {
+                              "X": 0.0,
+                              "Y": 0.0,
+                              "Z": 0.0
+                            },
+                            "PointKey": null,
+                            "RelatedExDis": 0.0,
+                            "RelatedAngle": 0.0,
+                            "PresetGroups": [],
+                            "Args0": 0,
+                            "RecentTime": 1.0
+                          }
+                        },
+                        "Remark": "添加危险区",
+                        "DelayInSec": 0.0,
+                        "TimeInSec": 7.0
+                      }
+                    ],
+                    "JobsLimit": 0,
+                    "DisplayName": "机制应对:监听技能",
+                    "GUID": "c0561327-d4ed-42aa-8522-7e669f8acba1",
+                    "Important": false,
+                    "Color": {
+                      "X": 1.0,
+                      "Y": 1.0,
+                      "Z": 0.4,
+                      "W": 1.0
+                    },
+                    "Id": 18,
+                    "Enable": true,
+                    "Remark": "36582-扇形"
+                  },
+                  {
+                    "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
+                    "SpellId": 36583,
+                    "ResolverDatas": [
+                      {
+                        "ResolverType": 7,
+                        "ExData": {
+                          "$type": "Trust.DungeonController.SpellReaction.DangerShapeExData, Trust",
+                          "AreaShapeType": 0,
+                          "AreaShape": {
+                            "$type": "AEAssist.Avoid.SectorShape, AEAssist",
+                            "Radius": 20.0,
+                            "Dir": {
+                              "X": 0.0,
+                              "Y": 0.0
+                            },
+                            "InitRotOffset": 0.0,
+                            "Angle": 100,
+                            "Origin": {
+                              "X": 1.0,
+                              "Y": 1.0,
+                              "Z": 1.0
+                            },
+                            "Name": null
+                          },
+                          "PointSelector": {
+                            "SelectType": 0,
+                            "FixedPoint": {
+                              "X": 0.0,
+                              "Y": 0.0,
+                              "Z": 0.0
+                            },
+                            "PointKey": null,
+                            "RelatedExDis": 0.0,
+                            "RelatedAngle": 0.0,
+                            "PresetGroups": [],
+                            "Args0": 0,
+                            "RecentTime": 1.0
+                          }
+                        },
+                        "Remark": "添加危险区",
+                        "DelayInSec": 0.0,
+                        "TimeInSec": 7.0
+                      }
+                    ],
+                    "JobsLimit": 0,
+                    "DisplayName": "机制应对:监听技能",
+                    "GUID": "c0561327-d4ed-42aa-8522-7e669f8acba1",
+                    "Important": false,
+                    "Color": {
+                      "X": 1.0,
+                      "Y": 1.0,
+                      "Z": 0.4,
+                      "W": 1.0
+                    },
+                    "Id": 19,
+                    "Enable": true,
+                    "Remark": "36583-扇形"
                   }
                 ],
                 "GUID": "40ea30e2-21b6-4273-b512-e1363bbf7bf3",
@@ -1664,7 +2438,7 @@
                   "Z": 0.4,
                   "W": 1.0
                 },
-                "Id": 13,
+                "Id": 20,
                 "Enable": true,
                 "Remark": "延迟一点时间 防止某机制一次性出现大量同id技能释放时 连续触发多轮监听和处理"
               }
@@ -1706,7 +2480,28 @@
       "Remark": "リングナパーム"
     }
   ],
-  "NeedIgnoreWhenAutoAddDangerArea": [],
+  "NeedIgnoreWhenAutoAddDangerArea": [
+    {
+      "SpellId": 36573,
+      "Remark": "老1分散"
+    },
+    {
+      "SpellId": 37922,
+      "Remark": "老3-分散"
+    },
+    {
+      "SpellId": 37349,
+      "Remark": "老2-分散"
+    },
+    {
+      "SpellId": 36570,
+      "Remark": "老1-范围太小了"
+    },
+    {
+      "SpellId": 36589,
+      "Remark": "老3-太小了"
+    }
+  ],
   "Remark": "",
   "TerritoryTypeId": 1198
 }
