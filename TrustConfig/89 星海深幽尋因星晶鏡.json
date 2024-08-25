@@ -29,7 +29,7 @@
         "Y": 200.0192,
         "Z": 563.2261
       },
-      "IgnoreBattleState": false,
+      "IgnoreBattleState": true,
       "ArriveActionType": 6,
       "ArriveActionData": {
         "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
@@ -57,9 +57,9 @@
     {
       "Remark": "",
       "TargetPos": {
-        "X": -59.129196,
-        "Y": 195.2739,
-        "Z": 470.13055
+        "X": -48.10857,
+        "Y": 197.59932,
+        "Z": 501.05698
       },
       "IgnoreBattleState": false,
       "ArriveActionType": 6,
@@ -73,9 +73,9 @@
     {
       "Remark": "",
       "TargetPos": {
-        "X": -59.569344,
-        "Y": 195.21918,
-        "Z": 463.6855
+        "X": -58.050823,
+        "Y": 197.6002,
+        "Z": 484.33514
       },
       "IgnoreBattleState": false,
       "ArriveActionType": 6,
@@ -105,9 +105,9 @@
     {
       "Remark": "",
       "TargetPos": {
-        "X": -26.96271,
-        "Y": 187.99998,
-        "Z": 416.70026
+        "X": -48.50395,
+        "Y": 195.19997,
+        "Z": 431.30832
       },
       "IgnoreBattleState": false,
       "ArriveActionType": 6,
@@ -121,11 +121,11 @@
     {
       "Remark": "",
       "TargetPos": {
-        "X": -18.643923,
-        "Y": 188.01917,
-        "Z": 412.92422
+        "X": -42.424236,
+        "Y": 192.78104,
+        "Z": 420.9147
       },
-      "IgnoreBattleState": false,
+      "IgnoreBattleState": true,
       "ArriveActionType": 6,
       "ArriveActionData": {
         "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
@@ -220,7 +220,7 @@
       "ExDistance": 0.0
     },
     {
-      "Remark": "",
+      "Remark": "老1",
       "TargetPos": {
         "X": -6.5739765,
         "Y": 164.0,
@@ -404,26 +404,10 @@
         "Z": 244.25769
       },
       "IgnoreBattleState": false,
-      "ArriveActionType": 6,
-      "ArriveActionData": {
-        "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
-        "TimeOut": 15.0
-      },
-      "ReverseDir": false,
-      "ExDistance": 0.0
-    },
-    {
-      "Remark": "",
-      "TargetPos": {
-        "X": -12.40956,
-        "Y": -211.18945,
-        "Z": 238.82448
-      },
-      "IgnoreBattleState": false,
       "ArriveActionType": 2,
       "ArriveActionData": {
         "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_BattleWithMonster, Trust",
-        "WaitTimeInSec": 10.0
+        "WaitTimeInSec": 3.0
       },
       "ReverseDir": false,
       "ExDistance": 0.0
@@ -431,9 +415,9 @@
     {
       "Remark": "",
       "TargetPos": {
-        "X": 11.183452,
-        "Y": -211.28961,
-        "Z": 165.85312
+        "X": 13.718672,
+        "Y": -211.3277,
+        "Z": 184.09958
       },
       "IgnoreBattleState": false,
       "ArriveActionType": 6,
@@ -445,7 +429,7 @@
       "ExDistance": 0.0
     },
     {
-      "Remark": "",
+      "Remark": "老2",
       "TargetPos": {
         "X": 9.779824,
         "Y": -211.40503,
@@ -568,118 +552,6 @@
     {
       "Remark": "",
       "TargetPos": {
-        "X": 11.02192,
-        "Y": -211.97806,
-        "Z": -117.58074
-      },
-      "IgnoreBattleState": false,
-      "ArriveActionType": 6,
-      "ArriveActionData": {
-        "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
-        "TimeOut": 15.0
-      },
-      "ReverseDir": false,
-      "ExDistance": 0.0
-    },
-    {
-      "Remark": "",
-      "TargetPos": {
-        "X": 10.639242,
-        "Y": -212.04,
-        "Z": -122.05076
-      },
-      "IgnoreBattleState": false,
-      "ArriveActionType": 6,
-      "ArriveActionData": {
-        "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
-        "TimeOut": 15.0
-      },
-      "ReverseDir": false,
-      "ExDistance": 0.0
-    },
-    {
-      "Remark": "",
-      "TargetPos": {
-        "X": 7.782254,
-        "Y": -211.93272,
-        "Z": -126.39207
-      },
-      "IgnoreBattleState": false,
-      "ArriveActionType": 6,
-      "ArriveActionData": {
-        "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
-        "TimeOut": 15.0
-      },
-      "ReverseDir": false,
-      "ExDistance": 0.0
-    },
-    {
-      "Remark": "",
-      "TargetPos": {
-        "X": 5.9365883,
-        "Y": -212.9553,
-        "Z": -129.19746
-      },
-      "IgnoreBattleState": false,
-      "ArriveActionType": 6,
-      "ArriveActionData": {
-        "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
-        "TimeOut": 15.0
-      },
-      "ReverseDir": false,
-      "ExDistance": 0.0
-    },
-    {
-      "Remark": "",
-      "TargetPos": {
-        "X": 4.571323,
-        "Y": -214.40141,
-        "Z": -131.56796
-      },
-      "IgnoreBattleState": false,
-      "ArriveActionType": 6,
-      "ArriveActionData": {
-        "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
-        "TimeOut": 15.0
-      },
-      "ReverseDir": false,
-      "ExDistance": 0.0
-    },
-    {
-      "Remark": "",
-      "TargetPos": {
-        "X": 3.9668186,
-        "Y": -214.83638,
-        "Z": -134.8662
-      },
-      "IgnoreBattleState": false,
-      "ArriveActionType": 6,
-      "ArriveActionData": {
-        "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
-        "TimeOut": 15.0
-      },
-      "ReverseDir": false,
-      "ExDistance": 0.0
-    },
-    {
-      "Remark": "",
-      "TargetPos": {
-        "X": 3.7161639,
-        "Y": -215.08128,
-        "Z": -138.2285
-      },
-      "IgnoreBattleState": false,
-      "ArriveActionType": 6,
-      "ArriveActionData": {
-        "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
-        "TimeOut": 15.0
-      },
-      "ReverseDir": false,
-      "ExDistance": 0.0
-    },
-    {
-      "Remark": "",
-      "TargetPos": {
         "X": 3.622599,
         "Y": -215.11282,
         "Z": -140.85234
@@ -696,281 +568,9 @@
     {
       "Remark": "",
       "TargetPos": {
-        "X": 3.3360927,
-        "Y": -216.37358,
-        "Z": -144.26949
-      },
-      "IgnoreBattleState": false,
-      "ArriveActionType": 6,
-      "ArriveActionData": {
-        "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
-        "TimeOut": 15.0
-      },
-      "ReverseDir": false,
-      "ExDistance": 0.0
-    },
-    {
-      "Remark": "",
-      "TargetPos": {
-        "X": 2.2528205,
-        "Y": -217.9585,
-        "Z": -148.0207
-      },
-      "IgnoreBattleState": false,
-      "ArriveActionType": 6,
-      "ArriveActionData": {
-        "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
-        "TimeOut": 15.0
-      },
-      "ReverseDir": false,
-      "ExDistance": 0.0
-    },
-    {
-      "Remark": "",
-      "TargetPos": {
-        "X": 1.6379868,
-        "Y": -217.95692,
-        "Z": -149.36987
-      },
-      "IgnoreBattleState": false,
-      "ArriveActionType": 6,
-      "ArriveActionData": {
-        "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
-        "TimeOut": 15.0
-      },
-      "ReverseDir": false,
-      "ExDistance": 0.0
-    },
-    {
-      "Remark": "",
-      "TargetPos": {
-        "X": 0.55074185,
-        "Y": -217.8761,
-        "Z": -151.89764
-      },
-      "IgnoreBattleState": false,
-      "ArriveActionType": 6,
-      "ArriveActionData": {
-        "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
-        "TimeOut": 15.0
-      },
-      "ReverseDir": false,
-      "ExDistance": 0.0
-    },
-    {
-      "Remark": "",
-      "TargetPos": {
-        "X": -0.8432419,
-        "Y": -217.90154,
-        "Z": -154.76335
-      },
-      "IgnoreBattleState": false,
-      "ArriveActionType": 6,
-      "ArriveActionData": {
-        "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
-        "TimeOut": 15.0
-      },
-      "ReverseDir": false,
-      "ExDistance": 0.0
-    },
-    {
-      "Remark": "",
-      "TargetPos": {
-        "X": -2.3736684,
-        "Y": -219.21637,
-        "Z": -158.24272
-      },
-      "IgnoreBattleState": false,
-      "ArriveActionType": 6,
-      "ArriveActionData": {
-        "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
-        "TimeOut": 15.0
-      },
-      "ReverseDir": false,
-      "ExDistance": 0.0
-    },
-    {
-      "Remark": "",
-      "TargetPos": {
-        "X": -3.9792037,
-        "Y": -221.07907,
-        "Z": -162.39409
-      },
-      "IgnoreBattleState": false,
-      "ArriveActionType": 6,
-      "ArriveActionData": {
-        "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
-        "TimeOut": 15.0
-      },
-      "ReverseDir": false,
-      "ExDistance": 0.0
-    },
-    {
-      "Remark": "",
-      "TargetPos": {
-        "X": -5.057207,
-        "Y": -221.74524,
-        "Z": -164.93752
-      },
-      "IgnoreBattleState": false,
-      "ArriveActionType": 6,
-      "ArriveActionData": {
-        "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
-        "TimeOut": 15.0
-      },
-      "ReverseDir": false,
-      "ExDistance": 0.0
-    },
-    {
-      "Remark": "",
-      "TargetPos": {
-        "X": -6.807527,
-        "Y": -224.00615,
-        "Z": -168.94879
-      },
-      "IgnoreBattleState": false,
-      "ArriveActionType": 6,
-      "ArriveActionData": {
-        "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
-        "TimeOut": 15.0
-      },
-      "ReverseDir": false,
-      "ExDistance": 0.0
-    },
-    {
-      "Remark": "",
-      "TargetPos": {
-        "X": -6.807527,
-        "Y": -224.00615,
-        "Z": -168.94879
-      },
-      "IgnoreBattleState": false,
-      "ArriveActionType": 6,
-      "ArriveActionData": {
-        "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
-        "TimeOut": 15.0
-      },
-      "ReverseDir": false,
-      "ExDistance": 0.0
-    },
-    {
-      "Remark": "",
-      "TargetPos": {
         "X": -3.5367723,
         "Y": -224.09767,
         "Z": -176.94122
-      },
-      "IgnoreBattleState": false,
-      "ArriveActionType": 6,
-      "ArriveActionData": {
-        "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
-        "TimeOut": 15.0
-      },
-      "ReverseDir": false,
-      "ExDistance": 0.0
-    },
-    {
-      "Remark": "",
-      "TargetPos": {
-        "X": -1.8098207,
-        "Y": -224.29987,
-        "Z": -180.3412
-      },
-      "IgnoreBattleState": false,
-      "ArriveActionType": 6,
-      "ArriveActionData": {
-        "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
-        "TimeOut": 15.0
-      },
-      "ReverseDir": false,
-      "ExDistance": 0.0
-    },
-    {
-      "Remark": "",
-      "TargetPos": {
-        "X": 2.281958,
-        "Y": -225.69156,
-        "Z": -183.45766
-      },
-      "IgnoreBattleState": false,
-      "ArriveActionType": 6,
-      "ArriveActionData": {
-        "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
-        "TimeOut": 15.0
-      },
-      "ReverseDir": false,
-      "ExDistance": 0.0
-    },
-    {
-      "Remark": "",
-      "TargetPos": {
-        "X": 5.666982,
-        "Y": -225.6769,
-        "Z": -184.90077
-      },
-      "IgnoreBattleState": false,
-      "ArriveActionType": 6,
-      "ArriveActionData": {
-        "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
-        "TimeOut": 15.0
-      },
-      "ReverseDir": false,
-      "ExDistance": 0.0
-    },
-    {
-      "Remark": "",
-      "TargetPos": {
-        "X": 5.666982,
-        "Y": -225.6769,
-        "Z": -184.90077
-      },
-      "IgnoreBattleState": false,
-      "ArriveActionType": 6,
-      "ArriveActionData": {
-        "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
-        "TimeOut": 15.0
-      },
-      "ReverseDir": false,
-      "ExDistance": 0.0
-    },
-    {
-      "Remark": "",
-      "TargetPos": {
-        "X": 8.171116,
-        "Y": -225.66794,
-        "Z": -185.78786
-      },
-      "IgnoreBattleState": false,
-      "ArriveActionType": 6,
-      "ArriveActionData": {
-        "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
-        "TimeOut": 15.0
-      },
-      "ReverseDir": false,
-      "ExDistance": 0.0
-    },
-    {
-      "Remark": "",
-      "TargetPos": {
-        "X": 11.516776,
-        "Y": -226.69508,
-        "Z": -186.6698
-      },
-      "IgnoreBattleState": false,
-      "ArriveActionType": 6,
-      "ArriveActionData": {
-        "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
-        "TimeOut": 15.0
-      },
-      "ReverseDir": false,
-      "ExDistance": 0.0
-    },
-    {
-      "Remark": "",
-      "TargetPos": {
-        "X": 16.65691,
-        "Y": -228.66779,
-        "Z": -187.85776
       },
       "IgnoreBattleState": false,
       "ArriveActionType": 6,
@@ -1068,16 +668,11 @@
         "Y": -238.78163,
         "Z": -363.15466
       },
-      "IgnoreBattleState": false,
-      "ArriveActionType": 1,
+      "IgnoreBattleState": true,
+      "ArriveActionType": 6,
       "ArriveActionData": {
-        "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_Wait, Trust",
-        "TargetPoint": {
-          "X": 0.0,
-          "Y": 0.0,
-          "Z": 0.0
-        },
-        "TimeInSec": 3.0
+        "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
+        "TimeOut": 15.0
       },
       "ReverseDir": false,
       "ExDistance": 0.0
@@ -1133,9 +728,9 @@
     {
       "Remark": "",
       "TargetPos": {
-        "X": 11.194774,
-        "Y": -236.00002,
-        "Z": -472.32294
+        "X": 10.972497,
+        "Y": -235.78857,
+        "Z": -460.83188
       },
       "IgnoreBattleState": false,
       "ArriveActionType": 6,
@@ -1147,11 +742,11 @@
       "ExDistance": 0.0
     },
     {
-      "Remark": "",
+      "Remark": "老3",
       "TargetPos": {
-        "X": 11.383139,
+        "X": 11.4676485,
         "Y": -236.0,
-        "Z": -496.88745
+        "Z": -493.2348
       },
       "IgnoreBattleState": false,
       "ArriveActionType": 5,
@@ -1184,6 +779,7 @@
   "DutyId": 16,
   "TrustVersion": 0,
   "Index": 0,
+  "DutyType": 1,
   "BossTriggerLines": [
     {
       "Remark": "",
