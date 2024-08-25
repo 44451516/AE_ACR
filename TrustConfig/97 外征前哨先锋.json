@@ -1,5 +1,5 @@
 {
-  "Name": "97 [TND] V2",
+  "Name": "97 外征前哨先锋",
   "AllSteps": [
     {
       "Remark": "",
@@ -639,7 +639,7 @@
             "AreaShapeType": 0,
             "AreaShape": {
               "$type": "AEAssist.Avoid.CircleShape, AEAssist",
-              "Radius": 17.0,
+              "Radius": 16.0,
               "Origin": {
                 "X": 89.95248,
                 "Y": 11.999995,
@@ -703,7 +703,7 @@
                           "AreaShapeType": 2,
                           "AreaShape": {
                             "$type": "AEAssist.Avoid.CircleShape, AEAssist",
-                            "Radius": 18.0,
+                            "Radius": 19.0,
                             "Origin": {
                               "X": 1.0,
                               "Y": 1.0,
@@ -727,18 +727,23 @@
                           }
                         },
                         "Remark": "添加危险区",
-                        "DelayInSec": 9.0,
-                        "TimeInSec": 1.5
+                        "DelayInSec": 8.0,
+                        "TimeInSec": 2.5
                       },
                       {
-                        "ResolverType": 0,
+                        "ResolverType": 6,
                         "ExData": {
-                          "$type": "Trust.DungeonController.SpellReaction.FollowNpcExData, Trust",
-                          "DontFollowTank": false
+                          "$type": "Trust.DungeonController.SpellReaction.ResolverTP2FixedPos, Trust",
+                          "Pos": {
+                            "X": -113.990135,
+                            "Y": 6.9999924,
+                            "Z": 221.70923
+                          },
+                          "UseCastPos": false
                         },
-                        "Remark": "移动到安全区",
-                        "DelayInSec": 9.0,
-                        "TimeInSec": 2.0
+                        "Remark": "TP",
+                        "DelayInSec": 8.0,
+                        "TimeInSec": 3.0
                       }
                     ],
                     "JobsLimit": 0,
@@ -766,7 +771,7 @@
                           "AreaShapeType": 2,
                           "AreaShape": {
                             "$type": "AEAssist.Avoid.CircleShape, AEAssist",
-                            "Radius": 18.0,
+                            "Radius": 19.0,
                             "Origin": {
                               "X": 1.0,
                               "Y": 1.0,
@@ -790,18 +795,23 @@
                           }
                         },
                         "Remark": "添加危险区",
-                        "DelayInSec": 9.0,
-                        "TimeInSec": 1.5
+                        "DelayInSec": 8.0,
+                        "TimeInSec": 2.5
                       },
                       {
-                        "ResolverType": 0,
+                        "ResolverType": 6,
                         "ExData": {
-                          "$type": "Trust.DungeonController.SpellReaction.FollowNpcExData, Trust",
-                          "DontFollowTank": false
+                          "$type": "Trust.DungeonController.SpellReaction.ResolverTP2FixedPos, Trust",
+                          "Pos": {
+                            "X": -113.990135,
+                            "Y": 6.9999924,
+                            "Z": 221.70923
+                          },
+                          "UseCastPos": false
                         },
-                        "Remark": "移动到安全区",
-                        "DelayInSec": 9.0,
-                        "TimeInSec": 2.0
+                        "Remark": "TP",
+                        "DelayInSec": 8.0,
+                        "TimeInSec": 3.0
                       }
                     ],
                     "JobsLimit": 0,
@@ -884,7 +894,7 @@
                         "ResolverType": 18,
                         "ExData": {
                           "$type": "Trust.DungeonController.SpellReaction.ScriptResolverExData, Trust",
-                          "Script": "using AEAssist;\nusing AEAssist.Avoid;\nusing AEAssist.Helper;\nusing AEAssist.MemoryApi;\nusing Dalamud.Game.ClientState.Objects.Types;\nusing Trust.DungeonController.Dungeon;\nusing Trust.DungeonController.SpellReaction;\n\nnamespace ScriptTest;\n\n\npublic class Trust97老1脚本_场外直线_36569 : IResolverScript\n{\n    public void OnActive(DungeonController dungeonController, ResolverCondParams spellCondParams)\n    {\n\n    }\n\n    public void OnUpdate(DungeonController dungeonController)\n    {\n        // 先拿到当前场景的地图管理\n        var mapBaseName = Core.Resolve<MemApiZoneInfo>().GetCurrZoneInfo().MapBaseName;\n        if (!AvoidManager.Instance.GetMap(mapBaseName, out var map))\n        {\n            \n            return;\n        }\n        \n        \n        foreach (var gameObject in ECHelper.Objects)\n        {\n            if (gameObject.DataId != 16828)\n                continue;\n\n            if (gameObject is IBattleChara battleChara)\n            {\n                if (battleChara.CastActionId == 36569)\n                {\n                    if (battleChara.CurrentCastTime >= 4 && battleChara.CurrentCastTime <= 4.5f)\n                    {\n                        var bossPos = gameObject.Position;\n                        var dir = gameObject.Rotation.GetDirV3(0);\n                        bossPos = bossPos - dir * 2; // 防止脚底\n                        var 矩形长度 = 30f;\n                        var 矩形宽度 = 5.1f;\n\n                        map.AddDangerShape\n                        (\n                            gameObject.EntityId, new DangerShape\n                            (\n                                RectShape.Create(bossPos, bossPos + dir * 矩形长度, 矩形宽度), TimeHelper.Now(), 2000\n                            ), true\n                        );\n                    }\n                }\n             \n            }\n\n\n        }\n\n        // 让角色移动到安全区\n        SpellResolverMgr.Instance.AllResolvers[SpellResolverType.Move2SafeArea].OnUpdate(dungeonController, null);\n    }\n}"
+                          "Script": "using AEAssist;\nusing AEAssist.Avoid;\nusing AEAssist.Helper;\nusing AEAssist.MemoryApi;\nusing Dalamud.Game.ClientState.Objects.Types;\nusing Trust.DungeonController.Dungeon;\nusing Trust.DungeonController.SpellReaction;\n\nnamespace ScriptTest;\n\n\npublic class Trust97老1脚本_场外直线_36569 : IResolverScript\n{\n    public void OnActive(DungeonController dungeonController, ResolverCondParams spellCondParams)\n    {\n\n    }\n\n    public void OnUpdate(DungeonController dungeonController)\n    {\n        // 先拿到当前场景的地图管理\n        var mapBaseName = Core.Resolve<MemApiZoneInfo>().GetCurrZoneInfo().MapBaseName;\n        if (!AvoidManager.Instance.GetMap(mapBaseName, out var map))\n        {\n            \n            return;\n        }\n        \n        \n        foreach (var gameObject in ECHelper.Objects)\n        {\n            if (gameObject.DataId != 16828)\n                continue;\n\n            if (gameObject is IBattleChara battleChara)\n            {\n                if (battleChara.CastActionId == 36569)\n                {\n                    if (battleChara.CurrentCastTime >= 0 && battleChara.CurrentCastTime <= 1f)\n                    {\n                        var bossPos = gameObject.Position;\n                        var dir = gameObject.Rotation.GetDirV3(0);\n                        bossPos = bossPos - dir * 2; // 防止脚底\n                        var 矩形长度 = 30f;\n                        var 矩形宽度 = 5.1f;\n\n                        map.AddDangerShape\n                        (\n                            gameObject.EntityId, new DangerShape\n                            (\n                                RectShape.Create(bossPos, bossPos + dir * 矩形长度, 矩形宽度), TimeHelper.Now(), 6000\n                            ), true\n                        );\n                    }\n                }\n             \n            }\n\n\n        }\n\n        // 让角色移动到安全区\n        SpellResolverMgr.Instance.AllResolvers[SpellResolverType.Move2SafeArea].OnUpdate(dungeonController, null);\n    }\n}"
                         },
                         "Remark": "脚本",
                         "DelayInSec": 0.0,
@@ -924,15 +934,15 @@
                         "ExData": {
                           "$type": "Trust.DungeonController.SpellReaction.ResolverTP2FixedPos, Trust",
                           "Pos": {
-                            "X": -99.88189,
+                            "X": -99.897705,
                             "Y": 6.999998,
-                            "Z": 206.78464
+                            "Z": 207.28722
                           },
                           "UseCastPos": false
                         },
                         "Remark": "TP到中间",
-                        "DelayInSec": 9.0,
-                        "TimeInSec": 5.0
+                        "DelayInSec": 9.1,
+                        "TimeInSec": 6.0
                       }
                     ],
                     "JobsLimit": 0,
@@ -960,8 +970,8 @@
                           "Distance": 8.0
                         },
                         "Remark": "远离队友",
-                        "DelayInSec": 4.0,
-                        "TimeInSec": 2.0
+                        "DelayInSec": 3.0,
+                        "TimeInSec": 5.0
                       }
                     ],
                     "JobsLimit": 0,
@@ -1568,8 +1578,8 @@
                           "Distance": 8.0
                         },
                         "Remark": "远离队友",
-                        "DelayInSec": 4.0,
-                        "TimeInSec": 2.0
+                        "DelayInSec": 3.0,
+                        "TimeInSec": 3.0
                       }
                     ],
                     "JobsLimit": 0,

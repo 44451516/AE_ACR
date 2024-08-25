@@ -1,5 +1,5 @@
 {
-  "Name": "89 [TDH] 星海深幽尋因星晶鏡",
+  "Name": "89 星海深幽尋因星晶鏡",
   "AllSteps": [
     {
       "Remark": "",
@@ -307,7 +307,7 @@
         "Y": -199.10323,
         "Z": 373.67786
       },
-      "IgnoreBattleState": false,
+      "IgnoreBattleState": true,
       "ArriveActionType": 6,
       "ArriveActionData": {
         "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
@@ -351,9 +351,9 @@
     {
       "Remark": "",
       "TargetPos": {
-        "X": -8.993842,
-        "Y": -203.64384,
-        "Z": 302.21606
+        "X": 0.978738,
+        "Y": -201.91646,
+        "Z": 321.96646
       },
       "IgnoreBattleState": false,
       "ArriveActionType": 6,
@@ -367,9 +367,9 @@
     {
       "Remark": "",
       "TargetPos": {
-        "X": -14.293347,
-        "Y": -206.55978,
-        "Z": 291.73602
+        "X": -8.842017,
+        "Y": -203.64436,
+        "Z": 302.3864
       },
       "IgnoreBattleState": false,
       "ArriveActionType": 2,
@@ -383,11 +383,11 @@
     {
       "Remark": "",
       "TargetPos": {
-        "X": -15.463209,
-        "Y": -211.52435,
-        "Z": 253.02655
+        "X": -17.921036,
+        "Y": -210.87515,
+        "Z": 271.00204
       },
-      "IgnoreBattleState": false,
+      "IgnoreBattleState": true,
       "ArriveActionType": 6,
       "ArriveActionData": {
         "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
@@ -568,9 +568,9 @@
     {
       "Remark": "",
       "TargetPos": {
-        "X": -3.5367723,
-        "Y": -224.09767,
-        "Z": -176.94122
+        "X": -14.633398,
+        "Y": -223.87393,
+        "Z": -176.71007
       },
       "IgnoreBattleState": false,
       "ArriveActionType": 6,
@@ -584,15 +584,15 @@
     {
       "Remark": "",
       "TargetPos": {
-        "X": 19.727512,
-        "Y": -228.4918,
-        "Z": -188.6495
+        "X": 19.166773,
+        "Y": -228.46767,
+        "Z": -188.71268
       },
       "IgnoreBattleState": false,
       "ArriveActionType": 2,
       "ArriveActionData": {
         "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_BattleWithMonster, Trust",
-        "WaitTimeInSec": 3.0
+        "WaitTimeInSec": 5.0
       },
       "ReverseDir": false,
       "ExDistance": 0.0
@@ -616,9 +616,9 @@
     {
       "Remark": "",
       "TargetPos": {
-        "X": -25.338074,
-        "Y": -239.44022,
-        "Z": -271.52853
+        "X": -24.273325,
+        "Y": -237.03777,
+        "Z": -254.82751
       },
       "IgnoreBattleState": false,
       "ArriveActionType": 6,
@@ -632,9 +632,9 @@
     {
       "Remark": "",
       "TargetPos": {
-        "X": -25.004383,
-        "Y": -239.98763,
-        "Z": -283.57333
+        "X": -24.690952,
+        "Y": -240.0591,
+        "Z": -287.52536
       },
       "IgnoreBattleState": false,
       "ArriveActionType": 2,
@@ -664,9 +664,9 @@
     {
       "Remark": "",
       "TargetPos": {
-        "X": -12.633379,
-        "Y": -238.78163,
-        "Z": -363.15466
+        "X": -13.564566,
+        "Y": -240.19897,
+        "Z": -351.6789
       },
       "IgnoreBattleState": true,
       "ArriveActionType": 6,

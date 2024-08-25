@@ -1,5 +1,5 @@
 {
-  "Name": "95 [TND] V6",
+  "Name": "95 遗产勘探深邃天然井",
   "AllSteps": [
     {
       "Remark": "开门",
@@ -351,7 +351,7 @@
         "Y": -209.91467,
         "Z": -61.398994
       },
-      "IgnoreBattleState": false,
+      "IgnoreBattleState": true,
       "ArriveActionType": 6,
       "ArriveActionData": {
         "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
@@ -489,7 +489,7 @@
         "Y": -210.0,
         "Z": -155.021
       },
-      "IgnoreBattleState": false,
+      "IgnoreBattleState": true,
       "ArriveActionType": 6,
       "ArriveActionData": {
         "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
@@ -572,7 +572,7 @@
         "Y": -195.0,
         "Z": -338.67105
       },
-      "IgnoreBattleState": false,
+      "IgnoreBattleState": true,
       "ArriveActionType": 6,
       "ArriveActionData": {
         "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
@@ -1056,8 +1056,8 @@
                           "Distance": 8.0
                         },
                         "Remark": "分散",
-                        "DelayInSec": 4.0,
-                        "TimeInSec": 3.0
+                        "DelayInSec": 2.0,
+                        "TimeInSec": 5.0
                       }
                     ],
                     "JobsLimit": 0,
@@ -1138,8 +1138,8 @@
                           }
                         },
                         "Remark": "添加危险区",
-                        "DelayInSec": 9.0,
-                        "TimeInSec": 2.0
+                        "DelayInSec": 7.0,
+                        "TimeInSec": 4.0
                       },
                       {
                         "ResolverType": 0,
@@ -1683,8 +1683,8 @@
                           "UseCastPos": false
                         },
                         "Remark": "TP远离队友",
-                        "DelayInSec": 6.0,
-                        "TimeInSec": 3.0
+                        "DelayInSec": 4.0,
+                        "TimeInSec": 4.0
                       },
                       {
                         "ResolverType": 6,
@@ -1841,7 +1841,7 @@
                           }
                         },
                         "Remark": "画危险区",
-                        "DelayInSec": 1.0,
+                        "DelayInSec": 0.0,
                         "TimeInSec": 3.0
                       },
                       {
@@ -1856,7 +1856,7 @@
                           "UseCastPos": false
                         },
                         "Remark": "TP到中间-安全区",
-                        "DelayInSec": 1.0,
+                        "DelayInSec": 0.0,
                         "TimeInSec": 3.0
                       }
                     ],
@@ -1915,7 +1915,7 @@
                           }
                         },
                         "Remark": "画危险区",
-                        "DelayInSec": 1.0,
+                        "DelayInSec": 0.0,
                         "TimeInSec": 3.0
                       },
                       {
@@ -1930,7 +1930,7 @@
                           "UseCastPos": false
                         },
                         "Remark": "TP到中间-安全区",
-                        "DelayInSec": 1.0,
+                        "DelayInSec": 0.0,
                         "TimeInSec": 3.0
                       }
                     ],
