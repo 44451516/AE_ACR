@@ -232,7 +232,7 @@
             }
           }
         ],
-        "WaitTimeInSec": 10.0,
+        "WaitTimeInSec": 5.0,
         "BossIndex": 0
       },
       "ReverseDir": false,
@@ -443,7 +443,7 @@
             }
           }
         ],
-        "WaitTimeInSec": 10.0,
+        "WaitTimeInSec": 5.0,
         "BossIndex": 1
       },
       "ReverseDir": false,
@@ -487,7 +487,7 @@
       "ExDistance": 0.0
     },
     {
-      "Remark": "新加的",
+      "Remark": "",
       "TargetPos": {
         "X": -575.72174,
         "Y": -469.02332,
@@ -503,7 +503,7 @@
       "ExDistance": 0.0
     },
     {
-      "Remark": "这里脸开有暴毙的可能",
+      "Remark": "",
       "TargetPos": {
         "X": -591.1666,
         "Y": -472.875,
@@ -519,7 +519,7 @@
       "ExDistance": 0.0
     },
     {
-      "Remark": "修改了这里",
+      "Remark": "",
       "TargetPos": {
         "X": -578.6531,
         "Y": -470.4104,
@@ -535,7 +535,7 @@
       "ExDistance": 0.0
     },
     {
-      "Remark": "新加的",
+      "Remark": "",
       "TargetPos": {
         "X": -586.2737,
         "Y": -467.379,
@@ -569,11 +569,11 @@
     {
       "Remark": "",
       "TargetPos": {
-        "X": -671.51044,
-        "Y": -470.1401,
-        "Z": -548.65906
+        "X": -658.3995,
+        "Y": -469.63,
+        "Z": -543.0031
       },
-      "IgnoreBattleState": false,
+      "IgnoreBattleState": true,
       "ArriveActionType": 6,
       "ArriveActionData": {
         "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
@@ -583,13 +583,13 @@
       "ExDistance": 0.0
     },
     {
-      "Remark": "新加的等待",
+      "Remark": "",
       "TargetPos": {
-        "X": -680.6794,
-        "Y": -470.6623,
-        "Z": -549.352
+        "X": -661.98737,
+        "Y": -469.6894,
+        "Z": -547.44806
       },
-      "IgnoreBattleState": false,
+      "IgnoreBattleState": true,
       "ArriveActionType": 6,
       "ArriveActionData": {
         "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
@@ -599,7 +599,7 @@
       "ExDistance": 0.0
     },
     {
-      "Remark": "这里会脸开 ",
+      "Remark": "",
       "TargetPos": {
         "X": -691.89,
         "Y": -470.96405,
@@ -723,7 +723,7 @@
             }
           }
         ],
-        "WaitTimeInSec": 10.0,
+        "WaitTimeInSec": 5.0,
         "BossIndex": 2
       },
       "ReverseDir": false,
@@ -1262,64 +1262,6 @@
                     "Id": 12,
                     "Enable": true,
                     "Remark": "36383-十字-框架自己画了"
-                  },
-                  {
-                    "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
-                    "SpellId": 36378,
-                    "ResolverDatas": [
-                      {
-                        "ResolverType": 1,
-                        "ExData": {
-                          "$type": "Trust.DungeonController.SpellReaction.FollowNpcExData, Trust",
-                          "DontFollowTank": true
-                        },
-                        "Remark": "",
-                        "DelayInSec": 3.5,
-                        "TimeInSec": 5.0
-                      }
-                    ],
-                    "JobsLimit": 0,
-                    "DisplayName": "机制应对:监听技能",
-                    "GUID": "b805d12b-5afc-4f4c-9469-b1974c2d174e",
-                    "Important": false,
-                    "Color": {
-                      "X": 1.0,
-                      "Y": 1.0,
-                      "Z": 0.4,
-                      "W": 1.0
-                    },
-                    "Id": 13,
-                    "Enable": false,
-                    "Remark": "处理机制36378原代码"
-                  },
-                  {
-                    "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
-                    "SpellId": 36380,
-                    "ResolverDatas": [
-                      {
-                        "ResolverType": 1,
-                        "ExData": {
-                          "$type": "Trust.DungeonController.SpellReaction.FollowNpcExData, Trust",
-                          "DontFollowTank": true
-                        },
-                        "Remark": "",
-                        "DelayInSec": 3.5,
-                        "TimeInSec": 5.0
-                      }
-                    ],
-                    "JobsLimit": 0,
-                    "DisplayName": "机制应对:监听技能",
-                    "GUID": "840ef200-0aad-4fc8-ab10-9ab54553a602",
-                    "Important": false,
-                    "Color": {
-                      "X": 1.0,
-                      "Y": 1.0,
-                      "Z": 0.4,
-                      "W": 1.0
-                    },
-                    "Id": 14,
-                    "Enable": false,
-                    "Remark": "处理机制36380-左右刀原代码保留"
                   }
                 ],
                 "GUID": "1be6fc75-b5d0-480c-b334-669d3e1691aa",
@@ -1346,7 +1288,7 @@
                   "Z": 0.4,
                   "W": 1.0
                 },
-                "Id": 15,
+                "Id": 13,
                 "Enable": true,
                 "Remark": "延迟一点时间 防止某机制一次性出现大量同id技能释放时 连续触发多轮监听和处理"
               }
@@ -2094,7 +2036,7 @@
                     },
                     "Id": 9,
                     "Enable": true,
-                    "Remark": "39248-Reconfigured Partition-右刀-恢复？不一定是右刀"
+                    "Remark": "39248-Reconfigured Partition-右刀"
                   },
                   {
                     "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
@@ -2256,7 +2198,7 @@
                       "W": 1.0
                     },
                     "Id": 12,
-                    "Enable": true,
+                    "Enable": false,
                     "Remark": "36783-4方站位"
                   },
                   {
@@ -2277,7 +2219,7 @@
                     "JobsLimit": 0,
                     "DisplayName": "机制应对:监听技能",
                     "GUID": "1d778518-972e-4c9d-8127-1fc9f8fbc610",
-                    "Important": true,
+                    "Important": false,
                     "Color": {
                       "X": 1.0,
                       "Y": 1.0,
@@ -2306,7 +2248,7 @@
                     "JobsLimit": 0,
                     "DisplayName": "机制应对:监听技能",
                     "GUID": "1d778518-972e-4c9d-8127-1fc9f8fbc610",
-                    "Important": true,
+                    "Important": false,
                     "Color": {
                       "X": 1.0,
                       "Y": 1.0,
@@ -2314,7 +2256,7 @@
                       "W": 1.0
                     },
                     "Id": 14,
-                    "Enable": true,
+                    "Enable": false,
                     "Remark": "36784-4方站位-可能是BUG之一"
                   },
                   {
@@ -2343,7 +2285,7 @@
                       "W": 1.0
                     },
                     "Id": 15,
-                    "Enable": true,
+                    "Enable": false,
                     "Remark": "36792-4方站位"
                   },
                   {
@@ -2464,22 +2406,84 @@
                   },
                   {
                     "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
-                    "SpellId": 36428,
+                    "SpellId": 36793,
                     "ResolverDatas": [
                       {
-                        "ResolverType": 0,
+                        "ResolverType": 14,
                         "ExData": {
-                          "$type": "Trust.DungeonController.SpellReaction.FollowNpcExData, Trust",
-                          "DontFollowTank": false
+                          "$type": "Trust.DungeonController.SpellReaction.CastSpellExData, Trust",
+                          "SpellConfigs": [
+                            {
+                              "Remark": "7548",
+                              "Category": 0,
+                              "SpellId": 7548,
+                              "CoolDowncheck": false,
+                              "CoolDowncheck_time": 0.0,
+                              "TargetType": 1,
+                              "IsPartyMember": true,
+                              "LimitJobType": 0,
+                              "LimitBuffIds": [],
+                              "LimitMaxHpType": 0,
+                              "LimitHpType": 0,
+                              "Location": {
+                                "X": 0.0,
+                                "Y": 0.0,
+                                "Z": 0.0
+                              },
+                              "TargetSelector": {
+                                "Enable": false,
+                                "Target": 0,
+                                "FilterDatas": [],
+                                "NeedTargetable": false,
+                                "PMIndex": 0
+                              }
+                            }
+                          ]
                         },
-                        "Remark": "移动到安全区",
-                        "DelayInSec": 0.0,
-                        "TimeInSec": 1.0
+                        "Remark": "物理防击退",
+                        "DelayInSec": 2.0,
+                        "TimeInSec": 4.0
+                      },
+                      {
+                        "ResolverType": 14,
+                        "ExData": {
+                          "$type": "Trust.DungeonController.SpellReaction.CastSpellExData, Trust",
+                          "SpellConfigs": [
+                            {
+                              "Remark": "7559",
+                              "Category": 0,
+                              "SpellId": 7559,
+                              "CoolDowncheck": false,
+                              "CoolDowncheck_time": 0.0,
+                              "TargetType": 1,
+                              "IsPartyMember": true,
+                              "LimitJobType": 0,
+                              "LimitBuffIds": [],
+                              "LimitMaxHpType": 0,
+                              "LimitHpType": 0,
+                              "Location": {
+                                "X": 0.0,
+                                "Y": 0.0,
+                                "Z": 0.0
+                              },
+                              "TargetSelector": {
+                                "Enable": false,
+                                "Target": 0,
+                                "FilterDatas": [],
+                                "NeedTargetable": false,
+                                "PMIndex": 0
+                              }
+                            }
+                          ]
+                        },
+                        "Remark": "法系防击退",
+                        "DelayInSec": 2.0,
+                        "TimeInSec": 4.0
                       }
                     ],
                     "JobsLimit": 0,
                     "DisplayName": "机制应对:监听技能",
-                    "GUID": "188961eb-91b0-43f6-ba48-c7637c92332f",
+                    "GUID": "1d46c65a-bbf3-4bbf-995b-55b09c7277ba",
                     "Important": false,
                     "Color": {
                       "X": 1.0,
@@ -2488,12 +2492,12 @@
                       "W": 1.0
                     },
                     "Id": 20,
-                    "Enable": false,
-                    "Remark": "36428-场外直线"
+                    "Enable": true,
+                    "Remark": "36793蓝拳-防击退"
                   }
                 ],
                 "GUID": "fd6b95aa-8263-4e66-978e-fdcca520395a",
-                "Important": true,
+                "Important": false,
                 "Color": {
                   "X": 1.0,
                   "Y": 1.0,
@@ -2600,6 +2604,6 @@
       "Remark": "老二"
     }
   ],
-  "Remark": "V12版本  TND通用 小怪嗯吃  修复老一老二老三各种bug  已老实.jpg  ByErrer",
+  "Remark": "V14",
   "TerritoryTypeId": 1199
 }
