@@ -1,5 +1,5 @@
 {
-  "Name": "99 [TND] V2",
+  "Name": "99 魂魄工厂灵魂净化所",
   "AllSteps": [
     {
       "Remark": "",
@@ -105,6 +105,22 @@
         "X": -172.82104,
         "Y": -504.00006,
         "Z": 76.576355
+      },
+      "IgnoreBattleState": true,
+      "ArriveActionType": 6,
+      "ArriveActionData": {
+        "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
+        "TimeOut": 15.0
+      },
+      "ReverseDir": false,
+      "ExDistance": 0.0
+    },
+    {
+      "Remark": "",
+      "TargetPos": {
+        "X": -176.74939,
+        "Y": -504.0,
+        "Z": 89.811424
       },
       "IgnoreBattleState": false,
       "ArriveActionType": 2,
@@ -494,7 +510,7 @@
         "Y": 2.3841858E-07,
         "Z": 222.55469
       },
-      "IgnoreBattleState": false,
+      "IgnoreBattleState": true,
       "ArriveActionType": 6,
       "ArriveActionData": {
         "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
@@ -725,6 +741,7 @@
   "DutyId": 29,
   "TrustVersion": 0,
   "Index": 0,
+  "DutyType": 1,
   "BossTriggerLines": [
     {
       "Remark": "老1",
@@ -971,8 +988,8 @@
                           "Distance": 8.0
                         },
                         "Remark": "",
-                        "DelayInSec": 7.0,
-                        "TimeInSec": 2.0
+                        "DelayInSec": 6.0,
+                        "TimeInSec": 3.0
                       }
                     ],
                     "JobsLimit": 0,

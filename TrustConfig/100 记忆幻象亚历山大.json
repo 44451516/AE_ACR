@@ -1,5 +1,5 @@
 {
-  "Name": "100 [TND]  记忆幻象亚历山大 Alexandria  V13",
+  "Name": "100 记忆幻象亚历山大",
   "AllSteps": [
     {
       "Remark": "",
@@ -2438,14 +2438,21 @@
                     "SpellId": 39243,
                     "ResolverDatas": [
                       {
-                        "ResolverType": 8,
+                        "ResolverType": 0,
                         "ExData": {
                           "$type": "Trust.DungeonController.SpellReaction.DisperseExData, Trust",
                           "Distance": 8.0
                         },
                         "Remark": "",
-                        "DelayInSec": 3.5,
+                        "DelayInSec": 0.0,
                         "TimeInSec": 2.0
+                      },
+                      {
+                        "ResolverType": 1,
+                        "ExData": null,
+                        "Remark": "",
+                        "DelayInSec": 0.0,
+                        "TimeInSec": 0.1
                       }
                     ],
                     "JobsLimit": 0,
@@ -2461,6 +2468,35 @@
                     "Id": 19,
                     "Enable": true,
                     "Remark": "39243-小怪分散"
+                  },
+                  {
+                    "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
+                    "SpellId": 36428,
+                    "ResolverDatas": [
+                      {
+                        "ResolverType": 0,
+                        "ExData": {
+                          "$type": "Trust.DungeonController.SpellReaction.FollowNpcExData, Trust",
+                          "DontFollowTank": false
+                        },
+                        "Remark": "移动到安全区",
+                        "DelayInSec": 0.0,
+                        "TimeInSec": 1.0
+                      }
+                    ],
+                    "JobsLimit": 0,
+                    "DisplayName": "机制应对:监听技能",
+                    "GUID": "188961eb-91b0-43f6-ba48-c7637c92332f",
+                    "Important": false,
+                    "Color": {
+                      "X": 1.0,
+                      "Y": 1.0,
+                      "Z": 0.4,
+                      "W": 1.0
+                    },
+                    "Id": 20,
+                    "Enable": false,
+                    "Remark": "36428-场外直线"
                   }
                 ],
                 "GUID": "fd6b95aa-8263-4e66-978e-fdcca520395a",
@@ -2487,7 +2523,7 @@
                   "Z": 0.4,
                   "W": 1.0
                 },
-                "Id": 20,
+                "Id": 21,
                 "Enable": true,
                 "Remark": "延迟一点时间 防止某机制一次性出现大量同id技能释放时 连续触发多轮监听和处理"
               }

@@ -1347,7 +1347,7 @@
                         },
                         "Remark": "移动到安全区",
                         "DelayInSec": 0.0,
-                        "TimeInSec": 3.0
+                        "TimeInSec": 10.0
                       }
                     ],
                     "JobsLimit": 0,
