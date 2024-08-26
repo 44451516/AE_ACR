@@ -21,7 +21,7 @@ public class WARSettings
 
     public static void Build(string settingPath)
     {
-        path = Path.Combine(settingPath, nameof(WARSettings) + "WAR.json");
+        path = Path.Combine(settingPath, "WAR.json");
         if (!File.Exists(path))
         {
             Instance = new WARSettings();

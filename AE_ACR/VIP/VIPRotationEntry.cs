@@ -31,7 +31,7 @@ public class VIPotationEntry : IRotationEntry
             AcrType = AcrType.Both,
             MinLevel = 1,
             MaxLevel = 100,
-            Description = "这个没什么用，留空的"
+            Description = "这个ACR没什么用，留空的"
         };
 
         return rot;

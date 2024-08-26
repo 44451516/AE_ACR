@@ -22,7 +22,7 @@ public class VIPSettings
 
     public static void Build(string settingPath)
     {
-        path = Path.Combine(settingPath, nameof(VIPSettings) + "VIP.json");
+        path = Path.Combine(settingPath, "VIP.json");
         if (!File.Exists(path))
         {
             Instance = new VIPSettings();
