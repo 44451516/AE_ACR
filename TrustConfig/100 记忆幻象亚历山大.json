@@ -2438,21 +2438,14 @@
                     "SpellId": 39243,
                     "ResolverDatas": [
                       {
-                        "ResolverType": 0,
+                        "ResolverType": 8,
                         "ExData": {
                           "$type": "Trust.DungeonController.SpellReaction.DisperseExData, Trust",
                           "Distance": 8.0
                         },
-                        "Remark": "",
-                        "DelayInSec": 0.0,
-                        "TimeInSec": 2.0
-                      },
-                      {
-                        "ResolverType": 1,
-                        "ExData": null,
-                        "Remark": "",
-                        "DelayInSec": 0.0,
-                        "TimeInSec": 0.1
+                        "Remark": "远离队友",
+                        "DelayInSec": 3.0,
+                        "TimeInSec": 2.5
                       }
                     ],
                     "JobsLimit": 0,

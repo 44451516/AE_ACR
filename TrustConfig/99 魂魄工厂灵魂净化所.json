@@ -1016,7 +1016,7 @@
                           "$type": "Trust.DungeonController.SpellReaction.FollowNpcExData, Trust",
                           "DontFollowTank": false
                         },
-                        "Remark": "",
+                        "Remark": "移动到安全区",
                         "DelayInSec": 0.0,
                         "TimeInSec": 0.2
                       }
@@ -1033,7 +1033,7 @@
                     },
                     "Id": 12,
                     "Enable": true,
-                    "Remark": "36428"
+                    "Remark": "36428-场外直线"
                   }
                 ],
                 "GUID": "ccc86869-d695-4b62-999f-51d6e4c9c846",
@@ -1562,53 +1562,13 @@
                     "SpellId": 36427,
                     "ResolverDatas": [
                       {
-                        "ResolverType": 7,
-                        "ExData": {
-                          "$type": "Trust.DungeonController.SpellReaction.DangerShapeExData, Trust",
-                          "AreaShapeType": 3,
-                          "AreaShape": {
-                            "$type": "AEAssist.Avoid.SectorShape, AEAssist",
-                            "Radius": 40.0,
-                            "Dir": {
-                              "X": 0.0,
-                              "Y": 0.0
-                            },
-                            "InitRotOffset": 0.0,
-                            "Angle": 80,
-                            "Origin": {
-                              "X": 1.0,
-                              "Y": 1.0,
-                              "Z": 1.0
-                            },
-                            "Name": null
-                          },
-                          "PointSelector": {
-                            "SelectType": 0,
-                            "FixedPoint": {
-                              "X": 0.0,
-                              "Y": 0.0,
-                              "Z": 0.0
-                            },
-                            "PointKey": null,
-                            "RelatedExDis": 0.0,
-                            "RelatedAngle": 0.0,
-                            "PresetGroups": [],
-                            "Args0": 0,
-                            "RecentTime": 1.0
-                          }
-                        },
-                        "Remark": "",
-                        "DelayInSec": 6.0,
-                        "TimeInSec": 5.0
-                      },
-                      {
-                        "ResolverType": 0,
+                        "ResolverType": 1,
                         "ExData": {
                           "$type": "Trust.DungeonController.SpellReaction.FollowNpcExData, Trust",
                           "DontFollowTank": false
                         },
-                        "Remark": "移动到安全区",
-                        "DelayInSec": 7.0,
+                        "Remark": "跟随NPC",
+                        "DelayInSec": 5.0,
                         "TimeInSec": 5.0
                       }
                     ],
@@ -1624,7 +1584,7 @@
                     },
                     "Id": 9,
                     "Enable": true,
-                    "Remark": "36427-正面刀"
+                    "Remark": "36427-正面刀？也可能是背面刀"
                   },
                   {
                     "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
@@ -1653,26 +1613,26 @@
                     },
                     "Id": 10,
                     "Enable": true,
-                    "Remark": "38929"
+                    "Remark": "38929-跟随NPC"
                   },
                   {
                     "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
-                    "SpellId": 36584,
+                    "SpellId": 39055,
                     "ResolverDatas": [
                       {
                         "ResolverType": 1,
                         "ExData": {
                           "$type": "Trust.DungeonController.SpellReaction.FollowNpcExData, Trust",
-                          "DontFollowTank": false
+                          "DontFollowTank": true
                         },
                         "Remark": "",
-                        "DelayInSec": 3.0,
-                        "TimeInSec": 3.0
+                        "DelayInSec": 5.0,
+                        "TimeInSec": 4.0
                       }
                     ],
                     "JobsLimit": 0,
                     "DisplayName": "机制应对:监听技能",
-                    "GUID": "96c076a2-b5c5-48c5-a583-7f4409926d3c",
+                    "GUID": "89291c73-2472-4017-b6e6-9823ff746edb",
                     "Important": false,
                     "Color": {
                       "X": 1.0,
@@ -1681,27 +1641,27 @@
                       "W": 1.0
                     },
                     "Id": 11,
-                    "Enable": false,
-                    "Remark": "36584-シンセスリザー"
+                    "Enable": true,
+                    "Remark": "39055-跟随NPC"
                   },
                   {
                     "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
-                    "SpellId": 36589,
+                    "SpellId": 36428,
                     "ResolverDatas": [
                       {
-                        "ResolverType": 1,
+                        "ResolverType": 0,
                         "ExData": {
                           "$type": "Trust.DungeonController.SpellReaction.FollowNpcExData, Trust",
                           "DontFollowTank": false
                         },
-                        "Remark": "",
-                        "DelayInSec": 3.0,
-                        "TimeInSec": 10.0
+                        "Remark": "移动到安全区",
+                        "DelayInSec": 0.0,
+                        "TimeInSec": 2.0
                       }
                     ],
                     "JobsLimit": 0,
                     "DisplayName": "机制应对:监听技能",
-                    "GUID": "c8ef3550-00a6-406f-9afe-abc4261d99e5",
+                    "GUID": "280654a1-9896-48bd-9c54-60b28681921d",
                     "Important": false,
                     "Color": {
                       "X": 1.0,
@@ -1710,95 +1670,8 @@
                       "W": 1.0
                     },
                     "Id": 12,
-                    "Enable": false,
-                    "Remark": "36589-フロントテイルセイバー"
-                  },
-                  {
-                    "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
-                    "SpellId": 36592,
-                    "ResolverDatas": [
-                      {
-                        "ResolverType": 1,
-                        "ExData": {
-                          "$type": "Trust.DungeonController.SpellReaction.FollowNpcExData, Trust",
-                          "DontFollowTank": false
-                        },
-                        "Remark": "",
-                        "DelayInSec": 3.0,
-                        "TimeInSec": 10.0
-                      }
-                    ],
-                    "JobsLimit": 0,
-                    "DisplayName": "机制应对:监听技能",
-                    "GUID": "c8ef3550-00a6-406f-9afe-abc4261d99e5",
-                    "Important": false,
-                    "Color": {
-                      "X": 1.0,
-                      "Y": 1.0,
-                      "Z": 0.4,
-                      "W": 1.0
-                    },
-                    "Id": 13,
-                    "Enable": false,
-                    "Remark": "36592-フロントテイルセイバー"
-                  },
-                  {
-                    "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
-                    "SpellId": 36590,
-                    "ResolverDatas": [
-                      {
-                        "ResolverType": 1,
-                        "ExData": {
-                          "$type": "Trust.DungeonController.SpellReaction.FollowNpcExData, Trust",
-                          "DontFollowTank": false
-                        },
-                        "Remark": "",
-                        "DelayInSec": 3.0,
-                        "TimeInSec": 10.0
-                      }
-                    ],
-                    "JobsLimit": 0,
-                    "DisplayName": "机制应对:监听技能",
-                    "GUID": "25d5fa5e-3690-4ddc-a353-3ca319f04752",
-                    "Important": false,
-                    "Color": {
-                      "X": 1.0,
-                      "Y": 1.0,
-                      "Z": 0.4,
-                      "W": 1.0
-                    },
-                    "Id": 14,
-                    "Enable": false,
-                    "Remark": "36590- バックテイルセイバー"
-                  },
-                  {
-                    "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
-                    "SpellId": 36593,
-                    "ResolverDatas": [
-                      {
-                        "ResolverType": 1,
-                        "ExData": {
-                          "$type": "Trust.DungeonController.SpellReaction.FollowNpcExData, Trust",
-                          "DontFollowTank": false
-                        },
-                        "Remark": "",
-                        "DelayInSec": 3.0,
-                        "TimeInSec": 10.0
-                      }
-                    ],
-                    "JobsLimit": 0,
-                    "DisplayName": "机制应对:监听技能",
-                    "GUID": "25d5fa5e-3690-4ddc-a353-3ca319f04752",
-                    "Important": false,
-                    "Color": {
-                      "X": 1.0,
-                      "Y": 1.0,
-                      "Z": 0.4,
-                      "W": 1.0
-                    },
-                    "Id": 15,
-                    "Enable": false,
-                    "Remark": "36593-バックテイルセイバー"
+                    "Enable": true,
+                    "Remark": "36428-场外直线"
                   }
                 ],
                 "GUID": "40ea30e2-21b6-4273-b512-e1363bbf7bf3",
@@ -1825,7 +1698,7 @@
                   "Z": 0.4,
                   "W": 1.0
                 },
-                "Id": 16,
+                "Id": 13,
                 "Enable": true,
                 "Remark": "延迟一点时间 防止某机制一次性出现大量同id技能释放时 连续触发多轮监听和处理"
               }
