@@ -30,7 +30,10 @@ internal class TriggerAction_QT : ITriggerAction
     public bool Draw()
     {
         _selectIndex = Array.IndexOf(_qtArray, Key);
-        if (_selectIndex == -1) _selectIndex = 0;
+        if (_selectIndex == -1)
+        {
+            _selectIndex = 0;
+        }
         ImGuiHelper.LeftCombo("选择Key", ref _selectIndex, _qtArray);
         Key = _qtArray[_selectIndex];
         ImGui.SameLine();

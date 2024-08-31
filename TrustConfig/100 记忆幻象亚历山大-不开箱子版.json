@@ -1,39 +1,19 @@
 {
-  "Name": "100 记忆幻象亚历山大",
+  "Name": "100 记忆幻象亚历山大-不开箱子版",
   "AllSteps": [
     {
       "Remark": "",
       "TargetPos": {
-        "X": 7.2137675,
-        "Y": 494.58008,
-        "Z": 120.10067
+        "X": -4.017912,
+        "Y": 492.60638,
+        "Z": 117.40744
       },
       "IgnoreBattleState": true,
-      "ArriveActionType": 6,
+      "ArriveActionType": 8,
       "ArriveActionData": {
-        "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
-        "TimeOut": 15.0
-      },
-      "ReverseDir": false,
-      "ExDistance": 0.0
-    },
-    {
-      "Remark": "",
-      "TargetPos": {
-        "X": 7.2137675,
-        "Y": 494.58008,
-        "Z": 120.10067
-      },
-      "IgnoreBattleState": true,
-      "ArriveActionType": 1,
-      "ArriveActionData": {
-        "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_Wait, Trust",
-        "TargetPoint": {
-          "X": 0.0,
-          "Y": 0.0,
-          "Z": 0.0
-        },
-        "TimeInSec": 3.0
+        "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitBattleCreate, Trust",
+        "TimeOut": 30.0,
+        "Distance": 50.0
       },
       "ReverseDir": false,
       "ExDistance": 0.0
@@ -188,22 +168,6 @@
     {
       "Remark": "",
       "TargetPos": {
-        "X": 852.2005,
-        "Y": 46.0,
-        "Z": 810.6399
-      },
-      "IgnoreBattleState": false,
-      "ArriveActionType": 6,
-      "ArriveActionData": {
-        "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
-        "TimeOut": 5.0
-      },
-      "ReverseDir": false,
-      "ExDistance": 0.0
-    },
-    {
-      "Remark": "",
-      "TargetPos": {
         "X": 811.2262,
         "Y": 40.369358,
         "Z": 765.59106
@@ -316,22 +280,6 @@
     {
       "Remark": "",
       "TargetPos": {
-        "X": 746.66315,
-        "Y": 64.78672,
-        "Z": 615.7076
-      },
-      "IgnoreBattleState": false,
-      "ArriveActionType": 6,
-      "ArriveActionData": {
-        "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_WaitForNpc, Trust",
-        "TimeOut": 15.0
-      },
-      "ReverseDir": false,
-      "ExDistance": 0.0
-    },
-    {
-      "Remark": "",
-      "TargetPos": {
         "X": 744.1843,
         "Y": 64.79065,
         "Z": 609.37695
@@ -392,27 +340,6 @@
         ],
         "WaitTimeInSec": 5.0,
         "BossIndex": 1
-      },
-      "ReverseDir": false,
-      "ExDistance": 0.0
-    },
-    {
-      "Remark": "宝箱",
-      "TargetPos": {
-        "X": -533.1637,
-        "Y": -466.0,
-        "Z": -386.66782
-      },
-      "IgnoreBattleState": false,
-      "ArriveActionType": 1,
-      "ArriveActionData": {
-        "$type": "Trust.DungeonController.Dungeon.ArriveStepAction_Wait, Trust",
-        "TargetPoint": {
-          "X": 0.0,
-          "Y": 0.0,
-          "Z": 0.0
-        },
-        "TimeInSec": 3.0
       },
       "ReverseDir": false,
       "ExDistance": 0.0

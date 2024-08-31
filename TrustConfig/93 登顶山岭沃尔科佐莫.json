@@ -947,6 +947,35 @@
                     "Id": 8,
                     "Enable": true,
                     "Remark": "36713-降霜"
+                  },
+                  {
+                    "$type": "Trust.DungeonController.SpellReaction.Trigger.TreeSpellResolver, Trust",
+                    "SpellId": 36278,
+                    "ResolverDatas": [
+                      {
+                        "ResolverType": 0,
+                        "ExData": {
+                          "$type": "Trust.DungeonController.SpellReaction.FollowNpcExData, Trust",
+                          "DontFollowTank": false
+                        },
+                        "Remark": "",
+                        "DelayInSec": 0.0,
+                        "TimeInSec": 5.0
+                      }
+                    ],
+                    "JobsLimit": 0,
+                    "DisplayName": "机制应对:监听技能",
+                    "GUID": "e6f62bd1-682d-4a9d-bed9-1b4e0d7f2152",
+                    "Important": false,
+                    "Color": {
+                      "X": 1.0,
+                      "Y": 1.0,
+                      "Z": 0.4,
+                      "W": 1.0
+                    },
+                    "Id": 9,
+                    "Enable": true,
+                    "Remark": "36278-场外小怪直线"
                   }
                 ],
                 "GUID": "7964b6c8-b4c4-41fe-9eff-9cc5b24d3bdb",
@@ -973,7 +1002,7 @@
                   "Z": 0.4,
                   "W": 1.0
                 },
-                "Id": 9,
+                "Id": 10,
                 "Enable": true,
                 "Remark": "延迟一点时间 防止某机制一次性出现大量同id技能释放时 连续触发多轮监听和处理"
               }
@@ -1572,7 +1601,7 @@
                           "$type": "Trust.DungeonController.SpellReaction.CastSpellExData, Trust",
                           "SpellConfigs": [
                             {
-                              "Remark": "物理防鸡腿",
+                              "Remark": "物理防击退",
                               "Category": 0,
                               "SpellId": 7548,
                               "CoolDowncheck": false,
@@ -1597,7 +1626,7 @@
                               }
                             },
                             {
-                              "Remark": "法系防鸡腿",
+                              "Remark": "法系防击退",
                               "Category": 0,
                               "SpellId": 7559,
                               "CoolDowncheck": false,
@@ -1779,6 +1808,14 @@
     {
       "SpellId": 36272,
       "Remark": ""
+    },
+    {
+      "SpellId": 36281,
+      "Remark": "老1分散"
+    },
+    {
+      "SpellId": 36306,
+      "Remark": "老3分散"
     }
   ],
   "Remark": "关闭捡箱子-不然路上小怪暴毙",
