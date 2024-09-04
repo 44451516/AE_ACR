@@ -171,13 +171,13 @@ public class PLDRotationEntry : IRotationEntry
 
     public void DrawQtGeneral(JobViewWindow jobViewWindow)
     {
-
         PLDSettings PLDSettings = PLDSettings.Instance;
         ImGui.Text("日常模式会持续开盾，和自动减伤");
         ImGui.SetNextItemWidth(150f);
         ImGui.Checkbox("日常模式", ref PLDSettings.日常模式);
         ImGui.DragFloat("投盾阈值", ref PLDSettings.投盾阈值, 0.1f, 5, 20f);
         ImGui.DragFloat("远程圣灵阈值", ref PLDSettings.远程圣灵阈值, 0.1f, 5, 20f);
+        ImGui.DragFloat("调停保留层数", ref PLDSettings.调停保留层数, 0.1f, 0, 2);
 
         if (ImGui.Button("Save[保存]"))
         {
@@ -208,6 +208,7 @@ public class PLDRotationEntry : IRotationEntry
         var Oath = Core.Resolve<JobApi_Paladin>().Oath;
 
         ImGui.Text($"挑衅 : {PLDBaseSlotResolvers.挑衅.ActionReady()}");
+        ImGui.Text($"调停Intervene.Charges : {PLDBaseSlotResolvers.调停Intervene.Charges()}");
         
         // ImGui.Text($"大保健连击Confiteor : {PLDBaseSlotResolvers.大保健连击Confiteor.OriginalHook().Id}");
         // ImGui.Text($"赎罪剑Atonement1 : {PLDBaseSlotResolvers.赎罪剑Atonement1.OriginalHook().Id}");

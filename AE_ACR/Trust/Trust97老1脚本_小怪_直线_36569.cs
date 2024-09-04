@@ -8,13 +8,15 @@ using Trust.DungeonController.SpellReaction;
 
 namespace ScriptTest;
 
-
-public class Trust97老1脚本_小怪_直线_36569 : IResolverScript
+public class Trust97老1脚本_场外直线_36569_v1 : IResolverScript
 {
     public void OnActive(DungeonController dungeonController, ResolverCondParams spellCondParams)
     {
 
     }
+
+    private long LastCheckTick = 0;
+    private const long CheckIntervals = 10 * 1000;
 
     public void OnUpdate(DungeonController dungeonController)
     {
@@ -22,41 +24,43 @@ public class Trust97老1脚本_小怪_直线_36569 : IResolverScript
         var mapBaseName = Core.Resolve<MemApiZoneInfo>().GetCurrZoneInfo().MapBaseName;
         if (!AvoidManager.Instance.GetMap(mapBaseName, out var map))
         {
-            
+
             return;
         }
-        
-        
-        foreach (var gameObject in ECHelper.Objects)
+
+        if (Environment.TickCount64 - LastCheckTick >= CheckIntervals)
         {
-            if (gameObject.DataId != 16828)
-                continue;
-
-            if (gameObject is IBattleChara battleChara)
+            foreach (var gameObject in ECHelper.Objects)
             {
-                if (battleChara.CastActionId == 36569)
+                if (gameObject.DataId != 16828)
+                    continue;
+                // LogHelper.Print($"{Environment.TickCount64} -> {LastCheckTick}");
+                if (gameObject is IBattleChara battleChara)
                 {
-                    if (battleChara.CurrentCastTime >= 4 && battleChara.CurrentCastTime <= 4.5f)
+                    if (battleChara.CastActionId == 36569)
                     {
-                        var bossPos = gameObject.Position;
-                        var dir = gameObject.Rotation.GetDirV3(0);
-                        bossPos = bossPos - dir * 2; // 防止脚底
-                        var 矩形长度 = 30f;
-                        var 矩形宽度 = 5.1f;
+                        if (battleChara.CurrentCastTime >= 0 && battleChara.CurrentCastTime <= 10f)
+                        {
+                            var bossPos = gameObject.Position;
+                            var dir = gameObject.Rotation.GetDirV3(0);
+                            bossPos = bossPos - dir * 2; // 防止脚底
+                            var 矩形长度 = 100f;
+                            var 矩形宽度 = 5.1f;
 
-                        map.AddDangerShape
-                        (
-                            gameObject.EntityId, new DangerShape
+                            map.AddDangerShape
                             (
-                                RectShape.Create(bossPos, bossPos + dir * 矩形长度, 矩形宽度), TimeHelper.Now(), 2000
-                            ), true
-                        );
+                                gameObject.EntityId, new DangerShape
+                                (
+                                    RectShape.Create(bossPos, bossPos + dir * 矩形长度, 矩形宽度), TimeHelper.Now(), 6000
+                                ), true
+                            );
+                            // LogHelper.Print($"hua脚本画危险区 {nameof(Trust97老1脚本_场外直线_36569_v1)}");
+
+                            LastCheckTick = Environment.TickCount64;
+                        }
                     }
                 }
-             
             }
-
-
         }
 
         // 让角色移动到安全区

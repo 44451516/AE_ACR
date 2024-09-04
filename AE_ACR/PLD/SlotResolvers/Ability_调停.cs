@@ -1,5 +1,6 @@
 ﻿#region
 
+using AE_ACR.PLD.Setting;
 using AE_ACR.utils;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.Helper;
@@ -26,21 +27,19 @@ public class Ability_调停 : PLDBaseSlotResolvers
         {
             if (调停Intervene.ActionReady() && !WasLastAction(调停Intervene))
             {
-                if (HasEffect(Buffs.FightOrFlight))
+                if (调停Intervene.Charges() > PLDSettings.Instance.调停保留层数)
                 {
-                    return 0;
+                    if (HasEffect(Buffs.FightOrFlight))
+                    {
+                        return 0;
+                    }
+
+                    if (RaidBuff.爆发期_120() && GetCooldownRemainingTime(战逃反应FightOrFlight) >= 15)
+                    {
+                        return 0;
+                    }
                 }
-
-                if (RaidBuff.爆发期_120() && GetCooldownRemainingTime(战逃反应FightOrFlight) >= 15)
-                {
-                    return 0;
-                }
-
-                // if (调停Intervene.GetCooldownRemainingTime() == 0)
-                // {
-                //     return 0;
-                // }
-
+                
             }
 
         }

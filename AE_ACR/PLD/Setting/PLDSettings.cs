@@ -19,6 +19,7 @@ public class PLDSettings
     public bool 日常模式 = false;
     public float 投盾阈值 = 10f;
     public float 远程圣灵阈值 = 10f;
+    public float 调停保留层数 = 0f;
     public static PLDSettings Instance;
 
 

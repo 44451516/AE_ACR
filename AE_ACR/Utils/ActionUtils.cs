@@ -25,6 +25,10 @@ internal static class ActionUtils
     internal static bool ActionReady(this uint value)
     {
         return value.IsUnlock() && value.IsLevelEnough() && value.IsReady();
+    } 
+    internal static float Charges(this uint value)
+    {
+        return value.GetSpell().Charges;
     }
 
     internal static bool OriginalHookActionReady(this uint value)
