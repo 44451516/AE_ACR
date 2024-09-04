@@ -31,7 +31,7 @@ public class PLD_GCD_远程圣灵 : PLDBaseSlotResolvers
 
         if (Core.Me.TargetObject is IBattleChara battleChara)
         {
-            if (圣灵HolySpirit.IsUnlock())
+            if (圣灵HolySpirit.IsUnlock() && GetResourceCost(圣灵HolySpirit) <= Core.Me.CurrentMp)
             {
                 var 阈值 = PLDSettings.Instance.远程圣灵阈值;
                 if (TargetHelper.GetTargetDistanceFromMeTest2D(battleChara, Core.Me) >= 阈值
