@@ -18,6 +18,12 @@ public class GCD_优先圣灵 : PLDBaseSlotResolvers
             return Flag_停手;
         }
 
+        if (isHasCanAttackBattleChara() == false)
+        {
+            return Flag_无效目标;
+        }
+
+        
 
         if (getQTValue(PLDQTKey.优先圣灵))
         {

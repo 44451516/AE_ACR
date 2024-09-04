@@ -36,6 +36,12 @@ public class DK_Ability_暗影使者 : DRKBaseSlotResolvers
             return Flag_QT;
         }
         
+        if (isHasCanAttackBattleChara() == false)
+        {
+            return Flag_无效目标;
+        }
+
+        
 
         if (!CanWeave())
         {

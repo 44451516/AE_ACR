@@ -35,6 +35,13 @@ public class DK_GCD_血溅 : DRKBaseSlotResolvers
         {
             return -1;
         }
+        
+        if (isHasCanAttackBattleChara() == false)
+        {
+            return Flag_无效目标;
+        }
+
+        
 
         var Blood = Core.Resolve<JobApi_DarkKnight>().Blood;
 

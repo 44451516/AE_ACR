@@ -21,6 +21,13 @@ public class PLD_GCD_远程圣灵 : PLDBaseSlotResolvers
         {
             return Flag_停手;
         }
+        
+        
+        if (isHasCanAttackBattleChara() == false)
+        {
+            return Flag_无效目标;
+        }
+
 
         if (Core.Me.TargetObject is IBattleChara battleChara)
         {

@@ -27,6 +27,12 @@ public class PLD_GCD_投盾 : PLDBaseSlotResolvers
         {
             return Flag_远程技能QT;
         }
+        
+        if (isHasCanAttackBattleChara() == false)
+        {
+            return Flag_无效目标;
+        }
+
 
 
         if (Core.Me.TargetObject is IBattleChara battleChara)

@@ -16,6 +16,12 @@ public class GCD_沥血剑 : PLDBaseSlotResolvers
             return Flag_停手;
         }
 
+        if (isHasCanAttackBattleChara() == false)
+        {
+            return Flag_无效目标;
+        }
+
+        
 
         if (HasEffect(Buffs.沥血剑BUFFGoringBladeReady))
         {

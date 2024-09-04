@@ -22,6 +22,13 @@ public class Ability_调停 : PLDBaseSlotResolvers
         {
             return Flag_QT;
         }
+        
+        if (isHasCanAttackBattleChara() == false)
+        {
+            return Flag_无效目标;
+        }
+
+        
 
         if (CanWeave())
         {

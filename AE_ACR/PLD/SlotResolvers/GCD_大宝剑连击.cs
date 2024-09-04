@@ -23,6 +23,11 @@ public class GCD_大宝剑连击 : PLDBaseSlotResolvers
             return Flag_QT;
         }
 
+        if (isHasCanAttackBattleChara() == false)
+        {
+            return Flag_无效目标;
+        }
+
         if (HasEffect(Buffs.Requiescat) && GetResourceCost(大保健连击Confiteor) <= Core.Me.CurrentMp)
         {
             return 0;

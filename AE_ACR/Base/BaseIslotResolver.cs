@@ -23,6 +23,7 @@ public abstract class BaseIslotResolver : ISlotResolver
         Flag_QT = -103,
         Flag_爆发药 = -104,
         Flag_远程技能QT = -106,
+        Flag_无效目标 = -107,
         留空 = 3624;
 
     public static class DeBuffs
@@ -138,5 +139,22 @@ public abstract class BaseIslotResolver : ISlotResolver
         }
 
         return count;
+    }
+
+    public static bool isHasCanAttackBattleChara()
+    {
+        if (Core.Me.TargetObject == null)
+        {
+            return false;
+        }
+
+        if (Core.Me.TargetObject is IBattleChara targetObject)
+        {
+            if (targetObject.CanAttack())
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

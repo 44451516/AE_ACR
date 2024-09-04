@@ -20,6 +20,12 @@ public class Ability_安魂祈祷 : PLDBaseSlotResolvers
         {
             return Flag_QT;
         }
+        
+        if (isHasCanAttackBattleChara() == false)
+        {
+            return Flag_无效目标;
+        }
+
 
         if (CanWeave())
         {

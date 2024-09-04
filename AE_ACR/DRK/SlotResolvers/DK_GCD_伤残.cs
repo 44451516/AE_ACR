@@ -29,6 +29,13 @@ public class DK_GCD_伤残 : DRKBaseSlotResolvers
             return Flag_远程技能QT;
         }
 
+        
+        if (isHasCanAttackBattleChara() == false)
+        {
+            return Flag_无效目标;
+        }
+
+        
 
         if (Core.Me.TargetObject is IBattleChara battleChara)
         {

@@ -29,6 +29,12 @@ public class DK_GCD_Base : DRKBaseSlotResolvers
             return -1;
         }
 
+        if (isHasCanAttackBattleChara() == false)
+        {
+            return Flag_无效目标;
+        }
+
+        
         return 0;
     }
 

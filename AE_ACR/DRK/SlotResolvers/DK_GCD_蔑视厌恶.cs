@@ -34,6 +34,12 @@ public class DK_GCD_蔑视厌恶 : DRKBaseSlotResolvers
         if (DKSettings.Instance.GCD爆发延时 > CombatTime.Instance.CombatEngageDuration().TotalSeconds)
             return -1;
 
+        if (isHasCanAttackBattleChara() == false)
+        {
+            return Flag_无效目标;
+        }
+
+        
 
         if (Core.Me.HasAura(Buffs.Scorn))
             return 0;

@@ -33,6 +33,13 @@ public class DK_Ability_精雕怒斩 : DRKBaseSlotResolvers
         {
             return -1;
         }
+        
+        if (isHasCanAttackBattleChara() == false)
+        {
+            return Flag_无效目标;
+        }
+
+        
 
         var darksideTimeRemaining = Core.Resolve<JobApi_DarkKnight>().DarksideTimeRemaining;
 
