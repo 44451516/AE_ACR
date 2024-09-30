@@ -39,7 +39,7 @@ public class Trust97老1脚本_场外直线_36569_v1 : IResolverScript
                 {
                     if (battleChara.CastActionId == 36569)
                     {
-                        if (battleChara.CurrentCastTime >= 0 && battleChara.CurrentCastTime <= 10f)
+                        if (battleChara.CurrentCastTime >= 1 && battleChara.CurrentCastTime <= 10f)
                         {
                             var bossPos = gameObject.Position;
                             var dir = gameObject.Rotation.GetDirV3(0);

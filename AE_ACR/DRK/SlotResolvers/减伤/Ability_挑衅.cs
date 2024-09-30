@@ -20,20 +20,28 @@ public class Ability_挑衅 : DRKBaseSlotResolvers
             return Flag_减伤;
         }
 
-        if (comboTime >= 5)
+        if (挑衅.GetCooldownRemainingTime() != 0)
         {
-            if (挑衅.ActionReady())
+            return Flag_CD;
+        }
+
+        if (CanWeave())
+        {
+            if (comboTime >= 5)
             {
-                foreach (var keyValuePair in TargetMgr.Instance.EnemysIn25)
+                if (挑衅.ActionReady())
                 {
-                    var battleChara = keyValuePair.Value;
-                    if (battleChara.CanAttack() && battleChara.TargetObjectId != 0 && battleChara.TargetObjectId != Core.Me.GameObjectId)
+                    foreach (var keyValuePair in TargetMgr.Instance.EnemysIn25)
                     {
-                        return 0;
+                        var battleChara = keyValuePair.Value;
+                        if (battleChara.CanAttack() && battleChara.TargetObjectId != 0 && battleChara.TargetObjectId != Core.Me.GameObjectId)
+                        {
+                            return 0;
+                        }
                     }
                 }
-            }
 
+            }
         }
 
         return -1;

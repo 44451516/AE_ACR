@@ -212,6 +212,7 @@ public class DRKRotationEntry : IRotationEntry
         var battleChara = Core.Me.GetCurrTarget();
         
         // ImGui.Text($"目标距离:{TargetHelper.GetTargetDistanceFromMeTest2D(battleChara, Core.Me)}");
+        ImGui.Text($"挑衅cd:{DRKBaseSlotResolvers.挑衅.GetCooldownRemainingTime()}");
         ImGui.Text($"GetRecastTime:{Core.Resolve<MemApiSpell>().GetRecastTime(DRKBaseSlotResolvers.疾跑).TotalSeconds}");
         ImGui.Text($"GetRecastTimeElapsed:{Core.Resolve<MemApiSpell>().GetRecastTimeElapsed(DRKBaseSlotResolvers.疾跑)}");
         ImGui.Text($"GetCooldownRemainingTime:{DRKBaseSlotResolvers.Shadowbringer暗影使者.GetCooldownRemainingTime()}");

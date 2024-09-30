@@ -15,7 +15,11 @@ public class Ability_挑衅 : GLABaseSlotResolvers
 {
     public override int Check()
     {
-
+        if (挑衅.GetCooldownRemainingTime() != 0)
+        {
+            return Flag_CD;
+        }
+        
         if (comboTime >= 5)
         {
             if (挑衅.ActionReady())

@@ -14,13 +14,13 @@
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-<!--        <OutputPath>F:\下载\AEAssist3.0 国际服EA版本 0710_2\ACR\44451516</OutputPath>-->
-        <OutputPath>$(appdata)\XIVLauncher\devPlugins\AEAssist3.0\ACR\44451516</OutputPath>
+<!--        <OutputPath>$(appdata)\XIVLauncher\devPlugins\AEAssist3.0\ACR\44451516</OutputPath>-->
+        <OutputPath>E:\DevProject\FF14\AEAssist3\Output\ACR\44451516</OutputPath>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-<!--        <OutputPath>F:\下载\AEAssist3.0 国际服EA版本 0710_2\ACR\44451516</OutputPath>-->
-        <OutputPath>$(appdata)\XIVLauncher\devPlugins\AEAssist3.0\ACR\44451516</OutputPath>
+<!--        <OutputPath>$(appdata)\XIVLauncher\devPlugins\AEAssist3.0\ACR\44451516</OutputPath>-->
+        <OutputPath>E:\DevProject\FF14\AEAssist3\Output\ACR\44451516</OutputPath>
     </PropertyGroup>
 
 
@@ -36,17 +36,17 @@
         </Reference>
 
         <Reference Include="AEAssist.dll">
-            <HintPath>F:\下载\AEAssist3.0 国际服EA版本 0710_2\AEAssistENVersion\AEAssist\AEAssist.dll</HintPath>
+            <HintPath>E:\DevProject\FF14\AEAssist3\Output\AEAssistCNVersion\AEAssist\AEAssist.dll</HintPath>
             <Private>False</Private>
         </Reference>
 
         <Reference Include="Newtonsoft.Json">
-            <HintPath>F:\下载\AEAssist3.0 国际服EA版本 0710_2\AEAssistENVersion\AEAssist\Newtonsoft.Json.dll</HintPath>
+            <HintPath>E:\DevProject\FF14\AEAssist3\Output\AEAssistCNVersion\AEAssist\Newtonsoft.Json.dll</HintPath>
             <Private>False</Private>
         </Reference>
 
         <Reference Include="Newtonsoft.Json">
-            <HintPath>F:\下载\AEAssist3.0 国际服EA版本 0710_2\Plugins\Trust\Trust.dll</HintPath>
+            <HintPath>E:\DevProject\FF14\AEAssist3\Output\Plugins\Trust\Trust.dll</HintPath>
             <Private>False</Private>
         </Reference>
     </ItemGroup>
