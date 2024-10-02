@@ -6,6 +6,7 @@ using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.CombatRoutine.Module.Target;
 using AEAssist.Extension;
+using AEAssist.Helper;
 
 #endregion
 
@@ -19,21 +20,29 @@ public class Ability_挑衅 : GLABaseSlotResolvers
         {
             return Flag_CD;
         }
-        
-        if (comboTime >= 5)
+
+        if (PartyHelper.Party.Count < 2)
         {
-            if (挑衅.ActionReady())
+            return Flag_小队人数不够;
+        }
+
+        if (CanWeave())
+        {
+            if (CombatTime.Instance.CombatEngageDuration().TotalSeconds >= 5)
             {
-                foreach (var keyValuePair in TargetMgr.Instance.EnemysIn25)
+                if (挑衅.ActionReady())
                 {
-                    var battleChara = keyValuePair.Value;
-                    if (battleChara.CanAttack() && battleChara.TargetObjectId != 0 && battleChara.TargetObjectId != Core.Me.GameObjectId)
+                    foreach (var keyValuePair in TargetMgr.Instance.EnemysIn25)
                     {
-                        return 0;
+                        var battleChara = keyValuePair.Value;
+                        if (battleChara.CanAttack() && battleChara.TargetObjectId != 0 && battleChara.TargetObjectId != Core.Me.GameObjectId)
+                        {
+                            return 0;
+                        }
                     }
                 }
-            }
 
+            }
         }
 
         return -1;

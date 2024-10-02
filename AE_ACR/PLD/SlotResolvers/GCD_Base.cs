@@ -31,7 +31,7 @@ public class GCD_Base : PLDBaseSlotResolvers
         return 0;
     }
 
-    private Spell GetAOEGCDSpell()
+    private Spell GetBaseGCDSpell()
     {
         var aoeCount = TargetHelper.GetNearbyEnemyCount(5);
         if (aoeCount >= 2)
@@ -73,7 +73,6 @@ public class GCD_Base : PLDBaseSlotResolvers
                 && GetBuffRemainingTime(Buffs.FightOrFlight) >= 0.1f
                 && GetResourceCost(圣灵HolySpirit) <= Core.Me.CurrentMp)
             {
-                // AELoggerUtils.Log("圣灵1");
                 return 圣灵HolySpirit.OriginalHook();
             }
 
@@ -132,7 +131,7 @@ public class GCD_Base : PLDBaseSlotResolvers
             {
                 if (投盾ShieldLob.IsUnlock())
                 {
-                    if (TargetHelper.GetTargetDistanceFromMeTest2D(battleChara, Core.Me) is > 5 and <= 15)
+                    if (和目标的距离() is > 3 and <= 15)
                     {
                         return 投盾ShieldLob.GetSpell();
                     }
@@ -152,29 +151,27 @@ public class GCD_Base : PLDBaseSlotResolvers
         }
 
 
-        if (HasEffect(Buffs.DivineMight))
+        if (lastComboActionID is 暴乱剑RiotBlade && 战女神之怒RageOfHalone.IsUnlock())
         {
-            return 圣灵HolySpirit.OriginalHook();
-        }
+            if (HasEffect(Buffs.DivineMight))
+            {
+                return 圣灵HolySpirit.OriginalHook();
+            }
 
-        if (HasEffect(Buffs.赎罪剑Atonement1BUFF) || HasEffect(Buffs.赎罪剑Atonement2BUFF) || HasEffect(Buffs.赎罪剑Atonement3BUFF))
-        {
-            return 赎罪剑Atonement.OriginalHook();
-        }
-
-
-        if (lastComboActionID == 暴乱剑RiotBlade && 战女神之怒RageOfHalone.IsUnlock())
-        {
+            if (HasEffect(Buffs.赎罪剑Atonement1BUFF) || HasEffect(Buffs.赎罪剑Atonement2BUFF) || HasEffect(Buffs.赎罪剑Atonement3BUFF))
+            {
+                return 赎罪剑Atonement.OriginalHook();
+            }
+            
             return 战女神之怒RageOfHalone.OriginalHook();
         }
-
-
+        
         return 先锋剑FastBlade.OriginalHook();
     }
 
     public override void Build(Slot slot)
     {
-        var spell = GetAOEGCDSpell();
+        var spell = GetBaseGCDSpell();
         slot.Add(spell);
     }
 }

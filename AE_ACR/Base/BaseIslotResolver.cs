@@ -25,6 +25,7 @@ public abstract class BaseIslotResolver : ISlotResolver
         Flag_远程技能QT = -106,
         Flag_无效目标 = -107,
         Flag_CD = -108,
+        Flag_小队人数不够 = -109,
         留空 = 3624;
 
     public static class DeBuffs
@@ -157,5 +158,16 @@ public abstract class BaseIslotResolver : ISlotResolver
             }
         }
         return false;
+    }
+
+
+    public static float 和目标的距离()
+    {
+        if (Core.Me.TargetObject is IBattleChara battleChara)
+        {
+            return TargetHelper.GetTargetDistanceFromMeTest2D(battleChara, Core.Me);
+        }
+        //-1000无目标
+        return -1000;
     }
 }

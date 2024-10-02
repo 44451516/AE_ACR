@@ -1,11 +1,13 @@
 ﻿#region
 
+using AE_ACR_DRK_Setting;
 using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.CombatRoutine.Module.Target;
 using AEAssist.Extension;
+using AEAssist.Helper;
 
 #endregion
 
@@ -20,14 +22,25 @@ public class Ability_挑衅 : DRKBaseSlotResolvers
             return Flag_减伤;
         }
 
+        if (DKSettings.Instance.挑衅 == false)
+        {
+            return Flag_减伤;
+        }
+
+
         if (挑衅.GetCooldownRemainingTime() != 0)
         {
             return Flag_CD;
         }
 
+        if (PartyHelper.Party.Count < 2)
+        {
+            return Flag_小队人数不够;
+        }
+
         if (CanWeave())
         {
-            if (comboTime >= 5)
+            if (CombatTime.Instance.CombatEngageDuration().TotalSeconds >= 5)
             {
                 if (挑衅.ActionReady())
                 {

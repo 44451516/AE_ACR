@@ -24,6 +24,7 @@ public class DKSettings
     public float GCD爆发延时 = 7f;
     public float 伤残阈值 = 10f;
     public bool 日常模式 = false;
+    public bool 挑衅 = true;
 
     public JobViewSave JobViewSave = new(); // QT设置存档
 

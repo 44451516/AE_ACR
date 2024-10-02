@@ -129,6 +129,7 @@ public class DRKRotationEntry : IRotationEntry
         QT.AddTab("Dev", DrawQtDev);
 #endif
         QT.AddTab("通用", DrawQtGeneral);
+        QT.AddTab("说明", DrawQtDescription);
         QT.AddTab("反馈建议", UIHelp.Feedback);
         // QT.AddTab("Dev2", DrawQtDev);
 
@@ -167,6 +168,11 @@ public class DRKRotationEntry : IRotationEntry
         */
     }
 
+    private void DrawQtDescription(JobViewWindow obj)
+    {
+        ImGui.Text("如果你发现他打小怪没有保留蓝量，请把【目标小于多少血打完所有资源】设置为0");
+    }
+
 
 
     public void OnUIUpdate()
@@ -176,9 +182,20 @@ public class DRKRotationEntry : IRotationEntry
     public void DrawQtGeneral(JobViewWindow jobViewWindow)
     {
         DKSettings DkSettings = DKSettings.Instance;
-        ImGui.Text("日常模式会持续开盾，和自动减伤");
-        ImGui.SetNextItemWidth(150f);
-        ImGui.Checkbox("日常模式", ref DkSettings.日常模式);
+     
+        
+        
+        if (ImGui.CollapsingHeader("常规设置"))
+        {
+          
+            ImGui.Text("日常模式会持续开盾，和自动减伤");
+            ImGui.SetNextItemWidth(150f);
+            ImGui.Checkbox("启用", ref DkSettings.日常模式);
+            ImGui.SetNextItemWidth(150f);
+            ImGui.Checkbox("使用挑衅", ref DkSettings.挑衅);
+        }
+
+        
 
         ImGui.SetNextItemWidth(150f);
         ImGui.DragInt("保留蓝量", ref DkSettings.保留蓝量, 100, 0, 10000);

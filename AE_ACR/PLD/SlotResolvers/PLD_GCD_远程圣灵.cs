@@ -6,6 +6,7 @@ using AE_ACR.PLD.Setting;
 using AEAssist;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
+using AEAssist.Extension;
 using AEAssist.Helper;
 using Dalamud.Game.ClientState.Objects.Types;
 
@@ -34,8 +35,7 @@ public class PLD_GCD_远程圣灵 : PLDBaseSlotResolvers
             if (圣灵HolySpirit.IsUnlock() && GetResourceCost(圣灵HolySpirit) <= Core.Me.CurrentMp)
             {
                 var 阈值 = PLDSettings.Instance.远程圣灵阈值;
-                if (TargetHelper.GetTargetDistanceFromMeTest2D(battleChara, Core.Me) >= 阈值
-                    && TargetHelper.GetTargetDistanceFromMeTest2D(battleChara, Core.Me) <= 25f)
+                if (和目标的距离() >= 阈值 && 和目标的距离() <= 25f)
                 {
                     if (HasEffect(Buffs.DivineMight))
                     {

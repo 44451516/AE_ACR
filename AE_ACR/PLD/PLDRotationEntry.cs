@@ -9,7 +9,10 @@ using AEAssist;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.CombatRoutine.View.JobView;
+using AEAssist.Extension;
+using AEAssist.Helper;
 using AEAssist.JobApi;
+using Dalamud.Game.ClientState.Objects.Types;
 using ImGuiNET;
 
 #endregion
@@ -137,8 +140,8 @@ public class PLDRotationEntry : IRotationEntry
         QT.AddQt(PLDQTKey.即刻战逃, false, "战逃好了就用");
         QT.AddQt(PLDQTKey.优先圣灵, false);
         QT.AddQt(PLDQTKey.优先赎罪, false);
-        
-        
+
+
         // QT.AddQt(BaseQTKey.减伤, true);
         // QT.AddQt(QTKey.Test2, false);
         // QT.AddQt(QTKey.UsePotion,false);
@@ -172,9 +175,17 @@ public class PLDRotationEntry : IRotationEntry
     public void DrawQtGeneral(JobViewWindow jobViewWindow)
     {
         PLDSettings PLDSettings = PLDSettings.Instance;
-        ImGui.Text("日常模式会持续开盾，和自动减伤");
-        ImGui.SetNextItemWidth(150f);
-        ImGui.Checkbox("日常模式", ref PLDSettings.日常模式);
+        if (ImGui.CollapsingHeader("常规设置"))
+        {
+            ImGui.Text("日常模式会持续开盾，和自动减伤");
+            ImGui.SetNextItemWidth(150f);
+            ImGui.Checkbox("启用", ref PLDSettings.日常模式);
+            ImGui.SetNextItemWidth(150f);
+            ImGui.Checkbox("使用挑衅", ref PLDSettings.挑衅);
+        }
+        
+
+      
         ImGui.DragFloat("投盾阈值", ref PLDSettings.投盾阈值, 0.1f, 5, 20f);
         ImGui.DragFloat("远程圣灵阈值", ref PLDSettings.远程圣灵阈值, 0.1f, 5, 20f);
         ImGui.DragFloat("调停保留层数", ref PLDSettings.调停保留层数, 0.1f, 0, 2);
@@ -208,13 +219,43 @@ public class PLDRotationEntry : IRotationEntry
         var Oath = Core.Resolve<JobApi_Paladin>().Oath;
 
         ImGui.Text($"挑衅 : {PLDBaseSlotResolvers.挑衅.ActionReady()}");
+        ImGui.Text($"挑衅 : {PLDBaseSlotResolvers.挑衅.GetCooldownRemainingTime()}");
         ImGui.Text($"调停Intervene.Charges : {PLDBaseSlotResolvers.调停Intervene.Charges()}");
+        ImGui.Text($"战斗时间1 : {CombatTime.Instance.combatStart}");
+        ImGui.Text($"战斗时间2 : {CombatTime.Instance.combatEnd}");
+        ImGui.Text($"战斗时间3 : {CombatTime.Instance.CombatEngageDuration().TotalSeconds}");
+        ImGui.Text($"DistanceToPlayer : {Core.Me.TargetObject.DistanceToPlayer()}");
+        if (Core.Me.TargetObject is IBattleChara battleChara)
+        {
+            ImGui.Text($"DistanceToPlayer : {TargetHelper.GetTargetDistanceFromMeTest2D(battleChara, Core.Me)}");
+            ImGui.Text($"Distance : {Core.Me.GetCurrTarget()?.Distance(Core.Me)}");
+            ImGui.Text($"Distance : {Core.Me.Distance(battleChara)}");
+        }
+
+
+        if (ImGui.TreeNode("小队"))
+        {
+            ImGui.Text($"周围小队成员数量：{PartyHelper.Party.Count}");
+            ImGui.Text("小队成员:");
+            if (PartyHelper.Party.Count > 0)
+            {
+                foreach (var t in PartyHelper.Party)
+                {
+                    ImGui.Separator();
+                    ImGui.Text($"姓名:{t.Name}");
+                    // ImGui.Text($"战斗状态:{Helper.目标战斗状态(t)}");
+                    ImGui.Text($"死亡状态:{t.IsDead}");
+                    // ImGui.Text($"距离:{t.Distance(Helper.自身)}");
+                }
+            }
+            ImGui.TreePop();
+        }
         
         // ImGui.Text($"大保健连击Confiteor : {PLDBaseSlotResolvers.大保健连击Confiteor.OriginalHook().Id}");
         // ImGui.Text($"赎罪剑Atonement1 : {PLDBaseSlotResolvers.赎罪剑Atonement1.OriginalHook().Id}");
         // ImGui.Text($"GCD : {GCDHelper.GetGCDCooldown()}");
 
-        
+
         // ImGui.Text($"圣灵buff : {BaseIslotResolver.GetBuffRemainingTime(PLDBaseSlotResolvers.Buffs.DivineMight)}");
         // ImGui.Text($"ActionReady : {PLDBaseSlotResolvers.深奥之灵SpiritsWithin.ActionReady()}");
         // ImGui.Text($"OriginalHook : {PLDBaseSlotResolvers.深奥之灵SpiritsWithin.OriginalHookActionReady()}");

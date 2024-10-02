@@ -22,9 +22,7 @@ public class GCD_优先赎罪 : PLDBaseSlotResolvers
         {
             return Flag_无效目标;
         }
-
         
-
         if (getQTValue(PLDQTKey.优先赎罪))
         {
             if (赎罪剑Atonement.IsUnlock())

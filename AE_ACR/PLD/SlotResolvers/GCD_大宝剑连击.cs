@@ -1,5 +1,6 @@
 #region
 
+using AE_ACR.DRK.SlotResolvers;
 using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine.Module;
@@ -46,6 +47,13 @@ public class GCD_大宝剑连击 : PLDBaseSlotResolvers
         {
             spell = 大保健连击Confiteor.OriginalHook();
         }
+        
+        if (HasEffect(Buffs.悔罪预备))
+        {
+            spell = 大保健连击Confiteor.OriginalHook();
+        }
+        
+        
 
         slot.Add(spell);
     }

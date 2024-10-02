@@ -6,6 +6,7 @@ using AE_ACR.PLD.Setting;
 using AEAssist;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
+using AEAssist.Extension;
 using AEAssist.Helper;
 using Dalamud.Game.ClientState.Objects.Types;
 
@@ -40,8 +41,7 @@ public class PLD_GCD_投盾 : PLDBaseSlotResolvers
             if (投盾ShieldLob.IsUnlock())
             {
                 var 阈值 = PLDSettings.Instance.投盾阈值;
-                if (TargetHelper.GetTargetDistanceFromMeTest2D(battleChara, Core.Me) >= 阈值
-                    && TargetHelper.GetTargetDistanceFromMeTest2D(battleChara, Core.Me) <= 20f)
+                if (和目标的距离() >= 阈值 && 和目标的距离() <= 20f)
                 {
                     
                     if (HasEffect(Buffs.DivineMight) == false && IsMoving() == true)
