@@ -53,22 +53,28 @@ public class Ability_圣盾阵 : PLDBaseSlotResolvers
 
             if (圣盾阵.OriginalHookActionReady() && Core.Resolve<JobApi_Paladin>().Oath >= 50)
             {
-                if (Core.Me.CurrentHpPercent() <= 0.65f)
+                if (Core.Me.TargetObject is IBattleChara target)
                 {
-                    if (attackMeCount() >= 3)
+                    if (Core.Me.CurrentHpPercent() <= 0.65f)
                     {
-                        return 0;
-                    }
-                
-                    if (Core.Me.TargetObject is IBattleChara target)
-                    {
+                        if (attackMeCount() >= 3)
+                        {
+                            return 0;
+                        }
+
                         if (TargetHelper.IsBoss(target))
+                        {
+                            return 0;
+                        }
+
+                        if (TargetHelper.TargercastingIsDeathSentence(target, 3))
                         {
                             return 0;
                         }
                     }
                 }
-               
+
+
             }
 
         }

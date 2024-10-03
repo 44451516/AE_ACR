@@ -4,10 +4,12 @@ using AE_ACR.PLD.Setting;
 using AE_ACR.PLD.SlotResolvers;
 using AE_ACR.PLD.SlotResolvers.减伤;
 using AE_ACR.PLD.Triggers;
+using AE_ACR.PLD.起手;
 using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
+using AEAssist.CombatRoutine.Module.Opener;
 using AEAssist.CombatRoutine.View.JobView;
 using AEAssist.Extension;
 using AEAssist.Helper;
@@ -87,12 +89,12 @@ public class PLDRotationEntry : IRotationEntry
             MaxLevel = 100,
             Description = "骑士"
         };
-
+        rot.AddOpener(GetOpener);
         // 添加各种事件回调
         rot.SetRotationEventHandler(new RotationEventHandler());
         // 添加QT开关的时间轴行为
         rot.AddTriggerAction(new TriggerAction_QT());
-
+       
         return rot;
     }
 
@@ -140,6 +142,7 @@ public class PLDRotationEntry : IRotationEntry
         QT.AddQt(PLDQTKey.即刻战逃, false, "战逃好了就用");
         QT.AddQt(PLDQTKey.优先圣灵, false);
         QT.AddQt(PLDQTKey.优先赎罪, false);
+        QT.AddQt(PLDQTKey.起手序列, false);
 
 
         // QT.AddQt(BaseQTKey.减伤, true);
@@ -167,7 +170,10 @@ public class PLDRotationEntry : IRotationEntry
         }));
         */
     }
-
+    IOpener? GetOpener(uint level)
+    {
+        return new PLD_Opener();
+    }
     public void OnUIUpdate()
     {
     }

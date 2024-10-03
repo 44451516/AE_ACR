@@ -17,5 +17,7 @@ public class PLDQTKey : BaseQTKey
     public const string 即刻战逃 = "即刻战逃";
     public const string 优先圣灵 = "优先圣灵";
     public const string 优先赎罪 = "优先赎罪";
+    public const string 起手序列 = "起手序列";
+    
     
 }

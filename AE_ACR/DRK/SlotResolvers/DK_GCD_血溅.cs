@@ -55,9 +55,8 @@ public class DK_GCD_血溅 : DRKBaseSlotResolvers
         {
             if (chara.CurrentHp <= DKSettings.Instance.get爆发目标血量())
             {
-                if (Blood > 50 || Core.Me.HasAura(Buffs.血乱Delirium))
+                if (Blood > 50 || Core.Me.HasAura(Buffs.血乱Delirium1) || Core.Me.HasAura(Buffs.血乱Delirium2))
                 {
-                    // AELoggerUtils.Log("血溅1");
                     return 0;
                 }
             }
@@ -70,14 +69,20 @@ public class DK_GCD_血溅 : DRKBaseSlotResolvers
         }
 
 
-        if (Blood > 50 || Core.Me.HasAura(Buffs.血乱Delirium))
+        if (Blood > 50 || Core.Me.HasAura(Buffs.血乱Delirium1)|| Core.Me.HasAura(Buffs.血乱Delirium2))
         {
             //防止血溅没有打完
-            if (Core.Resolve<MemApiBuff>().GetAuraTimeleft(Core.Me, Buffs.血乱Delirium, true) < 8000)
+            if (Core.Resolve<MemApiBuff>().GetAuraTimeleft(Core.Me, Buffs.血乱Delirium1, true) < 8000)
             {
                 return 0;
             }
-
+            
+            //防止血溅没有打完
+            if (Core.Resolve<MemApiBuff>().GetAuraTimeleft(Core.Me, Buffs.血乱Delirium2, true) < 8000)
+            {
+                return 0;
+            }  
+            
             if (RaidBuff.爆发期_120())
             {
                 return 0;

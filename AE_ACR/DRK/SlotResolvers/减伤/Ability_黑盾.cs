@@ -34,28 +34,34 @@ public class Ability_黑盾 : DRKBaseSlotResolvers
 
             if (至黑之夜.ActionReady() && Core.Me.CurrentMp >= 3000)
             {
-                if (Core.Me.CurrentHpPercent() < 0.88f)
+                if (Core.Me.TargetObject is IBattleChara target)
                 {
-                    if (attackMeCount() >= 3)
+                    if (Core.Me.CurrentHpPercent() < 0.88f)
                     {
-                        return 0;
-                    }
-                    
-                    if (Core.Me.TargetObject is IBattleChara target)
-                    {
+                        if (attackMeCount() >= 3)
+                        {
+                            return 0;
+                        }
+
+
                         if (TargetHelper.IsBoss(target))
                         {
                             return 0;
                         }
                     }
-
+                    
+                    if (TargetHelper.TargercastingIsDeathSentence(target, 6))
+                    {
+                        return 0;
+                    }
                 }
             }
-
         }
-
         return -1;
     }
+
+
+
 
 
     public override void Build(Slot slot)

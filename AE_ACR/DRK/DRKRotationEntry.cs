@@ -227,39 +227,40 @@ public class DRKRotationEntry : IRotationEntry
  
         
         var battleChara = Core.Me.GetCurrTarget();
-        
+        ImGui.Text($"血溅Bloodspiller.IsUnlock:{DRKBaseSlotResolvers.血溅Bloodspiller.IsUnlock()}");
+        // ImGui.Text($"血溅Bloodspiller.IsUnlock:{Core.Resolve<MemApiSpell>().CheckActionChange(DRKBaseSlotResolvers.血溅Bloodspiller).GetSpell()}");
         // ImGui.Text($"目标距离:{TargetHelper.GetTargetDistanceFromMeTest2D(battleChara, Core.Me)}");
-        ImGui.Text($"挑衅cd:{DRKBaseSlotResolvers.挑衅.GetCooldownRemainingTime()}");
-        ImGui.Text($"GetRecastTime:{Core.Resolve<MemApiSpell>().GetRecastTime(DRKBaseSlotResolvers.疾跑).TotalSeconds}");
-        ImGui.Text($"GetRecastTimeElapsed:{Core.Resolve<MemApiSpell>().GetRecastTimeElapsed(DRKBaseSlotResolvers.疾跑)}");
-        ImGui.Text($"GetCooldownRemainingTime:{DRKBaseSlotResolvers.Shadowbringer暗影使者.GetCooldownRemainingTime()}");
-        ImGui.Text($"ActionReady:{DRKBaseSlotResolvers.Shadowbringer暗影使者.ActionReady()}");
-
-
-        ImGui.Text($"LastSpell : {Core.Resolve<MemApiSpellCastSuccess>().LastSpell}");
-        ImGui.Text($"LastAbility :  {Core.Resolve<MemApiSpellCastSuccess>().LastAbility}");
-        ImGui.Text($"LastGcd : {Core.Resolve<MemApiSpellCastSuccess>().LastGcd}");
-        ImGui.Text($"GetLastComboSpellId : {Core.Resolve<MemApiSpell>().GetLastComboSpellId()}");
-
-        ImGui.Text($"战斗时间1 : {CombatTime.Instance.combatStart}");
-        ImGui.Text($"战斗时间2 : {CombatTime.Instance.combatEnd}");
-        ImGui.Text($"战斗时间3 : {CombatTime.Instance.CombatEngageDuration().TotalSeconds}");
-        ImGui.Text($"暗黑时间 : {Core.Resolve<JobApi_DarkKnight>().DarksideTimeRemaining}");
-        ImGui.Text($"暗黑时间 : {Core.Resolve<MemApiSpell>().CheckActionChange(DRKBaseSlotResolvers.暗黑锋).GetSpell().Id} - {Core.Resolve<MemApiSpell>().CheckActionChange(DRKBaseSlotResolvers.EdgeOfShadow).GetSpell().Id}");
-        ImGui.Text($"LastSpell : {Core.Resolve<MemApiSpellCastSuccess>().LastSpell}");
-        ImGui.Text($"刚魂StalwartSoul : {DRKBaseSlotResolvers.刚魂StalwartSoul.IsUnlock()}");
-        ImGui.Text($"Scorn : {Core.Me.HasAura(DRKBaseSlotResolvers.Buffs.Scorn)}");
-        ImGui.Text($"IsUnlock : {DRKBaseSlotResolvers.蔑视厌恶Disesteem.IsUnlock()}");
-        ImGui.Text($"血乱Delirium : {DRKBaseSlotResolvers.血乱Delirium.GetCooldownRemainingTime()}");
-        ImGui.Text($"血溅Bloodspiller : {DRKBaseSlotResolvers.血溅Bloodspiller.GetCooldownRemainingTime()}");
-        ImGui.Text($"LivingShadow : {DRKBaseSlotResolvers.LivingShadow.GetCooldownRemainingTime()}");
-
-
-        ImGui.Text($"自身中心数量 : {TargetHelper.GetNearbyEnemyCount(5)}");
-        ImGui.Text($"目标中心数量 : {TargetHelper.GetNearbyEnemyCount(battleChara, 5, 5)}");
-        ImGui.Text($"血乱buff计时器 : {Core.Resolve<MemApiBuff>().GetAuraTimeleft(Core.Me, DRKBaseSlotResolvers.Buffs.血乱Delirium, true)}");
-        ImGui.Text($"腐秽大地SaltedEarth : {DRKBaseSlotResolvers.腐秽大地SaltedEarth.ActionReady()}");
-        ImGui.Text($"腐秽黑暗 : {DRKBaseSlotResolvers.腐秽黑暗.ActionReady()}");
-        ImGui.Text($"OriginalHook : {DRKBaseSlotResolvers.腐秽大地SaltedEarth.OriginalHook()}");
+        // ImGui.Text($"挑衅cd:{DRKBaseSlotResolvers.挑衅.GetCooldownRemainingTime()}");
+        // ImGui.Text($"GetRecastTime:{Core.Resolve<MemApiSpell>().GetRecastTime(DRKBaseSlotResolvers.疾跑).TotalSeconds}");
+        // ImGui.Text($"GetRecastTimeElapsed:{Core.Resolve<MemApiSpell>().GetRecastTimeElapsed(DRKBaseSlotResolvers.疾跑)}");
+        // ImGui.Text($"GetCooldownRemainingTime:{DRKBaseSlotResolvers.Shadowbringer暗影使者.GetCooldownRemainingTime()}");
+        // ImGui.Text($"ActionReady:{DRKBaseSlotResolvers.Shadowbringer暗影使者.ActionReady()}");
+        //
+        //
+        // ImGui.Text($"LastSpell : {Core.Resolve<MemApiSpellCastSuccess>().LastSpell}");
+        // ImGui.Text($"LastAbility :  {Core.Resolve<MemApiSpellCastSuccess>().LastAbility}");
+        // ImGui.Text($"LastGcd : {Core.Resolve<MemApiSpellCastSuccess>().LastGcd}");
+        // ImGui.Text($"GetLastComboSpellId : {Core.Resolve<MemApiSpell>().GetLastComboSpellId()}");
+        //
+        // ImGui.Text($"战斗时间1 : {CombatTime.Instance.combatStart}");
+        // ImGui.Text($"战斗时间2 : {CombatTime.Instance.combatEnd}");
+        // ImGui.Text($"战斗时间3 : {CombatTime.Instance.CombatEngageDuration().TotalSeconds}");
+        // ImGui.Text($"暗黑时间 : {Core.Resolve<JobApi_DarkKnight>().DarksideTimeRemaining}");
+        // ImGui.Text($"暗黑时间 : {Core.Resolve<MemApiSpell>().CheckActionChange(DRKBaseSlotResolvers.暗黑锋).GetSpell().Id} - {Core.Resolve<MemApiSpell>().CheckActionChange(DRKBaseSlotResolvers.EdgeOfShadow).GetSpell().Id}");
+        // ImGui.Text($"LastSpell : {Core.Resolve<MemApiSpellCastSuccess>().LastSpell}");
+        // ImGui.Text($"刚魂StalwartSoul : {DRKBaseSlotResolvers.刚魂StalwartSoul.IsUnlock()}");
+        // ImGui.Text($"Scorn : {Core.Me.HasAura(DRKBaseSlotResolvers.Buffs.Scorn)}");
+        // ImGui.Text($"IsUnlock : {DRKBaseSlotResolvers.蔑视厌恶Disesteem.IsUnlock()}");
+        // ImGui.Text($"血乱Delirium : {DRKBaseSlotResolvers.血乱Delirium.GetCooldownRemainingTime()}");
+        // ImGui.Text($"血溅Bloodspiller : {DRKBaseSlotResolvers.血溅Bloodspiller.GetCooldownRemainingTime()}");
+        // ImGui.Text($"LivingShadow : {DRKBaseSlotResolvers.LivingShadow.GetCooldownRemainingTime()}");
+        //
+        //
+        // ImGui.Text($"自身中心数量 : {TargetHelper.GetNearbyEnemyCount(5)}");
+        // ImGui.Text($"目标中心数量 : {TargetHelper.GetNearbyEnemyCount(battleChara, 5, 5)}");
+        // ImGui.Text($"血乱buff计时器 : {Core.Resolve<MemApiBuff>().GetAuraTimeleft(Core.Me, DRKBaseSlotResolvers.Buffs.血乱Delirium, true)}");
+        // ImGui.Text($"腐秽大地SaltedEarth : {DRKBaseSlotResolvers.腐秽大地SaltedEarth.ActionReady()}");
+        // ImGui.Text($"腐秽黑暗 : {DRKBaseSlotResolvers.腐秽黑暗.ActionReady()}");
+        // ImGui.Text($"OriginalHook : {DRKBaseSlotResolvers.腐秽大地SaltedEarth.OriginalHook()}");
     }
 }

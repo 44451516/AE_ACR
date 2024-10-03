@@ -63,7 +63,8 @@ public abstract class DRKBaseSlotResolvers : TankBaseIslotResolver
             Darkside = 751,
             BlackestNight = 1178,
             //血乱
-            血乱Delirium = 3836,
+            血乱Delirium1 = 1972,
+            血乱Delirium2 = 3836,
             Scorn = 3837,
             腐秽黑暗 = 749,
             SaltedEarth = 749,
