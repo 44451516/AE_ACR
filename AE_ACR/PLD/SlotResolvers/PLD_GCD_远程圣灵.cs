@@ -24,6 +24,12 @@ public class PLD_GCD_远程圣灵 : PLDBaseSlotResolvers
         }
         
         
+        if (getQTValue(PLDQTKey.远程圣灵) == false)
+        {
+            return Flag_远程技能QT;
+        }
+        
+        
         if (isHasCanAttackBattleChara() == false)
         {
             return Flag_无效目标;
