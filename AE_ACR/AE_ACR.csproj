@@ -44,11 +44,7 @@
             <HintPath>E:\DevProject\FF14\AEAssist3\Output\AEAssistCNVersion\AEAssist\Newtonsoft.Json.dll</HintPath>
             <Private>False</Private>
         </Reference>
-
-        <Reference Include="Newtonsoft.Json">
-            <HintPath>E:\DevProject\FF14\AEAssist3\Output\Plugins\Trust\Trust.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
+        
     </ItemGroup>
 
 
