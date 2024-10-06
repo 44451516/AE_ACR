@@ -1,13 +1,10 @@
 ﻿using System.Numerics;
-using AE_ACR.utils;
 using AEAssist;
 using AEAssist.Avoid;
 using AEAssist.CombatRoutine.Module;
-using AEAssist.CombatRoutine.Module.Target;
 using AEAssist.Extension;
 using AEAssist.Helper;
 using AEAssist.MemoryApi;
-using Dalamud.Game.ClientState.Objects.Types;
 using Trust.DungeonController.Dungeon;
 using Trust.DungeonController.SpellReaction;
 

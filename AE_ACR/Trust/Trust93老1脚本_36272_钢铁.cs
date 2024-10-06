@@ -2,7 +2,6 @@
 using AEAssist.Avoid;
 using AEAssist.Helper;
 using AEAssist.MemoryApi;
-using Dalamud.Game.ClientState.JobGauge.Types;
 using Dalamud.Game.ClientState.Objects.Types;
 using Trust.DungeonController.Dungeon;
 using Trust.DungeonController.SpellReaction;

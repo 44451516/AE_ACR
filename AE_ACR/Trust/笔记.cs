@@ -1,5 +1,4 @@
 ﻿using AEAssist.Helper;
-using AEAssist.MemoryApi;
 
 namespace ScriptTest;
 

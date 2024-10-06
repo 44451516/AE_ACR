@@ -1,6 +1,5 @@
 ﻿using AEAssist;
 using AEAssist.Avoid;
-using AEAssist.CombatRoutine.Module.Target;
 using AEAssist.Helper;
 using AEAssist.MemoryApi;
 using Dalamud.Game.ClientState.Objects.Types;

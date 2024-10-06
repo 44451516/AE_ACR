@@ -1,5 +1,4 @@
-﻿using System.Numerics;
-using AEAssist;
+﻿using AEAssist;
 using AEAssist.Avoid;
 using AEAssist.Helper;
 using AEAssist.MemoryApi;
