@@ -61,7 +61,7 @@ public class DK_GCD_Base : DRKBaseSlotResolvers
             }
         }
 
-        if (lastComboActionID == 单体1HardSlash)
+        if (lastComboActionID == 单体1HardSlash && 单体2SyphonStrike.IsUnlock())
         {
             return 单体2SyphonStrike.GetSpell();
         }
@@ -75,7 +75,7 @@ public class DK_GCD_Base : DRKBaseSlotResolvers
             }
         }
 
-        if (lastComboActionID == 单体2SyphonStrike)
+        if ( lastComboActionID == 单体2SyphonStrike && 单体3Souleater.IsUnlock())
         {
             return 单体3Souleater.GetSpell();
         }

@@ -42,8 +42,7 @@ public class DK_GCD_伤残 : DRKBaseSlotResolvers
             if (伤残.IsUnlock())
             {
                 var 伤残阈值 = DKSettings.Instance.伤残阈值;
-                if (TargetHelper.GetTargetDistanceFromMeTest2D(battleChara, Core.Me) >= 伤残阈值
-                    && TargetHelper.GetTargetDistanceFromMeTest2D(battleChara, Core.Me) <= 20f)
+                if (和目标的距离() >= 伤残阈值 && 和目标的距离() <= 20f)
                 {
                     return 0;
                 }
