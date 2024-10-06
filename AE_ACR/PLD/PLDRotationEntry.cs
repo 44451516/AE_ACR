@@ -11,6 +11,7 @@ using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.CombatRoutine.Module.Opener;
 using AEAssist.CombatRoutine.View.JobView;
+using AEAssist.CombatRoutine.View.JobView.HotkeyResolver;
 using AEAssist.Extension;
 using AEAssist.Helper;
 using AEAssist.JobApi;
@@ -144,7 +145,7 @@ public class PLDRotationEntry : IRotationEntry
         QT.AddQt(PLDQTKey.优先赎罪, false);
         QT.AddQt(PLDQTKey.起手序列, false);
 
-
+        QT.AddHotkey("LB", new HotKeyResolver_LB());
         // QT.AddQt(BaseQTKey.减伤, true);
         // QT.AddQt(QTKey.Test2, false);
         // QT.AddQt(QTKey.UsePotion,false);

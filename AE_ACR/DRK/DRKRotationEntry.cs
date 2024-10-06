@@ -10,6 +10,7 @@ using AEAssist;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.CombatRoutine.View.JobView;
+using AEAssist.CombatRoutine.View.JobView.HotkeyResolver;
 using AEAssist.Extension;
 using AEAssist.Helper;
 using AEAssist.JobApi;
@@ -139,6 +140,7 @@ public class DRKRotationEntry : IRotationEntry
         QT.AddQt(DRKQTKey.暗影使者, true);
         QT.AddQt(DRKQTKey.伤残, false, "和目标距离过远的时候使用");
 
+        QT.AddHotkey("LB", new HotKeyResolver_LB());
 
         // 添加QT开关 第二个参数是默认值 (开or关) 第三个参数是鼠标悬浮时的tips
         // QT.AddQt(QTKey.UseBaseGcd, true, "是否使用基础的Gcd");
