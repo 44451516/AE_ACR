@@ -45,6 +45,11 @@ public class DK_Ability_吸血深渊 : DRKBaseSlotResolvers
 
 
         var battleChara = Core.Me.GetCurrTarget();
+        if (battleChara == null)
+        {
+            return -5;
+        }
+
         if (TargetHelper.GetNearbyEnemyCount(battleChara, 5, 5) < 2)
             return -4;
 

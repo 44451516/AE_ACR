@@ -24,9 +24,12 @@ public class GCD_Base : ASTBaseSlotResolvers
         return 0;
     }
 
-    private Spell GetAOEGCDSpell()
+    private Spell? GetAOEGCDSpell()
     {
         var battleChara = Core.Me.GetCurrTarget();
+        if (battleChara == null)
+            return null;
+        
         if (AOE.OriginalHook().IsUnlock() && TargetHelper.GetNearbyEnemyCount(battleChara, 25, 5) >= 2)
         {
             return AOE.OriginalHook();
@@ -54,6 +57,9 @@ public class GCD_Base : ASTBaseSlotResolvers
     public override void Build(Slot slot)
     {
         var spell = GetAOEGCDSpell();
-        slot.Add(spell);
+        if (spell != null)
+        {
+            slot.Add(spell);
+        }
     }
 }
