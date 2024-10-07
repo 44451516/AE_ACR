@@ -138,27 +138,30 @@ public class GCD_Base : PLDBaseSlotResolvers
                 }
             }
         }
-
+        
+        if (HasEffect(Buffs.赎罪剑Atonement1BUFF))
+        {
+            return 赎罪剑Atonement.OriginalHook();
+        }
 
         if (lastComboActionID == 先锋剑FastBlade && 暴乱剑RiotBlade.IsUnlock())
         {
             return 暴乱剑RiotBlade.OriginalHook();
         }
-
-        if (HasEffect(Buffs.赎罪剑Atonement1BUFF) || HasEffect(Buffs.赎罪剑Atonement2BUFF))
-        {
-            return 赎罪剑Atonement.OriginalHook();
-        }
-
-
+        
         if (lastComboActionID is 暴乱剑RiotBlade && 战女神之怒RageOfHalone.IsUnlock())
         {
-            if (HasEffect(Buffs.DivineMight))
+            if ( HasEffect(Buffs.赎罪剑Atonement2BUFF))
+            {
+                return 赎罪剑Atonement.OriginalHook();
+            }
+            
+            if (HasEffect(Buffs.DivineMight) && GetResourceCost(圣灵HolySpirit) <= Core.Me.CurrentMp)
             {
                 return 圣灵HolySpirit.OriginalHook();
             }
 
-            if (HasEffect(Buffs.赎罪剑Atonement1BUFF) || HasEffect(Buffs.赎罪剑Atonement2BUFF) || HasEffect(Buffs.赎罪剑Atonement3BUFF))
+            if (HasEffect(Buffs.赎罪剑Atonement3BUFF))
             {
                 return 赎罪剑Atonement.OriginalHook();
             }
