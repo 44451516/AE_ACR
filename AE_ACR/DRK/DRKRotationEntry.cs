@@ -86,7 +86,7 @@ public class DRKRotationEntry : IRotationEntry
             AcrType = AcrType.Both,
             MinLevel = 30,
             MaxLevel = 100,
-            Description = "DK先行版"
+            Description = "如果你发现没有保留蓝量，请把【目标小于多少血打完所有资源】设置为0"
         };
 
         // 添加各种事件回调
