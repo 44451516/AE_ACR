@@ -185,7 +185,7 @@ public abstract class BaseIslotResolver : ISlotResolver
                 return true;
             }
 
-            if (generalSettings.OpenTTK)
+            if (isUseAeCheck)
             {
                 if (generalSettings.TimeToKillCheckTime >= 12000)
                 {
@@ -213,7 +213,7 @@ public abstract class BaseIslotResolver : ISlotResolver
                 var battleChara = keyValuePair.Value;
                 if (battleChara.CanAttack())
                 {
-                    if (generalSettings.OpenTTK)
+                    if (isUseAeCheck)
                     {
                         if (generalSettings.TimeToKillCheckTime >= 12000)
                         {
@@ -259,4 +259,6 @@ public abstract class BaseIslotResolver : ISlotResolver
             加速器炸弹 = 3802,
             留空 = 0;
     }
+
+    private static bool isUseAeCheck = true;
 }

@@ -44,7 +44,6 @@ public class Ability_挑衅 : DRKBaseSlotResolvers
             return Flag_不在副本里面;
         }
 
-
         if (Data.IsInHighEndDuty == true)
         {
             return Flag_不是日常本;
