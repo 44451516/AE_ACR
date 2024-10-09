@@ -48,14 +48,15 @@ public class GCD_群奶治疗 : ASTBaseSlotResolvers
     {
         if (HasEffect(Buffs.医技buff) || HasEffect(Buffs.医技buff2))
         {
-            return 群奶.OriginalHook();
+            return 阳星.OriginalHook();
         }
+        
         if (阳星相位.IsUnlock())
         {
             return 阳星相位.OriginalHook();
         }
 
-        return 群奶.OriginalHook();
+        return 阳星.OriginalHook();
     }
 
     public override void Build(Slot slot)

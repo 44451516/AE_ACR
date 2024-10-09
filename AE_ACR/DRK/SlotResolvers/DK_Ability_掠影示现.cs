@@ -1,6 +1,6 @@
 ﻿#region
 
-using AE_ACR_DRK;
+using AE_ACR_DRK_Setting;
 using AE_ACR.Base;
 using AE_ACR.utils;
 using AEAssist;
@@ -25,6 +25,19 @@ public class DK_Ability_掠影示现 : DRKBaseSlotResolvers
         {
             return Flag_攒资源;
         }
+        
+        
+        if (DKSettings.Instance.日常模式)
+        {
+            if (DKSettings.Instance.日常模式_残血不打爆发)
+            {
+                if (战斗爽() == false)
+                {
+                    return Flag_残血不打爆发; 
+                }
+            }  
+        }
+        
         
         if (!CanWeave())
         {

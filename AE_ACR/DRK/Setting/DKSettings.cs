@@ -25,7 +25,8 @@ public class DKSettings
     public float 伤残阈值 = 10f;
     public bool 日常模式 = false;
     public bool 挑衅 = true;
-
+    public bool 日常模式_残血不打爆发 = true;
+    
     public JobViewSave JobViewSave = new(); // QT设置存档
 
     public int get爆发目标血量()
@@ -36,6 +37,7 @@ public class DKSettings
     #region 标准模板代码 可以直接复制后改掉类名即可
 
     private static string path;
+ 
 
     public static void Build(string settingPath)
     {

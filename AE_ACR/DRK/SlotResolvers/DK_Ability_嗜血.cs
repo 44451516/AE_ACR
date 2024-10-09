@@ -1,14 +1,11 @@
 ﻿#region
 
-using AE_ACR_DRK;
 using AE_ACR_DRK_Setting;
 using AE_ACR.Base;
 using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine.Module;
-using AEAssist.Helper;
 using AEAssist.JobApi;
-using AEAssist.MemoryApi;
 
 #endregion
 
@@ -29,6 +26,17 @@ public class DK_Ability_嗜血 : DRKBaseSlotResolvers
         }
 
 
+        if (DKSettings.Instance.日常模式)
+        {
+            if (DKSettings.Instance.日常模式_残血不打爆发)
+            {
+                if (战斗爽() == false)
+                {
+                    return Flag_残血不打爆发; 
+                }
+            }  
+        }
+        
         if (!CanWeave())
         {
             return -1;

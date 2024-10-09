@@ -189,6 +189,8 @@ public class PLDRotationEntry : IRotationEntry
             ImGui.Checkbox("启用", ref PLDSettings.日常模式);
             ImGui.SetNextItemWidth(150f);
             ImGui.Checkbox("使用挑衅", ref PLDSettings.挑衅);
+            // ImGui.SetNextItemWidth(150f);
+            ImGui.Checkbox("日常模式_残血不打爆发[测试中]", ref PLDSettings.日常模式_残血不打爆发);
         }
         
 

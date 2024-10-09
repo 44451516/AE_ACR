@@ -1,5 +1,6 @@
 ﻿#region
 
+using AE_ACR.PLD.Setting;
 using AE_ACR.utils;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.Helper;
@@ -22,7 +23,19 @@ public class Ability_战逃反应 : PLDBaseSlotResolvers
             return Flag_QT;
         }
 
-
+        
+        if (PLDSettings.Instance.日常模式)
+        {
+            if (PLDSettings.Instance.日常模式_残血不打爆发)
+            {
+                if (战斗爽() == false)
+                {
+                    return Flag_残血不打爆发; 
+                }
+            }  
+        }
+        
+        
         if (CanWeave())
         {
            

@@ -64,4 +64,21 @@ internal static class ActionUtils
 
         return false;
     }
+    
+ 
+    public static bool MyIsUnlock(this uint spellId)
+    {
+        if (Core.Resolve<MemApiSpell>().GetActionState(spellId) == 573) //没学技能
+        {
+            return false;
+        }
+        
+        if (!spellId.IsUnlock())
+        {
+            return false;
+        }
+
+
+        return true;
+    }
 }

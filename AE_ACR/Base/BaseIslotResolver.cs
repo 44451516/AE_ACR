@@ -26,6 +26,7 @@ public abstract class BaseIslotResolver : ISlotResolver
         Flag_无效目标 = -107,
         Flag_CD = -108,
         Flag_小队人数不够 = -109,
+        Flag_残血不打爆发 = -110,
         留空 = 3624;
 
     public static class DeBuffs
@@ -169,5 +170,64 @@ public abstract class BaseIslotResolver : ISlotResolver
         }
         //-1000无目标
         return -1000;
+    }
+    
+    public static bool 战斗爽()
+    {
+        var currTarget = Core.Me.GetCurrTarget();
+        if (currTarget == null)
+        {
+            return false;
+        }
+        
+        if (currTarget.IsBoss())
+        {
+            if (isLastBoss(currTarget))
+            {
+                return true;
+            }
+
+            //如果当前目标在15秒内会被击杀（TTK），并且当前目标是Boss，返回不爽
+            if (TTKHelper.IsTargetTTK(currTarget, 15, true))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        else
+        {
+            var isBurst = true;
+            //判断小怪，有一个小怪ttk大于15
+            foreach (var keyValuePair in TargetMgr.Instance.EnemysIn25)
+            {
+                var battleChara = keyValuePair.Value;
+                // 有1个15秒不死 开启爆发
+                if (battleChara.CanAttack() && TTKHelper.IsTargetTTK(currTarget, 15, true) == false)
+                {
+                    return true;
+                }
+            }
+        }
+        
+        //默认开爆发
+        return false;
+    }
+
+    /// <summary>
+    /// 空方法等待别人实现
+    /// </summary>
+    /// <param name="currTarget"></param>
+    /// <returns></returns>
+    private static bool isLastBoss(IBattleChara currTarget)
+    {
+
+        if (LastBossId.list.Contains(currTarget.DataId))
+        {
+            return true;
+        }
+        return false;
     }
 }

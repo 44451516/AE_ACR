@@ -1,6 +1,5 @@
 ﻿#region
 
-using AE_ACR_DRK;
 using AE_ACR_DRK_Setting;
 using AE_ACR.Base;
 using AE_ACR.utils;

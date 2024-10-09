@@ -1,6 +1,5 @@
 ﻿#region
 
-using AE_ACR_DRK;
 using AE_ACR_DRK_Setting;
 using AE_ACR.Base;
 using AE_ACR.utils;
@@ -9,7 +8,6 @@ using AEAssist.CombatRoutine.Module;
 using AEAssist.Extension;
 using AEAssist.Helper;
 using AEAssist.JobApi;
-using AEAssist.MemoryApi;
 
 #endregion
 

@@ -17,7 +17,7 @@ public abstract class ASTBaseSlotResolvers : 治疗BaseIslotResolver
         落陷凶星 = 3596,
         dot = 3599,
         AOE = 3615,
-        群奶 = 3600,
+        阳星 = 3600,
         阳星相位 = 3601,
         先天禀赋 = 3614,
         天星冲日 = 16553,
