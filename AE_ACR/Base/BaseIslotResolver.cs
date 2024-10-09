@@ -28,6 +28,8 @@ public abstract class BaseIslotResolver : ISlotResolver
         Flag_CD = -108,
         Flag_小队人数不够 = -109,
         Flag_残血不打爆发 = -110,
+        Flag_不在副本里面 = -111,
+        Flag_不是日常本 = -112,
         留空 = 3624;
 
     public static uint lastComboActionID => Core.Resolve<MemApiSpell>().GetLastComboSpellId();
