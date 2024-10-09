@@ -1,5 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-<!--    骑士、黑骑高难&&日随，占星亲信-->
+    <!--    骑士、黑骑高难&&日随，占星亲信-->
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
@@ -11,15 +11,16 @@
 
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <AssemblyName>44451516</AssemblyName>
+        <NoWarn>$(NoWarn);CA1416;CS0108</NoWarn>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-<!--        <OutputPath>$(appdata)\XIVLauncher\devPlugins\AEAssist3.0\ACR\44451516</OutputPath>-->
+        <!--        <OutputPath>$(appdata)\XIVLauncher\devPlugins\AEAssist3.0\ACR\44451516</OutputPath>-->
         <OutputPath>E:\DevProject\FF14\AEAssist3\Output\ACR\44451516</OutputPath>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-<!--        <OutputPath>$(appdata)\XIVLauncher\devPlugins\AEAssist3.0\ACR\44451516</OutputPath>-->
+        <!--        <OutputPath>$(appdata)\XIVLauncher\devPlugins\AEAssist3.0\ACR\44451516</OutputPath>-->
         <OutputPath>E:\DevProject\FF14\AEAssist3\Output\ACR\44451516</OutputPath>
     </PropertyGroup>
 
@@ -44,13 +45,13 @@
             <HintPath>E:\DevProject\FF14\AEAssist3\Output\AEAssistCNVersion\AEAssist\Newtonsoft.Json.dll</HintPath>
             <Private>False</Private>
         </Reference>
-        
+
     </ItemGroup>
 
 
     <ItemGroup>
-      <Folder Include="Base\Tanke\" />
-      <Folder Include="Box\" />
+        <Folder Include="Base\Tanke\"/>
+        <Folder Include="Box\"/>
     </ItemGroup>
 
 </Project>

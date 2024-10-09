@@ -19,7 +19,7 @@ public class DK_Ability_嗜血 : DRKBaseSlotResolvers
         {
             return Flag_停手;
         }
-        
+
         if (getQTValue(BaseQTKey.攒资源))
         {
             return Flag_攒资源;
@@ -32,11 +32,11 @@ public class DK_Ability_嗜血 : DRKBaseSlotResolvers
             {
                 if (战斗爽() == false)
                 {
-                    return Flag_残血不打爆发; 
+                    return Flag_残血不打爆发;
                 }
-            }  
+            }
         }
-        
+
         if (!CanWeave())
         {
             return -1;

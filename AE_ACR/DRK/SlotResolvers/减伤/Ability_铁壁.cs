@@ -1,6 +1,5 @@
 ﻿#region
 
-using AE_ACR.PLD.SlotResolvers;
 using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine.Module;
@@ -26,7 +25,7 @@ public class Ability_铁壁 : DRKBaseSlotResolvers
             {
                 return -1;
             }
-            
+
             if (暗影墙.GetCooldownRemainingTime() > 115)
             {
                 return -1;

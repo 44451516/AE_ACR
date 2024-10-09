@@ -1,5 +1,6 @@
 #region
 
+using AE_ACR.Base;
 using AE_ACR.PLD.Setting;
 using AE_ACR.PLD.SlotResolvers;
 using AE_ACR.PLD.SlotResolvers.减伤;
@@ -25,8 +26,6 @@ namespace AE_ACR.PLD;
 // 重要 类一定要Public声明才会被查找到
 public class PLDRotationEntry : IRotationEntry
 {
-    public string AuthorName { get; set; } = "44451516";
-
     private readonly List<SlotResolverData> SlotResolvers = new()
     {
         new SlotResolverData(new Ability_钢铁信念(), SlotMode.Always),
@@ -66,6 +65,7 @@ public class PLDRotationEntry : IRotationEntry
     };
 
     public static JobViewWindow QT { get; private set; }
+    public string AuthorName { get; set; } = "44451516";
 
     public Rotation Build(string settingFolder)
     {
@@ -95,7 +95,7 @@ public class PLDRotationEntry : IRotationEntry
         rot.SetRotationEventHandler(new RotationEventHandler());
         // 添加QT开关的时间轴行为
         rot.AddTriggerAction(new TriggerAction_QT());
-       
+
         return rot;
     }
 
@@ -133,9 +133,9 @@ public class PLDRotationEntry : IRotationEntry
         QT.AddTab("反馈建议", UIHelp.Feedback);
 
         // 添加QT开关 第二个参数是默认值 (开or关) 第三个参数是鼠标悬浮时的tips
-        QT.AddQt(PLDQTKey.停手, false, "是否使用基础的Gcd");
-        QT.AddQt(PLDQTKey.爆发药, false);
-        QT.AddQt(PLDQTKey.突进, true);
+        QT.AddQt(BaseQTKey.停手, false, "是否使用基础的Gcd");
+        QT.AddQt(BaseQTKey.爆发药, false);
+        QT.AddQt(BaseQTKey.突进, true);
         QT.AddQt(PLDQTKey.大宝剑连击, true);
         QT.AddQt(PLDQTKey.战逃安魂, true);
         QT.AddQt(PLDQTKey.远程投盾, false, "和目标距离过远的时候使用");
@@ -171,33 +171,34 @@ public class PLDRotationEntry : IRotationEntry
         }));
         */
     }
-    IOpener? GetOpener(uint level)
+
+    private IOpener? GetOpener(uint level)
     {
         return new PLD_Opener();
     }
+
     public void OnUIUpdate()
     {
     }
 
     public void DrawQtGeneral(JobViewWindow jobViewWindow)
     {
-        PLDSettings PLDSettings = PLDSettings.Instance;
+        var pldSettings = PLDSettings.Instance;
         if (ImGui.CollapsingHeader("常规设置"))
         {
             ImGui.Text("日常模式会持续开盾，和自动减伤");
             ImGui.SetNextItemWidth(150f);
-            ImGui.Checkbox("启用", ref PLDSettings.日常模式);
+            ImGui.Checkbox("启用", ref pldSettings.日常模式);
             ImGui.SetNextItemWidth(150f);
-            ImGui.Checkbox("使用挑衅", ref PLDSettings.挑衅);
+            ImGui.Checkbox("使用挑衅", ref pldSettings.挑衅);
             // ImGui.SetNextItemWidth(150f);
-            ImGui.Checkbox("日常模式_残血不打爆发[测试中]", ref PLDSettings.日常模式_残血不打爆发);
+            ImGui.Checkbox("日常模式_残血不打爆发[测试中]", ref pldSettings.日常模式_残血不打爆发);
         }
-        
 
-      
-        ImGui.DragFloat("投盾阈值", ref PLDSettings.投盾阈值, 0.1f, 5, 20f);
-        ImGui.DragFloat("远程圣灵阈值", ref PLDSettings.远程圣灵阈值, 0.1f, 5, 20f);
-        ImGui.DragFloat("调停保留层数", ref PLDSettings.调停保留层数, 0.1f, 0, 2);
+
+        ImGui.DragFloat("投盾阈值", ref pldSettings.投盾阈值, 0.1f, 5, 20f);
+        ImGui.DragFloat("远程圣灵阈值", ref pldSettings.远程圣灵阈值, 0.1f, 5, 20f);
+        ImGui.DragFloat("调停保留层数", ref pldSettings.调停保留层数, 0.1f, 0, 2);
 
         if (ImGui.Button("Save[保存]"))
         {
@@ -227,8 +228,8 @@ public class PLDRotationEntry : IRotationEntry
         ImGui.Text("画Dev信息");
         var Oath = Core.Resolve<JobApi_Paladin>().Oath;
 
-        ImGui.Text($"挑衅 : {PLDBaseSlotResolvers.挑衅.ActionReady()}");
-        ImGui.Text($"挑衅 : {PLDBaseSlotResolvers.挑衅.GetCooldownRemainingTime()}");
+        ImGui.Text($"挑衅 : {TankBaseIslotResolver.挑衅.ActionReady()}");
+        ImGui.Text($"挑衅 : {TankBaseIslotResolver.挑衅.GetCooldownRemainingTime()}");
         ImGui.Text($"调停Intervene.Charges : {PLDBaseSlotResolvers.调停Intervene.Charges()}");
         ImGui.Text($"战斗时间1 : {CombatTime.Instance.combatStart}");
         ImGui.Text($"战斗时间2 : {CombatTime.Instance.combatEnd}");
@@ -259,7 +260,7 @@ public class PLDRotationEntry : IRotationEntry
             }
             ImGui.TreePop();
         }
-        
+
         // ImGui.Text($"大保健连击Confiteor : {PLDBaseSlotResolvers.大保健连击Confiteor.OriginalHook().Id}");
         // ImGui.Text($"赎罪剑Atonement1 : {PLDBaseSlotResolvers.赎罪剑Atonement1.OriginalHook().Id}");
         // ImGui.Text($"GCD : {GCDHelper.GetGCDCooldown()}");

@@ -3,7 +3,6 @@
 using AE_ACR.PLD.Setting;
 using AE_ACR.utils;
 using AEAssist.CombatRoutine.Module;
-using AEAssist.Helper;
 
 #endregion
 
@@ -22,13 +21,12 @@ public class Ability_调停 : PLDBaseSlotResolvers
         {
             return Flag_QT;
         }
-        
+
         if (isHasCanAttackBattleChara() == false)
         {
             return Flag_无效目标;
         }
 
-        
 
         if (CanWeave())
         {
@@ -46,7 +44,7 @@ public class Ability_调停 : PLDBaseSlotResolvers
                         return 0;
                     }
                 }
-                
+
             }
 
         }

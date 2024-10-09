@@ -2,7 +2,6 @@
 
 using AE_ACR.utils;
 using AEAssist.CombatRoutine.Module;
-using AEAssist.Helper;
 
 #endregion
 
@@ -22,15 +21,14 @@ public class Ability_深奥之灵 : PLDBaseSlotResolvers
             return Flag_无效目标;
         }
 
-        
-        
+
         if (CanWeave())
         {
             if (深奥之灵SpiritsWithin.ActionReady())
             {
                 if (HasEffect(Buffs.FightOrFlight))
                 {
-                    if (深奥之灵SpiritsWithin.IsUnlock())
+                    if (深奥之灵SpiritsWithin.MyIsUnlock())
                     {
                         if (GetCooldownRemainingTime(安魂祈祷Requiescat) > 40)
                         {

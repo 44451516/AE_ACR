@@ -3,6 +3,7 @@
 using AE_ACR_DRK_Setting;
 using AE_ACR_DRK_Triggers;
 using AE_ACR_DRK.SlotResolvers;
+using AE_ACR.Base;
 using AE_ACR.DRK.SlotResolvers;
 using AE_ACR.DRK.SlotResolvers.减伤;
 using AE_ACR.utils;
@@ -12,9 +13,6 @@ using AEAssist.CombatRoutine.Module;
 using AEAssist.CombatRoutine.View.JobView;
 using AEAssist.CombatRoutine.View.JobView.HotkeyResolver;
 using AEAssist.Extension;
-using AEAssist.Helper;
-using AEAssist.JobApi;
-using AEAssist.MemoryApi;
 using ImGuiNET;
 
 #endregion
@@ -24,8 +22,6 @@ namespace AE_ACR_DRK;
 // 重要 类一定要Public声明才会被查找到
 public class DRKRotationEntry : IRotationEntry
 {
-    public string AuthorName { get; set; } = "44451516";
-
     // 逻辑从上到下判断，通用队列是无论如何都会判断的 
     // gcd则在可以使用gcd时判断
     // offGcd则在不可以使用gcd 且没达到gcd内插入能力技上限时判断
@@ -66,6 +62,7 @@ public class DRKRotationEntry : IRotationEntry
     };
 
     public static JobViewWindow QT { get; private set; }
+    public string AuthorName { get; set; } = "44451516";
 
     public Rotation Build(string settingFolder)
     {
@@ -134,8 +131,8 @@ public class DRKRotationEntry : IRotationEntry
         QT.AddTab("反馈建议", UIHelp.Feedback);
         // QT.AddTab("Dev2", DrawQtDev);
 
-        QT.AddQt(DRKQTKey.停手, false, "是否使用基础的Gcd");
-        QT.AddQt(DRKQTKey.攒资源, false, "攒资源不会卸暗血");
+        QT.AddQt(BaseQTKey.停手, false, "是否使用基础的Gcd");
+        QT.AddQt(BaseQTKey.攒资源, false, "攒资源不会卸暗血");
         QT.AddQt(DRKQTKey.腐秽大地, true);
         QT.AddQt(DRKQTKey.暗影使者, true);
         QT.AddQt(DRKQTKey.伤残, false, "和目标距离过远的时候使用");
@@ -183,13 +180,12 @@ public class DRKRotationEntry : IRotationEntry
 
     public void DrawQtGeneral(JobViewWindow jobViewWindow)
     {
-        DKSettings DkSettings = DKSettings.Instance;
-     
-        
-        
+        var DkSettings = DKSettings.Instance;
+
+
         if (ImGui.CollapsingHeader("常规设置"))
         {
-          
+
             ImGui.Text("日常模式会持续开盾，和自动减伤");
             ImGui.SetNextItemWidth(150f);
             ImGui.Checkbox("启用", ref DkSettings.日常模式);
@@ -199,7 +195,6 @@ public class DRKRotationEntry : IRotationEntry
             ImGui.Checkbox("日常模式_残血不打爆发[测试中]", ref DkSettings.日常模式_残血不打爆发);
         }
 
-        
 
         ImGui.SetNextItemWidth(150f);
         ImGui.DragInt("保留蓝量", ref DkSettings.保留蓝量, 100, 0, 10000);
@@ -228,10 +223,10 @@ public class DRKRotationEntry : IRotationEntry
         // {
         //     ImGui.Text($"Hotkey按钮: {v}");
         // }
- 
-        
+
+
         var battleChara = Core.Me.GetCurrTarget();
-        ImGui.Text($"血溅Bloodspiller.IsUnlock:{DRKBaseSlotResolvers.血溅Bloodspiller.IsUnlock()}");
+        ImGui.Text($"血溅Bloodspiller.IsUnlock:{DRKBaseSlotResolvers.血溅Bloodspiller.MyIsUnlock()}");
         // ImGui.Text($"血溅Bloodspiller.IsUnlock:{Core.Resolve<MemApiSpell>().CheckActionChange(DRKBaseSlotResolvers.血溅Bloodspiller).GetSpell()}");
         // ImGui.Text($"目标距离:{TargetHelper.GetTargetDistanceFromMeTest2D(battleChara, Core.Me)}");
         // ImGui.Text($"挑衅cd:{DRKBaseSlotResolvers.挑衅.GetCooldownRemainingTime()}");
@@ -252,9 +247,9 @@ public class DRKRotationEntry : IRotationEntry
         // ImGui.Text($"暗黑时间 : {Core.Resolve<JobApi_DarkKnight>().DarksideTimeRemaining}");
         // ImGui.Text($"暗黑时间 : {Core.Resolve<MemApiSpell>().CheckActionChange(DRKBaseSlotResolvers.暗黑锋).GetSpell().Id} - {Core.Resolve<MemApiSpell>().CheckActionChange(DRKBaseSlotResolvers.EdgeOfShadow).GetSpell().Id}");
         // ImGui.Text($"LastSpell : {Core.Resolve<MemApiSpellCastSuccess>().LastSpell}");
-        // ImGui.Text($"刚魂StalwartSoul : {DRKBaseSlotResolvers.刚魂StalwartSoul.IsUnlock()}");
+        // ImGui.Text($"刚魂StalwartSoul : {DRKBaseSlotResolvers.刚魂StalwartSoul.MyIsUnlock()}");
         // ImGui.Text($"Scorn : {Core.Me.HasAura(DRKBaseSlotResolvers.Buffs.Scorn)}");
-        // ImGui.Text($"IsUnlock : {DRKBaseSlotResolvers.蔑视厌恶Disesteem.IsUnlock()}");
+        // ImGui.Text($"IsUnlock : {DRKBaseSlotResolvers.蔑视厌恶Disesteem.MyIsUnlock()}");
         // ImGui.Text($"血乱Delirium : {DRKBaseSlotResolvers.血乱Delirium.GetCooldownRemainingTime()}");
         // ImGui.Text($"血溅Bloodspiller : {DRKBaseSlotResolvers.血溅Bloodspiller.GetCooldownRemainingTime()}");
         // ImGui.Text($"LivingShadow : {DRKBaseSlotResolvers.LivingShadow.GetCooldownRemainingTime()}");

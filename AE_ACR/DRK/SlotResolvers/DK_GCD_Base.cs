@@ -3,6 +3,7 @@
 using AE_ACR_DRK_Setting;
 using AE_ACR.Base;
 using AE_ACR.DRK.SlotResolvers;
+using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
@@ -34,7 +35,7 @@ public class DK_GCD_Base : DRKBaseSlotResolvers
             return Flag_无效目标;
         }
 
-        
+
         return 0;
     }
 
@@ -51,7 +52,7 @@ public class DK_GCD_Base : DRKBaseSlotResolvers
         {
             if (Core.Me.TargetObject is IBattleChara battleChara)
             {
-                if (伤残.IsUnlock())
+                if (伤残.MyIsUnlock())
                 {
                     if (TargetHelper.GetTargetDistanceFromMeTest2D(battleChara, Core.Me) is > 5 and <= 20)
                     {
@@ -61,21 +62,21 @@ public class DK_GCD_Base : DRKBaseSlotResolvers
             }
         }
 
-        if (lastComboActionID == 单体1HardSlash && 单体2SyphonStrike.IsUnlock())
+        if (lastComboActionID == 单体1HardSlash && 单体2SyphonStrike.MyIsUnlock())
         {
             return 单体2SyphonStrike.GetSpell();
         }
 
         if (lastComboActionID == 单体2SyphonStrike && getQTValue(BaseQTKey.攒资源) == false)
         {
-            if (Core.Resolve<JobApi_DarkKnight>().Blood >= 80 && 血溅Bloodspiller.IsUnlock())
+            if (Core.Resolve<JobApi_DarkKnight>().Blood >= 80 && 血溅Bloodspiller.MyIsUnlock())
             {
                 var spell = Core.Resolve<MemApiSpell>().CheckActionChange(血溅Bloodspiller).GetSpell();
                 return spell;
             }
         }
 
-        if ( lastComboActionID == 单体2SyphonStrike && 单体3Souleater.IsUnlock())
+        if (lastComboActionID == 单体2SyphonStrike && 单体3Souleater.MyIsUnlock())
         {
             return 单体3Souleater.GetSpell();
         }

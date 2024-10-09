@@ -15,14 +15,14 @@ namespace AE_ACR.PLD.Setting;
 /// </summary>
 public class PLDSettings
 {
-    
+    public static PLDSettings Instance;
+    public float 调停保留层数 = 0f;
+
     public bool 日常模式 = false;
-    public bool 挑衅 = true;
     public bool 日常模式_残血不打爆发 = true;
+    public bool 挑衅 = true;
     public float 投盾阈值 = 10f;
     public float 远程圣灵阈值 = 10f;
-    public float 调停保留层数 = 0f;
-    public static PLDSettings Instance;
 
 
     public JobViewSave JobViewSave = new(); // QT设置存档

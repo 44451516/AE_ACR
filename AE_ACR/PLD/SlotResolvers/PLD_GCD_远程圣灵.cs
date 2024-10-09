@@ -1,12 +1,10 @@
 #region
 
-using AE_ACR_DRK_Setting;
-using AE_ACR.DRK.SlotResolvers;
 using AE_ACR.PLD.Setting;
+using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
-using AEAssist.Extension;
 using AEAssist.Helper;
 using Dalamud.Game.ClientState.Objects.Types;
 
@@ -22,14 +20,14 @@ public class PLD_GCD_远程圣灵 : PLDBaseSlotResolvers
         {
             return Flag_停手;
         }
-        
-        
+
+
         if (getQTValue(PLDQTKey.远程圣灵) == false)
         {
             return Flag_远程技能QT;
         }
-        
-        
+
+
         if (isHasCanAttackBattleChara() == false)
         {
             return Flag_无效目标;
@@ -38,7 +36,7 @@ public class PLD_GCD_远程圣灵 : PLDBaseSlotResolvers
 
         if (Core.Me.TargetObject is IBattleChara battleChara)
         {
-            if (圣灵HolySpirit.IsUnlock() && GetResourceCost(圣灵HolySpirit) <= Core.Me.CurrentMp)
+            if (圣灵HolySpirit.MyIsUnlock() && GetResourceCost(圣灵HolySpirit) <= Core.Me.CurrentMp)
             {
                 var 阈值 = PLDSettings.Instance.远程圣灵阈值;
                 if (和目标的距离() >= 阈值 && 和目标的距离() <= 25f)

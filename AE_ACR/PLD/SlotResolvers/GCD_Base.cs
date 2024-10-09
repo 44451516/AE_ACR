@@ -26,7 +26,6 @@ public class GCD_Base : PLDBaseSlotResolvers
             return Flag_无效目标;
         }
 
-        
 
         return 0;
     }
@@ -38,28 +37,28 @@ public class GCD_Base : PLDBaseSlotResolvers
         {
             if (aoeCount >= 3)
             {
-                if (HasEffect(Buffs.DivineMight) && 圣环HolyCircle.IsUnlock())
+                if (HasEffect(Buffs.DivineMight) && 圣环HolyCircle.MyIsUnlock())
                 {
                     return 圣环HolyCircle.OriginalHook();
                 }
             }
 
 
-            if (lastComboActionID == 暴乱剑RiotBlade && 战女神之怒RageOfHalone.IsUnlock())
+            if (lastComboActionID == 暴乱剑RiotBlade && 战女神之怒RageOfHalone.MyIsUnlock())
             {
                 return 战女神之怒RageOfHalone.OriginalHook();
             }
-            if (lastComboActionID == 全蚀斩TotalEclipse && HasEffect(Buffs.DivineMight) && 圣环HolyCircle.IsUnlock())
+            if (lastComboActionID == 全蚀斩TotalEclipse && HasEffect(Buffs.DivineMight) && 圣环HolyCircle.MyIsUnlock())
             {
                 return 圣环HolyCircle.OriginalHook();
             }
 
-            if (lastComboActionID == 全蚀斩TotalEclipse && 日珥斩Prominence.IsUnlock())
+            if (lastComboActionID == 全蚀斩TotalEclipse && 日珥斩Prominence.MyIsUnlock())
             {
                 return 日珥斩Prominence.OriginalHook();
             }
 
-            if (全蚀斩TotalEclipse.IsUnlock())
+            if (全蚀斩TotalEclipse.MyIsUnlock())
             {
                 return 全蚀斩TotalEclipse.OriginalHook();
             }
@@ -67,7 +66,7 @@ public class GCD_Base : PLDBaseSlotResolvers
 
         }
 
-        if (HasEffect(Buffs.FightOrFlight) && 王权剑RoyalAuthority.IsUnlock())
+        if (HasEffect(Buffs.FightOrFlight) && 王权剑RoyalAuthority.MyIsUnlock())
         {
             if (GetBuffRemainingTime(Buffs.DivineMight) >= 27
                 && GetBuffRemainingTime(Buffs.FightOrFlight) >= 0.1f
@@ -97,7 +96,7 @@ public class GCD_Base : PLDBaseSlotResolvers
                 return 战女神之怒RageOfHalone.OriginalHook();
             }
 
-            if (HasEffect(Buffs.Requiescat) && 圣灵HolySpirit.IsUnlock() && GetResourceCost(圣灵HolySpirit) <= Core.Me.CurrentMp)
+            if (HasEffect(Buffs.Requiescat) && 圣灵HolySpirit.MyIsUnlock() && GetResourceCost(圣灵HolySpirit) <= Core.Me.CurrentMp)
             {
                 return 圣灵HolySpirit.OriginalHook();
             }
@@ -129,7 +128,7 @@ public class GCD_Base : PLDBaseSlotResolvers
         {
             if (Core.Me.TargetObject is IBattleChara battleChara)
             {
-                if (投盾ShieldLob.IsUnlock())
+                if (投盾ShieldLob.MyIsUnlock())
                 {
                     if (和目标的距离() is > 3 and <= 15)
                     {
@@ -138,24 +137,24 @@ public class GCD_Base : PLDBaseSlotResolvers
                 }
             }
         }
-        
+
         if (HasEffect(Buffs.赎罪剑Atonement1BUFF))
         {
             return 赎罪剑Atonement.OriginalHook();
         }
 
-        if (lastComboActionID == 先锋剑FastBlade && 暴乱剑RiotBlade.IsUnlock())
+        if (lastComboActionID == 先锋剑FastBlade && 暴乱剑RiotBlade.MyIsUnlock())
         {
             return 暴乱剑RiotBlade.OriginalHook();
         }
-        
-        if (lastComboActionID is 暴乱剑RiotBlade && 战女神之怒RageOfHalone.IsUnlock())
+
+        if (lastComboActionID is 暴乱剑RiotBlade && 战女神之怒RageOfHalone.MyIsUnlock())
         {
-            if ( HasEffect(Buffs.赎罪剑Atonement2BUFF))
+            if (HasEffect(Buffs.赎罪剑Atonement2BUFF))
             {
                 return 赎罪剑Atonement.OriginalHook();
             }
-            
+
             if (HasEffect(Buffs.DivineMight) && GetResourceCost(圣灵HolySpirit) <= Core.Me.CurrentMp)
             {
                 return 圣灵HolySpirit.OriginalHook();
@@ -165,10 +164,10 @@ public class GCD_Base : PLDBaseSlotResolvers
             {
                 return 赎罪剑Atonement.OriginalHook();
             }
-            
+
             return 战女神之怒RageOfHalone.OriginalHook();
         }
-        
+
         return 先锋剑FastBlade.OriginalHook();
     }
 

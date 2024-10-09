@@ -26,13 +26,13 @@ public class DK_Ability_暗影使者 : DRKBaseSlotResolvers
         {
             return Flag_攒资源;
         }
-        
-        
+
+
         if (!getQTValue(DRKQTKey.暗影使者))
         {
             return Flag_QT;
         }
-        
+
         if (isHasCanAttackBattleChara() == false)
         {
             return Flag_无效目标;
@@ -44,11 +44,11 @@ public class DK_Ability_暗影使者 : DRKBaseSlotResolvers
             {
                 if (战斗爽() == false)
                 {
-                    return Flag_残血不打爆发; 
+                    return Flag_残血不打爆发;
                 }
-            }  
+            }
         }
-        
+
 
         if (!CanWeave())
         {
@@ -79,7 +79,7 @@ public class DK_Ability_暗影使者 : DRKBaseSlotResolvers
                     return 0;
                 }
             }
-            
+
             if (RaidBuff.爆发期_120())
             {
                 return 0;

@@ -2,7 +2,6 @@
 
 using AE_ACR.Base;
 using AE_ACR.PLD.Setting;
-using AE_ACR.utils;
 
 #endregion
 
@@ -72,7 +71,7 @@ public abstract class PLDBaseSlotResolvers : TankBaseIslotResolver
     {
         return PLDSettings.Instance.日常模式;
     }
-    
+
     public static bool 是否日常模式()
     {
         return PLDSettings.Instance.日常模式;

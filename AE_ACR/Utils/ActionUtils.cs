@@ -24,8 +24,9 @@ internal static class ActionUtils
 
     internal static bool ActionReady(this uint value)
     {
-        return value.IsUnlock() && value.IsLevelEnough() && value.IsReady();
-    } 
+        return value.MyIsUnlock() && value.IsLevelEnough() && value.IsReady();
+    }
+
     internal static float Charges(this uint value)
     {
         return value.GetSpell().Charges;
@@ -34,7 +35,7 @@ internal static class ActionUtils
     internal static bool OriginalHookActionReady(this uint value)
     {
         var id = value.OriginalHook().Id;
-        return id.IsUnlock() && id.IsLevelEnough() && id.IsReady();
+        return id.MyIsUnlock() && id.IsLevelEnough() && id.IsReady();
     }
 
     internal static bool WasLastAction(this uint value)
@@ -64,21 +65,25 @@ internal static class ActionUtils
 
         return false;
     }
-    
- 
+
+
     public static bool MyIsUnlock(this uint spellId)
     {
+        if (!spellId.IsUnlock())
+        {
+            return false;
+        }
+        
         if (Core.Resolve<MemApiSpell>().GetActionState(spellId) == 573) //没学技能
         {
             return false;
         }
         
-        if (!spellId.IsUnlock())
-        {
-            return false;
-        }
-
-
         return true;
+    }
+
+    public static bool MyIsUnlock(this Spell spellId)
+    {
+        return MyIsUnlock(spellId.Id);
     }
 }

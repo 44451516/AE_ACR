@@ -26,15 +26,15 @@ public class DK_Ability_暗黑波动_AOE : DRKBaseSlotResolvers
         {
             return Flag_攒资源;
         }
-        
-        
+
+
         if (isHasCanAttackBattleChara() == false)
         {
             return Flag_无效目标;
         }
 
-        
-        if (!暗黑波动AOE.IsUnlock())
+
+        if (!暗黑波动AOE.MyIsUnlock())
         {
             return -1;
         }

@@ -1,14 +1,12 @@
 #region
 
 using AE_ACR_DRK_Setting;
-using AE_ACR.Base;
 using AE_ACR.DRK.SlotResolvers;
+using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.Helper;
-using AEAssist.JobApi;
-using AEAssist.MemoryApi;
 using Dalamud.Game.ClientState.Objects.Types;
 
 #endregion
@@ -29,17 +27,16 @@ public class DK_GCD_伤残 : DRKBaseSlotResolvers
             return Flag_远程技能QT;
         }
 
-        
+
         if (isHasCanAttackBattleChara() == false)
         {
             return Flag_无效目标;
         }
 
-        
 
         if (Core.Me.TargetObject is IBattleChara battleChara)
         {
-            if (伤残.IsUnlock())
+            if (伤残.MyIsUnlock())
             {
                 var 伤残阈值 = DKSettings.Instance.伤残阈值;
                 if (和目标的距离() >= 伤残阈值 && 和目标的距离() <= 20f)

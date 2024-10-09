@@ -23,7 +23,7 @@ public class Ability_亲疏自行 : PLDBaseSlotResolvers
         {
             if (神圣领域.ActionReady())
                 return -1;
-            
+
             if (铁壁.ActionReady())
                 return -1;
 

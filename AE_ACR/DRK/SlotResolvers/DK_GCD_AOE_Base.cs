@@ -1,8 +1,8 @@
 #region
 
-using AE_ACR_DRK_Setting;
 using AE_ACR.Base;
 using AE_ACR.DRK.SlotResolvers;
+using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
@@ -45,13 +45,13 @@ public class DK_GCD_AOE_Base : DRKBaseSlotResolvers
     private Spell GetAOEGCDSpell()
     {
         if (lastComboActionID == 释放Unleash && getQTValue(BaseQTKey.攒资源) == false)
-            if (Core.Resolve<JobApi_DarkKnight>().Blood >= 80 && 寂灭Quietus.IsUnlock())
+            if (Core.Resolve<JobApi_DarkKnight>().Blood >= 80 && 寂灭Quietus.MyIsUnlock())
             {
                 var spell = Core.Resolve<MemApiSpell>().CheckActionChange(寂灭Quietus).GetSpell();
                 return spell;
             }
 
-        if (lastComboActionID == 释放Unleash && 刚魂StalwartSoul.IsUnlock())
+        if (lastComboActionID == 释放Unleash && 刚魂StalwartSoul.MyIsUnlock())
         {
             return 刚魂StalwartSoul.GetSpell();
         }

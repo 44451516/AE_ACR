@@ -49,19 +49,19 @@ public class RaidBuff
 
         if (Core.Me.HasAura(义结金兰))
             return true;
-        
+
         if (Core.Me.HasAura(战斗连祷))
             return true;
 
         if (Core.Me.TargetObject is IBattleChara battleChara)
         {
-            if (battleChara.HasAura(攻其不备)) 
+            if (battleChara.HasAura(攻其不备))
                 return true;
 
-            if (battleChara.HasAura(连环计)) 
-                return true; 
-            
-            if (battleChara.HasAura(罐毒之术)) 
+            if (battleChara.HasAura(连环计))
+                return true;
+
+            if (battleChara.HasAura(罐毒之术))
                 return true;
         }
 

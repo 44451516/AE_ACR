@@ -23,24 +23,22 @@ public class DK_Ability_暗黑锋 : DRKBaseSlotResolvers
         {
             return Flag_停手;
         }
-        
+
         if (getQTValue(BaseQTKey.攒资源))
         {
             return Flag_攒资源;
         }
 
-        if (!暗黑锋.IsUnlock())
+        if (!暗黑锋.MyIsUnlock())
         {
             return -1;
         }
-        
+
         if (!CanWeave())
         {
             return -1;
         }
-        
-        
-      
+
 
         if (LastSpell == Core.Resolve<MemApiSpell>().CheckActionChange(暗黑锋).GetSpell().Id)
         {

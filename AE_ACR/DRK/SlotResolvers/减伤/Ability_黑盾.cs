@@ -1,13 +1,10 @@
 ﻿#region
 
-using AE_ACR.PLD.SlotResolvers;
 using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine.Module;
-using AEAssist.CombatRoutine.Module.Target;
 using AEAssist.Extension;
 using AEAssist.Helper;
-using AEAssist.JobApi;
 using Dalamud.Game.ClientState.Objects.Types;
 
 #endregion
@@ -49,7 +46,7 @@ public class Ability_黑盾 : DRKBaseSlotResolvers
                             return 0;
                         }
                     }
-                    
+
                     if (TargetHelper.TargercastingIsDeathSentence(target, 6))
                     {
                         return 0;

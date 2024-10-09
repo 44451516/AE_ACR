@@ -1,9 +1,5 @@
 ﻿#region
 
-using AEAssist.CombatRoutine.View.JobView;
-using AEAssist.Helper;
-using AEAssist.IO;
-
 #endregion
 
 namespace AE_ACR.WAR;

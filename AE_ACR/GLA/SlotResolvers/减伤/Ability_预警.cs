@@ -14,13 +14,13 @@ public class Ability_预警 : GLABaseSlotResolvers
     {
         if (CanWeave())
         {
-            if (TankBuffs.亲疏自行.GetBuffRemainingTime() > 0.5f) 
+            if (TankBuffs.亲疏自行.GetBuffRemainingTime() > 0.5f)
                 return -1;
 
-            if (TankBuffs.铁壁.GetBuffRemainingTime() > 0.5f) 
+            if (TankBuffs.铁壁.GetBuffRemainingTime() > 0.5f)
                 return -1;
 
-            if (预警.ActionReady() && TargetHelper.GetNearbyEnemyCount(5) >= 4) 
+            if (预警.ActionReady() && TargetHelper.GetNearbyEnemyCount(5) >= 4)
                 return 0;
         }
 

@@ -22,12 +22,12 @@ public class GCD_沥血剑 : PLDBaseSlotResolvers
         {
             return Flag_无效目标;
         }
-        
+
         if (HasEffect(Buffs.沥血剑BUFFGoringBladeReady))
         {
             if (Core.Me.TargetObject.DistanceToPlayer() < 3)
             {
-                 return 0;
+                return 0;
             }
         }
 

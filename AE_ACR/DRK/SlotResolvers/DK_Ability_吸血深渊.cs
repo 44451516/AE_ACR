@@ -20,17 +20,16 @@ public class DK_Ability_吸血深渊 : DRKBaseSlotResolvers
         {
             return Flag_停手;
         }
-        
+
         if (getQTValue(BaseQTKey.攒资源))
         {
             return Flag_攒资源;
         }
-        
+
         if (isHasCanAttackBattleChara() == false)
         {
             return Flag_无效目标;
         }
-
 
 
         if (!CanWeave())

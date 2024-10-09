@@ -17,37 +17,37 @@ public class Ability_战逃反应 : PLDBaseSlotResolvers
         {
             return Flag_停手;
         }
-        
+
         if (!getQTValue(PLDQTKey.战逃安魂))
         {
             return Flag_QT;
         }
 
-        
+
         if (PLDSettings.Instance.日常模式)
         {
             if (PLDSettings.Instance.日常模式_残血不打爆发)
             {
                 if (战斗爽() == false)
                 {
-                    return Flag_残血不打爆发; 
+                    return Flag_残血不打爆发;
                 }
-            }  
+            }
         }
-        
-        
+
+
         if (CanWeave())
         {
-           
-            
+
+
             if (战逃反应FightOrFlight.ActionReady())
             {
                 if (getQTValue(PLDQTKey.即刻战逃))
                 {
                     return 0;
                 }
-                
-                if (!王权剑RoyalAuthority.IsUnlock())
+
+                if (!王权剑RoyalAuthority.MyIsUnlock())
                 {
                     return 0;
                 }
@@ -63,7 +63,7 @@ public class Ability_战逃反应 : PLDBaseSlotResolvers
                 }
 
 
-                if (王权剑RoyalAuthority.IsUnlock())
+                if (王权剑RoyalAuthority.MyIsUnlock())
                 {
                     //  战逃内 打三下赎罪剑
                     if (GetBuffRemainingTime(Buffs.赎罪剑Atonement1BUFF) >= 14)

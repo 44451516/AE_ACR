@@ -2,6 +2,7 @@
 
 using AE_ACR.utils;
 using AEAssist;
+using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.CombatRoutine.Module.Target;
 using AEAssist.Extension;
@@ -28,13 +29,6 @@ public abstract class BaseIslotResolver : ISlotResolver
         Flag_小队人数不够 = -109,
         Flag_残血不打爆发 = -110,
         留空 = 3624;
-
-    public static class DeBuffs
-    {
-        public const ushort
-            加速器炸弹 = 3802,
-            留空 = 0;
-    }
 
     public static uint lastComboActionID => Core.Resolve<MemApiSpell>().GetLastComboSpellId();
     public static double comboTime => Core.Resolve<MemApiSpell>().GetComboTimeLeft().TotalSeconds;
@@ -171,7 +165,7 @@ public abstract class BaseIslotResolver : ISlotResolver
         //-1000无目标
         return -1000;
     }
-    
+
     public static bool 战斗爽()
     {
         var currTarget = Core.Me.GetCurrTarget();
@@ -179,7 +173,9 @@ public abstract class BaseIslotResolver : ISlotResolver
         {
             return false;
         }
-        
+        bool 使用爆发 = false;
+
+        GeneralSettings generalSettings = SettingMgr.GetSetting<GeneralSettings>();
         if (currTarget.IsBoss())
         {
             if (isLastBoss(currTarget))
@@ -187,37 +183,61 @@ public abstract class BaseIslotResolver : ISlotResolver
                 return true;
             }
 
-            //如果当前目标在15秒内会被击杀（TTK），并且当前目标是Boss，返回不爽
-            if (TTKHelper.IsTargetTTK(currTarget, 15, true))
+            if (generalSettings.OpenTTK)
             {
-                return false;
+                if (generalSettings.TimeToKillCheckTime >= 12000)
+                {
+                    //如果当前目标在12秒内会被击杀（TTK），并且当前目标是Boss，返回不爽
+                    if (TTKHelper.IsTargetTTK(currTarget, 12000, true))
+                    {
+                        return false;
+                    }
+                }
             }
             else
             {
-                return true;
+                // 当前目标的生命值百分比小于0.05f（即5%）
+                if (currTarget.CurrentHp <= 0.05f)
+                {
+                    return false;
+                }
             }
+
         }
         else
         {
-            var isBurst = true;
-            //判断小怪，有一个小怪ttk大于15
             foreach (var keyValuePair in TargetMgr.Instance.EnemysIn25)
             {
                 var battleChara = keyValuePair.Value;
-                // 有1个15秒不死 开启爆发
-                if (battleChara.CanAttack() && TTKHelper.IsTargetTTK(currTarget, 15, true) == false)
+                if (battleChara.CanAttack())
                 {
-                    return true;
+                    if (generalSettings.OpenTTK)
+                    {
+                        if (generalSettings.TimeToKillCheckTime >= 12000)
+                        {
+                            if (TTKHelper.IsTargetTTK(battleChara, 12000, true) == false)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (battleChara.CurrentHpPercent() >= 0.5f)
+                        {
+                            使用爆发 = true;
+                        }
+                    }
+
                 }
             }
         }
-        
         //默认开爆发
-        return false;
+        return 使用爆发;
     }
 
     /// <summary>
-    /// 空方法等待别人实现
+    ///     空方法等待别人实现
     /// </summary>
     /// <param name="currTarget"></param>
     /// <returns></returns>
@@ -229,5 +249,12 @@ public abstract class BaseIslotResolver : ISlotResolver
             return true;
         }
         return false;
+    }
+
+    public static class DeBuffs
+    {
+        public const ushort
+            加速器炸弹 = 3802,
+            留空 = 0;
     }
 }

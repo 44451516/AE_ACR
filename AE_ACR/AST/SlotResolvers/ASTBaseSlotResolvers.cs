@@ -1,8 +1,6 @@
 ﻿#region
 
 using AE_ACR.Base;
-using AE_ACR.utils;
-using AEAssist;
 
 #endregion
 
@@ -44,17 +42,6 @@ public abstract class ASTBaseSlotResolvers : 治疗BaseIslotResolver
         中间学派 = 16559,
         留空 = 0;
 
-    public static class Buffs
-    {
-        public const ushort
-            FightOrFlight = 76,
-            预警 = 74,
-            钢铁信念 = 79,
-            医技buff = 836,
-            医技buff2 = 3894,
-            留空 = 0;
-    }
-
 
     public static bool 是否停手()
     {
@@ -70,5 +57,16 @@ public abstract class ASTBaseSlotResolvers : 治疗BaseIslotResolver
 
         return false;
 
+    }
+
+    public static class Buffs
+    {
+        public const ushort
+            FightOrFlight = 76,
+            预警 = 74,
+            钢铁信念 = 79,
+            医技buff = 836,
+            医技buff2 = 3894,
+            留空 = 0;
     }
 }

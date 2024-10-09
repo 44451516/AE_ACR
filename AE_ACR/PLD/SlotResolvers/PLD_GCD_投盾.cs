@@ -1,12 +1,10 @@
 #region
 
-using AE_ACR_DRK_Setting;
-using AE_ACR.DRK.SlotResolvers;
 using AE_ACR.PLD.Setting;
+using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
-using AEAssist.Extension;
 using AEAssist.Helper;
 using Dalamud.Game.ClientState.Objects.Types;
 
@@ -28,23 +26,22 @@ public class PLD_GCD_投盾 : PLDBaseSlotResolvers
         {
             return Flag_远程技能QT;
         }
-        
+
         if (isHasCanAttackBattleChara() == false)
         {
             return Flag_无效目标;
         }
 
 
-
         if (Core.Me.TargetObject is IBattleChara battleChara)
         {
-            if (投盾ShieldLob.IsUnlock())
+            if (投盾ShieldLob.MyIsUnlock())
             {
                 var 阈值 = PLDSettings.Instance.投盾阈值;
                 if (和目标的距离() >= 阈值 && 和目标的距离() <= 20f)
                 {
-                    
-                    if (HasEffect(Buffs.DivineMight) == false && IsMoving() == true)
+
+                    if (HasEffect(Buffs.DivineMight) == false && IsMoving())
                     {
                         return 0;
                     }

@@ -21,30 +21,30 @@ public class Ability_铁壁 : PLDBaseSlotResolvers
 
         if (CanWeave())
         {
-            if (神圣领域.ActionReady()) 
+            if (神圣领域.ActionReady())
                 return -1;
 
-            if (预警.ActionReady()) 
+            if (预警.ActionReady())
                 return -1;
 
-            if (Buffs.神圣领域.GetBuffRemainingTime() > 0.5f) 
+            if (Buffs.神圣领域.GetBuffRemainingTime() > 0.5f)
                 return -1;
 
-            if (Buffs.预警.GetBuffRemainingTime() > 0.5f) 
+            if (Buffs.预警.GetBuffRemainingTime() > 0.5f)
                 return -1;
 
-            if (Buffs.预警v2.GetBuffRemainingTime() > 0.5f) 
+            if (Buffs.预警v2.GetBuffRemainingTime() > 0.5f)
                 return -1;
 
-            if (Buffs.壁垒.GetBuffRemainingTime() > 0.5f) 
-                return -1;
-
-
-            if (TankBuffs.亲疏自行.GetBuffRemainingTime() > 0.5f) 
+            if (Buffs.壁垒.GetBuffRemainingTime() > 0.5f)
                 return -1;
 
 
-            if (铁壁.ActionReady() && attackMeCount() >= 3 && Core.Me.CurrentHpPercent() < 0.89f) 
+            if (TankBuffs.亲疏自行.GetBuffRemainingTime() > 0.5f)
+                return -1;
+
+
+            if (铁壁.ActionReady() && attackMeCount() >= 3 && Core.Me.CurrentHpPercent() < 0.89f)
                 return 0;
         }
 

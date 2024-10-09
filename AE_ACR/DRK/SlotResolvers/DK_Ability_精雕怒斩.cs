@@ -21,35 +21,34 @@ public class DK_Ability_精雕怒斩 : DRKBaseSlotResolvers
         {
             return Flag_停手;
         }
-        
+
         if (getQTValue(BaseQTKey.攒资源))
         {
             return Flag_攒资源;
         }
-        
-        
+
+
         if (!CanWeave())
         {
             return -1;
         }
-        
+
         if (isHasCanAttackBattleChara() == false)
         {
             return Flag_无效目标;
         }
 
-        
 
         var darksideTimeRemaining = Core.Resolve<JobApi_DarkKnight>().DarksideTimeRemaining;
 
-        if (darksideTimeRemaining == 0) 
+        if (darksideTimeRemaining == 0)
             return -2;
 
 
-        if (Core.Resolve<MemApiSpell>().CheckActionChange(精雕怒斩CarveAndSpit).IsReady() == false) 
+        if (Core.Resolve<MemApiSpell>().CheckActionChange(精雕怒斩CarveAndSpit).IsReady() == false)
             return -3;
 
-        if (DKSettings.Instance.能力技爆发延时 > CombatTime.Instance.CombatEngageDuration().TotalSeconds) 
+        if (DKSettings.Instance.能力技爆发延时 > CombatTime.Instance.CombatEngageDuration().TotalSeconds)
             return -1;
 
 

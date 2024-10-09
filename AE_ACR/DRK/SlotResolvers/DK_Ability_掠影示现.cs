@@ -20,25 +20,25 @@ public class DK_Ability_掠影示现 : DRKBaseSlotResolvers
         {
             return Flag_停手;
         }
-        
+
         if (getQTValue(BaseQTKey.攒资源))
         {
             return Flag_攒资源;
         }
-        
-        
+
+
         if (DKSettings.Instance.日常模式)
         {
             if (DKSettings.Instance.日常模式_残血不打爆发)
             {
                 if (战斗爽() == false)
                 {
-                    return Flag_残血不打爆发; 
+                    return Flag_残血不打爆发;
                 }
-            }  
+            }
         }
-        
-        
+
+
         if (!CanWeave())
         {
             return -1;
@@ -46,11 +46,11 @@ public class DK_Ability_掠影示现 : DRKBaseSlotResolvers
 
         var darksideTimeRemaining = Core.Resolve<JobApi_DarkKnight>().DarksideTimeRemaining;
 
-        if (darksideTimeRemaining == 0) 
+        if (darksideTimeRemaining == 0)
             return -2;
 
 
-        if (LivingShadow.ActionReady()) 
+        if (LivingShadow.ActionReady())
             return 0;
 
 

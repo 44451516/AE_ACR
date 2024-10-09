@@ -2,9 +2,7 @@
 
 using AE_ACR.PLD.Setting;
 using AE_ACR.utils;
-using AEAssist;
 using AEAssist.CombatRoutine.Module;
-using AEAssist.MemoryApi;
 
 #endregion
 

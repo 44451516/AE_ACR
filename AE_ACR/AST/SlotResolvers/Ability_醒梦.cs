@@ -4,7 +4,6 @@ using AE_ACR.GLA.SlotResolvers;
 using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine.Module;
-using AEAssist.Helper;
 
 #endregion
 

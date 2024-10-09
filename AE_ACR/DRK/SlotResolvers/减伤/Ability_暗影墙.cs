@@ -1,6 +1,5 @@
 ﻿#region
 
-using AE_ACR.PLD.SlotResolvers;
 using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine.Module;
@@ -18,7 +17,7 @@ public class Ability_暗影墙 : DRKBaseSlotResolvers
         {
             return Flag_减伤;
         }
-        
+
         if (CanWeave())
         {
             if (铁壁.GetCooldownRemainingTime() > 85)

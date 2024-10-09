@@ -1,12 +1,8 @@
 ﻿#region
 
 using AE_ACR_DRK_Setting;
-using AE_ACR.PLD.SlotResolvers;
 using AE_ACR.utils;
-using AEAssist;
 using AEAssist.CombatRoutine.Module;
-using AEAssist.Extension;
-using AEAssist.JobApi;
 
 #endregion
 

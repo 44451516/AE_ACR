@@ -3,8 +3,6 @@
 using AE_ACR_DRK;
 using AE_ACR_DRK_Setting;
 using AE_ACR.Base;
-using AE_ACR.PLD;
-using AE_ACR.utils;
 
 #endregion
 
@@ -54,6 +52,37 @@ public abstract class DRKBaseSlotResolvers : TankBaseIslotResolver
         深恶痛绝 = 3629,
         伤残 = 3624;
 
+    public static bool 是否停手()
+    {
+        if (是否日常模式())
+        {
+            if (HasEffect(DeBuffs.加速器炸弹))
+            {
+                if (GetBuffRemainingTime(DeBuffs.加速器炸弹) > 0 && GetBuffRemainingTime(DeBuffs.加速器炸弹) < 3)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return getQTValue(BaseQTKey.停手);
+    }
+
+    public static bool 是否减伤()
+    {
+        return DKSettings.Instance.日常模式;
+    }
+
+    public static bool 是否日常模式()
+    {
+        return DKSettings.Instance.日常模式;
+    }
+
+    public static bool getQTValue(string key)
+    {
+        return DRKRotationEntry.QT.GetQt(key);
+    }
+
 
     public static class Buffs
     {
@@ -75,36 +104,5 @@ public abstract class DRKBaseSlotResolvers : TankBaseIslotResolver
             弃明投暗 = 746,
             深恶痛绝 = 743,
             留空 = 0;
-    }
-
-    public static bool 是否停手()
-    {
-        if (是否日常模式())
-        {
-            if (HasEffect(DeBuffs.加速器炸弹))
-            {
-                if (GetBuffRemainingTime(DeBuffs.加速器炸弹) > 0 && GetBuffRemainingTime(DeBuffs.加速器炸弹) < 3)
-                {
-                    return true;
-                }
-            }
-        }
-        
-        return getQTValue(BaseQTKey.停手);
-    }
-
-    public static bool 是否减伤()
-    {
-        return DKSettings.Instance.日常模式;
-    }
-    
-    public static bool 是否日常模式()
-    {
-        return DKSettings.Instance.日常模式;
-    }
-
-    public static bool getQTValue(string key)
-    {
-        return DRKRotationEntry.QT.GetQt(key);
     }
 }

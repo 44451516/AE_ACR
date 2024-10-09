@@ -3,9 +3,9 @@
 using AE_ACR.AST.Setting;
 using AE_ACR.AST.SlotResolvers;
 using AE_ACR.AST.Triggers;
+using AE_ACR.Base;
 using AE_ACR.GLA.Setting;
 using AE_ACR.GLA.SlotResolvers;
-using AE_ACR.GLA.SlotResolvers.减伤;
 using AE_ACR.utils;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
@@ -20,8 +20,6 @@ namespace AE_ACR.AST;
 
 public class ASTRotationEntry : IRotationEntry
 {
-    public string AuthorName { get; set; } = "44451516";
-
     private readonly List<SlotResolverData> SlotResolvers = new()
     {
         new SlotResolverData(new GCD_生辰(), SlotMode.Always),
@@ -30,12 +28,12 @@ public class ASTRotationEntry : IRotationEntry
         new SlotResolverData(new Ability_大宇宙(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_天宫图(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_天星冲日(), SlotMode.OffGcd),
-        
-        
+
+
         new SlotResolverData(new Ability_先天禀赋(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_天星交错(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_擢升(), SlotMode.OffGcd),
-        
+
         new SlotResolverData(new Ability_光速(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_占卜(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_地星(), SlotMode.OffGcd),
@@ -43,9 +41,9 @@ public class ASTRotationEntry : IRotationEntry
         new SlotResolverData(new Ability_出卡4(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_出卡3(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_抽卡(), SlotMode.OffGcd),
-        
+
         new SlotResolverData(new GCD_奶自己(), SlotMode.Gcd),
-       
+
         new SlotResolverData(new Ability_中间学派(), SlotMode.OffGcd),
         new SlotResolverData(new GCD_群奶治疗(), SlotMode.Gcd),
         new SlotResolverData(new GCD_奶T(), SlotMode.Gcd),
@@ -54,6 +52,7 @@ public class ASTRotationEntry : IRotationEntry
 
     // 声明当前要使用的UI的实例 示例里使用QT
     public static JobViewWindow QT { get; private set; }
+    public string AuthorName { get; set; } = "44451516";
 
     public Rotation Build(string settingFolder)
     {
@@ -155,22 +154,22 @@ public class ASTRotationEntry : IRotationEntry
     {
         ImGui.Text($"落陷凶星1 : {ASTBaseSlotResolvers.落陷凶星.OriginalHook().Id}");
         ImGui.Text($"dot1 : {ASTBaseSlotResolvers.Play1.OriginalHook().Id}");
-        ImGui.Text($"GetBuffRemainingTime : {ASTBaseSlotResolvers.GetBuffRemainingTime(ASTBaseSlotResolvers.DeBuffs.加速器炸弹)}");
-        ImGui.Text($"HasEffect : {ASTBaseSlotResolvers.HasEffect(ASTBaseSlotResolvers.DeBuffs.加速器炸弹)}");
+        ImGui.Text($"GetBuffRemainingTime : {BaseIslotResolver.GetBuffRemainingTime(BaseIslotResolver.DeBuffs.加速器炸弹)}");
+        ImGui.Text($"HasEffect : {BaseIslotResolver.HasEffect(BaseIslotResolver.DeBuffs.加速器炸弹)}");
         ImGui.Text($"地星ActionReady : {ASTBaseSlotResolvers.地星.ActionReady()}");
         ImGui.Text($"地星IsReady : {ASTBaseSlotResolvers.地星.IsReady()}");
-        ImGui.Text($"地星IsUnlock : {ASTBaseSlotResolvers.地星.IsUnlock()}");
+        ImGui.Text($"地星IsUnlock : {ASTBaseSlotResolvers.地星.MyIsUnlock()}");
         ImGui.Text($"地星IsLevelEnough : {ASTBaseSlotResolvers.地星.IsLevelEnough()}");
         ImGui.Text($"GetCooldownRemainingTime : {ASTBaseSlotResolvers.地星.GetCooldownRemainingTime()}");
-        
+
         // var 目标 = PartyHelper.CastableAlliesWithin30.FirstOrDefault(r => r.CurrentHp == 0 || r.IsDead);
         //
         // if (目标 != null && 目标.IsValid())
         // {
         //     ImGui.Text($"HasEffect : {目标.Name}");
         // }
-        
-        
+
+
         // ImGui.Text($"AOE1 : {ASTBaseSlotResolvers.getTankHpOrderByPercent}");
         // ImGui.Text($"AOE1 : {ASTBaseSlotResolvers.getTankHpOrderByPercent().Name}");
     }

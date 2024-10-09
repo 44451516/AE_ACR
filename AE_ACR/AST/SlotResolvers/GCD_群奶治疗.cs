@@ -50,8 +50,8 @@ public class GCD_群奶治疗 : ASTBaseSlotResolvers
         {
             return 阳星.OriginalHook();
         }
-        
-        if (阳星相位.IsUnlock())
+
+        if (阳星相位.MyIsUnlock())
         {
             return 阳星相位.OriginalHook();
         }

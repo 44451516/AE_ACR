@@ -1,10 +1,5 @@
 #region
 
-using AE_ACR.WAR;
-using AEAssist.CombatRoutine;
-using AEAssist.CombatRoutine.Module;
-using AEAssist.CombatRoutine.View.JobView;
-
 #endregion
 
 namespace AE_ACR.WHM;

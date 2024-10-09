@@ -1,6 +1,5 @@
 ﻿#region
 
-using AE_ACR.PLD.SlotResolvers;
 using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine.Module;

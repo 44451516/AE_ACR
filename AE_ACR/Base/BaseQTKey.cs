@@ -7,6 +7,7 @@ public class BaseQTKey
     public const string 爆发药 = "爆发药";
     public const string 减伤 = "减伤";
     public const string 攒资源 = "攒资源";
+
     public const string 突进 = "突进";
     // public const string UsePotion = "爆发药";
     // public const string Test2 = "Test2";

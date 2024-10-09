@@ -1,6 +1,5 @@
 ﻿#region
 
-using AE_ACR_DRK;
 using AE_ACR_DRK_Setting;
 using AE_ACR.utils;
 using AEAssist;
@@ -39,7 +38,6 @@ public class DK_GCD_蔑视厌恶 : DRKBaseSlotResolvers
             return Flag_无效目标;
         }
 
-        
 
         if (Core.Me.HasAura(Buffs.Scorn))
             return 0;

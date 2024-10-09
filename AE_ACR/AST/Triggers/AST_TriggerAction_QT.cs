@@ -1,6 +1,5 @@
 #region
 
-using AE_ACR.GLA;
 using AEAssist.CombatRoutine.Trigger;
 using AEAssist.GUI;
 using ImGuiNET;

@@ -21,12 +21,12 @@ public class DKSettings
     public int 保留蓝量 = 3000;
     public int 爆发目标血量 = 20;
     public float 能力技爆发延时 = 5f;
-    public float GCD爆发延时 = 7f;
-    public float 伤残阈值 = 10f;
     public bool 日常模式 = false;
-    public bool 挑衅 = true;
     public bool 日常模式_残血不打爆发 = true;
-    
+    public float 伤残阈值 = 10f;
+    public bool 挑衅 = true;
+    public float GCD爆发延时 = 7f;
+
     public JobViewSave JobViewSave = new(); // QT设置存档
 
     public int get爆发目标血量()
@@ -37,7 +37,7 @@ public class DKSettings
     #region 标准模板代码 可以直接复制后改掉类名即可
 
     private static string path;
- 
+
 
     public static void Build(string settingPath)
     {

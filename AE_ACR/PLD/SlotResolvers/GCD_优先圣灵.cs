@@ -3,7 +3,6 @@
 using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine.Module;
-using AEAssist.Helper;
 
 #endregion
 
@@ -23,11 +22,10 @@ public class GCD_优先圣灵 : PLDBaseSlotResolvers
             return Flag_无效目标;
         }
 
-        
 
         if (getQTValue(PLDQTKey.优先圣灵))
         {
-            if (圣灵HolySpirit.IsUnlock() && GetResourceCost(圣灵HolySpirit) <= Core.Me.CurrentMp)
+            if (圣灵HolySpirit.MyIsUnlock() && GetResourceCost(圣灵HolySpirit) <= Core.Me.CurrentMp)
             {
                 return 0;
             }

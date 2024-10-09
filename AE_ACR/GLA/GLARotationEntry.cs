@@ -4,7 +4,6 @@ using AE_ACR.GLA.Setting;
 using AE_ACR.GLA.SlotResolvers;
 using AE_ACR.GLA.SlotResolvers.减伤;
 using AE_ACR.GLA.Triggers;
-using AE_ACR.utils;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.CombatRoutine.View.JobView;
@@ -16,24 +15,24 @@ namespace AE_ACR.GLA;
 
 public class GLARotationEntry : IRotationEntry
 {
-    public string AuthorName { get; set; } = "44451516";
     private readonly List<SlotResolverData> SlotResolvers = new()
     {
         new SlotResolverData(new Ability_钢铁信念(), SlotMode.Always),
         new SlotResolverData(new Ability_战逃反应(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_厄运流转(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_深奥之灵(), SlotMode.OffGcd),
-        
+
         new SlotResolverData(new Ability_铁壁(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_预警(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_血仇(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_挑衅(), SlotMode.OffGcd),
-        
+
         new SlotResolverData(new GCD_Base(), SlotMode.Gcd)
     };
 
     // 声明当前要使用的UI的实例 示例里使用QT
     public static JobViewWindow QT { get; private set; }
+    public string AuthorName { get; set; } = "44451516";
 
     public Rotation Build(string settingFolder)
     {

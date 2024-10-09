@@ -30,18 +30,17 @@ public class DK_GCD_血溅 : DRKBaseSlotResolvers
         {
             return Flag_攒资源;
         }
-        
-        if (!血溅Bloodspiller.IsUnlock())
+
+        if (!血溅Bloodspiller.MyIsUnlock())
         {
             return -1;
         }
-        
+
         if (isHasCanAttackBattleChara() == false)
         {
             return Flag_无效目标;
         }
 
-        
 
         var Blood = Core.Resolve<JobApi_DarkKnight>().Blood;
 
@@ -69,20 +68,20 @@ public class DK_GCD_血溅 : DRKBaseSlotResolvers
         }
 
 
-        if (Blood > 50 || Core.Me.HasAura(Buffs.血乱Delirium1)|| Core.Me.HasAura(Buffs.血乱Delirium2))
+        if (Blood > 50 || Core.Me.HasAura(Buffs.血乱Delirium1) || Core.Me.HasAura(Buffs.血乱Delirium2))
         {
             //防止血溅没有打完
             if (Core.Resolve<MemApiBuff>().GetAuraTimeleft(Core.Me, Buffs.血乱Delirium1, true) < 8000)
             {
                 return 0;
             }
-            
+
             //防止血溅没有打完
             if (Core.Resolve<MemApiBuff>().GetAuraTimeleft(Core.Me, Buffs.血乱Delirium2, true) < 8000)
             {
                 return 0;
-            }  
-            
+            }
+
             if (RaidBuff.爆发期_120())
             {
                 return 0;

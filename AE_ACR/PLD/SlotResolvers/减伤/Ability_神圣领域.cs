@@ -22,26 +22,26 @@ public class Ability_神圣领域 : PLDBaseSlotResolvers
         if (CanWeave())
         {
             //判断多少人打自己？ 再判断铁壁的id
-            if (TankBuffs.亲疏自行.GetBuffRemainingTime() > 0.5F) 
+            if (TankBuffs.亲疏自行.GetBuffRemainingTime() > 0.5F)
                 return -1;
 
-            if (TankBuffs.铁壁.GetBuffRemainingTime() > 0.5f) 
+            if (TankBuffs.铁壁.GetBuffRemainingTime() > 0.5f)
                 return -1;
 
-            if (Buffs.预警.GetBuffRemainingTime() > 0.5f) 
+            if (Buffs.预警.GetBuffRemainingTime() > 0.5f)
                 return -1;
 
-            if (Buffs.预警v2.GetBuffRemainingTime() > 0.5f) 
+            if (Buffs.预警v2.GetBuffRemainingTime() > 0.5f)
                 return -1;
 
-            if (Buffs.壁垒.GetBuffRemainingTime() > 0.5f) 
+            if (Buffs.壁垒.GetBuffRemainingTime() > 0.5f)
                 return -1;
 
-            if (周围敌人雪仇数量() >= 5) 
+            if (周围敌人雪仇数量() >= 5)
                 return -1;
 
 
-            if (神圣领域.ActionReady() && attackMeCount() >= 4 && Core.Me.CurrentHpPercent() < 0.65f) 
+            if (神圣领域.ActionReady() && attackMeCount() >= 4 && Core.Me.CurrentHpPercent() < 0.65f)
                 return 0;
         }
 

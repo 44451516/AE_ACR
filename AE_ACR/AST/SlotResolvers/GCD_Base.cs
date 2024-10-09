@@ -29,14 +29,14 @@ public class GCD_Base : ASTBaseSlotResolvers
         var battleChara = Core.Me.GetCurrTarget();
         if (battleChara == null)
             return null;
-        
-        if (AOE.OriginalHook().IsUnlock() && TargetHelper.GetNearbyEnemyCount(battleChara, 25, 5) >= 2)
+
+        if (AOE.OriginalHook().MyIsUnlock() && TargetHelper.GetNearbyEnemyCount(battleChara, 25, 5) >= 2)
         {
             return AOE.OriginalHook();
         }
 
 
-        List<uint> 排除buff = new List<uint>
+        var 排除buff = new List<uint>
         {
             838,
             843,

@@ -1,10 +1,9 @@
 ﻿#region
 
+using AE_ACR.Base;
 using AE_ACR.utils;
-using AEAssist;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
-using AEAssist.MemoryApi;
 
 #endregion
 
@@ -19,7 +18,7 @@ public class PLDUsePotion : PLDBaseSlotResolvers
             return Flag_停手;
         }
 
-        if (!getQTValue(PLDQTKey.爆发药))
+        if (!getQTValue(BaseQTKey.爆发药))
         {
             return Flag_爆发药;
         }

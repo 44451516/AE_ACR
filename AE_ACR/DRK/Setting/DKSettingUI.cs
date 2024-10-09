@@ -22,8 +22,8 @@ public class DKSettingUI
         ImGui.InputFloat("能力技爆发延时", ref DkSettings.能力技爆发延时);
         ImGui.SetNextItemWidth(150f);
         ImGui.InputFloat("GCD爆发延时", ref DkSettings.GCD爆发延时);
-        
-        if (ImGui.Button("Save[保存]")) 
+
+        if (ImGui.Button("Save[保存]"))
             DKSettings.Instance.Save();
     }
 }
