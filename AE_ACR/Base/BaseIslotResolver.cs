@@ -31,6 +31,7 @@ public abstract class BaseIslotResolver : ISlotResolver
         Flag_不在副本里面 = -111,
         Flag_不是日常本 = -112,
         Flag_没有解锁 = -113,
+        Flag_超出攻击距离 = -114,
         留空 = 3624;
 
     public static uint lastComboActionID => Core.Resolve<MemApiSpell>().GetLastComboSpellId();

@@ -27,6 +27,11 @@ public class GCD_优先圣灵 : PLDBaseSlotResolvers
         {
             if (圣灵HolySpirit.MyIsUnlock() && GetResourceCost(圣灵HolySpirit) <= Core.Me.CurrentMp)
             {
+                if (和目标的距离() > 25f)
+                {
+                    return Flag_超出攻击距离;
+                }
+                
                 return 0;
             }
         }

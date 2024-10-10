@@ -1,5 +1,6 @@
 ﻿#region
 
+using AE_ACR.PLD.Setting;
 using AE_ACR.utils;
 using AEAssist.CombatRoutine.Module;
 
@@ -26,9 +27,14 @@ public class Ability_深奥之灵 : PLDBaseSlotResolvers
         {
             if (深奥之灵SpiritsWithin.ActionReady())
             {
+                if (和目标的距离() > PLDSettings.Instance.近战最大攻击距离)
+                {
+                    return Flag_超出攻击距离;
+                }
+
                 if (HasEffect(Buffs.FightOrFlight))
                 {
-                    if (深奥之灵SpiritsWithin.MyIsUnlock())
+                    if (安魂祈祷Requiescat.MyIsUnlock())
                     {
                         if (GetCooldownRemainingTime(安魂祈祷Requiescat) > 40)
                         {
@@ -42,7 +48,9 @@ public class Ability_深奥之灵 : PLDBaseSlotResolvers
                 }
 
                 if (GetCooldownRemainingTime(战逃反应FightOrFlight) > 20 && GetCooldownRemainingTime(战逃反应FightOrFlight) < 40)
+                {
                     return 0;
+                }
             }
         }
 

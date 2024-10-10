@@ -1,5 +1,6 @@
 #region
 
+using AE_ACR.PLD.Setting;
 using AE_ACR.utils;
 using AEAssist.CombatRoutine.Module;
 
@@ -23,8 +24,14 @@ public class GCD_优先赎罪 : PLDBaseSlotResolvers
 
         if (getQTValue(PLDQTKey.优先赎罪))
         {
+            
             if (赎罪剑Atonement.MyIsUnlock())
             {
+                if (和目标的距离() > PLDSettings.Instance.近战最大攻击距离)
+                {
+                    return Flag_超出攻击距离;
+                }
+                
                 if (HasEffect(Buffs.赎罪剑Atonement1BUFF) || HasEffect(Buffs.赎罪剑Atonement2BUFF) || HasEffect(Buffs.赎罪剑Atonement3BUFF))
                 {
                     return 0;

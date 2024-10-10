@@ -40,7 +40,6 @@ public class PLD_GCD_投盾 : PLDBaseSlotResolvers
                 var 阈值 = PLDSettings.Instance.投盾阈值;
                 if (和目标的距离() >= 阈值 && 和目标的距离() <= 20f)
                 {
-
                     if (HasEffect(Buffs.DivineMight) == false && IsMoving())
                     {
                         return 0;

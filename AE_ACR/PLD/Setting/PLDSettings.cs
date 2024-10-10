@@ -23,6 +23,7 @@ public class PLDSettings
     public bool 挑衅 = true;
     public float 投盾阈值 = 10f;
     public float 远程圣灵阈值 = 10f;
+    public float 近战最大攻击距离 = 2.99f;
 
 
     public JobViewSave JobViewSave = new(); // QT设置存档

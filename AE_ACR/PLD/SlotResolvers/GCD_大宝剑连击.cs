@@ -29,6 +29,11 @@ public class GCD_大宝剑连击 : PLDBaseSlotResolvers
 
         if (HasEffect(Buffs.Requiescat) && GetResourceCost(大保健连击Confiteor) <= Core.Me.CurrentMp)
         {
+            if (和目标的距离() > 25f)
+            {
+                return Flag_超出攻击距离;
+            }
+            
             return 0;
         }
 

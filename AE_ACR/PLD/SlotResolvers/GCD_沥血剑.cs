@@ -1,5 +1,6 @@
 #region
 
+using AE_ACR.PLD.Setting;
 using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine.Module;
@@ -25,10 +26,12 @@ public class GCD_沥血剑 : PLDBaseSlotResolvers
 
         if (HasEffect(Buffs.沥血剑BUFFGoringBladeReady))
         {
-            if (Core.Me.TargetObject.DistanceToPlayer() < 3)
+            if (和目标的距离() > PLDSettings.Instance.近战最大攻击距离)
             {
-                return 0;
+                return Flag_超出攻击距离;
             }
+            
+            return 0;
         }
 
         return -1;
