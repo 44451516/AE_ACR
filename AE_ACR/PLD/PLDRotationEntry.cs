@@ -192,14 +192,15 @@ public class PLDRotationEntry : IRotationEntry
             ImGui.SetNextItemWidth(150f);
             ImGui.Checkbox("使用挑衅", ref pldSettings.挑衅);
             // ImGui.SetNextItemWidth(150f);
-            ImGui.Checkbox("日常模式_残血不打爆发[测试中]", ref pldSettings.日常模式_残血不打爆发);
+            ImGui.Checkbox("日常模式-残血不打爆发[测试中]", ref pldSettings.日常模式_残血不打爆发);
+            ImGui.Spacing();
         }
 
 
         ImGui.DragFloat("投盾阈值", ref pldSettings.投盾阈值, 0.1f, 5, 20f);
         ImGui.DragFloat("远程圣灵阈值", ref pldSettings.远程圣灵阈值, 0.1f, 5, 20f);
         ImGui.DragFloat("调停保留层数", ref pldSettings.调停保留层数, 0.1f, 0, 2);
-        ImGui.DragFloat("近战最大攻击距离", ref pldSettings.近战最大攻击距离, 0.1f, 2.5f, 10f);
+        ImGui.DragFloat("近战最大攻击距离", ref pldSettings.近战最大攻击距离, 0.1f, 2.5f, 15f);
 
         if (ImGui.Button("Save[保存]"))
         {

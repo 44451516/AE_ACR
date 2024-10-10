@@ -6,6 +6,7 @@ using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.Extension;
 using AEAssist.Helper;
+using Dalamud.Game.ClientState.Objects.Types;
 
 #endregion
 
@@ -24,10 +25,23 @@ public class GCD_奶T : ASTBaseSlotResolvers
         {
             return Flag_没有解锁;
         }
+        
+        IBattleChara? 目标 = null;
 
-        var 目标 = PartyHelper.CastableAlliesWithin30 //周围30米
-            .Where(r => r.CurrentHp > 0 && r.IsTank() && r.CurrentHpPercent() <= 0.45f).OrderBy(r => r.CurrentHpPercent()) //排序
-            .FirstOrDefault();
+        //低等级提高阈值
+        if (命运之轮.MyIsUnlock() == false)
+        {
+            目标 = PartyHelper.CastableAlliesWithin30 //周围30米
+                .Where(r => r.CurrentHp > 0 && r.IsTank() && r.CurrentHpPercent() <= 0.75f).OrderBy(r => r.CurrentHpPercent()) //排序
+                .FirstOrDefault();
+        }
+        else
+        {
+            目标 = PartyHelper.CastableAlliesWithin30 //周围30米
+                .Where(r => r.CurrentHp > 0 && r.IsTank() && r.CurrentHpPercent() <= 0.45f).OrderBy(r => r.CurrentHpPercent()) //排序
+                .FirstOrDefault();
+        }
+
 
         if (目标 != null && 目标.IsValid())
         {

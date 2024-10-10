@@ -54,6 +54,11 @@ public class DK_Ability_精雕怒斩 : DRKBaseSlotResolvers
 
         if (精雕怒斩CarveAndSpit.ActionReady())
         {
+            if (和目标的距离() > DKSettings.Instance.近战最大攻击距离)
+            {
+                return Flag_超出攻击距离;
+            }
+            
             return 0;
         }
 

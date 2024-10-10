@@ -28,6 +28,7 @@ public class DKSettings
     public float GCD爆发延时 = 7f;
 
     public JobViewSave JobViewSave = new(); // QT设置存档
+    public float 近战最大攻击距离 = 2.99f;
 
     public int get爆发目标血量()
     {

@@ -41,6 +41,11 @@ public class DK_GCD_血溅 : DRKBaseSlotResolvers
             return Flag_无效目标;
         }
 
+        
+        if (和目标的距离() > DKSettings.Instance.近战最大攻击距离)
+        {
+            return Flag_超出攻击距离;
+        }
 
         var Blood = Core.Resolve<JobApi_DarkKnight>().Blood;
 

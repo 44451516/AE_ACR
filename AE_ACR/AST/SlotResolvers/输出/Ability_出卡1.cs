@@ -28,6 +28,12 @@ public class Ability_出卡1 : ASTBaseSlotResolvers
         {
             return -1;
         }
+        
+        if (Play1.MyIsUnlock() == false)
+        {
+            return Flag_没有解锁;
+        }
+        
 
         if (CanWeave())
         {

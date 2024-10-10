@@ -52,6 +52,12 @@ public class DK_Ability_暗黑锋 : DRKBaseSlotResolvers
 
         if (Core.Me.CurrentMp >= 3000 || gauge.HasDarkArts)
         {
+            
+            if (和目标的距离() > DKSettings.Instance.近战最大攻击距离)
+            {
+                return Flag_超出攻击距离;
+            }
+            
             if (darksideTimeRemaining <= 10 * 1000)
             {
                 return 0;

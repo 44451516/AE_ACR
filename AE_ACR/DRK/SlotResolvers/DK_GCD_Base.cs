@@ -34,8 +34,7 @@ public class DK_GCD_Base : DRKBaseSlotResolvers
         {
             return Flag_无效目标;
         }
-
-
+        
         return 0;
     }
 
@@ -43,18 +42,25 @@ public class DK_GCD_Base : DRKBaseSlotResolvers
 
     {
         var spell = GetBaseGCD();
-        slot.Add(spell);
+        if (spell != null)
+        {
+            slot.Add(spell);
+        }
     }
 
-    public static Spell GetBaseGCD()
+    public static Spell? GetBaseGCD()
     {
+        
+        bool inAttackDistance = 和目标的距离() <= DKSettings.Instance.近战最大攻击距离;
+        
         if (DKSettings.Instance.日常模式)
         {
             if (Core.Me.TargetObject is IBattleChara battleChara)
             {
                 if (伤残.MyIsUnlock())
                 {
-                    if (TargetHelper.GetTargetDistanceFromMeTest2D(battleChara, Core.Me) is > 5 and <= 20)
+                    var 伤残阈值 = DKSettings.Instance.伤残阈值;
+                    if (和目标的距离() >= 伤残阈值 && 和目标的距离() <= 20f)
                     {
                         return 伤残.GetSpell();
                     }
@@ -62,24 +68,30 @@ public class DK_GCD_Base : DRKBaseSlotResolvers
             }
         }
 
-        if (lastComboActionID == 单体1HardSlash && 单体2SyphonStrike.MyIsUnlock())
+        if (lastComboActionID == 单体1HardSlash && 单体2SyphonStrike.MyIsUnlock() && inAttackDistance)
         {
             return 单体2SyphonStrike.GetSpell();
         }
 
         if (lastComboActionID == 单体2SyphonStrike && getQTValue(BaseQTKey.攒资源) == false)
         {
-            if (Core.Resolve<JobApi_DarkKnight>().Blood >= 80 && 血溅Bloodspiller.MyIsUnlock())
+            if (Core.Resolve<JobApi_DarkKnight>().Blood >= 80 && 血溅Bloodspiller.MyIsUnlock() && inAttackDistance)
             {
                 var spell = Core.Resolve<MemApiSpell>().CheckActionChange(血溅Bloodspiller).GetSpell();
                 return spell;
             }
         }
 
-        if (lastComboActionID == 单体2SyphonStrike && 单体3Souleater.MyIsUnlock())
+        if (lastComboActionID == 单体2SyphonStrike && 单体3Souleater.MyIsUnlock() && inAttackDistance)
         {
             return 单体3Souleater.GetSpell();
         }
-        return 单体1HardSlash.GetSpell();
+
+        if (inAttackDistance)
+        {
+            return 单体1HardSlash.GetSpell();
+        }
+
+        return null;
     }
 }

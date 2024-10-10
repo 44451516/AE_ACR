@@ -30,15 +30,12 @@ public class Ability_安魂祈祷 : PLDBaseSlotResolvers
 
         if (CanWeave())
         {
-           
-
             if (安魂祈祷Requiescat.OriginalHookActionReady())
             {
                 if (和目标的距离() > PLDSettings.Instance.近战最大攻击距离)
                 {
                     return Flag_超出攻击距离;
                 }
-
                 
                 if (WasLastAction(战逃反应FightOrFlight))
                 {

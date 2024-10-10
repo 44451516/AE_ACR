@@ -14,10 +14,19 @@ public class Ability_出卡4 : ASTBaseSlotResolvers
 {
     public override int Check()
     {
+
+        if (Play4.MyIsUnlock() == false)
+        {
+            return Flag_没有解锁;
+        }
+
         if (Play4.OriginalHook().Id == Play4)
         {
             return -1;
         }
+        
+        
+        
 
         if (CanWeave())
         {

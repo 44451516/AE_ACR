@@ -20,6 +20,11 @@ public class Ability_出卡3 : ASTBaseSlotResolvers
         {
             return -1;
         }
+        
+        if (Play3.MyIsUnlock() == false)
+        {
+            return Flag_没有解锁;
+        }
 
         if (CanWeave())
         {
