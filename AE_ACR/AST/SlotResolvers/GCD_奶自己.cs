@@ -20,6 +20,11 @@ public class GCD_奶自己 : ASTBaseSlotResolvers
             return Flag_停手;
         }
 
+        if (吉星.MyIsUnlock() == false)
+        {
+            return Flag_没有解锁;
+        }
+
         if (Core.Me.CurrentHpPercent() <= 0.99f)
         {
             if (attackMeCount() > 0)
@@ -27,13 +32,16 @@ public class GCD_奶自己 : ASTBaseSlotResolvers
                 return 0;
             }
         }
-
         return -1;
     }
 
     private Spell GetAOEGCDSpell()
     {
-        return 福星.OriginalHook();
+        if (福星.OriginalHook().MyIsUnlock())
+        {
+            return 福星.OriginalHook();
+        }
+        return 吉星.OriginalHook();
     }
 
     public override void Build(Slot slot)

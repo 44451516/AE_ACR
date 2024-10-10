@@ -4,6 +4,7 @@ using AE_ACR.GLA.Setting;
 using AE_ACR.GLA.SlotResolvers;
 using AE_ACR.GLA.SlotResolvers.减伤;
 using AE_ACR.GLA.Triggers;
+using AE_ACR.utils;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.CombatRoutine.View.JobView;

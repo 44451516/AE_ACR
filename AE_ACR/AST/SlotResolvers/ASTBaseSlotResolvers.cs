@@ -27,6 +27,7 @@ public abstract class ASTBaseSlotResolvers : 治疗BaseIslotResolver
         占卜 = 16552,
         光速 = 3606,
         福星 = 3610,
+        吉星 = 3594,
         地星 = 7439,
         Play1 = 37019,
         Play2 = 37020,

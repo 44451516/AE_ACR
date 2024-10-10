@@ -17,6 +17,13 @@ public class Ability_出卡1 : ASTBaseSlotResolvers
 {
     public override int Check()
     {
+        
+        if (Play1.MyIsUnlock() == false)
+        {
+            return Flag_没有解锁;
+        }
+
+        
         if (Play1.OriginalHook().Id == Play1)
         {
             return -1;
@@ -38,6 +45,7 @@ public class Ability_出卡1 : ASTBaseSlotResolvers
         IBattleChara? RealbattleChara = null;
         if (Play1.OriginalHook().Id == 近战卡)
         {
+            //先找出近战
             var battleChara = PartyHelper.CastableAlliesWithin30 //周围30米
                 .Where(r => r.CurrentHp > 0 && r.IsMelee()).FirstOrDefault();
 
@@ -48,6 +56,7 @@ public class Ability_出卡1 : ASTBaseSlotResolvers
 
             if (battleChara == null)
             {
+                //找不到近战，找坦克
                 battleChara = PartyHelper.CastableAlliesWithin30 //周围30米
                     .Where(r => r.CurrentHp > 0 && r.IsTank()).FirstOrDefault();
 
@@ -60,6 +69,7 @@ public class Ability_出卡1 : ASTBaseSlotResolvers
         }
         else if (Play1.OriginalHook().Id == 远程卡)
         {
+            //先找远程
             var battleChara = PartyHelper.CastableAlliesWithin30 //周围30米
                 .Where(r => r.CurrentHp > 0 && r.IsRanged()).FirstOrDefault();
 
@@ -73,11 +83,11 @@ public class Ability_出卡1 : ASTBaseSlotResolvers
             RealbattleChara = Core.Me;
         }
 
+        //都找不到发给自己
         if (RealbattleChara == null)
         {
             RealbattleChara = Core.Me;
         }
-
 
         slot.Add(new Spell(Play1.OriginalHook().Id, RealbattleChara));
     }

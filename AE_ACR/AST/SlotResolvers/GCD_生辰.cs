@@ -19,6 +19,11 @@ public class GCD_生辰 : ASTBaseSlotResolvers
             return Flag_停手;
         }
 
+        if (生辰.MyIsUnlock() == false)
+        {
+            return Flag_没有解锁;
+        }
+
 
         var 目标 = PartyHelper.DeadAllies.FirstOrDefault(r => r.CurrentHp == 0 || r.IsDead);
 

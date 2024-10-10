@@ -2,6 +2,10 @@
 
 #endregion
 
+using AEAssist.CombatRoutine.View.JobView;
+using AEAssist.Helper;
+using AEAssist.IO;
+
 namespace AE_ACR.WAR;
 
 #if DEBUG

@@ -19,7 +19,6 @@ public class Ability_擢升 : ASTBaseSlotResolvers
         {
             if (擢升.ActionReady())
             {
-
                 var 目标 = PartyHelper.CastableAlliesWithin30 //周围30米
                     .Where(r => r.CurrentHp > 0 && r.CurrentHpPercent() <= 0.8f && r.IsTank()).OrderBy(r => r.CurrentHpPercent()) //排序
                     .FirstOrDefault();

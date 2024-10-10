@@ -18,8 +18,6 @@ public class Ability_先天禀赋 : ASTBaseSlotResolvers
     {
         if (CanWeave())
         {
-
-
             if (先天禀赋.ActionReady())
             {
                 var 目标 = PartyHelper.CastableAlliesWithin30 //周围30米
