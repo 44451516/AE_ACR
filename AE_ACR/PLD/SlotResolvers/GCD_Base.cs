@@ -26,6 +26,11 @@ public class GCD_Base : PLDBaseSlotResolvers
             return Flag_无效目标;
         }
 
+        if (GetBaseGCDSpell() == null)
+        {
+            return Flag_GCD_Base_NULL;
+        }
+
 
         return 0;
     }

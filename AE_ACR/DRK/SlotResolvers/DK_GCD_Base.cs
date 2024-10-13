@@ -35,6 +35,11 @@ public class DK_GCD_Base : DRKBaseSlotResolvers
             return Flag_无效目标;
         }
         
+        if (GetBaseGCD() == null)
+        {
+            return Flag_GCD_Base_NULL;
+        }
+        
         return 0;
     }
 

@@ -32,7 +32,7 @@ public class GCD_奶T : ASTBaseSlotResolvers
         if (命运之轮.MyIsUnlock() == false)
         {
             目标 = PartyHelper.CastableAlliesWithin30 //周围30米
-                .Where(r => r.CurrentHp > 0 && r.IsTank() && r.CurrentHpPercent() <= 0.75f).OrderBy(r => r.CurrentHpPercent()) //排序
+                .Where(r => r.CurrentHp > 0 && r.IsTank() && r.CurrentHpPercent() <= 0.60f).OrderBy(r => r.CurrentHpPercent()) //排序
                 .FirstOrDefault();
         }
         else

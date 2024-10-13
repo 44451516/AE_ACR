@@ -32,6 +32,7 @@ public abstract class BaseIslotResolver : ISlotResolver
         Flag_不是日常本 = -112,
         Flag_没有解锁 = -113,
         Flag_超出攻击距离 = -114,
+        Flag_GCD_Base_NULL = -115,
         留空 = 3624;
 
     public static uint lastComboActionID => Core.Resolve<MemApiSpell>().GetLastComboSpellId();
@@ -177,6 +178,24 @@ public abstract class BaseIslotResolver : ISlotResolver
         {
             return false;
         }
+        
+        //不在副本里面直接返回了
+        if (Core.Resolve<MemApiDuty>().IsBoundByDuty() == false)
+        {
+            return true;
+        }
+        
+        
+        if (Core.Resolve<MemApiDuty>().InBossBattle == true)
+        {
+            var dutySchedule = Core.Resolve<MemApiDuty>().GetSchedule();
+            if (dutySchedule?.CountPoint == dutySchedule?.NowPoint)
+            {
+                return true;
+            }
+        }
+
+        
         bool 使用爆发 = false;
 
         GeneralSettings generalSettings = SettingMgr.GetSetting<GeneralSettings>();
@@ -247,7 +266,6 @@ public abstract class BaseIslotResolver : ISlotResolver
     /// <returns></returns>
     private static bool isLastBoss(IBattleChara currTarget)
     {
-
         if (LastBossId.list.Contains(currTarget.DataId))
         {
             return true;

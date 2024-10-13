@@ -49,7 +49,11 @@ public class PLD_Opener : IOpener
     public void InitCountDown(CountDownHandler countDownHandler)
     {
         countDownHandler.AddAction(2000, PLDBaseSlotResolvers.圣灵HolySpirit, SpellTargetType.Target);
-        countDownHandler.AddAction(100, PLDBaseSlotResolvers.调停Intervene, SpellTargetType.Target);
+        if (PLDRotationEntry.QT.GetQt(BaseQTKey.起手序列突进))
+        {
+            countDownHandler.AddAction(100, PLDBaseSlotResolvers.调停Intervene, SpellTargetType.Target);
+        }
+
     }
 
     private static void Step0(Slot slot)

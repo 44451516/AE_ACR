@@ -37,13 +37,6 @@ public class GCD_群奶治疗 : ASTBaseSlotResolvers
             {
                 return 0;
             }
-
-
-            if (目标.CurrentHpPercent() <= 0.85f)
-            {
-                return 0;
-            }
-
         }
 
         return -1;

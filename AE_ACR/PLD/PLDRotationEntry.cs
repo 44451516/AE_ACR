@@ -16,6 +16,7 @@ using AEAssist.CombatRoutine.View.JobView.HotkeyResolver;
 using AEAssist.Extension;
 using AEAssist.Helper;
 using AEAssist.JobApi;
+using AEAssist.MemoryApi;
 using Dalamud.Game.ClientState.Objects.Types;
 using ImGuiNET;
 
@@ -23,7 +24,7 @@ using ImGuiNET;
 
 namespace AE_ACR.PLD;
 
-// 重要 类一定要Public声明才会被查找到
+
 public class PLDRotationEntry : IRotationEntry
 {
     private readonly List<SlotResolverData> SlotResolvers = new()
@@ -48,12 +49,7 @@ public class PLDRotationEntry : IRotationEntry
         new SlotResolverData(new Ability_深奥之灵(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_调停(), SlotMode.OffGcd),
 
-        // new(new Ability_铁壁(), SlotMod
-        // .
-        // e.OffGcd),
-        // new(new Ability_预警(), SlotMode.OffGcd),
-
-
+        
         // gcd队列
         new SlotResolverData(new GCD_优先圣灵(), SlotMode.Gcd),
         new SlotResolverData(new GCD_优先赎罪(), SlotMode.Gcd),
@@ -144,6 +140,7 @@ public class PLDRotationEntry : IRotationEntry
         QT.AddQt(PLDQTKey.优先圣灵, false);
         QT.AddQt(PLDQTKey.优先赎罪, false);
         QT.AddQt(PLDQTKey.起手序列, false);
+        QT.AddQt(BaseQTKey.起手序列突进, false);
 
         QT.AddHotkey("LB", new HotKeyResolver_LB());
         // QT.AddQt(BaseQTKey.减伤, true);
@@ -206,28 +203,16 @@ public class PLDRotationEntry : IRotationEntry
         {
             PLDSettings.Instance.Save();
         }
-
-        // {
-        //     GCHandle handle = GCHandle.Alloc(QT);
-        //
-        //     var pin = GCHandle.ToIntPtr(handle);
-        //
-        //     ImGui.Text($"赎罪剑Atonement3 : {pin}");
-        // }
-        // {
-        //     GCHandle handle = GCHandle.Alloc(GLDRotationEntry.QT);
-        //
-        //     var pin = GCHandle.ToIntPtr(handle);
-        //
-        //     ImGui.Text($"赎罪剑Atonement3 : {pin}");
-        // }
-
-
+        
     }
 
     public void DrawQtDev(JobViewWindow jobViewWindow)
     {
         ImGui.Text("画Dev信息");
+        
+        var dutySchedule = Core.Resolve<MemApiDuty>().GetSchedule();
+        ImGui.Text($"CountPoint : {dutySchedule.CountPoint}");
+        ImGui.Text($"NowPoint : {dutySchedule.NowPoint}");
         var Oath = Core.Resolve<JobApi_Paladin>().Oath;
 
         ImGui.Text($"挑衅 : {TankBaseIslotResolver.挑衅.ActionReady()}");
