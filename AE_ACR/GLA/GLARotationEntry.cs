@@ -25,7 +25,7 @@ public class GLARotationEntry : IRotationEntry
 
         new SlotResolverData(new Ability_铁壁(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_预警(), SlotMode.OffGcd),
-        new SlotResolverData(new Ability_血仇(), SlotMode.OffGcd),
+        new SlotResolverData(new Ability_雪仇(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_挑衅(), SlotMode.OffGcd),
 
         new SlotResolverData(new GCD_Base(), SlotMode.Gcd)

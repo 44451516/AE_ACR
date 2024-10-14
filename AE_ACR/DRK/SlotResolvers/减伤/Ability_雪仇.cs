@@ -18,6 +18,11 @@ public class Ability_雪仇 : DRKBaseSlotResolvers
             return Flag_减伤;
         }
 
+        if (!雪仇.ActionReadyAE())
+        {
+            return Flag_CD;
+        }
+        
         if (CanWeave())
         {
 

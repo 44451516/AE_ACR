@@ -31,6 +31,11 @@ public class Ability_雪仇 : PLDBaseSlotResolvers
             if (预警.ActionReady())
                 return -1;
 
+            if (!雪仇.ActionReadyAE())
+            {
+                return Flag_CD;
+            }
+
             if (Buffs.神圣领域.GetBuffRemainingTime() > 0.5f)
                 return -1;
 

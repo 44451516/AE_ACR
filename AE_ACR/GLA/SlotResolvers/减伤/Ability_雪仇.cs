@@ -8,10 +8,21 @@ using AEAssist.Helper;
 
 namespace AE_ACR.GLA.SlotResolvers.减伤;
 
-public class Ability_血仇 : GLABaseSlotResolvers
+public class Ability_雪仇 : GLABaseSlotResolvers
 {
     public override int Check()
     {
+        if (!雪仇.ActionReady())
+        {
+            return Flag_CD;
+        }
+        
+        if (!雪仇.ActionReadyAE())
+        {
+            return Flag_CD;
+        }
+
+        
         if (CanWeave())
         {
             if (雪仇.ActionReady() && TargetHelper.GetNearbyEnemyCount(5) >= 4)
