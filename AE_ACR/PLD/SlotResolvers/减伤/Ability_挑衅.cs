@@ -52,12 +52,18 @@ public class Ability_挑衅 : PLDBaseSlotResolvers
             return Flag_小队人数不够;
         }
 
+        if (!挑衅.ActionReadyAE())
+        {
+            return Flag_CD;
+        }
+
+
 
         if (CanWeave())
         {
             if (CombatTime.Instance.CombatEngageDuration().TotalSeconds >= 5)
             {
-                if (挑衅.ActionReadyAE())
+                if (挑衅.ActionReady())
                 {
                     foreach (var keyValuePair in TargetMgr.Instance.EnemysIn25)
                     {

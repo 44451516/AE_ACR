@@ -38,7 +38,11 @@ public class Ability_挑衅 : GLABaseSlotResolvers
             return Flag_不是日常本;
         }
 
-
+        if (!挑衅.ActionReadyAE())
+        {
+            return Flag_CD;
+        }
+        
         if (CanWeave())
         {
             if (CombatTime.Instance.CombatEngageDuration().TotalSeconds >= 5)
