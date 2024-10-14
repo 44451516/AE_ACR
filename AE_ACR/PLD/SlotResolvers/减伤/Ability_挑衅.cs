@@ -57,7 +57,7 @@ public class Ability_挑衅 : PLDBaseSlotResolvers
         {
             if (CombatTime.Instance.CombatEngageDuration().TotalSeconds >= 5)
             {
-                if (挑衅.ActionReady())
+                if (挑衅.ActionReadyAE())
                 {
                     foreach (var keyValuePair in TargetMgr.Instance.EnemysIn25)
                     {
