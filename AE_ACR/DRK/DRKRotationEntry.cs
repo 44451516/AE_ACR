@@ -40,6 +40,7 @@ public class DRKRotationEntry : IRotationEntry
 
         new SlotResolverData(new Ability_亲疏自行(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_雪仇(), SlotMode.OffGcd),
+        new SlotResolverData(new Ability_暗黑布道(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_挑衅(), SlotMode.OffGcd),
 
         new SlotResolverData(new DKUsePotion(), SlotMode.OffGcd),
@@ -128,7 +129,8 @@ public class DRKRotationEntry : IRotationEntry
 #endif
         QT.AddTab("通用", DrawQtGeneral);
         QT.AddTab("说明", DrawQtDescription);
-        QT.AddTab("反馈建议", UIHelp.Feedback);
+        QT.AddTab("日常模式", DrawDailyMode);
+        // QT.AddTab("反馈建议", UIHelp.Feedback);
         // QT.AddTab("Dev2", DrawQtDev);
 
         QT.AddQt(BaseQTKey.停手, false, "是否使用基础的Gcd");
@@ -167,6 +169,23 @@ public class DRKRotationEntry : IRotationEntry
         */
     }
 
+    private void DrawDailyMode(JobViewWindow obj)
+    {
+        var DkSettings = DKSettings.Instance;
+        // if (ImGui.CollapsingHeader("常规设置"))
+        {
+
+            ImGui.Text("日常模式会持续开盾，和自动减伤");
+            ImGui.SetNextItemWidth(150f);
+            ImGui.Checkbox("启用", ref DkSettings.日常模式);
+            ImGui.SetNextItemWidth(150f);
+            ImGui.Checkbox("使用挑衅", ref DkSettings.挑衅);
+            ImGui.SetNextItemWidth(150f);
+            ImGui.Checkbox("日常模式_残血不打爆发[测试中]", ref DkSettings.日常模式_残血不打爆发);
+            ImGui.Spacing();
+        }
+    }
+
     private void DrawQtDescription(JobViewWindow obj)
     {
         ImGui.Text("如果你发现他打小怪没有保留蓝量，请把【目标小于多少血打完所有资源】设置为0");
@@ -183,18 +202,18 @@ public class DRKRotationEntry : IRotationEntry
         var DkSettings = DKSettings.Instance;
 
 
-        if (ImGui.CollapsingHeader("常规设置"))
-        {
-
-            ImGui.Text("日常模式会持续开盾，和自动减伤");
-            ImGui.SetNextItemWidth(150f);
-            ImGui.Checkbox("启用", ref DkSettings.日常模式);
-            ImGui.SetNextItemWidth(150f);
-            ImGui.Checkbox("使用挑衅", ref DkSettings.挑衅);
-            ImGui.SetNextItemWidth(150f);
-            ImGui.Checkbox("日常模式_残血不打爆发[测试中]", ref DkSettings.日常模式_残血不打爆发);
-            ImGui.Spacing();
-        }
+        // if (ImGui.CollapsingHeader("常规设置"))
+        // {
+        //
+        //     ImGui.Text("日常模式会持续开盾，和自动减伤");
+        //     ImGui.SetNextItemWidth(150f);
+        //     ImGui.Checkbox("启用", ref DkSettings.日常模式);
+        //     ImGui.SetNextItemWidth(150f);
+        //     ImGui.Checkbox("使用挑衅", ref DkSettings.挑衅);
+        //     ImGui.SetNextItemWidth(150f);
+        //     ImGui.Checkbox("日常模式_残血不打爆发[测试中]", ref DkSettings.日常模式_残血不打爆发);
+        //     ImGui.Spacing();
+        // }
 
 
         ImGui.SetNextItemWidth(150f);

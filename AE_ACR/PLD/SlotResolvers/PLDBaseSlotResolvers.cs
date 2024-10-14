@@ -43,6 +43,8 @@ public abstract class PLDBaseSlotResolvers : TankBaseIslotResolver
         圣盾阵 = 3542,
         神圣领域 = 30,
         钢铁信念 = 28,
+        圣光幕帘 = 3540,
+        干预= 7382,
         留空 = 16532;
 
 
@@ -54,6 +56,11 @@ public abstract class PLDBaseSlotResolvers : TankBaseIslotResolver
 
     public static bool 是否停手()
     {
+        if (是否全局停手())
+        {
+            return true;
+        }
+        
         if (是否日常模式())
         {
             if (HasEffect(DeBuffs.加速器炸弹))
@@ -64,6 +71,7 @@ public abstract class PLDBaseSlotResolvers : TankBaseIslotResolver
                 }
             }
         }
+        
         return getQTValue(BaseQTKey.停手);
     }
 

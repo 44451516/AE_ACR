@@ -29,7 +29,7 @@ public class DK_Ability_暗黑锋 : DRKBaseSlotResolvers
             return Flag_攒资源;
         }
 
-        if (!暗黑锋.MyIsUnlock())
+        if (!暗黑锋.ActionReadyAE())
         {
             return -1;
         }
@@ -58,19 +58,12 @@ public class DK_Ability_暗黑锋 : DRKBaseSlotResolvers
                 return Flag_超出攻击距离;
             }
             
-            if (darksideTimeRemaining <= 10 * 1000)
+            if (darksideTimeRemaining <= 6 * 1000)
             {
                 return 0;
             }
 
-            if (Core.Me.TargetObject is IBattleChara chara)
-            {
-                if (chara.CurrentHp <= DKSettings.Instance.get爆发目标血量())
-                {
-                    return 0;
-                }
-            }
-
+          
             if (Core.Me.CurrentMp >= 9800)
             {
                 return 0;
@@ -102,13 +95,21 @@ public class DK_Ability_暗黑锋 : DRKBaseSlotResolvers
             }
 
 
-            if (RaidBuff.爆发期_120())
+            if (RaidBuff.爆发期_120() && Core.Me.CurrentMp >= DKSettings.Instance.保留蓝量 + 3000)
             {
                 return 0;
             }
+            
+            if (Core.Me.TargetObject is IBattleChara chara)
+            {
+                if (chara.CurrentHp <= DKSettings.Instance.get爆发目标血量())
+                {
+                    return 0;
+                }
+            }
 
             //泄蓝
-            if (血乱Delirium.GetCooldownRemainingTime() > 40 && 暗黑锋.ActionReady() && Core.Me.CurrentMp >= DKSettings.Instance.保留蓝量 + 3000)
+            if (血乱Delirium.GetCooldownRemainingTime() > 40 && 暗黑锋.ActionReady() && Core.Me.CurrentMp > DKSettings.Instance.保留蓝量 + 3000)
             {
                 return 0;
             }

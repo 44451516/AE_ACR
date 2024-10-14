@@ -1,5 +1,7 @@
 #region
 
+using AE_ACR_DRK_Setting;
+using AE_ACR.PLD.Setting;
 using AE_ACR.utils;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
@@ -57,5 +59,9 @@ public class DRKRotationEventHandler : IRotationEventHandler
 
     public void OnTerritoryChanged()
     {
+        if (Data.IsInHighEndDuty)
+        {
+            DKSettings.Instance.日常模式 = false;
+        }
     }
 }

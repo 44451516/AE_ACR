@@ -7,6 +7,7 @@ public abstract class TankBaseIslotResolver : BaseIslotResolver
         亲疏自行 = 7548,
         挑衅 = 7533,
         雪仇 = 7535,
+        退避 = 7537,
         留空 = 0;
 
     public static int 周围敌人雪仇数量()

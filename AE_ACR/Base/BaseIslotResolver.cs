@@ -196,7 +196,7 @@ public abstract class BaseIslotResolver : ISlotResolver
         }
 
         
-        bool 使用爆发 = false;
+        bool 使用爆发 = true;
 
         GeneralSettings generalSettings = SettingMgr.GetSetting<GeneralSettings>();
         if (currTarget.IsBoss())
@@ -238,7 +238,7 @@ public abstract class BaseIslotResolver : ISlotResolver
                     {
                         if (generalSettings.TimeToKillCheckTime >= 12000)
                         {
-                            if (TTKHelper.IsTargetTTK(battleChara, 12000, true) == false)
+                            if (TTKHelper.IsTargetTTK(battleChara, 12000, true))
                             {
                                 return false;
                             }
@@ -278,6 +278,23 @@ public abstract class BaseIslotResolver : ISlotResolver
         public const ushort
             加速器炸弹 = 3802,
             留空 = 0;
+    }
+    
+    public static class Buffs
+    {
+        public const ushort
+            生还 = 418,
+            留空 = 0;
+    }
+
+    public static bool 是否全局停手()
+    {
+        if (HasEffect(Buffs.生还))
+        {
+            return true;
+        }
+        
+        return false;
     }
 
     private static bool isUseAeCheck = true;

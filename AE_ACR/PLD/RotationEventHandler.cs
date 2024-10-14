@@ -1,8 +1,13 @@
 #region
 
+using AE_ACR.Base;
+using AE_ACR.PLD.Setting;
+using AE_ACR.PLD.SlotResolvers;
 using AE_ACR.utils;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
+using AEAssist.CombatRoutine.Module.AILoop;
+using AEAssist.Helper;
 
 #endregion
 
@@ -17,6 +22,16 @@ public class RotationEventHandler : IRotationEventHandler
     {
         CombatTime.Instance.combatEnd = DateTime.MinValue;
         CombatTime.Instance.combatStart = DateTime.MinValue;
+        if (PLDSettings.Instance.日常模式)
+        {
+            if (!BaseIslotResolver.HasEffect(PLDBaseSlotResolvers.Buffs.钢铁信念) && PLDBaseSlotResolvers.钢铁信念.ActionReady())
+            {
+                var slot = new Slot();
+                slot.Add(PLDBaseSlotResolvers.钢铁信念.GetSpell());
+                await slot.Run(AI.Instance.BattleData, false);
+            }
+        }
+
     }
 
     public void OnResetBattle()
@@ -57,5 +72,9 @@ public class RotationEventHandler : IRotationEventHandler
 
     public void OnTerritoryChanged()
     {
+        if (Data.IsInHighEndDuty)
+        {
+            PLDSettings.Instance.日常模式 = false;
+        }
     }
 }

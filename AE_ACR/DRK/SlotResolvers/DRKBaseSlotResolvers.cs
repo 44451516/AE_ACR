@@ -50,10 +50,16 @@ public abstract class DRKBaseSlotResolvers : TankBaseIslotResolver
         行尸走肉 = 3636,
         献奉 = 25754,
         深恶痛绝 = 3629,
+        暗黑布道 = 16471,
         伤残 = 3624;
 
     public static bool 是否停手()
     {
+        if (是否全局停手())
+        {
+            return true;
+        }
+        
         if (是否日常模式())
         {
             if (HasEffect(DeBuffs.加速器炸弹))
@@ -62,9 +68,11 @@ public abstract class DRKBaseSlotResolvers : TankBaseIslotResolver
                 {
                     return true;
                 }
-            }
+            }  
         }
 
+      
+        
         return getQTValue(BaseQTKey.停手);
     }
 

@@ -27,6 +27,11 @@ internal static class ActionUtils
         return value.MyIsUnlock() && value.IsLevelEnough() && value.IsReady();
     }
 
+    internal static bool ActionReadyAE(this uint value)
+    {
+        return value.IsReady();
+    }
+
     internal static float Charges(this uint value)
     {
         return value.GetSpell().Charges;
@@ -73,12 +78,12 @@ internal static class ActionUtils
         {
             return false;
         }
-        
+
         if (Core.Resolve<MemApiSpell>().GetActionState(spellId) == 573) //没学技能
         {
             return false;
         }
-        
+
         return true;
     }
 
