@@ -1,8 +1,10 @@
 ﻿#region
 
 using AE_ACR.utils;
+using AEAssist;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.Helper;
+using Dalamud.Game.ClientState.Objects.Types;
 
 #endregion
 
@@ -25,9 +27,20 @@ public class Ability_雪仇 : GLABaseSlotResolvers
         
         if (CanWeave())
         {
-            if (雪仇.ActionReady() && TargetHelper.GetNearbyEnemyCount(5) >= 4)
+            if (雪仇.ActionReady())
             {
-                return 0;
+                if (TargetHelper.GetNearbyEnemyCount(5) >= 4)
+                {
+                    return 0; 
+                }
+                
+                if (Core.Me.TargetObject is IBattleChara target)
+                {
+                    if (TargetHelper.TargercastingIsDeathSentence(target, 3))
+                    {
+                        return 0;
+                    }
+                }
             }
         }
 

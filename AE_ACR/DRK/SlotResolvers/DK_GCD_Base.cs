@@ -2,7 +2,6 @@
 
 using AE_ACR_DRK_Setting;
 using AE_ACR.Base;
-using AE_ACR.DRK.SlotResolvers;
 using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine;
@@ -14,7 +13,7 @@ using Dalamud.Game.ClientState.Objects.Types;
 
 #endregion
 
-namespace AE_ACR_DRK.SlotResolvers;
+namespace AE_ACR.DRK.SlotResolvers;
 
 public class DK_GCD_Base : DRKBaseSlotResolvers
 {
@@ -24,11 +23,7 @@ public class DK_GCD_Base : DRKBaseSlotResolvers
         {
             return Flag_停手;
         }
-
-        if (Core.Resolve<MemApiSpell>().GetLastComboSpellId() == 释放Unleash)
-        {
-            return -1;
-        }
+        
 
         if (isHasCanAttackBattleChara() == false)
         {

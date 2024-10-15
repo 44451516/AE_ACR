@@ -1,7 +1,6 @@
 #region
 
 using AE_ACR.Base;
-using AE_ACR.DRK.SlotResolvers;
 using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine;
@@ -12,7 +11,7 @@ using AEAssist.MemoryApi;
 
 #endregion
 
-namespace AE_ACR_DRK.SlotResolvers;
+namespace AE_ACR.DRK.SlotResolvers;
 
 public class DK_GCD_AOE_Base : DRKBaseSlotResolvers
 {
@@ -23,15 +22,18 @@ public class DK_GCD_AOE_Base : DRKBaseSlotResolvers
             return Flag_停手;
         }
 
-        if (Core.Resolve<MemApiSpell>().GetLastComboSpellId() == 单体2SyphonStrike)
+        if (lastComboActionID == 单体2SyphonStrike)
             return -1;
 
-        if (Core.Resolve<MemApiSpell>().GetLastComboSpellId() == 释放Unleash)
+        if (lastComboActionID == 释放Unleash && 刚魂StalwartSoul.MyIsUnlock())
+        {
             return 0;
-
+        }
 
         if (TargetHelper.GetNearbyEnemyCount(5) >= 2)
+        {
             return 0;
+        }
 
         return -1;
     }
