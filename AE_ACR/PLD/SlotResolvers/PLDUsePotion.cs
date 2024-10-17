@@ -68,5 +68,6 @@ public class PLDUsePotion : PLDBaseSlotResolvers
     public override void Build(Slot slot)
     {
         slot.Add(Spell.CreatePotion());
+        slot.Wait2NextGcd = true;
     }
 }

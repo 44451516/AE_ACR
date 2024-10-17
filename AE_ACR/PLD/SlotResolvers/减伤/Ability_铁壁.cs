@@ -4,6 +4,8 @@ using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.Extension;
+using AEAssist.Helper;
+using Dalamud.Game.ClientState.Objects.Types;
 
 #endregion
 
@@ -44,8 +46,22 @@ public class Ability_铁壁 : PLDBaseSlotResolvers
                 return -1;
 
 
-            if (铁壁.ActionReady() && attackMeCount() >= 3 && Core.Me.CurrentHpPercent() < 0.89f)
-                return 0;
+            if (铁壁.ActionReady())
+            {
+                if (Core.Me.TargetObject is IBattleChara target)
+                {
+                    if (TargetHelper.TargercastingIsDeathSentence(target, 5) && 圣盾阵.MyIsUnlock())
+                    {
+                        return 0;
+                    }
+                    
+                    if (attackMeCount() >= 3 && Core.Me.CurrentHpPercent() < 0.89f)
+                    {
+                        return 0;
+                    }
+                }
+            }
+            
         }
 
         return -1;

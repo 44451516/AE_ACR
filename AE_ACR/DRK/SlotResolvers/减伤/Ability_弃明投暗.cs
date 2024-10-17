@@ -20,6 +20,17 @@ public class Ability_弃明投暗 : DRKBaseSlotResolvers
 
         if (CanWeave())
         {
+            if (暗影墙.ActionReady())
+            {
+                return -1;
+            }
+
+            if (暗影墙.GetCooldownRemainingTime() > 115)
+            {
+                return -1;
+            }
+
+            
             if (Buffs.暗影墙v2.GetBuffRemainingTime() > 0.5f)
                 return -1;
 

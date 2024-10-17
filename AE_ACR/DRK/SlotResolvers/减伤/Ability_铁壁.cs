@@ -4,6 +4,8 @@ using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.Extension;
+using AEAssist.Helper;
+using Dalamud.Game.ClientState.Objects.Types;
 
 #endregion
 
@@ -49,10 +51,22 @@ public class Ability_铁壁 : DRKBaseSlotResolvers
             }
 
 
-            if (铁壁.ActionReady() && attackMeCount() >= 3 && Core.Me.CurrentHpPercent() < 0.89f)
+            if (铁壁.ActionReady())
             {
-                return 0;
+                if (Core.Me.TargetObject is IBattleChara target)
+                {
+                    if (TargetHelper.TargercastingIsDeathSentence(target, 5) && 至黑之夜.MyIsUnlock())
+                    {
+                        return 0;
+                    }
+                    
+                    if (attackMeCount() >= 3 && Core.Me.CurrentHpPercent() < 0.89f)
+                    {
+                        return 0;
+                    }
+                }
             }
+            
         }
 
         return -1;

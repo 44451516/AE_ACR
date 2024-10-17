@@ -251,6 +251,7 @@ public class PLDRotationEntry : IRotationEntry
         
         var Oath = Core.Resolve<JobApi_Paladin>().Oath;
 
+        ImGui.Text($"挑衅 : {TankBaseIslotResolver.挑衅.ActionReadyAE()}");
         if (Core.Me.TargetObject is IBattleChara currTarget)
         {
             var 仇恨是否在自己身上 = currTarget.仇恨是否在自己身上();
