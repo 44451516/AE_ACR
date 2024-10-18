@@ -47,11 +47,5 @@
         </Reference>
 
     </ItemGroup>
-
-
-    <ItemGroup>
-        <Folder Include="Base\Tanke\"/>
-        <Folder Include="Box\"/>
-    </ItemGroup>
-
+    
 </Project>
