@@ -41,6 +41,7 @@ public class DRK_Opener100 : IOpener
     public List<Action<Slot>> Sequence { get; } = new()
     {
         Step0, 
+        Step1, 
         爆发药,
         Step2
     };
@@ -56,9 +57,17 @@ public class DRK_Opener100 : IOpener
     private static void Step0(Slot slot)
     {
         slot.Add(new Spell(DRKBaseSlotResolvers.暗影峰, SpellTargetType.Target));
+    }
+    
+    private static void Step1(Slot slot)
+    {
         slot.Add(new Spell(DRKBaseSlotResolvers.重斩, SpellTargetType.Target));
+        if (Core.Me.CurrentMp == 10000)
+        {
+            slot.Add(new Spell(DRKBaseSlotResolvers.暗影峰, SpellTargetType.Target)); 
+        }
+
         slot.Add(new Spell(DRKBaseSlotResolvers.吸收斩, SpellTargetType.Target));
-       
     }
 
     private static void 爆发药(Slot slot)
@@ -85,7 +94,7 @@ public class DRK_Opener100 : IOpener
         slot.Add(new Spell(DRKBaseSlotResolvers.精雕怒斩CarveAndSpit, SpellTargetType.Target));
         
         slot.Add(new Spell(DRKBaseSlotResolvers.血溅3, SpellTargetType.Target));
-        slot.Add(new Spell(DRKBaseSlotResolvers.腐秽黑暗AbyssalDrain, SpellTargetType.Target));
+        slot.Add(new Spell(DRKBaseSlotResolvers.腐秽黑暗, SpellTargetType.Target));
         slot.Add(new Spell(DRKBaseSlotResolvers.Shadowbringer暗影使者, SpellTargetType.Target));
         slot.Add(new Spell(DRKBaseSlotResolvers.血溅Bloodspiller, SpellTargetType.Target));
         slot.Add(new Spell(DRKBaseSlotResolvers.暗影峰, SpellTargetType.Target));

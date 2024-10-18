@@ -2,6 +2,7 @@
 
 using AE_ACR_DRK;
 using AE_ACR_DRK_Setting;
+using AE_ACR.Base;
 using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine.Module;
@@ -23,6 +24,11 @@ public class DK_GCD_蔑视厌恶 : DRKBaseSlotResolvers
             return Flag_停手;
         }
 
+        if (getQTValue(BaseQTKey.攒资源))
+        {
+            return Flag_攒资源;
+        }
+        
         if (!getQTValue(DRKQTKey.蔑视厌恶))
         {
             return Flag_QT;

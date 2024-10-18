@@ -55,17 +55,7 @@ public class DK_GCD_血溅 : DRKBaseSlotResolvers
             return -1;
         }
 
-        if (Core.Me.TargetObject is IBattleChara chara)
-        {
-            if (chara.CurrentHp <= DKSettings.Instance.get爆发目标血量())
-            {
-                if (Blood > 50 || Core.Me.HasAura(Buffs.血乱Delirium1) || Core.Me.HasAura(Buffs.血乱Delirium2))
-                {
-                    return 0;
-                }
-            }
-        }
-
+    
 
         if (DKSettings.Instance.GCD爆发延时 > CombatTime.Instance.CombatEngageDuration().TotalSeconds)
         {
@@ -75,6 +65,15 @@ public class DK_GCD_血溅 : DRKBaseSlotResolvers
 
         if (Blood > 50 || Core.Me.HasAura(Buffs.血乱Delirium1) || Core.Me.HasAura(Buffs.血乱Delirium2))
         {
+            if (Core.Me.TargetObject is IBattleChara chara)
+            {
+                if (chara.CurrentHp <= DKSettings.Instance.get爆发目标血量())
+                {
+                        return 0;
+                }
+            }
+
+            
             //防止血溅没有打完
             if (Core.Resolve<MemApiBuff>().GetAuraTimeleft(Core.Me, Buffs.血乱Delirium1, true) < 8000)
             {
@@ -87,13 +86,13 @@ public class DK_GCD_血溅 : DRKBaseSlotResolvers
                 return 0;
             }
 
-            if (RaidBuff.爆发期_120())
+            if (RaidBuff.爆发期_120() && Shadowbringer暗影使者.GetCooldownRemainingTime()> 80)
             {
                 return 0;
             }
 
 
-            if (Blood >= 70 && Core.Me.HasAura(Buffs.嗜血BloodWeapon))
+            if (Blood >= 90 && Core.Me.GetAuraStack(Buffs.嗜血BloodWeapon) >= 2)
             {
                 return 0;
             }

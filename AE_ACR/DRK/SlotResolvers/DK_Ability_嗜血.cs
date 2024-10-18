@@ -6,7 +6,8 @@ using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.JobApi;
-
+using Dalamud.Game.ClientState;
+using Dalamud.Logging;
 #endregion
 
 namespace AE_ACR.DRK.SlotResolvers;
@@ -53,6 +54,11 @@ public class DK_Ability_嗜血 : DRKBaseSlotResolvers
         {
             return 0;
         }
+        
+        if (血乱Delirium.ActionReady())
+        {
+            return 0;
+        }
 
         return -1;
     }
@@ -61,4 +67,6 @@ public class DK_Ability_嗜血 : DRKBaseSlotResolvers
     {
         slot.Add(嗜血BloodWeapon.OriginalHook());
     }
+    
+   
 }

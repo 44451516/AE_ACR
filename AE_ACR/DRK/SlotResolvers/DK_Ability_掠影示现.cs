@@ -1,5 +1,6 @@
 ﻿#region
 
+using AE_ACR_DRK;
 using AE_ACR_DRK_Setting;
 using AE_ACR.Base;
 using AE_ACR.utils;
@@ -22,6 +23,11 @@ public class DK_Ability_掠影示现 : DRKBaseSlotResolvers
         }
 
         if (getQTValue(BaseQTKey.攒资源))
+        {
+            return Flag_攒资源;
+        }
+
+        if (getQTValue(DRKQTKey.掠影示现) == false)
         {
             return Flag_攒资源;
         }
@@ -49,7 +55,12 @@ public class DK_Ability_掠影示现 : DRKBaseSlotResolvers
         if (darksideTimeRemaining == 0)
             return -2;
 
+        if (DKSettings.Instance.能力技爆发延时 > CombatTime.Instance.CombatEngageDuration().TotalSeconds)
+        {
+            return -1;
+        }
 
+        
         if (LivingShadow.ActionReady())
             return 0;
 

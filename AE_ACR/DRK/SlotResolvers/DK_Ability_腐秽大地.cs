@@ -5,7 +5,9 @@ using AE_ACR_DRK_Setting;
 using AE_ACR.Base;
 using AE_ACR.utils;
 using AEAssist;
+using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
+using AEAssist.Helper;
 using AEAssist.JobApi;
 
 #endregion
@@ -61,7 +63,7 @@ public class DK_Ability_腐秽大地 : DRKBaseSlotResolvers
         }
 
 
-        if (腐秽大地SaltedEarth.OriginalHookActionReady())
+        if (腐秽大地SaltedEarth.ActionReadyAE())
         {
             return 0;
         }
@@ -72,6 +74,6 @@ public class DK_Ability_腐秽大地 : DRKBaseSlotResolvers
 
     public override void Build(Slot slot)
     {
-        slot.Add(腐秽大地SaltedEarth.OriginalHook());
+        slot.Add(腐秽大地SaltedEarth.GetSpell());
     }
 }

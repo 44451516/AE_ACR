@@ -49,6 +49,7 @@ public class DRKRotationEntry : IRotationEntry
         new SlotResolverData(new DKUsePotion(), SlotMode.OffGcd),
         new SlotResolverData(new DK_Ability_暗影使者(), SlotMode.OffGcd),
         new SlotResolverData(new DK_Ability_腐秽大地(), SlotMode.OffGcd),
+        new SlotResolverData(new DK_Ability_腐秽黑暗(), SlotMode.OffGcd),
         new SlotResolverData(new DK_Ability_掠影示现(), SlotMode.OffGcd),
         new SlotResolverData(new DK_Ability_暗黑波动_AOE(), SlotMode.OffGcd),
         new SlotResolverData(new DK_Ability_暗黑锋(), SlotMode.OffGcd),
@@ -87,7 +88,8 @@ public class DRKRotationEntry : IRotationEntry
             AcrType = AcrType.Both,
             MinLevel = 30,
             MaxLevel = 100,
-            Description = "开启QT起手序列和【通用】里面的选项冲突\n"
+            Description = "开启QT起手序列和[通用]里面的选项冲突\n"
+                          + "[赞资源]开启嗜血血乱、掠影示现、暗影使者、暗黑锋、精雕怒斩、腐秽大地、蔑视厌恶、血溅将不会释放\n"
                           + "如果你发现没有保留蓝量，请把【目标小于多少血打完所有资源】设置为0"
         };
 
@@ -151,46 +153,21 @@ public class DRKRotationEntry : IRotationEntry
         QT.AddTab("通用", DrawQtGeneral);
         QT.AddTab("说明", DrawQtDescription);
         QT.AddTab("日常模式", DrawDailyMode);
-        // QT.AddTab("反馈建议", UIHelp.Feedback);
-        // QT.AddTab("Dev2", DrawQtDev);
 
         QT.AddQt(BaseQTKey.停手, false, "是否使用基础的Gcd");
         QT.AddQt(BaseQTKey.攒资源, false, "攒资源不会卸暗血");
-        QT.AddQt(BaseQTKey.爆发药, false);
+        QT.AddQt(BaseQTKey.爆发药, true);
         QT.AddQt(DRKQTKey.腐秽大地, true);
+        QT.AddQt(DRKQTKey.腐秽黑暗, true);
         QT.AddQt(DRKQTKey.暗影使者, true);
         QT.AddQt(DRKQTKey.蔑视厌恶, true);
+        QT.AddQt(DRKQTKey.掠影示现, true);
+        QT.AddQt(DRKQTKey.精雕吸血, true);
         QT.AddQt(DRKQTKey.伤残, false, "和目标距离过远的时候使用");
         QT.AddQt(DRKQTKey.起手序列, true);
 
         QT.AddHotkey("LB", new HotKeyResolver_LB());
-
-        // 添加QT开关 第二个参数是默认值 (开or关) 第三个参数是鼠标悬浮时的tips
-        // QT.AddQt(QTKey.UseBaseGcd, true, "是否使用基础的Gcd");
-        // QT.AddQt(QTKey.Test1, true);
-        // QT.AddQt(QTKey.Test2, false);
-        // QT.AddQt(QTKey.UsePotion,false);
-
-        // 添加快捷按钮 (带技能图标)
-        // QT.AddHotkey("战斗之声",
-        //     new HotKeyResolver_NormalSpell(SpellsDefine.LegSweep, SpellTargetType.Self));
-        // QT.AddHotkey("失血",
-        //     new HotKeyResolver_NormalSpell(SpellsDefine.LegSweep, SpellTargetType.Target));
-
-        // QT.AddHotkey("爆发药1", new HotKeyResolver_Potion());
-        // QT.AddHotkey("爆发药1", new HotKeyResolver_Potion());
-        // QT.AddHotkey("极限技2", new HotKeyResolver_LB());
-
-        /*
-        // 这是一个自定义的快捷按钮 一般用不到
-        // 图片路径是相对路径 基于AEAssist(C|E)NVersion/AEAssist
-        // 如果想用AE自带的图片资源 路径示例: Resources/AE2Logo.png
-        QT.AddHotkey("极限技", new HotkeyResolver_General("#自定义图片路径", () =>
-        {
-            // 点击这个图片会触发什么行为
-            LogHelper.Print("你好");
-        }));
-        */
+        
     }
 
     private void DrawDailyMode(JobViewWindow obj)
@@ -242,6 +219,7 @@ public class DRKRotationEntry : IRotationEntry
 
         var battleChara = Core.Me.GetCurrTarget();
         ImGui.Text($"血溅Bloodspiller.IsUnlock:{DRKBaseSlotResolvers.血溅Bloodspiller.MyIsUnlock()}");
+        ImGui.Text($"强化药:{RaidBuff.强化药.GetBuffRemainingTime() / 1000f}");
         // ImGui.Text($"血溅Bloodspiller.IsUnlock:{Core.Resolve<MemApiSpell>().CheckActionChange(DRKBaseSlotResolvers.血溅Bloodspiller).GetSpell()}");
         // ImGui.Text($"目标距离:{TargetHelper.GetTargetDistanceFromMeTest2D(battleChara, Core.Me)}");
         // ImGui.Text($"挑衅cd:{DRKBaseSlotResolvers.挑衅.GetCooldownRemainingTime()}");

@@ -1,5 +1,6 @@
 ﻿#region
 
+using AE_ACR_DRK;
 using AE_ACR_DRK_Setting;
 using AE_ACR.Base;
 using AE_ACR.utils;
@@ -28,6 +29,11 @@ public class DK_Ability_精雕怒斩 : DRKBaseSlotResolvers
         }
 
 
+        if (!getQTValue(DRKQTKey.精雕吸血))
+        {
+            return Flag_QT;
+        }
+        
         if (!CanWeave())
         {
             return -1;

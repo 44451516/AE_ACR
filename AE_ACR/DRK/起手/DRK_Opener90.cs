@@ -77,7 +77,7 @@ public class DRK_Opener90 : IOpener
         slot.Add(new Spell(DRKBaseSlotResolvers.血溅Bloodspiller, SpellTargetType.Target));
         
         slot.Add(new Spell(DRKBaseSlotResolvers.Shadowbringer暗影使者, SpellTargetType.Target));
-        slot.Add(new Spell(DRKBaseSlotResolvers.腐秽大地SaltedEarth, SpellTargetType.Self));
+        slot.Add(new Spell(DRKBaseSlotResolvers.腐秽黑暗, SpellTargetType.Self));
         
         slot.Add(new Spell(DRKBaseSlotResolvers.血溅Bloodspiller, SpellTargetType.Target));
         slot.Add(new Spell(DRKBaseSlotResolvers.暗影峰, SpellTargetType.Target));
