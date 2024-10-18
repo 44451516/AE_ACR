@@ -13,28 +13,32 @@ public abstract class DRKBaseSlotResolvers : TankBaseIslotResolver
     public const uint
         //单体连击1
         单体1HardSlash = 3617,
+        重斩 = 3617,
         释放Unleash = 3621,
         //吸收斩
         单体2SyphonStrike = 3623,
+        吸收斩 = 3623,
         单体3Souleater = 3632,
+        噬魂斩 = 3632,
         腐秽大地SaltedEarth = 3639,
-        AbyssalDrain = 3641,
+        腐秽黑暗AbyssalDrain = 3641,
         精雕怒斩CarveAndSpit = 3643,
         //血乱
         血乱Delirium = 7390,
         寂灭Quietus = 7391,
         //Bloodspiller
         血溅Bloodspiller = 7392,
+        血溅1 = 36928,
         血溅3 = 36930,
         血溅2 = 36929,
-        血溅1 = 36928,
         暗黑锋 = 16467,
         暗黑波动AOE = 16467,
         刚魂StalwartSoul = 16468,
         FloodOfShadow = 16469,
         EdgeOfShadow = 16470,
-        //弗雷
+        暗影峰 = 16470,
         LivingShadow = 16472,
+        掠影示现 = 16472,
         蔑视厌恶Disesteem = 36932,
         腐秽黑暗 = 25755,
         Oblation = 25754,
@@ -51,6 +55,7 @@ public abstract class DRKBaseSlotResolvers : TankBaseIslotResolver
         献奉 = 25754,
         深恶痛绝 = 3629,
         暗黑布道 = 16471,
+        暗影步 = 36926,
         伤残 = 3624;
 
     public static bool 是否停手()

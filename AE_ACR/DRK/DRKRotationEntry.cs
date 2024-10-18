@@ -6,10 +6,13 @@ using AE_ACR_DRK.SlotResolvers;
 using AE_ACR.Base;
 using AE_ACR.DRK.SlotResolvers;
 using AE_ACR.DRK.SlotResolvers.减伤;
+using AE_ACR.DRK.起手;
+using AE_ACR.PLD.起手;
 using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
+using AEAssist.CombatRoutine.Module.Opener;
 using AEAssist.CombatRoutine.View.JobView;
 using AEAssist.CombatRoutine.View.JobView.HotkeyResolver;
 using AEAssist.Extension;
@@ -84,15 +87,33 @@ public class DRKRotationEntry : IRotationEntry
             AcrType = AcrType.Both,
             MinLevel = 30,
             MaxLevel = 100,
-            Description = "如果你发现没有保留蓝量，请把【目标小于多少血打完所有资源】设置为0"
+            Description = "开启QT起手序列和【通用】里面的选项冲突\n"
+                          + "如果你发现没有保留蓝量，请把【目标小于多少血打完所有资源】设置为0"
         };
 
         // 添加各种事件回调
         rot.SetRotationEventHandler(new DRKRotationEventHandler());
         // 添加QT开关的时间轴行为
         rot.AddTriggerAction(new TriggerAction_QT());
+        rot.AddOpener(GetOpener);
 
         return rot;
+    }
+
+    private IOpener? GetOpener(uint level)
+    {
+        if (level == 100)
+        {
+            return new DRK_Opener100();
+        }
+
+        if (level >= 80 && level < 96)
+        {
+            return new DRK_Opener90();
+        }
+
+
+        return null;
     }
 
     // 如果你不想用QT 可以自行创建一个实现IRotationUI接口的类
@@ -135,9 +156,12 @@ public class DRKRotationEntry : IRotationEntry
 
         QT.AddQt(BaseQTKey.停手, false, "是否使用基础的Gcd");
         QT.AddQt(BaseQTKey.攒资源, false, "攒资源不会卸暗血");
+        QT.AddQt(BaseQTKey.爆发药, false);
         QT.AddQt(DRKQTKey.腐秽大地, true);
         QT.AddQt(DRKQTKey.暗影使者, true);
+        QT.AddQt(DRKQTKey.蔑视厌恶, true);
         QT.AddQt(DRKQTKey.伤残, false, "和目标距离过远的时候使用");
+        QT.AddQt(DRKQTKey.起手序列, true);
 
         QT.AddHotkey("LB", new HotKeyResolver_LB());
 
@@ -172,7 +196,6 @@ public class DRKRotationEntry : IRotationEntry
     private void DrawDailyMode(JobViewWindow obj)
     {
         var DkSettings = DKSettings.Instance;
-        // if (ImGui.CollapsingHeader("常规设置"))
         {
 
             ImGui.Text("日常模式会持续开盾，和自动减伤");
@@ -199,35 +222,7 @@ public class DRKRotationEntry : IRotationEntry
 
     public void DrawQtGeneral(JobViewWindow jobViewWindow)
     {
-        var DkSettings = DKSettings.Instance;
-
-
-        // if (ImGui.CollapsingHeader("常规设置"))
-        // {
-        //
-        //     ImGui.Text("日常模式会持续开盾，和自动减伤");
-        //     ImGui.SetNextItemWidth(150f);
-        //     ImGui.Checkbox("启用", ref DkSettings.日常模式);
-        //     ImGui.SetNextItemWidth(150f);
-        //     ImGui.Checkbox("使用挑衅", ref DkSettings.挑衅);
-        //     ImGui.SetNextItemWidth(150f);
-        //     ImGui.Checkbox("日常模式_残血不打爆发[测试中]", ref DkSettings.日常模式_残血不打爆发);
-        //     ImGui.Spacing();
-        // }
-
-
-        ImGui.SetNextItemWidth(150f);
-        ImGui.DragInt("保留蓝量", ref DkSettings.保留蓝量, 100, 0, 10000);
-        ImGui.SetNextItemWidth(150f);
-        ImGui.InputInt("目标小于多少血打完所有资源[单位万]", ref DkSettings.爆发目标血量, 0, 100);
-        ImGui.SetNextItemWidth(150f);
-        ImGui.InputFloat("能力技爆发延时", ref DkSettings.能力技爆发延时);
-        ImGui.SetNextItemWidth(150f);
-        ImGui.InputFloat("GCD爆发延时", ref DkSettings.GCD爆发延时);
-        ImGui.DragFloat("伤残阈值", ref DkSettings.伤残阈值, 0.1f, 5, 20f);
-        ImGui.DragFloat("近战最大攻击距离", ref DkSettings.近战最大攻击距离, 0.1f, 2.5f, 15f);
-        if (ImGui.Button("Save[保存]"))
-            DKSettings.Instance.Save();
+        DKSettingUI.BaseDarw();
     }
 
     public void DrawQtDev(JobViewWindow jobViewWindow)

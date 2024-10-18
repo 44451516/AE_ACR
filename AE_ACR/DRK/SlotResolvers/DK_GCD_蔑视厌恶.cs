@@ -1,5 +1,6 @@
 ﻿#region
 
+using AE_ACR_DRK;
 using AE_ACR_DRK_Setting;
 using AE_ACR.utils;
 using AEAssist;
@@ -22,6 +23,11 @@ public class DK_GCD_蔑视厌恶 : DRKBaseSlotResolvers
             return Flag_停手;
         }
 
+        if (!getQTValue(DRKQTKey.蔑视厌恶))
+        {
+            return Flag_QT;
+        }
+        
         var darksideTimeRemaining = Core.Resolve<JobApi_DarkKnight>().DarksideTimeRemaining;
 
         if (darksideTimeRemaining == 0)
@@ -40,7 +46,9 @@ public class DK_GCD_蔑视厌恶 : DRKBaseSlotResolvers
 
 
         if (Core.Me.HasAura(Buffs.Scorn))
+        {
             return 0;
+        }
 
 
         return -1;

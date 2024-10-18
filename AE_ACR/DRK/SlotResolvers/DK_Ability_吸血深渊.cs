@@ -53,7 +53,7 @@ public class DK_Ability_吸血深渊 : DRKBaseSlotResolvers
             return -4;
 
 
-        if (AbyssalDrain.ActionReady() && TargetHelper.GetNearbyEnemyCount(battleChara, 5, 5) >= 3)
+        if (腐秽黑暗AbyssalDrain.ActionReady() && TargetHelper.GetNearbyEnemyCount(battleChara, 5, 5) >= 3)
             return 0;
 
         return -5;
@@ -62,6 +62,6 @@ public class DK_Ability_吸血深渊 : DRKBaseSlotResolvers
 
     public override void Build(Slot slot)
     {
-        slot.Add(AbyssalDrain.OriginalHook());
+        slot.Add(腐秽黑暗AbyssalDrain.OriginalHook());
     }
 }
