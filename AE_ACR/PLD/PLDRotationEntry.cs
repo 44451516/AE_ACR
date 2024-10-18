@@ -1,6 +1,7 @@
 #region
 
 using AE_ACR.Base;
+using AE_ACR.PLD.HotKey;
 using AE_ACR.PLD.Setting;
 using AE_ACR.PLD.SlotResolvers;
 using AE_ACR.PLD.SlotResolvers.减伤;
@@ -160,7 +161,8 @@ public class PLDRotationEntry : IRotationEntry
         QT.AddHotkey("亲疏自行",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.亲疏自行, SpellTargetType.Self));
         QT.AddHotkey("雪仇",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.雪仇, SpellTargetType.Self));
         QT.AddHotkey("退避",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.退避, SpellTargetType.Pm2));
-        
+        QT.AddHotkey("一键减伤",new 一键减伤());
+
         
         // QT.AddQt(BaseQTKey.减伤, true);
         // QT.AddQt(QTKey.Test2, false);
