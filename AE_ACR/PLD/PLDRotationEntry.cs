@@ -89,7 +89,8 @@ public class PLDRotationEntry : IRotationEntry
                           + "[优先圣灵]满足圣灵的释放条件会一直用圣灵\n"
                           + "[优先赎罪]满足赎罪的释放条件会一直用赎罪\n"
                           + "[远程圣灵]拥有强化圣灵or达到设置阈值且不移动的时候使用\n"
-                          + "[即刻战逃]会立刻使用战逃，即使没有合适的资源"
+                          + "[即刻战逃]会立刻使用战逃，即使没有合适的资源\n"
+                          + "[一键减伤]铁壁-圣盾阵-预警-壁垒-神圣领域\n"
         };
         rot.AddOpener(GetOpener);
         // 添加各种事件回调
@@ -141,7 +142,7 @@ public class PLDRotationEntry : IRotationEntry
         QT.AddQt(PLDQTKey.战逃安魂, true);
         QT.AddQt(PLDQTKey.大宝剑连击, true);
         QT.AddQt(PLDQTKey.远程投盾, false, "和目标距离过远的时候使用");
-        QT.AddQt(PLDQTKey.远程圣灵, false, "和目标距离过远的时候使用");
+        QT.AddQt(PLDQTKey.远程圣灵, true, "和目标距离过远的时候使用");
         QT.AddQt(PLDQTKey.即刻战逃, false, "战逃好了就用");
         QT.AddQt(PLDQTKey.优先圣灵, false);
         QT.AddQt(PLDQTKey.优先赎罪, false);
