@@ -9,13 +9,21 @@ public class PLDSettingUI
 
     public void Draw()
     {
+        BaseDraw();
+    }
+    
+    public static void BaseDraw()
+    {
         var pldSettings = PLDSettings.Instance;
-        ImGui.Text("这里是日常模式的设置\n日常模式会持续开盾，和自动减伤");
-        ImGui.SetNextItemWidth(150f);
-        ImGui.Checkbox("启用", ref pldSettings.日常模式);
-        ImGui.SetNextItemWidth(150f);
-        ImGui.Checkbox("使用挑衅", ref pldSettings.挑衅);
-        // ImGui.SetNextItemWidth(150f);
-        ImGui.Checkbox("日常模式-残血不打爆发[测试中]", ref pldSettings.日常模式_残血不打爆发);
+        
+        ImGui.DragFloat("投盾阈值", ref pldSettings.投盾阈值, 0.1f, 5, 20f);
+        ImGui.DragFloat("远程圣灵阈值", ref pldSettings.远程圣灵阈值, 0.1f, 5, 20f);
+        ImGui.DragFloat("调停保留层数", ref pldSettings.调停保留层数, 0.1f, 0, 2);
+        ImGui.DragFloat("近战最大攻击距离", ref pldSettings.近战最大攻击距离, 0.1f, 2.5f, 15f);
+        ImGui.Checkbox("起手突进",ref pldSettings.起手突进);
+        if (ImGui.Button("Save[保存]"))
+        {
+            PLDSettings.Instance.Save();
+        }
     }
 }

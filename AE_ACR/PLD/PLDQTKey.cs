@@ -17,4 +17,6 @@ public class PLDQTKey : BaseQTKey
     public const string 优先圣灵 = "优先圣灵";
     public const string 优先赎罪 = "优先赎罪";
     public const string 起手序列 = "起手序列";
+    public const string 厄运流转 = "厄运流转";
+    public const string 深奥之灵 = "深奥之灵";
 }

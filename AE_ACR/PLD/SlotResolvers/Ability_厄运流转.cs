@@ -16,6 +16,12 @@ public class Ability_厄运流转 : PLDBaseSlotResolvers
         {
             return Flag_停手;
         }
+        
+        
+        if (!getQTValue(PLDQTKey.厄运流转))
+        {
+            return Flag_QT;
+        }
 
         if (CanWeave())
         {

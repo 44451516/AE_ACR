@@ -12,7 +12,7 @@ namespace AE_ACR.PLD.HotKey;
 
 public class 一键减伤 : IHotkeyResolver
 {
-    public uint SpellId;
+    public static uint SpellId;
 
     public 一键减伤()
     {

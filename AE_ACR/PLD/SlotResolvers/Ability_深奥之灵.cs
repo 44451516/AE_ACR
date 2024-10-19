@@ -21,6 +21,14 @@ public class Ability_深奥之灵 : PLDBaseSlotResolvers
         {
             return Flag_无效目标;
         }
+        
+        
+        if (!getQTValue(PLDQTKey.深奥之灵))
+        {
+            return Flag_QT;
+        }
+
+
 
 
         if (CanWeave())

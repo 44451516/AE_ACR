@@ -42,7 +42,7 @@ public class DK_GCD_寂灭 : DRKBaseSlotResolvers
         }
 
 
-        if (Blood > 50 || Core.Me.HasAura(Buffs.血乱Delirium2))
+        if (Blood >= 50 || Core.Me.HasAura(Buffs.血乱Delirium2))
         {
             if (TargetHelper.GetNearbyEnemyCount(5) > 2)
             {

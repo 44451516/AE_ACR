@@ -47,21 +47,22 @@ public class DRKRotationEntry : IRotationEntry
         new SlotResolverData(new Ability_挑衅(), SlotMode.OffGcd),
 
         new SlotResolverData(new DKUsePotion(), SlotMode.OffGcd),
+        new SlotResolverData(new DK_Ability_嗜血(), SlotMode.OffGcd),
+        new SlotResolverData(new DK_Ability_精雕怒斩(), SlotMode.OffGcd),
         new SlotResolverData(new DK_Ability_暗影使者(), SlotMode.OffGcd),
         new SlotResolverData(new DK_Ability_腐秽大地(), SlotMode.OffGcd),
-        new SlotResolverData(new DK_Ability_腐秽黑暗(), SlotMode.OffGcd),
         new SlotResolverData(new DK_Ability_掠影示现(), SlotMode.OffGcd),
         new SlotResolverData(new DK_Ability_暗黑波动_AOE(), SlotMode.OffGcd),
         new SlotResolverData(new DK_Ability_暗黑锋(), SlotMode.OffGcd),
-        new SlotResolverData(new DK_Ability_嗜血(), SlotMode.OffGcd),
+        new SlotResolverData(new DK_Ability_腐秽黑暗(), SlotMode.OffGcd),
         new SlotResolverData(new DK_Ability_吸血深渊(), SlotMode.OffGcd),
-        new SlotResolverData(new DK_Ability_精雕怒斩(), SlotMode.OffGcd),
+
 
         // gcd队列
         new SlotResolverData(new DK_GCD_伤残(), SlotMode.Gcd),
-        new SlotResolverData(new DK_GCD_蔑视厌恶(), SlotMode.Gcd),
         new SlotResolverData(new DK_GCD_寂灭(), SlotMode.Gcd),
         new SlotResolverData(new DK_GCD_血溅(), SlotMode.Gcd),
+        new SlotResolverData(new DK_GCD_蔑视厌恶(), SlotMode.Gcd),
         new SlotResolverData(new DK_GCD_AOE_Base(), SlotMode.Gcd),
         new SlotResolverData(new DK_GCD_Base(), SlotMode.Gcd)
     };
@@ -90,7 +91,8 @@ public class DRKRotationEntry : IRotationEntry
             MaxLevel = 100,
             Description = "开启QT起手序列和[通用]里面的选项冲突\n"
                           + "[赞资源]开启嗜血血乱、掠影示现、暗影使者、暗黑锋、精雕怒斩、腐秽大地、蔑视厌恶、血溅将不会释放\n"
-                          + "如果你发现没有保留蓝量，请把【目标小于多少血打完所有资源】设置为0"
+                          + "如果你发现没有保留蓝量，请把【目标小于多少血打完所有资源】设置为0\n"
+                          + "如果你发现在非高难副本不打爆发，请把爆发药和起手序列关了"
         };
 
         // 添加各种事件回调
@@ -170,7 +172,7 @@ public class DRKRotationEntry : IRotationEntry
         // QT.AddQt(BaseQTKey.不打120, false);
 
         QT.AddHotkey("LB", new HotKeyResolver_LB());
-        
+
     }
 
     private void DrawDailyMode(JobViewWindow obj)
@@ -202,7 +204,7 @@ public class DRKRotationEntry : IRotationEntry
 
     public void DrawQtGeneral(JobViewWindow jobViewWindow)
     {
-        DKSettingUI.BaseDarw();
+        DKSettingUI.BaseDraw();
     }
 
     public void DrawQtDev(JobViewWindow jobViewWindow)
@@ -223,6 +225,8 @@ public class DRKRotationEntry : IRotationEntry
         var battleChara = Core.Me.GetCurrTarget();
         ImGui.Text($"血溅Bloodspiller.IsUnlock:{DRKBaseSlotResolvers.血溅Bloodspiller.MyIsUnlock()}");
         ImGui.Text($"强化药:{RaidBuff.强化药.GetBuffRemainingTime() / 1000f}");
+        ImGui.Text($"爆发期_120:{RaidBuff.爆发期_120()}");
+        ImGui.Text($"掠影示现:{DRKBaseSlotResolvers.掠影示现.GetCooldownRemainingTime()}");
         // ImGui.Text($"血溅Bloodspiller.IsUnlock:{Core.Resolve<MemApiSpell>().CheckActionChange(DRKBaseSlotResolvers.血溅Bloodspiller).GetSpell()}");
         // ImGui.Text($"目标距离:{TargetHelper.GetTargetDistanceFromMeTest2D(battleChara, Core.Me)}");
         // ImGui.Text($"挑衅cd:{DRKBaseSlotResolvers.挑衅.GetCooldownRemainingTime()}");

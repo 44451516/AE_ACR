@@ -13,11 +13,11 @@ public class DKSettingUI
 
     public void Draw()
     {
-        BaseDarw();
+        BaseDraw();
     }
 
 
-    public static void BaseDarw()
+    public static void BaseDraw()
     {
         var dkSettings = DKSettingUI.Instance.DkSettings;
         ImGui.SetNextItemWidth(150f);

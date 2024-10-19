@@ -20,11 +20,13 @@ public class RaidBuff
         占卜 = 1878,
         义结金兰 = 1185,
         战斗连祷 = 786,
+        战斗之声 = 141,
 
         //忍者夺取
         攻其不备 = 3254,
         罐毒之术 = 3849,
         受伤加重 = 638,
+        神秘纹 = 2599,
         技巧舞步结束TechnicalFinish = 1822,
         留空 = 0;
 
@@ -37,6 +39,12 @@ public class RaidBuff
             return true;
 
         if (Core.Me.HasAura(灼热之光))
+            return true;
+        
+        if (Core.Me.HasAura(战斗之声))
+            return true;    
+        
+        if (Core.Me.HasAura(神秘纹))
             return true;
 
         if (Core.Me.HasAura(技巧舞步结束TechnicalFinish))

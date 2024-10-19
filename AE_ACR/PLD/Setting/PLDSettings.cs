@@ -8,11 +8,7 @@ using AEAssist.IO;
 
 namespace AE_ACR.PLD.Setting;
 
-/// <summary>
-///     配置文件适合放一些一般不会在战斗中随时调整的开关数据
-///     如果一些开关需要在战斗中调整 或者提供给时间轴操作 那就用QT
-///     非开关类型的配置都放配置里 比如诗人绝峰能量配置
-/// </summary>
+
 public class PLDSettings
 {
     public static PLDSettings Instance;
@@ -21,10 +17,10 @@ public class PLDSettings
     public bool 日常模式 = false;
     public bool 日常模式_残血不打爆发 = true;
     public bool 挑衅 = true;
-    public float 投盾阈值 = 10f;
-    public float 远程圣灵阈值 = 10f;
+    public float 投盾阈值 = 5f;
+    public float 远程圣灵阈值 = 5f;
     public float 近战最大攻击距离 = 2.99f;
-
+    public bool 起手突进 = true;
 
     public JobViewSave JobViewSave = new(); // QT设置存档
 

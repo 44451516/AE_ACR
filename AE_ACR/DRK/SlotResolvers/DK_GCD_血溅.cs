@@ -68,7 +68,7 @@ public class DK_GCD_血溅 : DRKBaseSlotResolvers
         }
 
 
-        if (Blood > 50 || Core.Me.HasAura(Buffs.血乱Delirium1) || Core.Me.HasAura(Buffs.血乱Delirium2))
+        if (Blood >= 50 || Core.Me.HasAura(Buffs.血乱Delirium1) || Core.Me.HasAura(Buffs.血乱Delirium2))
         {
             
             if (getQTValue(BaseQTKey.倾斜资源))
@@ -97,7 +97,7 @@ public class DK_GCD_血溅 : DRKBaseSlotResolvers
                 return 0;
             }
 
-            if (RaidBuff.爆发期_120() && 掠影示现.GetCooldownRemainingTime()> 80)
+            if (RaidBuff.爆发期_120() && 掠影示现.GetCooldownRemainingTime() > 80)
             {
                 return 0;
             }
