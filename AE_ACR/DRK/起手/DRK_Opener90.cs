@@ -23,6 +23,14 @@ public class DRK_Opener90 : IOpener
         // if (PartyHelper.CastableParty.Count < 8)
         //     return -99;
 
+        if (DKSettings.Instance.只在高难模式使用起手序列)
+        {
+            if (Data.IsInHighEndDuty == false)
+            {
+                return -10;
+            }
+        }
+        
         if (!TargetHelper.IsBoss(Core.Me.GetCurrTarget()))
             return -1;
 
@@ -98,9 +106,7 @@ public class DRK_Opener90 : IOpener
         slot.Add(new Spell(DRKBaseSlotResolvers.血溅Bloodspiller, SpellTargetType.Target));
         slot.Add(new Spell(DRKBaseSlotResolvers.Shadowbringer暗影使者, SpellTargetType.Target));
         slot.Add(new Spell(DRKBaseSlotResolvers.暗影峰, SpellTargetType.Target)); 
-
-        // slot.Add(new Spell(DRKBaseSlotResolvers.血溅Bloodspiller, SpellTargetType.Target));
-        // slot.Add(new Spell(DRKBaseSlotResolvers.蔑视厌恶Disesteem, SpellTargetType.Target));
+        
     }
 
 }

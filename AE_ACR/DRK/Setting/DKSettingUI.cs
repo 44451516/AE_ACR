@@ -29,6 +29,7 @@ public class DKSettingUI
         ImGui.SetNextItemWidth(150f);
         ImGui.InputFloat("GCD爆发延时", ref dkSettings.GCD爆发延时);
         ImGui.Checkbox("起手突进",ref dkSettings.起手突进);
+        ImGui.Checkbox("只在高难模式使用起手序列",ref dkSettings.只在高难模式使用起手序列);
         if (ImGui.Button("Save[保存]"))
             DKSettings.Instance.Save();
     }

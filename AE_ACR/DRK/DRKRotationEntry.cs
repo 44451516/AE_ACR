@@ -25,6 +25,11 @@ namespace AE_ACR_DRK;
 // 重要 类一定要Public声明才会被查找到
 public class DRKRotationEntry : IRotationEntry
 {
+    private const string 说明 = "1、如果你发现在非高难副本不打爆发，请把[爆发药]关了\n"
+                                + "2、开启[起手序列]和[通用]里面的选项冲突\n"
+                                + "3、[赞资源]开启嗜血血乱、掠影示现、暗影使者、暗黑锋、精雕怒斩、腐秽大地、蔑视厌恶、血溅将不会释放\n"
+                                + "4、如果你发现没有保留蓝量，请把[目标小于多少血打完所有资源]设置为0\n";
+
     // 逻辑从上到下判断，通用队列是无论如何都会判断的 
     // gcd则在可以使用gcd时判断
     // offGcd则在不可以使用gcd 且没达到gcd内插入能力技上限时判断
@@ -89,10 +94,7 @@ public class DRKRotationEntry : IRotationEntry
             AcrType = AcrType.Both,
             MinLevel = 30,
             MaxLevel = 100,
-            Description = "开启QT起手序列和[通用]里面的选项冲突\n"
-                          + "[赞资源]开启嗜血血乱、掠影示现、暗影使者、暗黑锋、精雕怒斩、腐秽大地、蔑视厌恶、血溅将不会释放\n"
-                          + "如果你发现没有保留蓝量，请把【目标小于多少血打完所有资源】设置为0\n"
-                          + "如果你发现在非高难副本不打爆发，请把爆发药和起手序列关了"
+            Description = 说明
         };
 
         // 添加各种事件回调
@@ -111,9 +113,19 @@ public class DRKRotationEntry : IRotationEntry
             return new DRK_Opener100();
         }
 
-        if (level >= 80 && level < 96)
+        if (level >= 90 && level < 96)
         {
             return new DRK_Opener90();
+        }
+
+        if (level == 80)
+        {
+            return new DRK_Opener80();
+        }
+
+        if (level == 70)
+        {
+            return new DRK_Opener70();
         }
 
 
@@ -193,7 +205,8 @@ public class DRKRotationEntry : IRotationEntry
 
     private void DrawQtDescription(JobViewWindow obj)
     {
-        ImGui.Text("如果你发现他打小怪没有保留蓝量，请把【目标小于多少血打完所有资源】设置为0");
+
+        ImGui.Text(说明);
     }
 
 
