@@ -208,7 +208,11 @@ public class PLDRotationEntry : IRotationEntry
 
     private IOpener? GetOpener(uint level)
     {
-        return new PLD_Opener();
+        if (level>= 64)
+        {
+            return new PLD_Opener(); 
+        }
+        return null;
     }
 
     public void OnUIUpdate()

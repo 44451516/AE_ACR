@@ -50,7 +50,7 @@ public class PLD_Opener : IOpener
     public void InitCountDown(CountDownHandler countDownHandler)
     {
         countDownHandler.AddAction(2000, PLDBaseSlotResolvers.圣灵HolySpirit, SpellTargetType.Target);
-        if (PLDSettings.Instance.起手突进)
+        if (PLDSettings.Instance.起手突进 && PLDBaseSlotResolvers.调停Intervene.IsUnlock())
         {
             countDownHandler.AddAction(100, PLDBaseSlotResolvers.调停Intervene, SpellTargetType.Target);
         }
