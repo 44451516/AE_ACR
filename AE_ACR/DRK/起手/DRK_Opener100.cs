@@ -1,4 +1,5 @@
 ﻿using AE_ACR_DRK;
+using AE_ACR_DRK_Setting;
 using AE_ACR.Base;
 using AE_ACR.DRK.SlotResolvers;
 using AEAssist;
@@ -50,7 +51,10 @@ public class DRK_Opener100 : IOpener
 
     public void InitCountDown(CountDownHandler countDownHandler)
     {
-        countDownHandler.AddAction(500, DRKBaseSlotResolvers.暗影步, SpellTargetType.Target);
+        if (DKSettings.Instance.起手突进)
+        {
+            countDownHandler.AddAction(500, DRKBaseSlotResolvers.暗影步, SpellTargetType.Target);
+        }
     }
 
     private static void Step0(Slot slot)

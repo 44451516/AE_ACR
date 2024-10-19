@@ -19,7 +19,7 @@ public class DKSettingUI
 
     public static void BaseDraw()
     {
-        var dkSettings = DKSettingUI.Instance.DkSettings;
+        var dkSettings = Instance.DkSettings;
         ImGui.SetNextItemWidth(150f);
         ImGui.InputInt("保留蓝量", ref dkSettings.保留蓝量, 0, 10000);
         ImGui.SetNextItemWidth(150f);

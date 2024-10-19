@@ -1,4 +1,5 @@
 ﻿using AE_ACR.Base;
+using AE_ACR.PLD.Setting;
 using AE_ACR.PLD.SlotResolvers;
 using AEAssist;
 using AEAssist.CombatRoutine;
@@ -49,7 +50,7 @@ public class PLD_Opener : IOpener
     public void InitCountDown(CountDownHandler countDownHandler)
     {
         countDownHandler.AddAction(2000, PLDBaseSlotResolvers.圣灵HolySpirit, SpellTargetType.Target);
-        if (PLDRotationEntry.QT.GetQt(BaseQTKey.起手序列突进))
+        if (PLDSettings.Instance.起手突进)
         {
             countDownHandler.AddAction(100, PLDBaseSlotResolvers.调停Intervene, SpellTargetType.Target);
         }
