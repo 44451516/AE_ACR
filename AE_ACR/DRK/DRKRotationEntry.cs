@@ -169,8 +169,8 @@ public class DRKRotationEntry : IRotationEntry
         QT.AddTab("日常模式", DrawDailyMode);
 
         QT.AddQt(BaseQTKey.停手, false, "是否使用基础的Gcd");
-        QT.AddQt(BaseQTKey.攒资源, false, "攒资源不会卸暗血");
-        QT.AddQt(BaseQTKey.爆发药, true);
+        QT.AddQt(BaseQTKey.攒资源, false, "攒资源不会卸暗血和打暗影峰");
+        QT.AddQt(BaseQTKey.爆发药, false);
         QT.AddQt(DRKQTKey.腐秽大地, true);
         QT.AddQt(DRKQTKey.腐秽黑暗, true);
         QT.AddQt(DRKQTKey.暗影使者, true);
