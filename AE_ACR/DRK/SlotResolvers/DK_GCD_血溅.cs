@@ -30,6 +30,11 @@ public class DK_GCD_血溅 : DRKBaseSlotResolvers
         {
             return Flag_攒资源;
         }
+        
+        if (getQTValue(DRKQTKey.不打血溅))
+        {
+            return Flag_攒资源;
+        }
 
         if (!血溅Bloodspiller.MyIsUnlock())
         {
@@ -65,6 +70,12 @@ public class DK_GCD_血溅 : DRKBaseSlotResolvers
 
         if (Blood > 50 || Core.Me.HasAura(Buffs.血乱Delirium1) || Core.Me.HasAura(Buffs.血乱Delirium2))
         {
+            
+            if (getQTValue(BaseQTKey.倾斜资源))
+            {
+                return 1;
+            }
+            
             if (Core.Me.TargetObject is IBattleChara chara)
             {
                 if (chara.CurrentHp <= DKSettings.Instance.get爆发目标血量())
@@ -86,7 +97,7 @@ public class DK_GCD_血溅 : DRKBaseSlotResolvers
                 return 0;
             }
 
-            if (RaidBuff.爆发期_120() && Shadowbringer暗影使者.GetCooldownRemainingTime()> 80)
+            if (RaidBuff.爆发期_120() && 掠影示现.GetCooldownRemainingTime()> 80)
             {
                 return 0;
             }

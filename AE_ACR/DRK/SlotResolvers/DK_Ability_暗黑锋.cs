@@ -52,10 +52,14 @@ public class DK_Ability_暗黑锋 : DRKBaseSlotResolvers
 
         if (Core.Me.CurrentMp >= 3000 || gauge.HasDarkArts)
         {
-            
             if (和目标的距离() > DKSettings.Instance.近战最大攻击距离)
             {
                 return Flag_超出攻击距离;
+            }
+            
+            if (getQTValue(BaseQTKey.倾斜资源))
+            {
+                return 1;
             }
             
             if (darksideTimeRemaining <= 6 * 1000)
@@ -95,7 +99,7 @@ public class DK_Ability_暗黑锋 : DRKBaseSlotResolvers
             }
 
 
-            if (RaidBuff.爆发期_120() && Core.Me.CurrentMp >= DKSettings.Instance.保留蓝量 + 3000)
+            if (RaidBuff.爆发期_120() && Core.Me.CurrentMp > DKSettings.Instance.保留蓝量 + 3000)
             {
                 return 0;
             }

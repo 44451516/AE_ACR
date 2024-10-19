@@ -160,11 +160,14 @@ public class DRKRotationEntry : IRotationEntry
         QT.AddQt(DRKQTKey.腐秽大地, true);
         QT.AddQt(DRKQTKey.腐秽黑暗, true);
         QT.AddQt(DRKQTKey.暗影使者, true);
-        QT.AddQt(DRKQTKey.蔑视厌恶, true);
         QT.AddQt(DRKQTKey.掠影示现, true);
+        QT.AddQt(DRKQTKey.蔑视厌恶, true);
         QT.AddQt(DRKQTKey.精雕吸血, true);
         QT.AddQt(DRKQTKey.伤残, false, "和目标距离过远的时候使用");
         QT.AddQt(DRKQTKey.起手序列, true);
+        QT.AddQt(DRKQTKey.不打血溅, false);
+        QT.AddQt(BaseQTKey.倾斜资源, false);
+        // QT.AddQt(BaseQTKey.不打120, false);
 
         QT.AddHotkey("LB", new HotKeyResolver_LB());
         

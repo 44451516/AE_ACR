@@ -1,5 +1,6 @@
 #region
 
+using AE_ACR_DRK;
 using AE_ACR_DRK_Setting;
 using AE_ACR.Base;
 using AE_ACR.utils;
@@ -73,7 +74,7 @@ public class DK_GCD_Base : DRKBaseSlotResolvers
             return 单体2SyphonStrike.GetSpell();
         }
 
-        if (lastComboActionID == 单体2SyphonStrike && getQTValue(BaseQTKey.攒资源) == false)
+        if (lastComboActionID == 单体2SyphonStrike && getQTValue(BaseQTKey.攒资源) == false && getQTValue(DRKQTKey.不打血溅) == false)
         {
             if (Core.Resolve<JobApi_DarkKnight>().Blood >= 80 && 血溅Bloodspiller.MyIsUnlock() && inAttackDistance)
             {
