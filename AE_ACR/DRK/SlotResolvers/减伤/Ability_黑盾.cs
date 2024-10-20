@@ -1,5 +1,6 @@
 ﻿#region
 
+using AE_ACR_DRK_Setting;
 using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine.Module;
@@ -19,6 +20,13 @@ public class Ability_黑盾 : DRKBaseSlotResolvers
         {
             return Flag_减伤;
         }
+
+
+        if (DKSettings.Instance.自动黑盾 == false)
+        {
+            return Flag_减伤;
+        }
+
 
         if (CanWeave())
         {

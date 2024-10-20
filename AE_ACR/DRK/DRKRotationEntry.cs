@@ -167,6 +167,7 @@ public class DRKRotationEntry : IRotationEntry
         QT.AddTab("通用", DrawQtGeneral);
         QT.AddTab("说明", DrawQtDescription);
         QT.AddTab("日常模式", DrawDailyMode);
+        // QT.AddTab("自动减伤", DrawAutoBuff);
 
         QT.AddQt(BaseQTKey.停手, false, "是否使用基础的Gcd");
         QT.AddQt(BaseQTKey.攒资源, false, "攒资源不会卸暗血和打暗影峰");
@@ -188,6 +189,14 @@ public class DRKRotationEntry : IRotationEntry
 
     }
 
+    private void DrawAutoBuff(JobViewWindow obj)
+    {
+        // var DkSettings = DKSettings.Instance;
+        // ImGui.Checkbox()
+        // ImGui.SetNextItemWidth(150f);
+        // ImGui.Checkbox("自动黑盾", ref DkSettings.自动黑盾);
+    }
+
     private void DrawDailyMode(JobViewWindow obj)
     {
         var DkSettings = DKSettings.Instance;
@@ -200,6 +209,8 @@ public class DRKRotationEntry : IRotationEntry
             ImGui.Checkbox("使用挑衅", ref DkSettings.挑衅);
             ImGui.SetNextItemWidth(150f);
             ImGui.Checkbox("日常模式_残血不打爆发[测试中]", ref DkSettings.日常模式_残血不打爆发);
+            ImGui.SetNextItemWidth(150f);
+            ImGui.Checkbox("自动黑盾", ref DkSettings.自动黑盾);
             ImGui.Spacing();
         }
     }

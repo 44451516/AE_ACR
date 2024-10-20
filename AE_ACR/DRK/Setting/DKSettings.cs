@@ -28,6 +28,7 @@ public class DKSettings
     public float GCD爆发延时 = 7f;
     public bool 起手突进 = true;
     public bool 只在高难模式使用起手序列 = true;
+    public bool 自动黑盾 = true;
 
     public JobViewSave JobViewSave = new(); // QT设置存档
     public float 近战最大攻击距离 = 2.99f;
