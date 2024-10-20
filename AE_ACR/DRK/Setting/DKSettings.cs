@@ -23,7 +23,7 @@ public class DKSettings
     public float 能力技爆发延时 = 5f;
     public bool 日常模式 = false;
     public bool 日常模式_残血不打爆发 = true;
-    public float 伤残阈值 = 10f;
+    public float 伤残阈值 = 6f;
     public bool 挑衅 = true;
     public float GCD爆发延时 = 7f;
     public bool 起手突进 = true;

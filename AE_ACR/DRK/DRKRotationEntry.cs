@@ -180,6 +180,7 @@ public class DRKRotationEntry : IRotationEntry
         QT.AddQt(DRKQTKey.伤残, false, "和目标距离过远的时候使用");
         QT.AddQt(DRKQTKey.起手序列, true);
         QT.AddQt(DRKQTKey.不打血溅, false);
+        QT.AddQt(DRKQTKey.卸掉豆子, false);
         QT.AddQt(BaseQTKey.倾斜资源, false);
         // QT.AddQt(BaseQTKey.不打120, false);
 

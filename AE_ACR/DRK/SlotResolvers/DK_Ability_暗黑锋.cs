@@ -1,5 +1,6 @@
 ﻿#region
 
+using AE_ACR_DRK;
 using AE_ACR_DRK_Setting;
 using AE_ACR.Base;
 using AE_ACR.utils;
@@ -60,6 +61,11 @@ public class DK_Ability_暗黑锋 : DRKBaseSlotResolvers
             if (getQTValue(BaseQTKey.倾斜资源))
             {
                 return 1;
+            } 
+            
+            if (getQTValue(DRKQTKey.卸掉豆子))
+            {
+                return 2;
             }
             
             if (darksideTimeRemaining <= 6 * 1000)

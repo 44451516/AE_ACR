@@ -28,6 +28,8 @@ public class DKSettingUI
         ImGui.InputFloat("能力技爆发延时", ref dkSettings.能力技爆发延时);
         ImGui.SetNextItemWidth(150f);
         ImGui.InputFloat("GCD爆发延时", ref dkSettings.GCD爆发延时);
+        ImGui.SetNextItemWidth(150f);
+        ImGui.InputFloat("伤残阈值", ref dkSettings.伤残阈值);
         ImGui.Checkbox("起手突进",ref dkSettings.起手突进);
         ImGui.Checkbox("只在高难模式使用起手序列",ref dkSettings.只在高难模式使用起手序列);
         if (ImGui.Button("Save[保存]"))

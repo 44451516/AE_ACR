@@ -47,7 +47,7 @@ public class Ability_黑盾 : DRKBaseSlotResolvers
                         }
                     }
 
-                    if (TargetHelper.TargercastingIsDeathSentence(target, 6))
+                    if (TargetHelper.TargercastingIsDeathSentence(target, 4))
                     {
                         return 0;
                     }
