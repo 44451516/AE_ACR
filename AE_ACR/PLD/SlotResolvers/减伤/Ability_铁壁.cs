@@ -28,6 +28,17 @@ public class Ability_铁壁 : PLDBaseSlotResolvers
 
             if (预警.ActionReady())
                 return -1;
+            
+            
+            if (神圣领域.RecentlyUsed())
+            {
+                return -1;
+            }
+            
+            if (预警.RecentlyUsed())
+            {
+                return -1;
+            }
 
             if (Buffs.神圣领域.GetBuffRemainingTime() > 0.5f)
                 return -1;

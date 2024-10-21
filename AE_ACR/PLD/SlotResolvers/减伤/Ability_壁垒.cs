@@ -4,6 +4,7 @@ using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.Extension;
+using AEAssist.Helper;
 
 #endregion
 
@@ -21,7 +22,18 @@ public class Ability_壁垒 : PLDBaseSlotResolvers
 
         if (CanWeave())
         {
-            if (神圣领域.ActionReady()) return -1;
+            if (神圣领域.ActionReady()) 
+                return -1;
+            
+            if (神圣领域.RecentlyUsed())
+            {
+                return -1;
+            }
+            
+            if (预警.RecentlyUsed())
+            {
+                return -1;
+            }
 
             if (Buffs.神圣领域.GetBuffRemainingTime() > 0.5f)
                 return -1;
