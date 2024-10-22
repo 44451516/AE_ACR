@@ -29,6 +29,11 @@ public class DK_Ability_暗黑波动_AOE : DRKBaseSlotResolvers
         }
 
 
+        if (getQTValue(DRKQTKey.不打暗影峰))
+        {
+            return Flag_攒资源;
+        }
+        
         if (isHasCanAttackBattleChara() == false)
         {
             return Flag_无效目标;
@@ -56,6 +61,12 @@ public class DK_Ability_暗黑波动_AOE : DRKBaseSlotResolvers
                 {
                     return 1;
                 }
+                
+                if (getQTValue(BaseQTKey.倾泻资源))
+                {
+                    return 1;
+                }
+                
                 
                 if (getQTValue(DRKQTKey.卸掉豆子))
                 {

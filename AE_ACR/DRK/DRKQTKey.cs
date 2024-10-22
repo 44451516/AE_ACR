@@ -15,4 +15,5 @@ public class DRKQTKey : BaseQTKey
     public const string 精雕吸血 = "精雕吸血";
     public const string 不打血溅 = "不打血溅";
     public const string 卸掉豆子 = "卸掉豆子";
+    public const string 不打暗影峰 = "不打暗影峰";
 }

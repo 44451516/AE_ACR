@@ -30,6 +30,11 @@ public class DK_Ability_暗黑锋 : DRKBaseSlotResolvers
             return Flag_攒资源;
         }
 
+        if (getQTValue(DRKQTKey.不打暗影峰))
+        {
+            return Flag_攒资源;
+        }
+        
         if (!暗黑锋.ActionReadyAE())
         {
             return -1;
@@ -62,6 +67,11 @@ public class DK_Ability_暗黑锋 : DRKBaseSlotResolvers
             {
                 return 1;
             } 
+            
+            if (getQTValue(BaseQTKey.倾泻资源))
+            {
+                return 1;
+            }
             
             if (getQTValue(DRKQTKey.卸掉豆子))
             {

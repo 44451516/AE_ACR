@@ -76,6 +76,12 @@ public class DK_GCD_血溅 : DRKBaseSlotResolvers
                 return 1;
             }
             
+            
+            if (getQTValue(BaseQTKey.倾泻资源))
+            {
+                return 1;
+            }
+            
             if (Core.Me.TargetObject is IBattleChara chara)
             {
                 if (chara.CurrentHp <= DKSettings.Instance.get爆发目标血量())
