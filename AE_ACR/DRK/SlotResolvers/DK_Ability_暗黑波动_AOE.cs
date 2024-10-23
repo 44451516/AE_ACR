@@ -57,10 +57,6 @@ public class DK_Ability_暗黑波动_AOE : DRKBaseSlotResolvers
             var battleChara = Core.Me.GetCurrTarget();
             if (TargetHelper.GetNearbyEnemyCount(battleChara, 10, 4) >= 3)
             {
-                if (getQTValue(BaseQTKey.倾斜资源))
-                {
-                    return 1;
-                }
                 
                 if (getQTValue(BaseQTKey.倾泻资源))
                 {

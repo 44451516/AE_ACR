@@ -63,11 +63,6 @@ public class DK_Ability_暗黑锋 : DRKBaseSlotResolvers
                 return Flag_超出攻击距离;
             }
             
-            if (getQTValue(BaseQTKey.倾斜资源))
-            {
-                return 1;
-            } 
-            
             if (getQTValue(BaseQTKey.倾泻资源))
             {
                 return 1;

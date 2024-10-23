@@ -71,11 +71,6 @@ public class DK_GCD_血溅 : DRKBaseSlotResolvers
         if (Blood >= 50 || Core.Me.HasAura(Buffs.血乱Delirium1) || Core.Me.HasAura(Buffs.血乱Delirium2))
         {
             
-            if (getQTValue(BaseQTKey.倾斜资源))
-            {
-                return 1;
-            }
-            
             
             if (getQTValue(BaseQTKey.倾泻资源))
             {

@@ -83,8 +83,6 @@ public class DRK_Opener90 : IOpener
     private static void Step2(Slot slot)
     {
         // slot.Add(new Spell(DRKBaseSlotResolvers.暗影峰, SpellTargetType.Target));
-       
-        
         slot.Add(new Spell(DRKBaseSlotResolvers.吸收斩, SpellTargetType.Target));
         slot.Add(new Spell(DRKBaseSlotResolvers.掠影示现, SpellTargetType.Target));
         slot.Add(new Spell(DRKBaseSlotResolvers.暗影峰, SpellTargetType.Target)); 

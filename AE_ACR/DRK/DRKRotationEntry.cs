@@ -181,27 +181,29 @@ public class DRKRotationEntry : IRotationEntry
         QT.AddQt(DRKQTKey.伤残, false, "和目标距离过远的时候使用");
         QT.AddQt(DRKQTKey.起手序列, true);
         QT.AddQt(DRKQTKey.卸掉豆子, false);
-        QT.AddQt(BaseQTKey.倾斜资源, false);
         QT.AddQt(BaseQTKey.倾泻资源, false);
         QT.AddQt(DRKQTKey.不打血溅, false);
         QT.AddQt(DRKQTKey.不打暗影峰, false);
-        // QT.AddQt(BaseQTKey.不打120, false);
-
         QT.AddHotkey("LB", new HotKeyResolver_LB());
 
     }
-
-    private void DrawAutoBuff(JobViewWindow obj)
-    {
-        // var DkSettings = DKSettings.Instance;
-        // ImGui.Checkbox()
-        // ImGui.SetNextItemWidth(150f);
-        // ImGui.Checkbox("自动黑盾", ref DkSettings.自动黑盾);
-    }
-
+    
     private void DrawDailyMode(JobViewWindow obj)
     {
-        DKSettingUI.BaseDraw();
+        var DkSettings = DKSettings.Instance;
+        {
+
+            ImGui.Text("日常模式会持续开盾，和自动减伤");
+            ImGui.SetNextItemWidth(150f);
+            ImGui.Checkbox("启用", ref DkSettings.日常模式);
+            ImGui.SetNextItemWidth(150f);
+            ImGui.Checkbox("使用挑衅", ref DkSettings.挑衅);
+            ImGui.SetNextItemWidth(150f);
+            ImGui.Checkbox("日常模式_残血不打爆发[测试中]", ref DkSettings.日常模式_残血不打爆发);
+            ImGui.SetNextItemWidth(150f);
+            ImGui.Checkbox("自动黑盾", ref DkSettings.自动黑盾);
+            ImGui.Spacing();
+        }
     }
 
     private void DrawQtDescription(JobViewWindow obj)
