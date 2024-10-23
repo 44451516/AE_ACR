@@ -201,25 +201,11 @@ public class DRKRotationEntry : IRotationEntry
 
     private void DrawDailyMode(JobViewWindow obj)
     {
-        var DkSettings = DKSettings.Instance;
-        {
-
-            ImGui.Text("日常模式会持续开盾，和自动减伤");
-            ImGui.SetNextItemWidth(150f);
-            ImGui.Checkbox("启用", ref DkSettings.日常模式);
-            ImGui.SetNextItemWidth(150f);
-            ImGui.Checkbox("使用挑衅", ref DkSettings.挑衅);
-            ImGui.SetNextItemWidth(150f);
-            ImGui.Checkbox("日常模式_残血不打爆发[测试中]", ref DkSettings.日常模式_残血不打爆发);
-            ImGui.SetNextItemWidth(150f);
-            ImGui.Checkbox("自动黑盾", ref DkSettings.自动黑盾);
-            ImGui.Spacing();
-        }
+        DKSettingUI.BaseDraw();
     }
 
     private void DrawQtDescription(JobViewWindow obj)
     {
-
         ImGui.Text(说明);
     }
 

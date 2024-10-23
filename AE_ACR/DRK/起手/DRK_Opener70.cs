@@ -77,11 +77,13 @@ public class DRK_Opener70 : IOpener
         {
             slot.Add(Spell.CreatePotion());
         }
+        // slot.Add(new Spell(DRKBaseSlotResolvers.暗黑锋, SpellTargetType.Target));
+        slot.AddDelaySpell(700, new Spell(DRKBaseSlotResolvers.暗黑锋, SpellTargetType.Target));
     }
     
     private static void Step2(Slot slot)
     {
-        slot.Add(new Spell(DRKBaseSlotResolvers.暗黑锋, SpellTargetType.Target));
+        // slot.Add(new Spell(DRKBaseSlotResolvers.暗黑锋, SpellTargetType.Target));
         slot.Add(new Spell(DRKBaseSlotResolvers.吸收斩, SpellTargetType.Target));
         slot.Add(new Spell(DRKBaseSlotResolvers.血乱Delirium, SpellTargetType.Self));
         slot.Add(new Spell(DRKBaseSlotResolvers.噬魂斩, SpellTargetType.Target));

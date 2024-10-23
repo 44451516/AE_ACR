@@ -77,14 +77,17 @@ public class DRK_Opener80 : IOpener
         {
             slot.Add(Spell.CreatePotion());
         }
+        slot.AddDelaySpell(700, new Spell(DRKBaseSlotResolvers.暗影峰, SpellTargetType.Target));
     }
     
     private static void Step2(Slot slot)
     {
-        slot.Add(new Spell(DRKBaseSlotResolvers.暗影峰, SpellTargetType.Target));
+        
+        // slot.Add(new Spell(DRKBaseSlotResolvers.暗影峰, SpellTargetType.Target));
         slot.Add(new Spell(DRKBaseSlotResolvers.吸收斩, SpellTargetType.Target));
         slot.Add(new Spell(DRKBaseSlotResolvers.血乱Delirium, SpellTargetType.Self));
         slot.Add(new Spell(DRKBaseSlotResolvers.掠影示现, SpellTargetType.Target));
+        
         slot.Add(new Spell(DRKBaseSlotResolvers.噬魂斩, SpellTargetType.Target));
         slot.Add(new Spell(DRKBaseSlotResolvers.暗影峰, SpellTargetType.Target));
         slot.Add(new Spell(DRKBaseSlotResolvers.精雕怒斩CarveAndSpit, SpellTargetType.Target));
