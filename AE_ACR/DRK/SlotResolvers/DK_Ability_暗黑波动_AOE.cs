@@ -55,7 +55,7 @@ public class DK_Ability_暗黑波动_AOE : DRKBaseSlotResolvers
         if (Core.Me.CurrentMp >= 3000 || gauge.HasDarkArts)
         {
             var battleChara = Core.Me.GetCurrTarget();
-            if (TargetHelper.GetNearbyEnemyCount(battleChara, 10, 4) >= 3)
+            if (TargetHelper.GetNearbyEnemyCount(battleChara, 10, 4) >= 3 || !暗黑锋.MyIsUnlock())
             {
                 
                 if (getQTValue(BaseQTKey.倾泻资源))
