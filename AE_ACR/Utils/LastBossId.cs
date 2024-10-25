@@ -4,6 +4,10 @@ public static class LastBossId
 {
     public static uint[] list =
     {
+        //神兵1
+        14587,
+        //神兵2
+        14592,
         //91
         16825,
         //93
