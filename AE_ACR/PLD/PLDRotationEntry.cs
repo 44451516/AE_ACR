@@ -52,8 +52,8 @@ public class PLDRotationEntry : IRotationEntry
 
 
         // gcd队列
-        new SlotResolverData(new GCD_优先圣灵(), SlotMode.Gcd),
         new SlotResolverData(new GCD_优先赎罪(), SlotMode.Gcd),
+        new SlotResolverData(new GCD_优先圣灵(), SlotMode.Gcd),
         new SlotResolverData(new GCD_沥血剑(), SlotMode.Gcd),
         new SlotResolverData(new GCD_大宝剑连击(), SlotMode.Gcd),
         new SlotResolverData(new PLD_GCD_远程圣灵(), SlotMode.Gcd),
@@ -78,9 +78,6 @@ public class PLDRotationEntry : IRotationEntry
 
         var rot = new Rotation(SlotResolvers)
         {
-            // TargetJob = Jobs.Marauder,
-            // TargetJob = Jobs.Gladiator,
-            // TargetJob = Jobs.WhiteMage,
             TargetJob = Jobs.Paladin,
             AcrType = AcrType.Both,
             MinLevel = 1,
@@ -90,6 +87,7 @@ public class PLDRotationEntry : IRotationEntry
                           + "[优先赎罪]满足赎罪的释放条件会一直用赎罪\n"
                           + "[远程圣灵]拥有强化圣灵or达到设置阈值且不移动的时候使用\n"
                           + "[即刻战逃]会立刻使用战逃，即使没有合适的资源\n"
+                          + "[大保健连击]会再未学习大保健的情况下用代替\n"
                           + "[一键减伤]铁壁-圣盾阵-预警-壁垒-神圣领域\n"
         };
         rot.AddOpener(GetOpener);
@@ -228,14 +226,15 @@ public class PLDRotationEntry : IRotationEntry
     {
         ImGui.Text("画Dev信息");
 
-        var dutySchedule = Core.Resolve<MemApiDuty>().GetSchedule();
-        ImGui.Text($"CountPoint : {dutySchedule.CountPoint}");
-        ImGui.Text($"NowPoint : {dutySchedule.NowPoint}");
+        // var dutySchedule = Core.Resolve<MemApiDuty>().GetSchedule();
+        // ImGui.Text($"CountPoint : {dutySchedule.CountPoint}");
+        // ImGui.Text($"NowPoint : {dutySchedule.NowPoint}");
         
+        ImGui.Text($"大保健连击Confiteor_GetResourceCost : {BaseIslotResolver.GetResourceCost(PLDBaseSlotResolvers.大保健连击Confiteor)}");
+        ImGui.Text($"大保健连击Confiteor.IsUnlock : {PLDBaseSlotResolvers.大保健连击Confiteor.IsUnlock()}");
+        ImGui.Text($"圣灵HolySpirit.ActionReady() : {PLDBaseSlotResolvers.圣灵HolySpirit.ActionReady()}");
+        // ImGui.Text($"GCD : {GCDHelper.GetGCDCooldown()}");
         
-        
-        
-        var Oath = Core.Resolve<JobApi_Paladin>().Oath;
 
         ImGui.Text($"挑衅 : {TankBaseIslotResolver.挑衅.ActionReadyAE()}");
         if (Core.Me.TargetObject is IBattleChara currTarget)

@@ -22,21 +22,24 @@ public class GCD_优先圣灵 : PLDBaseSlotResolvers
             return Flag_无效目标;
         }
 
-
-        if (getQTValue(PLDQTKey.优先圣灵))
+        if (!getQTValue(PLDQTKey.优先圣灵))
         {
-            if (圣灵HolySpirit.MyIsUnlock() && GetResourceCost(圣灵HolySpirit) <= Core.Me.CurrentMp)
+            return Flag_QT;
+        }
+
+        if (和目标的距离() > 25f)
+        {
+            return Flag_超出攻击距离;
+        }
+
+        if (GetResourceCost(圣灵HolySpirit) <= Core.Me.CurrentMp)
+        {
+            if (圣灵HolySpirit.MyIsUnlock())
             {
-                if (和目标的距离() > 25f)
-                {
-                    return Flag_超出攻击距离;
-                }
-                
                 return 0;
             }
         }
-
-
+        
         return -1;
     }
 
