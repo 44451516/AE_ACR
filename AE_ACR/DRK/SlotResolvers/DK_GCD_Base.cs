@@ -73,15 +73,7 @@ public class DK_GCD_Base : DRKBaseSlotResolvers
         {
             return 单体2SyphonStrike.GetSpell();
         }
-
-        if (lastComboActionID == 单体2SyphonStrike && getQTValue(BaseQTKey.攒资源) == false && getQTValue(DRKQTKey.不打血溅) == false)
-        {
-            if (Core.Resolve<JobApi_DarkKnight>().Blood >= 80 && 血溅Bloodspiller.MyIsUnlock() && inAttackDistance)
-            {
-                var spell = Core.Resolve<MemApiSpell>().CheckActionChange(血溅Bloodspiller).GetSpell();
-                return spell;
-            }
-        }
+        
 
         if (lastComboActionID == 单体2SyphonStrike && 单体3Souleater.MyIsUnlock() && inAttackDistance)
         {

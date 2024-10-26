@@ -80,13 +80,8 @@ public class DRKRotationEntry : IRotationEntry
 #if DEBUG
         AELoggerUtils.init();
 #endif
-
-
-        // 初始化设置
         DKSettings.Build(settingFolder);
-        // 初始化QT （依赖了设置的数据）
         BuildQT();
-
         var rot = new Rotation(SlotResolvers)
         {
             // TargetJob = Jobs.Marauder,
@@ -153,14 +148,8 @@ public class DRKRotationEntry : IRotationEntry
     // 构造函数里初始化QT
     public void BuildQT()
     {
-        // JobViewSave是AE底层提供的QT设置存档类 在你自己的设置里定义即可
-        // 第二个参数是你设置文件的Save类 第三个参数是QT窗口标题
         QT = new JobViewWindow(DKSettings.Instance.JobViewSave, DKSettings.Instance.Save, "DK");
         QT.SetUpdateAction(OnUIUpdate); // 设置QT中的Update回调 不需要就不设置
-
-        //添加QT分页 第一个参数是分页标题 第二个是分页里的内容
-
-
 #if DEBUG
         QT.AddTab("Dev", DrawQtDev);
 #endif
@@ -168,22 +157,22 @@ public class DRKRotationEntry : IRotationEntry
         QT.AddTab("说明", DrawQtDescription);
         QT.AddTab("日常模式", DrawDailyMode);
         // QT.AddTab("自动减伤", DrawAutoBuff);
-
-        QT.AddQt(BaseQTKey.停手, false, "是否使用基础的Gcd");
-        QT.AddQt(BaseQTKey.攒资源, false, "攒资源不会卸暗血和打暗影峰");
-        QT.AddQt(BaseQTKey.爆发药, false);
-        QT.AddQt(DRKQTKey.腐秽大地, true);
-        QT.AddQt(DRKQTKey.腐秽黑暗, true);
-        QT.AddQt(DRKQTKey.暗影使者, true);
-        QT.AddQt(DRKQTKey.掠影示现, true);
-        QT.AddQt(DRKQTKey.蔑视厌恶, true);
-        QT.AddQt(DRKQTKey.精雕吸血, true);
-        QT.AddQt(DRKQTKey.伤残, false, "和目标距离过远的时候使用");
-        QT.AddQt(DRKQTKey.起手序列, true);
-        QT.AddQt(DRKQTKey.卸掉豆子, false);
-        QT.AddQt(BaseQTKey.倾泻资源, false);
-        QT.AddQt(DRKQTKey.不打血溅, false);
-        QT.AddQt(DRKQTKey.不打暗影峰, false);
+        Dictionary<string, bool> qtDict = DKSettings.Instance.MyQtDict;
+        QT.MyAddQt(qtDict,BaseQTKey.停手, false, "是否使用基础的Gcd");
+        QT.MyAddQt(qtDict,BaseQTKey.攒资源, false, "攒资源不会卸暗血和打暗影峰");
+        QT.MyAddQt(qtDict,BaseQTKey.爆发药, false);
+        QT.MyAddQt(qtDict,DRKQTKey.腐秽大地, true);
+        QT.MyAddQt(qtDict,DRKQTKey.腐秽黑暗, true);
+        QT.MyAddQt(qtDict,DRKQTKey.暗影使者, true);
+        QT.MyAddQt(qtDict,DRKQTKey.掠影示现, true);
+        QT.MyAddQt(qtDict,DRKQTKey.蔑视厌恶, true);
+        QT.MyAddQt(qtDict,DRKQTKey.精雕吸血, true);
+        QT.MyAddQt(qtDict,DRKQTKey.伤残, false, "和目标距离过远的时候使用");
+        QT.MyAddQt(qtDict,DRKQTKey.起手序列, true);
+        QT.MyAddQt(qtDict,DRKQTKey.卸掉豆子, false);
+        QT.MyAddQt(qtDict,BaseQTKey.倾泻资源, false);
+        QT.MyAddQt(qtDict,DRKQTKey.不打血溅, false);
+        QT.MyAddQt(qtDict,DRKQTKey.不打暗影峰, false);
         QT.AddHotkey("LB", new HotKeyResolver_LB());
 
     }

@@ -81,7 +81,7 @@ public class DK_GCD_血溅 : DRKBaseSlotResolvers
             {
                 if (chara.CurrentHp <= DKSettings.Instance.get爆发目标血量())
                 {
-                        return 0;
+                        return 2;
                 }
             }
 
@@ -89,24 +89,32 @@ public class DK_GCD_血溅 : DRKBaseSlotResolvers
             //防止血溅没有打完
             if (Core.Resolve<MemApiBuff>().GetAuraTimeleft(Core.Me, Buffs.血乱Delirium1, true) < 8000)
             {
-                return 0;
+                return 3;
             }
 
             //防止血溅没有打完
             if (Core.Resolve<MemApiBuff>().GetAuraTimeleft(Core.Me, Buffs.血乱Delirium2, true) < 8000)
             {
-                return 0;
+                return 4;
             }
 
             if (RaidBuff.爆发期_120() && 掠影示现.GetCooldownRemainingTime() > 80)
             {
-                return 0;
+                return 5;
             }
 
 
             if (Blood >= 90 && Core.Me.GetAuraStack(Buffs.嗜血BloodWeapon) >= 2)
             {
-                return 0;
+                return 6;
+            }
+            
+            if (lastComboActionID == 单体2SyphonStrike  && getQTValue(DRKQTKey.不打血溅) == false)
+            {
+                if (Core.Resolve<JobApi_DarkKnight>().Blood >= 80 && 血溅Bloodspiller.MyIsUnlock() )
+                {
+                    return 7;
+                }
             }
 
 

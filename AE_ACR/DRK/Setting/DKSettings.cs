@@ -1,5 +1,6 @@
 ﻿#region
 
+using AE_ACR_DRK;
 using AEAssist.CombatRoutine.View.JobView;
 using AEAssist.Helper;
 using AEAssist.IO;
@@ -29,10 +30,10 @@ public class DKSettings
     public bool 起手突进 = true;
     public bool 只在高难模式使用起手序列 = true;
     public bool 自动黑盾 = true;
-
-    public JobViewSave JobViewSave = new(); // QT设置存档
     public float 近战最大攻击距离 = 2.99f;
 
+    public JobViewSave JobViewSave = new(); // QT设置存档
+    public Dictionary<string, bool> MyQtDict = new();
     public int get爆发目标血量()
     {
         return 爆发目标血量 * 10000;
@@ -66,6 +67,14 @@ public class DKSettings
 
     public void Save()
     {
+        string[] qtArray = DRKRotationEntry.QT.GetQtArray();
+        foreach (var qtName in qtArray)
+        {
+            var qtValue = DRKRotationEntry.QT.GetQt(qtName);
+            MyQtDict[qtName] = qtValue;
+        }
+
+        
         Directory.CreateDirectory(Path.GetDirectoryName(path));
         File.WriteAllText(path, JsonHelper.ToJson(this));
     }

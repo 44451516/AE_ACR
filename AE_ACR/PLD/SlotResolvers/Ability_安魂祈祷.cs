@@ -46,6 +46,11 @@ public class Ability_安魂祈祷 : PLDBaseSlotResolvers
                 {
                     return 0;
                 }
+                
+                if (HasEffect(Buffs.荣耀之剑预备))
+                {
+                    return 0;
+                }
             }
 
         }

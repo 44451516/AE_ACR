@@ -109,6 +109,7 @@ public abstract class PLDBaseSlotResolvers : TankBaseIslotResolver
             赎罪剑Atonement1BUFF = 1902,
             赎罪剑Atonement2BUFF = 3827,
             赎罪剑Atonement3BUFF = 3828,
+            荣耀之剑预备 = 3831,
             留空 = 0;
     }
 }

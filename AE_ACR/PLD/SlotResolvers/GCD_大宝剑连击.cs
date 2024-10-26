@@ -22,7 +22,7 @@ public class GCD_大宝剑连击 : PLDBaseSlotResolvers
         {
             return Flag_QT;
         }
-        
+
 
         if (isHasCanAttackBattleChara() == false)
         {
@@ -36,21 +36,31 @@ public class GCD_大宝剑连击 : PLDBaseSlotResolvers
             {
                 return Flag_超出攻击距离;
             }
-            
+
             if (大保健连击Confiteor.OriginalHook().Id.ActionReady())
             {
                 return 0;
             }
 
-            //这里是圣灵基础AOE威力 135*5
             var aoeCount = TargetHelper.GetNearbyEnemyCount(5);
-
-            if (aoeCount >= 5)
+            if (圣环HolyCircle.MyIsUnlock())
+            {
+                if (aoeCount >= 2)
+                {
+                    return 0;
+                }
+            }
+            //这里是圣灵基础AOE威力 135*5
+            if (圣环HolyCircle.MyIsUnlock() == false && aoeCount >= 5)
             {
                 return Flag_伤害太低了;
             }
-            
-            return 0;
+
+            if (圣灵HolySpirit.MyIsUnlock())
+            {
+                return 0;
+            }
+
         }
 
 

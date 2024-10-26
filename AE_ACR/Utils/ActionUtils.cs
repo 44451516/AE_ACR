@@ -79,10 +79,11 @@ internal static class ActionUtils
             return false;
         }
 
-        if (Core.Resolve<MemApiSpell>().GetActionState(spellId) == 573) //没学技能
-        {
-            return false;
-        }
+        //上游提供了，先注释掉避免二次判断
+        // if (Core.Resolve<MemApiSpell>().GetActionState(spellId) == 573) //没学技能
+        // {
+        //     return false;
+        // }
 
         return true;
     }

@@ -16,8 +16,6 @@ using AEAssist.CombatRoutine.View.JobView;
 using AEAssist.CombatRoutine.View.JobView.HotkeyResolver;
 using AEAssist.Extension;
 using AEAssist.Helper;
-using AEAssist.JobApi;
-using AEAssist.MemoryApi;
 using Dalamud.Game.ClientState.Objects.Types;
 using ImGuiNET;
 
@@ -53,12 +51,16 @@ public class PLDRotationEntry : IRotationEntry
 
         // gcd队列
         new SlotResolverData(new GCD_优先赎罪(), SlotMode.Gcd),
+        new SlotResolverData(new GCD_优先强化圣灵(), SlotMode.Gcd),
         new SlotResolverData(new GCD_优先圣灵(), SlotMode.Gcd),
         new SlotResolverData(new GCD_沥血剑(), SlotMode.Gcd),
         new SlotResolverData(new GCD_大宝剑连击(), SlotMode.Gcd),
+        new SlotResolverData(new GCD_倾泻资源(), SlotMode.Gcd),
         new SlotResolverData(new PLD_GCD_远程圣灵(), SlotMode.Gcd),
         new SlotResolverData(new PLD_GCD_投盾(), SlotMode.Gcd),
         new SlotResolverData(new GCD_Base(), SlotMode.Gcd)
+
+
     };
 
     public static JobViewWindow QT { get; private set; }
@@ -69,11 +71,7 @@ public class PLDRotationEntry : IRotationEntry
 #if DEBUG
         AELoggerUtils.init();
 #endif
-
-
-        // 初始化设置
         PLDSettings.Build(settingFolder);
-        // 初始化QT （依赖了设置的数据）
         BuildQT();
 
         var rot = new Rotation(SlotResolvers)
@@ -114,40 +112,44 @@ public class PLDRotationEntry : IRotationEntry
 
     public void Dispose()
     {
-        // 释放需要释放的东西 没有就留空
+
     }
 
-    // 构造函数里初始化QT
+
     public void BuildQT()
     {
-        // JobViewSave是AE底层提供的QT设置存档类 在你自己的设置里定义即可
-        // 第二个参数是你设置文件的Save类 第三个参数是QT窗口标题
         QT = new JobViewWindow(PLDSettings.Instance.JobViewSave, PLDSettings.Instance.Save, "PLD");
-        QT.SetUpdateAction(OnUIUpdate); // 设置QT中的Update回调 不需要就不设置
+        QT.SetUpdateAction(OnUIUpdate);
 
-        //添加QT分页 第一个参数是分页标题 第二个是分页里的内容
 #if DEBUG
         QT.AddTab("Dev", DrawQtDev);
 #endif
         QT.AddTab("通用", DrawQtGeneral);
         QT.AddTab("日常模式", DrawDailyMode);
         // QT.AddTab("反馈建议", UIHelp.Feedback);
+        Dictionary<string, bool> qtDict = PLDSettings.Instance.MyQtDict;
 
         // 添加QT开关 第二个参数是默认值 (开or关) 第三个参数是鼠标悬浮时的tips
-        QT.AddQt(BaseQTKey.停手, false, "是否使用基础的Gcd");
-        QT.AddQt(BaseQTKey.爆发药, false);
-        QT.AddQt(BaseQTKey.突进, true);
-        QT.AddQt(PLDQTKey.战逃安魂, true);
-        QT.AddQt(PLDQTKey.大宝剑连击, true);
-        QT.AddQt(PLDQTKey.远程投盾, false, "和目标距离过远的时候使用");
-        QT.AddQt(PLDQTKey.远程圣灵, true, "和目标距离过远的时候使用");
-        QT.AddQt(PLDQTKey.即刻战逃, false, "战逃好了就用");
-        QT.AddQt(PLDQTKey.优先圣灵, false);
-        QT.AddQt(PLDQTKey.优先赎罪, false);
-        QT.AddQt(PLDQTKey.厄运流转, true);
-        QT.AddQt(PLDQTKey.深奥之灵, true);
-        QT.AddQt(PLDQTKey.起手序列, false);
-        // QT.AddQt(BaseQTKey.起手序列突进, false);
+        QT.MyAddQt(qtDict, BaseQTKey.停手, false, "是否使用基础的Gcd");
+        QT.MyAddQt(qtDict, BaseQTKey.爆发药, false);
+        QT.MyAddQt(qtDict, BaseQTKey.突进, true);
+        QT.MyAddQt(qtDict, PLDQTKey.战逃安魂, true);
+        QT.MyAddQt(qtDict, PLDQTKey.大宝剑连击, true,"没有学习大保健用圣灵代替");
+        QT.MyAddQt(qtDict, PLDQTKey.远程投盾, false, "和目标距离过远的时候使用");
+        QT.MyAddQt(qtDict, PLDQTKey.远程圣灵, true, "和目标距离过远的时候使用");
+        QT.MyAddQt(qtDict, PLDQTKey.即刻战逃, false, "战逃好了就用");
+        QT.MyAddQt(qtDict, PLDQTKey.优先强化圣灵, false, "有强化圣灵的时候用");
+        QT.MyAddQt(qtDict, PLDQTKey.优先圣灵, false, "有蓝就用");
+        QT.MyAddQt(qtDict, PLDQTKey.优先赎罪, false);
+        QT.MyAddQt(qtDict, PLDQTKey.厄运流转, true);
+        QT.MyAddQt(qtDict, PLDQTKey.深奥之灵, true);
+        QT.MyAddQt(qtDict, BaseQTKey.倾泻资源, false);
+        QT.MyAddQt(qtDict, PLDQTKey.起手序列, false);
+
+        PLDSettings.Instance.JobViewSave.QtUnVisibleList.Clear();
+        PLDSettings.Instance.JobViewSave.QtUnVisibleList.Add(PLDQTKey.优先圣灵);
+        // PLDSettings.Instance.JobViewSave.QtUnVisibleList.Add(PLDQTKey.倾泻资源);
+        // PLDSettings.Instance.JobViewSave.QtUnVisibleList.Add(PLDQTKey.起手序列);
 
         QT.AddHotkey("LB", new HotKeyResolver_LB());
         // QT.AddHotkey("钢铁信念",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.钢铁信念, SpellTargetType.Self));
@@ -162,37 +164,12 @@ public class PLDRotationEntry : IRotationEntry
         // QT.AddHotkey("亲疏自行",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.亲疏自行, SpellTargetType.Self));
         // QT.AddHotkey("雪仇",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.雪仇, SpellTargetType.Self));
         // QT.AddHotkey("退避",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.退避, SpellTargetType.Pm2));
-        QT.AddHotkey("一键减伤",new 一键减伤());
+        QT.AddHotkey("一键减伤", new 一键减伤());
 
-        
-        // QT.AddQt(BaseQTKey.减伤, true);
-        // QT.AddQt(QTKey.Test2, false);
-        // QT.AddQt(QTKey.UsePotion,false);
-
-        // 添加快捷按钮 (带技能图标)
-        // QT.AddHotkey("战斗之声",
-        //     new HotKeyResolver_NormalSpell(SpellsDefine.LegSweep, SpellTargetType.Self));
-        // QT.AddHotkey("失血",
-        //     new HotKeyResolver_NormalSpell(SpellsDefine.LegSweep, SpellTargetType.Target));
-
-        // QT.AddHotkey("爆发药1", new HotKeyResolver_Potion());
-        // QT.AddHotkey("爆发药1", new HotKeyResolver_Potion());
-        // QT.AddHotkey("极限技2", new HotKeyResolver_LB());
-
-        /*
-        // 这是一个自定义的快捷按钮 一般用不到
-        // 图片路径是相对路径 基于AEAssist(C|E)NVersion/AEAssist
-        // 如果想用AE自带的图片资源 路径示例: Resources/AE2Logo.png
-        QT.AddHotkey("极限技", new HotkeyResolver_General("#自定义图片路径", () =>
-        {
-            // 点击这个图片会触发什么行为
-            LogHelper.Print("你好");
-        }));
-        */
     }
 
     private void DrawDailyMode(JobViewWindow obj)
-    {    
+    {
         var pldSettings = PLDSettings.Instance;
         ImGui.Text("日常模式会持续开盾，和自动减伤");
         ImGui.SetNextItemWidth(150f);
@@ -206,9 +183,9 @@ public class PLDRotationEntry : IRotationEntry
 
     private IOpener? GetOpener(uint level)
     {
-        if (level>= 64)
+        if (level >= 64)
         {
-            return new PLD_Opener(); 
+            return new PLD_Opener();
         }
         return null;
     }
@@ -229,23 +206,23 @@ public class PLDRotationEntry : IRotationEntry
         // var dutySchedule = Core.Resolve<MemApiDuty>().GetSchedule();
         // ImGui.Text($"CountPoint : {dutySchedule.CountPoint}");
         // ImGui.Text($"NowPoint : {dutySchedule.NowPoint}");
-        
+
         ImGui.Text($"大保健连击Confiteor_GetResourceCost : {BaseIslotResolver.GetResourceCost(PLDBaseSlotResolvers.大保健连击Confiteor)}");
         ImGui.Text($"大保健连击Confiteor.IsUnlock : {PLDBaseSlotResolvers.大保健连击Confiteor.IsUnlock()}");
         ImGui.Text($"圣灵HolySpirit.ActionReady() : {PLDBaseSlotResolvers.圣灵HolySpirit.ActionReady()}");
         // ImGui.Text($"GCD : {GCDHelper.GetGCDCooldown()}");
-        
+
 
         ImGui.Text($"挑衅 : {TankBaseIslotResolver.挑衅.ActionReadyAE()}");
         if (Core.Me.TargetObject is IBattleChara currTarget)
         {
             var 仇恨是否在自己身上 = currTarget.仇恨是否在自己身上();
-            
+
             ImGui.Text($"CanAttack : {currTarget.CanAttack()}");
             ImGui.Text($"TargetObjectId : {currTarget.TargetObjectId}");
-            ImGui.Text($"IsDead : {currTarget.IsDead }");
-            ImGui.Text($"IsValid : {currTarget.IsValid() }");
-            
+            ImGui.Text($"IsDead : {currTarget.IsDead}");
+            ImGui.Text($"IsValid : {currTarget.IsValid()}");
+
             ImGui.Text($"仇恨是否在自己身上 : {仇恨是否在自己身上}");
             ImGui.Text($"IsTargetTTK12000 : {TTKHelper.IsTargetTTK(currTarget, 12000, true)}");
             ImGui.Text($"IsTargetTTK12 : {TTKHelper.IsTargetTTK(currTarget, 12, true)}");
