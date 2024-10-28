@@ -4,6 +4,7 @@ using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.Extension;
+using AEAssist.Helper;
 
 #endregion
 
@@ -19,8 +20,16 @@ public class Ability_雪仇 : PLDBaseSlotResolvers
         }
 
 
+
         if (CanWeave())
         {
+            
+            if (雪仇.IsReady() == false)
+            {
+                return Flag_CD;
+            }
+
+            
             if (神圣领域.ActionReady())
                 return -1;
 
@@ -31,10 +40,7 @@ public class Ability_雪仇 : PLDBaseSlotResolvers
             if (预警.ActionReady())
                 return -1;
 
-            if (!雪仇.ActionReadyAE())
-            {
-                return Flag_CD;
-            }
+        
 
             if (Buffs.神圣领域.GetBuffRemainingTime() > 0.5f)
                 return -1;

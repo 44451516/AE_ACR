@@ -10,4 +10,5 @@ public class BaseQTKey
 
     public const string 突进 = "突进";
     public const string 倾泻资源 = "倾泻资源";
+    public const string AOE = "AOE";
 }

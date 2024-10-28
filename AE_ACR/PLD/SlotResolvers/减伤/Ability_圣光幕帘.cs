@@ -41,6 +41,6 @@ public class Ability_圣光幕帘 : PLDBaseSlotResolvers
 
     public override void Build(Slot slot)
     {
-        slot.Add(雪仇.OriginalHook());
+        slot.Add(圣光幕帘.OriginalHook());
     }
 }

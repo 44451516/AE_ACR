@@ -41,6 +41,6 @@ public class Ability_暗黑布道 : DRKBaseSlotResolvers
 
     public override void Build(Slot slot)
     {
-        slot.Add(雪仇.OriginalHook());
+        slot.Add(暗黑布道.OriginalHook());
     }
 }

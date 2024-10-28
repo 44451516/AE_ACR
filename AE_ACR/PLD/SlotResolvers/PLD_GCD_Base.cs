@@ -12,7 +12,7 @@ using Dalamud.Game.ClientState.Objects.Types;
 
 namespace AE_ACR.PLD.SlotResolvers;
 
-public class GCD_Base : PLDBaseSlotResolvers
+public class PLD_GCD_Base : PLDBaseSlotResolvers
 {
     public override int Check()
     {
@@ -39,42 +39,7 @@ public class GCD_Base : PLDBaseSlotResolvers
     {
         bool inAttackDistance = 和目标的距离() <= PLDSettings.Instance.近战最大攻击距离;
         bool inAttackDistance25 = 和目标的距离() <= 25;
-
-        var aoeCount = TargetHelper.GetNearbyEnemyCount(5);
-        if (aoeCount >= 2)
-        {
-            if (aoeCount >= 3)
-            {
-                if (HasEffect(Buffs.DivineMight) && 圣环HolyCircle.MyIsUnlock())
-                {
-                    return 圣环HolyCircle.OriginalHook();
-                }
-            }
-
-
-            if (lastComboActionID == 暴乱剑RiotBlade && 战女神之怒RageOfHalone.MyIsUnlock() && inAttackDistance)
-            {
-                return 战女神之怒RageOfHalone.OriginalHook();
-            }
-
-            if (lastComboActionID == 全蚀斩TotalEclipse && HasEffect(Buffs.DivineMight) && 圣环HolyCircle.MyIsUnlock())
-            {
-                return 圣环HolyCircle.OriginalHook();
-            }
-
-            if (lastComboActionID == 全蚀斩TotalEclipse && 日珥斩Prominence.MyIsUnlock())
-            {
-                return 日珥斩Prominence.OriginalHook();
-            }
-
-            if (全蚀斩TotalEclipse.MyIsUnlock())
-            {
-                return 全蚀斩TotalEclipse.OriginalHook();
-            }
-
-
-        }
-
+        
         if (HasEffect(Buffs.FightOrFlight) && 王权剑RoyalAuthority.MyIsUnlock())
         {
             if (GetBuffRemainingTime(Buffs.DivineMight) >= 27

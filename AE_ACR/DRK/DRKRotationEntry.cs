@@ -173,8 +173,13 @@ public class DRKRotationEntry : IRotationEntry
         QT.MyAddQt(qtDict,BaseQTKey.倾泻资源, false);
         QT.MyAddQt(qtDict,DRKQTKey.不打血溅, false);
         QT.MyAddQt(qtDict,DRKQTKey.不打暗影峰, false);
+        QT.MyAddQt(qtDict,BaseQTKey.AOE, true);
+        
+        DKSettings.Instance.JobViewSave.QtUnVisibleList.Clear();
+        DKSettings.Instance.JobViewSave.QtUnVisibleList.Add(BaseQTKey.AOE);
+        
+        
         QT.AddHotkey("LB", new HotKeyResolver_LB());
-
     }
     
     private void DrawDailyMode(JobViewWindow obj)

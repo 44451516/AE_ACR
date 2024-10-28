@@ -4,6 +4,7 @@ using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.Extension;
+using AEAssist.Helper;
 
 #endregion
 
@@ -17,15 +18,16 @@ public class Ability_雪仇 : DRKBaseSlotResolvers
         {
             return Flag_减伤;
         }
-
-        if (!雪仇.ActionReadyAE())
-        {
-            return Flag_CD;
-        }
+        
         
         if (CanWeave())
         {
-
+            
+            if (雪仇.IsReady() == false)
+            {
+                return Flag_CD;
+            }
+            
             if (铁壁.ActionReady())
                 return -1;
 

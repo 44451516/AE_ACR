@@ -22,6 +22,11 @@ public class Ability_壁垒 : PLDBaseSlotResolvers
 
         if (CanWeave())
         {
+            if (壁垒.IsReady() == false)
+            {
+                return Flag_CD;
+            }
+            
             if (神圣领域.ActionReady()) 
                 return -1;
             

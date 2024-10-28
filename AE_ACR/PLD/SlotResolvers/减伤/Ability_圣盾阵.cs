@@ -24,11 +24,10 @@ public class Ability_圣盾阵 : PLDBaseSlotResolvers
 
         if (CanWeave())
         {
-            // if (神圣领域.ActionReady())
-            // {
-            //     return -1;
-            // }
-
+            if (圣盾阵.IsReady() == false)
+            {
+                return Flag_CD;
+            }
 
             if (Buffs.神圣领域.GetBuffRemainingTime() > 0.5f)
             {

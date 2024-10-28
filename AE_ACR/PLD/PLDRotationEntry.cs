@@ -58,7 +58,8 @@ public class PLDRotationEntry : IRotationEntry
         new SlotResolverData(new GCD_倾泻资源(), SlotMode.Gcd),
         new SlotResolverData(new PLD_GCD_远程圣灵(), SlotMode.Gcd),
         new SlotResolverData(new PLD_GCD_投盾(), SlotMode.Gcd),
-        new SlotResolverData(new GCD_Base(), SlotMode.Gcd)
+        new SlotResolverData(new PLD_GCD_Base_AOE(), SlotMode.Gcd),
+        new SlotResolverData(new PLD_GCD_Base(), SlotMode.Gcd)
 
 
     };
@@ -145,11 +146,11 @@ public class PLDRotationEntry : IRotationEntry
         QT.MyAddQt(qtDict, PLDQTKey.深奥之灵, true);
         QT.MyAddQt(qtDict, BaseQTKey.倾泻资源, false);
         QT.MyAddQt(qtDict, PLDQTKey.起手序列, false);
+        QT.MyAddQt(qtDict, BaseQTKey.AOE, true);
 
         PLDSettings.Instance.JobViewSave.QtUnVisibleList.Clear();
         PLDSettings.Instance.JobViewSave.QtUnVisibleList.Add(PLDQTKey.优先圣灵);
-        // PLDSettings.Instance.JobViewSave.QtUnVisibleList.Add(PLDQTKey.倾泻资源);
-        // PLDSettings.Instance.JobViewSave.QtUnVisibleList.Add(PLDQTKey.起手序列);
+        PLDSettings.Instance.JobViewSave.QtUnVisibleList.Add(BaseQTKey.AOE);
 
         QT.AddHotkey("LB", new HotKeyResolver_LB());
         // QT.AddHotkey("钢铁信念",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.钢铁信念, SpellTargetType.Self));
