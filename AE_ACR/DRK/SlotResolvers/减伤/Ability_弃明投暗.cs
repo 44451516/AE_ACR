@@ -31,10 +31,10 @@ public class Ability_弃明投暗 : DRKBaseSlotResolvers
             }
 
             
-            if (Buffs.暗影墙v2.GetBuffRemainingTime() > 0.5f)
+            if (Buffs.暗影墙v2.GetBuffRemainingTime() > 500)
                 return -1;
 
-            if (Buffs.暗影墙v2.GetBuffRemainingTime() > 0.5f)
+            if (Buffs.暗影墙v2.GetBuffRemainingTime() > 500)
                 return -1;
 
             if (TankBuffs.亲疏自行.GetBuffRemainingTime() > 500)

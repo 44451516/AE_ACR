@@ -68,7 +68,7 @@ public class DK_Ability_暗黑锋 : DRKBaseSlotResolvers
                 return 1;
             }
             
-            if (getQTValue(DRKQTKey.卸掉豆子))
+            if (getQTValue(DRKQTKey.卸掉豆子) && gauge.HasDarkArts)
             {
                 return 2;
             }

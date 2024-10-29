@@ -26,17 +26,17 @@ public class Ability_亲疏自行 : DRKBaseSlotResolvers
             if (暗影墙.ActionReady())
                 return -1;
 
-            if (TankBuffs.铁壁.GetBuffRemainingTime() > 0.5f)
+            if (TankBuffs.铁壁.GetBuffRemainingTime() > 500)
                 return -1;
 
 
-            if (Buffs.暗影墙.GetBuffRemainingTime() > 0.5f)
+            if (Buffs.暗影墙.GetBuffRemainingTime() > 500)
                 return -1;
 
-            if (Buffs.暗影墙v2.GetBuffRemainingTime() > 0.5f)
+            if (Buffs.暗影墙v2.GetBuffRemainingTime() > 500)
                 return -1;
 
-            if (Buffs.弃明投暗.GetBuffRemainingTime() > 0.5f)
+            if (Buffs.弃明投暗.GetBuffRemainingTime() > 500)
                 return -1;
 
 

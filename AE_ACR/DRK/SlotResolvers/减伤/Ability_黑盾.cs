@@ -47,8 +47,11 @@ public class Ability_黑盾 : DRKBaseSlotResolvers
                         {
                             return 0;
                         }
-
-
+                       
+                    }  
+                    
+                    if (Core.Me.CurrentHpPercent() < 0.50f)
+                    {
                         if (TargetHelper.IsBoss(target))
                         {
                             return 0;

@@ -25,10 +25,12 @@ public class Ability_献奉 : DRKBaseSlotResolvers
                 return -1;
             }
             
-            if (Buffs.暗影墙.GetBuffRemainingTime() > 0.5f)
+            
+            
+            if (Buffs.暗影墙.GetBuffRemainingTime() > 500)
                 return -1;
 
-            if (Buffs.暗影墙v2.GetBuffRemainingTime() > 0.5f)
+            if (Buffs.暗影墙v2.GetBuffRemainingTime() > 500)
                 return -1;
 
             if (献奉.ActionReady() && attackMeCount() >= 3 && Core.Me.CurrentHpPercent() < 0.88f)

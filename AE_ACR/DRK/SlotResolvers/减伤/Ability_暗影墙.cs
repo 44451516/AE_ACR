@@ -27,12 +27,12 @@ public class Ability_暗影墙 : DRKBaseSlotResolvers
                 return -1;
             }
 
-            if (TankBuffs.铁壁.GetBuffRemainingTime() > 0.5f)
+            if (TankBuffs.铁壁.GetBuffRemainingTime() > 500)
             {
                 return -1;
             }
 
-            if (TankBuffs.亲疏自行.GetBuffRemainingTime() > 0.5f)
+            if (TankBuffs.亲疏自行.GetBuffRemainingTime() > 500)
             {
                 return -1;
             }

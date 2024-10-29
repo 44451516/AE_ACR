@@ -54,6 +54,9 @@ internal static class ActionUtils
         return Core.Me.HasAura(value);
     }
 
+    /***
+     * 返回的是毫秒
+     */
     internal static int GetBuffRemainingTime(this ushort value)
     {
         return Core.Resolve<MemApiBuff>().GetAuraTimeleft(Core.Me, value, true);

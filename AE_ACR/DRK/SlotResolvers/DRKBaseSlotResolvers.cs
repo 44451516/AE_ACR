@@ -112,7 +112,7 @@ public abstract class DRKBaseSlotResolvers : TankBaseIslotResolver
             SaltedEarth = 749,
             出生入死 = 3255,
             暗影墙 = 747,
-            暗影墙v2 = 747,
+            暗影墙v2 = 3835,
             献奉 = 2682,
             弃明投暗 = 746,
             深恶痛绝 = 743,

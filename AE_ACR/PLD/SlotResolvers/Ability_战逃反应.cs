@@ -57,7 +57,6 @@ public class Ability_战逃反应 : PLDBaseSlotResolvers
                     {
                         return 0;
                     }
-
                 }
 
 

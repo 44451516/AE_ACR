@@ -40,20 +40,20 @@ public class Ability_铁壁 : PLDBaseSlotResolvers
                 return -1;
             }
 
-            if (Buffs.神圣领域.GetBuffRemainingTime() > 0.5f)
+            if (Buffs.神圣领域.GetBuffRemainingTime() > 500)
                 return -1;
 
-            if (Buffs.预警.GetBuffRemainingTime() > 0.5f)
+            if (Buffs.预警.GetBuffRemainingTime() > 500)
                 return -1;
 
-            if (Buffs.预警v2.GetBuffRemainingTime() > 0.5f)
+            if (Buffs.预警v2.GetBuffRemainingTime() > 500)
                 return -1;
 
-            if (Buffs.壁垒.GetBuffRemainingTime() > 0.5f)
+            if (Buffs.壁垒.GetBuffRemainingTime() > 500)
                 return -1;
 
 
-            if (TankBuffs.亲疏自行.GetBuffRemainingTime() > 0.5f)
+            if (TankBuffs.亲疏自行.GetBuffRemainingTime() > 500)
                 return -1;
 
 

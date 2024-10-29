@@ -232,10 +232,16 @@ public class DRKRotationEntry : IRotationEntry
 
 
         var battleChara = Core.Me.GetCurrTarget();
-        ImGui.Text($"血溅Bloodspiller.IsUnlock:{DRKBaseSlotResolvers.血溅Bloodspiller.MyIsUnlock()}");
-        ImGui.Text($"强化药:{RaidBuff.强化药.GetBuffRemainingTime() / 1000f}");
-        ImGui.Text($"爆发期_120:{RaidBuff.爆发期_120()}");
-        ImGui.Text($"掠影示现:{DRKBaseSlotResolvers.掠影示现.GetCooldownRemainingTime()}");
+        // ImGui.Text($"血溅Bloodspiller.IsUnlock:{DRKBaseSlotResolvers.血溅Bloodspiller.MyIsUnlock()}");
+        // ImGui.Text($"强化药:{RaidBuff.强化药.GetBuffRemainingTime() / 1000f}");
+        // ImGui.Text($"爆发期_120:{RaidBuff.爆发期_120()}");
+        // ImGui.Text($"掠影示现:{DRKBaseSlotResolvers.掠影示现.GetCooldownRemainingTime()}");
+        
+        ImGui.Text($"暗影墙:{DRKBaseSlotResolvers.Buffs.暗影墙.GetBuffRemainingTime()}");
+        ImGui.Text($"暗影墙v2:{DRKBaseSlotResolvers.Buffs.暗影墙v2.GetBuffRemainingTime()}");
+        ImGui.Text($"铁壁:{TankBaseIslotResolver.TankBuffs.铁壁.GetBuffRemainingTime()}");
+        
+        
         // ImGui.Text($"血溅Bloodspiller.IsUnlock:{Core.Resolve<MemApiSpell>().CheckActionChange(DRKBaseSlotResolvers.血溅Bloodspiller).GetSpell()}");
         // ImGui.Text($"目标距离:{TargetHelper.GetTargetDistanceFromMeTest2D(battleChara, Core.Me)}");
         // ImGui.Text($"挑衅cd:{DRKBaseSlotResolvers.挑衅.GetCooldownRemainingTime()}");

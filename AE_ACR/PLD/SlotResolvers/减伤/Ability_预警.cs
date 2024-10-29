@@ -26,22 +26,22 @@ public class Ability_预警 : PLDBaseSlotResolvers
             if (神圣领域.ActionReady())
                 return -1;
 
-            if (神圣领域.RecentlyUsed())
+            if (铁壁.RecentlyUsed())
             {
                 return -1;
             }
 
 
-            if (Buffs.神圣领域.GetBuffRemainingTime() > 0.5f)
+            if (Buffs.神圣领域.GetBuffRemainingTime() > 500)
                 return -1;
 
-            if (TankBuffs.铁壁.GetBuffRemainingTime() > 0.5f)
+            if (TankBuffs.铁壁.GetBuffRemainingTime() > 500)
                 return -1;
 
-            if (Buffs.壁垒.GetBuffRemainingTime() > 0.5f)
+            if (Buffs.壁垒.GetBuffRemainingTime() > 500)
                 return -1;
 
-            if (TankBuffs.亲疏自行.GetBuffRemainingTime() > 0.5f)
+            if (TankBuffs.亲疏自行.GetBuffRemainingTime() > 500)
                 return -1;
 
             if (预警.ActionReady())

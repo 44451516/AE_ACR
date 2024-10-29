@@ -64,7 +64,7 @@ public class DK_Ability_暗黑波动_AOE : DRKBaseSlotResolvers
                 }
                 
                 
-                if (getQTValue(DRKQTKey.卸掉豆子))
+                if (getQTValue(DRKQTKey.卸掉豆子) && gauge.HasDarkArts)
                 {
                     return 2;
                 }
