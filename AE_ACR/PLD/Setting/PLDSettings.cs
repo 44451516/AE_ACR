@@ -23,7 +23,7 @@ public class PLDSettings
 
 
     public JobViewSave JobViewSave = new(); // QT设置存档
-    // public Dictionary<string, bool> MyQtDict = new();
+    public Dictionary<string, bool> MyQtDict = new();
 
     #region 标准模板代码 可以直接复制后改掉类名即可
 
@@ -52,14 +52,15 @@ public class PLDSettings
 
     public void Save()
     {
-        string[] qtArray = PLDRotationEntry.QT.GetQtArray();
-        foreach (var qtName in qtArray)
+        if (PLDRotationEntry.QT != null)
         {
-            var qtValue = PLDRotationEntry.QT.GetQt(qtName);
-            // MyQtDict[qtName] = qtValue;
+            string[] qtArray = PLDRotationEntry.QT.GetQtArray();
+            foreach (var qtName in qtArray)
+            {
+                var qtValue = PLDRotationEntry.QT.GetQt(qtName);
+                MyQtDict[qtName] = qtValue;
+            }  
         }
-
-
         Directory.CreateDirectory(Path.GetDirectoryName(path));
         File.WriteAllText(path, JsonHelper.ToJson(this));
     }

@@ -72,7 +72,7 @@ public class DRKRotationEntry : IRotationEntry
         new SlotResolverData(new DK_GCD_Base(), SlotMode.Gcd)
     };
 
-    public static JobViewWindow QT { get; private set; }
+    public static JobViewWindow? QT { get; private set; }
     public string AuthorName { get; set; } = "44451516";
 
     public Rotation Build(string settingFolder)
@@ -157,8 +157,7 @@ public class DRKRotationEntry : IRotationEntry
         QT.AddTab("说明", DrawQtDescription);
         QT.AddTab("日常模式", DrawDailyMode);
         // QT.AddTab("自动减伤", DrawAutoBuff);
-        // Dictionary<string, bool> qtDict = DKSettings.Instance.MyQtDict;
-        Dictionary<string, bool> qtDict = new Dictionary<string, bool>();
+        Dictionary<string, bool> qtDict = DKSettings.Instance.MyQtDict;
         
         
         QT.MyAddQt(qtDict,BaseQTKey.停手, false, "是否使用基础的Gcd");

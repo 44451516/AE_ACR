@@ -64,7 +64,7 @@ public class PLDRotationEntry : IRotationEntry
 
     };
 
-    public static JobViewWindow QT { get; private set; }
+    public static JobViewWindow? QT { get; private set; }
     public string AuthorName { get; set; } = "44451516";
 
     public Rotation Build(string settingFolder)
@@ -128,8 +128,7 @@ public class PLDRotationEntry : IRotationEntry
         QT.AddTab("通用", DrawQtGeneral);
         QT.AddTab("日常模式", DrawDailyMode);
         // QT.AddTab("反馈建议", UIHelp.Feedback);
-        // Dictionary<string, bool> qtDict = PLDSettings.Instance.MyQtDict;
-        Dictionary<string, bool> qtDict = new Dictionary<string, bool>();
+        Dictionary<string, bool> qtDict = PLDSettings.Instance.MyQtDict;
 
         // 添加QT开关 第二个参数是默认值 (开or关) 第三个参数是鼠标悬浮时的tips
         QT.MyAddQt(qtDict, BaseQTKey.停手, false, "是否使用基础的Gcd");
