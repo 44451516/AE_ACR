@@ -157,7 +157,10 @@ public class DRKRotationEntry : IRotationEntry
         QT.AddTab("说明", DrawQtDescription);
         QT.AddTab("日常模式", DrawDailyMode);
         // QT.AddTab("自动减伤", DrawAutoBuff);
-        Dictionary<string, bool> qtDict = DKSettings.Instance.MyQtDict;
+        // Dictionary<string, bool> qtDict = DKSettings.Instance.MyQtDict;
+        Dictionary<string, bool> qtDict = new Dictionary<string, bool>();
+        
+        
         QT.MyAddQt(qtDict,BaseQTKey.停手, false, "是否使用基础的Gcd");
         QT.MyAddQt(qtDict,BaseQTKey.攒资源, false, "攒资源不会卸暗血和打暗影峰");
         QT.MyAddQt(qtDict,BaseQTKey.爆发药, false);

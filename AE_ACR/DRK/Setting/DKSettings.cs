@@ -33,7 +33,7 @@ public class DKSettings
     public float 近战最大攻击距离 = 2.99f;
 
     public JobViewSave JobViewSave = new(); // QT设置存档
-    public Dictionary<string, bool> MyQtDict = new();
+    // public Dictionary<string, bool> MyQtDict = new();
     public int get爆发目标血量()
     {
         return 爆发目标血量 * 10000;
@@ -71,7 +71,7 @@ public class DKSettings
         foreach (var qtName in qtArray)
         {
             var qtValue = DRKRotationEntry.QT.GetQt(qtName);
-            MyQtDict[qtName] = qtValue;
+            // MyQtDict[qtName] = qtValue;
         }
 
         
