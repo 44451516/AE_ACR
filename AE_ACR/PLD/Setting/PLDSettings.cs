@@ -24,6 +24,7 @@ public class PLDSettings
 
     public JobViewSave JobViewSave = new(); // QT设置存档
     public Dictionary<string, bool> MyQtDict = new();
+    public List<string> QtUnVisibleList = new();
 
     #region 标准模板代码 可以直接复制后改掉类名即可
 
@@ -59,8 +60,18 @@ public class PLDSettings
             {
                 var qtValue = PLDRotationEntry.QT.GetQt(qtName);
                 MyQtDict[qtName] = qtValue;
-            }  
+            }
         }
+        
+        if (JobViewSave.QtUnVisibleList.Any())
+        {
+            QtUnVisibleList.Clear();
+            foreach (string hideQt in JobViewSave.QtUnVisibleList)
+            {
+                QtUnVisibleList.Add(hideQt);
+            }
+        }
+       
         Directory.CreateDirectory(Path.GetDirectoryName(path));
         File.WriteAllText(path, JsonHelper.ToJson(this));
     }

@@ -148,11 +148,24 @@ public class PLDRotationEntry : IRotationEntry
         QT.MyAddQt(qtDict, PLDQTKey.起手序列, false);
         QT.MyAddQt(qtDict, BaseQTKey.AOE, true);
 
-        PLDSettings.Instance.JobViewSave.QtUnVisibleList.Clear();
-        PLDSettings.Instance.JobViewSave.QtUnVisibleList.Add(PLDQTKey.优先圣灵);
-        PLDSettings.Instance.JobViewSave.QtUnVisibleList.Add(BaseQTKey.AOE);
-
+        if (PLDSettings.Instance.QtUnVisibleList.Any())
+        {
+            PLDSettings.Instance.JobViewSave.QtUnVisibleList.Clear();
+            foreach (var hideQt in PLDSettings.Instance.QtUnVisibleList)
+            {
+                PLDSettings.Instance.JobViewSave.QtUnVisibleList.Add(hideQt);
+            }
+        }
+        else
+        {
+            PLDSettings.Instance.JobViewSave.QtUnVisibleList.Clear();
+            PLDSettings.Instance.JobViewSave.QtUnVisibleList.Add(PLDQTKey.优先圣灵);
+            PLDSettings.Instance.JobViewSave.QtUnVisibleList.Add(BaseQTKey.AOE);
+        }
+        
         QT.AddHotkey("LB", new HotKeyResolver_LB());
+        QT.AddHotkey("一键减伤", new 一键减伤());
+        
         // QT.AddHotkey("钢铁信念",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.钢铁信念, SpellTargetType.Self));
         // QT.AddHotkey("铁壁",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.铁壁, SpellTargetType.Self));
         // QT.AddHotkey("预警",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.预警.OriginalHook().Id, SpellTargetType.Self));
@@ -165,7 +178,6 @@ public class PLDRotationEntry : IRotationEntry
         // QT.AddHotkey("亲疏自行",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.亲疏自行, SpellTargetType.Self));
         // QT.AddHotkey("雪仇",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.雪仇, SpellTargetType.Self));
         // QT.AddHotkey("退避",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.退避, SpellTargetType.Pm2));
-        QT.AddHotkey("一键减伤", new 一键减伤());
 
     }
 

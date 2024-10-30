@@ -34,6 +34,8 @@ public class DKSettings
 
     public JobViewSave JobViewSave = new(); // QT设置存档
     public Dictionary<string, bool> MyQtDict = new();
+    public List<string> QtUnVisibleList = new();
+    
     public int get爆发目标血量()
     {
         return 爆发目标血量 * 10000;
@@ -76,7 +78,15 @@ public class DKSettings
                 var qtValue = DRKRotationEntry.QT.GetQt(qtName);
                 MyQtDict[qtName] = qtValue;
             }
- 
+        }
+        
+        if (JobViewSave.QtUnVisibleList.Any())
+        {
+            QtUnVisibleList.Clear();
+            foreach (string hideQt in JobViewSave.QtUnVisibleList)
+            {
+                QtUnVisibleList.Add(hideQt);
+            }
         }
 
       

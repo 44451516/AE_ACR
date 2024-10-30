@@ -177,8 +177,19 @@ public class DRKRotationEntry : IRotationEntry
         QT.MyAddQt(qtDict,DRKQTKey.不打暗影峰, false);
         QT.MyAddQt(qtDict,BaseQTKey.AOE, true);
         
-        DKSettings.Instance.JobViewSave.QtUnVisibleList.Clear();
-        DKSettings.Instance.JobViewSave.QtUnVisibleList.Add(BaseQTKey.AOE);
+        if (DKSettings.Instance.QtUnVisibleList.Any())
+        {
+            DKSettings.Instance.JobViewSave.QtUnVisibleList.Clear();
+            foreach (var hideQt in DKSettings.Instance.QtUnVisibleList)
+            {
+                DKSettings.Instance.JobViewSave.QtUnVisibleList.Add(hideQt);
+            }
+        }
+        else
+        {
+            DKSettings.Instance.JobViewSave.QtUnVisibleList.Clear();
+            DKSettings.Instance.JobViewSave.QtUnVisibleList.Add(BaseQTKey.AOE);
+        }
         
         
         QT.AddHotkey("LB", new HotKeyResolver_LB());
