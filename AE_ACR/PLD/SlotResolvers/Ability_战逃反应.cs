@@ -45,6 +45,7 @@ public class Ability_战逃反应 : PLDBaseSlotResolvers
                     return 0;
                 }
 
+                //没有学习 只用用吧
                 if (!王权剑RoyalAuthority.MyIsUnlock())
                 {
                     return 0;

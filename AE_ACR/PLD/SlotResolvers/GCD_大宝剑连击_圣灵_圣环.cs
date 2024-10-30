@@ -9,7 +9,10 @@ using AEAssist.Helper;
 
 namespace AE_ACR.PLD.SlotResolvers;
 
-public class GCD_大宝剑连击 : PLDBaseSlotResolvers
+/// <summary>
+/// 没有学习大保健的使用用的
+/// </summary>
+public class GCD_大宝剑连击_圣灵_圣环 : PLDBaseSlotResolvers
 {
     public override int Check()
     {
@@ -30,17 +33,19 @@ public class GCD_大宝剑连击 : PLDBaseSlotResolvers
         }
 
 
-        if (GetResourceCost(大保健连击Confiteor) <= Core.Me.CurrentMp)
+        if (HasEffect(Buffs.Requiescat) && GetResourceCost(圣灵HolySpirit) <= Core.Me.CurrentMp)
         {
             if (和目标的距离() > 25f)
             {
                 return Flag_超出攻击距离;
             }
-
-            if (大保健连击Confiteor.OriginalHook().Id.ActionReady())
+            
+            
+            if (圣灵HolySpirit.MyIsUnlock())
             {
                 return 0;
             }
+
         }
 
 
@@ -50,6 +55,19 @@ public class GCD_大宝剑连击 : PLDBaseSlotResolvers
 
     public override void Build(Slot slot)
     {
-        slot.Add(大保健连击Confiteor.OriginalHook());
+
+        var spell = 圣灵HolySpirit.OriginalHook();
+
+        var aoeCount = TargetHelper.GetNearbyEnemyCount(5);
+        
+        if (圣环HolyCircle.MyIsUnlock())
+        {
+            if (aoeCount > 2)
+            {
+                spell = 圣环HolyCircle.GetSpell();
+            }
+        }
+        
+        slot.Add(spell);
     }
 }

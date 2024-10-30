@@ -89,12 +89,12 @@ public class DK_Ability_暗黑锋 : DRKBaseSlotResolvers
                 return 0;
             }
 
-            if (Core.Me.CurrentMp >= 9200 && lastComboActionID == 单体2SyphonStrike)
+            if (Core.Me.CurrentMp >= 9200 && lastComboActionID == 单体1HardSlash)
             {
                 return 0;
             }
 
-            if (Core.Me.CurrentMp >= 8600 && lastComboActionID == 单体2SyphonStrike && Core.Me.HasAura(Buffs.嗜血BloodWeapon))
+            if (Core.Me.CurrentMp >= 8600 && lastComboActionID == 单体1HardSlash && Core.Me.HasAura(Buffs.嗜血BloodWeapon))
             {
                 return 0;
             }

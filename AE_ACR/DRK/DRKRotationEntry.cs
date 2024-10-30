@@ -188,7 +188,7 @@ public class DRKRotationEntry : IRotationEntry
         else
         {
             DKSettings.Instance.JobViewSave.QtUnVisibleList.Clear();
-            DKSettings.Instance.JobViewSave.QtUnVisibleList.Add(BaseQTKey.AOE);
+            // DKSettings.Instance.JobViewSave.QtUnVisibleList.Add(BaseQTKey.AOE);
         }
         
         

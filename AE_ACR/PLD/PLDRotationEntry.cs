@@ -55,6 +55,7 @@ public class PLDRotationEntry : IRotationEntry
         new SlotResolverData(new GCD_优先圣灵(), SlotMode.Gcd),
         new SlotResolverData(new GCD_沥血剑(), SlotMode.Gcd),
         new SlotResolverData(new GCD_大宝剑连击(), SlotMode.Gcd),
+        new SlotResolverData(new GCD_大宝剑连击_圣灵_圣环(), SlotMode.Gcd),
         new SlotResolverData(new GCD_倾泻资源(), SlotMode.Gcd),
         new SlotResolverData(new PLD_GCD_远程圣灵(), SlotMode.Gcd),
         new SlotResolverData(new PLD_GCD_投盾(), SlotMode.Gcd),
@@ -160,7 +161,7 @@ public class PLDRotationEntry : IRotationEntry
         {
             PLDSettings.Instance.JobViewSave.QtUnVisibleList.Clear();
             PLDSettings.Instance.JobViewSave.QtUnVisibleList.Add(PLDQTKey.优先圣灵);
-            PLDSettings.Instance.JobViewSave.QtUnVisibleList.Add(BaseQTKey.AOE);
+            // PLDSettings.Instance.JobViewSave.QtUnVisibleList.Add(BaseQTKey.AOE);
         }
         
         QT.AddHotkey("LB", new HotKeyResolver_LB());
@@ -225,7 +226,7 @@ public class PLDRotationEntry : IRotationEntry
         // ImGui.Text($"圣灵HolySpirit.ActionReady() : {PLDBaseSlotResolvers.圣灵HolySpirit.ActionReady()}");
         ImGui.Text($"lastComboActionID : {PLDBaseSlotResolvers.lastComboActionID}");
         ImGui.Text($"GetNearbyEnemyCount : {TargetHelper.GetNearbyEnemyCount(5)}");
-        // ImGui.Text($"GCD : {GCDHelper.GetGCDCooldown()}");
+        ImGui.Text($"大宝剑 : {PLDBaseSlotResolvers.大保健连击Confiteor.IsReady()}");
 
 
         ImGui.Text($"挑衅 : {TankBaseIslotResolver.挑衅.ActionReadyAE()}");
