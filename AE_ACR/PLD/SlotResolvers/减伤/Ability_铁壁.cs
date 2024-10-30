@@ -38,7 +38,18 @@ public class Ability_铁壁 : PLDBaseSlotResolvers
             if (预警.RecentlyUsed())
             {
                 return -1;
+            } 
+            
+            if (预警v2.RecentlyUsed())
+            {
+                return -1;
             }
+            
+            if (预警.GetCooldownRemainingTime() > 115)
+            {
+                return -1;
+            }
+            
 
             if (Buffs.神圣领域.GetBuffRemainingTime() > 500)
                 return -1;
@@ -61,7 +72,7 @@ public class Ability_铁壁 : PLDBaseSlotResolvers
             {
                 if (Core.Me.TargetObject is IBattleChara target)
                 {
-                    if (TargetHelper.TargercastingIsDeathSentence(target, 5) && 圣盾阵.MyIsUnlock())
+                    if (TargetHelper.TargercastingIsDeathSentence(target, 5))
                     {
                         return 0;
                     }

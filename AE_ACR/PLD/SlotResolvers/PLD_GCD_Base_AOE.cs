@@ -30,6 +30,11 @@ public class PLD_GCD_Base_AOE : PLDBaseSlotResolvers
             return -1;
         }
 
+        if (GetBaseGCDSpell() == null)
+        {
+            return -5;
+        }
+
         if (lastComboActionID == 全蚀斩TotalEclipse && 日珥斩Prominence.MyIsUnlock())
         {
             return 0;
@@ -52,29 +57,24 @@ public class PLD_GCD_Base_AOE : PLDBaseSlotResolvers
     {
 
         var aoeCount = TargetHelper.GetNearbyEnemyCount(5);
-        if (aoeCount >= 2)
+        
+        if (lastComboActionID == 全蚀斩TotalEclipse && HasEffect(Buffs.DivineMight) && 圣环HolyCircle.MyIsUnlock())
         {
-            if (aoeCount >= 3)
-            {
-                if (HasEffect(Buffs.DivineMight) && 圣环HolyCircle.MyIsUnlock())
-                {
-                    return 圣环HolyCircle.OriginalHook();
-                }
-            }
-
-            if (lastComboActionID == 全蚀斩TotalEclipse && HasEffect(Buffs.DivineMight) && 圣环HolyCircle.MyIsUnlock())
-            {
-                return 圣环HolyCircle.OriginalHook();
-            }
-
-            if (lastComboActionID == 全蚀斩TotalEclipse && 日珥斩Prominence.MyIsUnlock())
-            {
-                return 日珥斩Prominence.OriginalHook();
-            }
-
+            return 圣环HolyCircle.OriginalHook();
         }
 
-        return 全蚀斩TotalEclipse.OriginalHook();
+        
+        if (lastComboActionID == 全蚀斩TotalEclipse && 日珥斩Prominence.MyIsUnlock())
+        {
+            return 日珥斩Prominence.OriginalHook();
+        }
+        
+        if (全蚀斩TotalEclipse.MyIsUnlock())
+        {
+            return 全蚀斩TotalEclipse.OriginalHook();
+        }
+
+        return null;
     }
 
     public override void Build(Slot slot)

@@ -30,8 +30,12 @@ public class Ability_预警 : PLDBaseSlotResolvers
             {
                 return -1;
             }
-
-
+            
+            if (铁壁.GetCooldownRemainingTime() > 85)
+            {
+                return -1;
+            }
+            
             if (Buffs.神圣领域.GetBuffRemainingTime() > 500)
                 return -1;
 
@@ -48,7 +52,7 @@ public class Ability_预警 : PLDBaseSlotResolvers
             {
                 if (Core.Me.TargetObject is IBattleChara target)
                 {
-                    if (TargetHelper.TargercastingIsDeathSentence(target, 5) && 圣盾阵.MyIsUnlock())
+                    if (TargetHelper.TargercastingIsDeathSentence(target, 5) )
                     {
                         return 0;
                     }

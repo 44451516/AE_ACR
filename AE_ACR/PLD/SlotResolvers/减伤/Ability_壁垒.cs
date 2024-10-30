@@ -38,7 +38,18 @@ public class Ability_壁垒 : PLDBaseSlotResolvers
             if (预警.RecentlyUsed())
             {
                 return -1;
+            } 
+            
+            if (预警v2.RecentlyUsed())
+            {
+                return -1;
             }
+            
+            if (预警.GetCooldownRemainingTime() > 115)
+            {
+                return -1;
+            }
+            
 
             if (Buffs.神圣领域.GetBuffRemainingTime() > 500)
                 return -1;

@@ -55,7 +55,7 @@ public class Ability_深奥之灵 : PLDBaseSlotResolvers
                     }
                 }
 
-                if (GetCooldownRemainingTime(战逃反应FightOrFlight) > 20 && GetCooldownRemainingTime(战逃反应FightOrFlight) < 40)
+                if (GetCooldownRemainingTime(战逃反应FightOrFlight) > 10 && GetCooldownRemainingTime(战逃反应FightOrFlight) < 40)
                 {
                     return 0;
                 }

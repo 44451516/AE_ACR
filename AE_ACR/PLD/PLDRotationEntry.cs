@@ -208,9 +208,11 @@ public class PLDRotationEntry : IRotationEntry
         // ImGui.Text($"CountPoint : {dutySchedule.CountPoint}");
         // ImGui.Text($"NowPoint : {dutySchedule.NowPoint}");
 
-        ImGui.Text($"大保健连击Confiteor_GetResourceCost : {BaseIslotResolver.GetResourceCost(PLDBaseSlotResolvers.大保健连击Confiteor)}");
-        ImGui.Text($"大保健连击Confiteor.IsUnlock : {PLDBaseSlotResolvers.大保健连击Confiteor.IsUnlock()}");
-        ImGui.Text($"圣灵HolySpirit.ActionReady() : {PLDBaseSlotResolvers.圣灵HolySpirit.ActionReady()}");
+        // ImGui.Text($"大保健连击Confiteor_GetResourceCost : {BaseIslotResolver.GetResourceCost(PLDBaseSlotResolvers.大保健连击Confiteor)}");
+        // ImGui.Text($"大保健连击Confiteor.IsUnlock : {PLDBaseSlotResolvers.大保健连击Confiteor.IsUnlock()}");
+        // ImGui.Text($"圣灵HolySpirit.ActionReady() : {PLDBaseSlotResolvers.圣灵HolySpirit.ActionReady()}");
+        ImGui.Text($"lastComboActionID : {PLDBaseSlotResolvers.lastComboActionID}");
+        ImGui.Text($"GetNearbyEnemyCount : {TargetHelper.GetNearbyEnemyCount(5)}");
         // ImGui.Text($"GCD : {GCDHelper.GetGCDCooldown()}");
 
 
