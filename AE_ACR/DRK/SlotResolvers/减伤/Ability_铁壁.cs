@@ -55,7 +55,7 @@ public class Ability_铁壁 : DRKBaseSlotResolvers
             {
                 if (Core.Me.TargetObject is IBattleChara target)
                 {
-                    if (TargetHelper.TargercastingIsDeathSentence(target, 5) && 至黑之夜.MyIsUnlock())
+                    if (TargetHelper.TargercastingIsDeathSentence(target, 5) && target.TargetObjectId== Core.Me.GameObjectId)
                     {
                         return 0;
                     }

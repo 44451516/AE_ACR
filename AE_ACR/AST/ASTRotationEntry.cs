@@ -72,7 +72,7 @@ public class ASTRotationEntry : IRotationEntry
             AcrType = AcrType.Normal,
             MinLevel = 1,
             MaxLevel = 100,
-            Description = "亲信用的，不想精修了"
+            Description = "这是占星刷亲信的ACR，没有任何QT和HOKEY\n "
         };
 
         // 添加各种事件回调

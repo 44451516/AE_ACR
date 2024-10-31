@@ -33,6 +33,12 @@ public class GCD_群奶治疗 : ASTBaseSlotResolvers
 
         if (目标 != null && 目标.IsValid())
         {
+            //亲信50神兵npc 67 npc
+            if (目标.DataId is 14658 or 16247)
+            {
+                return -1;
+            }
+
             if (目标.CurrentHpPercent() <= 0.5f)
             {
                 return 0;

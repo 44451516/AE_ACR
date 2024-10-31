@@ -70,7 +70,7 @@ public class Ability_圣盾阵 : PLDBaseSlotResolvers
                             return 0;
                         }
 
-                        if (TargetHelper.TargercastingIsDeathSentence(target, 3))
+                        if (TargetHelper.TargercastingIsDeathSentence(target, 3) && target.TargetObjectId== Core.Me.GameObjectId)
                         {
                             return 0;
                         }

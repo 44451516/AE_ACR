@@ -60,7 +60,15 @@ public class PLD_GCD_Base_AOE : PLDBaseSlotResolvers
         
         if (lastComboActionID == 全蚀斩TotalEclipse && HasEffect(Buffs.DivineMight) && 圣环HolyCircle.MyIsUnlock())
         {
-            return 圣环HolyCircle.OriginalHook();
+            if (aoeCount >= 3)
+            {
+                return 圣环HolyCircle.OriginalHook();
+            }
+            else
+            {
+                return 圣灵HolySpirit.OriginalHook();
+            }
+
         }
 
         
