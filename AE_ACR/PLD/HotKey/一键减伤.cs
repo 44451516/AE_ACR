@@ -1,5 +1,6 @@
 ﻿using System.Numerics;
 using AE_ACR.PLD.SlotResolvers;
+using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
@@ -40,32 +41,32 @@ public class 一键减伤 : IHotkeyResolver
 
     public int Check()
     {
-        if (PLDBaseSlotResolvers.铁壁.IsReady())
+        if (PLDBaseSlotResolvers.铁壁.ActionReady())
         {
             SpellId = PLDBaseSlotResolvers.圣盾阵;
             return 0;
         }
 
-        if (PLDBaseSlotResolvers.圣盾阵.IsReady())
+        if (PLDBaseSlotResolvers.圣盾阵.ActionReady())
         {
             SpellId = PLDBaseSlotResolvers.预警;
             return 0;
         }
 
 
-        if (PLDBaseSlotResolvers.预警.IsReady())
+        if (PLDBaseSlotResolvers.预警.ActionReady())
         {
             SpellId = PLDBaseSlotResolvers.壁垒;
             return 0;
         }
 
-        if (PLDBaseSlotResolvers.壁垒.IsReady())
+        if (PLDBaseSlotResolvers.壁垒.ActionReady())
         {
             SpellId = PLDBaseSlotResolvers.神圣领域;
             return 0;
         }
 
-        if (PLDBaseSlotResolvers.神圣领域.IsReady())
+        if (PLDBaseSlotResolvers.神圣领域.ActionReady())
         {
             SpellId = PLDBaseSlotResolvers.圣盾阵;
             return 0;
@@ -79,30 +80,30 @@ public class 一键减伤 : IHotkeyResolver
     {
         Spell spell = null;
 
-        if (PLDBaseSlotResolvers.神圣领域.IsReady())
+        if (PLDBaseSlotResolvers.神圣领域.ActionReady())
         {
             spell = new Spell(PLDBaseSlotResolvers.神圣领域, Core.Me);
         }
 
 
-        if (PLDBaseSlotResolvers.壁垒.IsReady())
+        if (PLDBaseSlotResolvers.壁垒.ActionReady())
         {
             spell = new Spell(PLDBaseSlotResolvers.壁垒, Core.Me);
         }
 
-        if (PLDBaseSlotResolvers.预警.IsReady())
+        if (PLDBaseSlotResolvers.预警.ActionReady())
         {
             spell = new Spell(PLDBaseSlotResolvers.预警, Core.Me);
         }
 
 
-        if (PLDBaseSlotResolvers.圣盾阵.IsReady())
+        if (PLDBaseSlotResolvers.圣盾阵.ActionReady())
         {
             spell = new Spell(PLDBaseSlotResolvers.圣盾阵, Core.Me);
         }
 
 
-        if (PLDBaseSlotResolvers.铁壁.IsReady())
+        if (PLDBaseSlotResolvers.铁壁.ActionReady())
         {
             spell = new Spell(PLDBaseSlotResolvers.铁壁, Core.Me);
         }

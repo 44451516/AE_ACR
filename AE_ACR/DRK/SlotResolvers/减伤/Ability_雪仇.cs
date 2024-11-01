@@ -23,7 +23,7 @@ public class Ability_雪仇 : DRKBaseSlotResolvers
         if (CanWeave())
         {
             
-            if (雪仇.IsReady() == false)
+            if (雪仇.ActionReady() == false)
             {
                 return Flag_CD;
             }

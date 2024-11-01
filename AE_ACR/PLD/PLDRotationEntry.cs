@@ -226,7 +226,7 @@ public class PLDRotationEntry : IRotationEntry
         // ImGui.Text($"圣灵HolySpirit.ActionReady() : {PLDBaseSlotResolvers.圣灵HolySpirit.ActionReady()}");
         ImGui.Text($"lastComboActionID : {PLDBaseSlotResolvers.lastComboActionID}");
         ImGui.Text($"GetNearbyEnemyCount : {TargetHelper.GetNearbyEnemyCount(5)}");
-        ImGui.Text($"大宝剑 : {PLDBaseSlotResolvers.大保健连击Confiteor.IsReady()}");
+        ImGui.Text($"大宝剑 : {PLDBaseSlotResolvers.大保健连击Confiteor.ActionReady()}");
 
 
         ImGui.Text($"挑衅 : {TankBaseIslotResolver.挑衅.ActionReadyAE()}");

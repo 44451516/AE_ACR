@@ -24,7 +24,7 @@ public class Ability_雪仇 : PLDBaseSlotResolvers
         if (CanWeave())
         {
             
-            if (雪仇.IsReady() == false)
+            if (雪仇.ActionReady() == false)
             {
                 return Flag_CD;
             }

@@ -22,7 +22,7 @@ public class Ability_壁垒 : PLDBaseSlotResolvers
 
         if (CanWeave())
         {
-            if (壁垒.IsReady() == false)
+            if (壁垒.ActionReady() == false)
             {
                 return Flag_CD;
             }

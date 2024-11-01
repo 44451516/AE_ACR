@@ -51,7 +51,7 @@ public class DK_Ability_精雕怒斩 : DRKBaseSlotResolvers
             return -2;
 
 
-        if (Core.Resolve<MemApiSpell>().CheckActionChange(精雕怒斩CarveAndSpit).IsReady() == false)
+        if (Core.Resolve<MemApiSpell>().CheckActionChange(精雕怒斩CarveAndSpit).ActionReady() == false)
             return -3;
 
         if (DKSettings.Instance.能力技爆发延时 > CombatTime.Instance.CombatEngageDuration().TotalSeconds)

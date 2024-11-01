@@ -157,7 +157,7 @@ public class ASTRotationEntry : IRotationEntry
         ImGui.Text($"GetBuffRemainingTime : {BaseIslotResolver.GetBuffRemainingTime(BaseIslotResolver.DeBuffs.加速器炸弹)}");
         ImGui.Text($"HasEffect : {BaseIslotResolver.HasEffect(BaseIslotResolver.DeBuffs.加速器炸弹)}");
         ImGui.Text($"地星ActionReady : {ASTBaseSlotResolvers.地星.ActionReady()}");
-        ImGui.Text($"地星IsReady : {ASTBaseSlotResolvers.地星.IsReady()}");
+        ImGui.Text($"地星IsReady : {ASTBaseSlotResolvers.地星.ActionReady()}");
         ImGui.Text($"地星IsUnlock : {ASTBaseSlotResolvers.地星.MyIsUnlock()}");
         ImGui.Text($"地星IsLevelEnough : {ASTBaseSlotResolvers.地星.IsLevelEnough()}");
         ImGui.Text($"GetCooldownRemainingTime : {ASTBaseSlotResolvers.地星.GetCooldownRemainingTime()}");

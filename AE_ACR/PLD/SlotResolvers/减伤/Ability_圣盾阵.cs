@@ -24,7 +24,7 @@ public class Ability_圣盾阵 : PLDBaseSlotResolvers
 
         if (CanWeave())
         {
-            if (圣盾阵.IsReady() == false)
+            if (圣盾阵.ActionReady() == false)
             {
                 return Flag_CD;
             }

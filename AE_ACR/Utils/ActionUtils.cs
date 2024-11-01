@@ -24,12 +24,15 @@ internal static class ActionUtils
 
     internal static bool ActionReady(this uint value)
     {
-        return value.MyIsUnlock() && value.IsLevelEnough() && value.IsReady();
+        var canCast = value.GetSpell().CanCast();
+
+        return value.MyIsUnlock() && value.IsLevelEnough() && value.IsReady() && canCast;
     }
 
     internal static bool ActionReadyAE(this uint value)
     {
-        return value.IsReady();
+        var canCast = value.GetSpell().CanCast();
+        return value.IsReady() && canCast;
     }
 
     internal static float Charges(this uint value)
@@ -39,8 +42,9 @@ internal static class ActionUtils
 
     internal static bool OriginalHookActionReady(this uint value)
     {
+        var canCast = value.GetSpell().CanCast();
         var id = value.OriginalHook().Id;
-        return id.MyIsUnlock() && id.IsLevelEnough() && id.IsReady();
+        return id.MyIsUnlock() && id.IsLevelEnough() && value.IsReady() && canCast;
     }
 
     internal static bool WasLastAction(this uint value)

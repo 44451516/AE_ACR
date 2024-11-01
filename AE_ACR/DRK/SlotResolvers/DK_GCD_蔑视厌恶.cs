@@ -39,7 +39,7 @@ public class DK_GCD_蔑视厌恶 : DRKBaseSlotResolvers
         if (darksideTimeRemaining == 0)
             return -1;
 
-        if (蔑视厌恶Disesteem.IsReady() == false)
+        if (蔑视厌恶Disesteem.ActionReady() == false)
             return -1;
 
         if (DKSettings.Instance.GCD爆发延时 > CombatTime.Instance.CombatEngageDuration().TotalSeconds)
