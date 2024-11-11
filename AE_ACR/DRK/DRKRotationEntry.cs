@@ -6,6 +6,7 @@ using AE_ACR_DRK.SlotResolvers;
 using AE_ACR.Base;
 using AE_ACR.DRK.SlotResolvers;
 using AE_ACR.DRK.SlotResolvers.减伤;
+using AE_ACR.DRK.Triggers;
 using AE_ACR.DRK.起手;
 using AE_ACR.PLD.起手;
 using AE_ACR.utils;
@@ -98,6 +99,11 @@ public class DRKRotationEntry : IRotationEntry
         rot.SetRotationEventHandler(new DRKRotationEventHandler());
         // 添加QT开关的时间轴行为
         rot.AddTriggerAction(new TriggerAction_QT());
+        rot.AddTriggerCondition(
+            new ITriggerCond_DRK暗血值(),
+            new ITriggerCond_DRK蓝量检查(),
+            new ITriggerCond_DRK暗技检查()
+        );
         rot.AddOpener(GetOpener);
 
         return rot;
