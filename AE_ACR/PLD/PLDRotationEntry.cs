@@ -95,6 +95,8 @@ public class PLDRotationEntry : IRotationEntry
         rot.SetRotationEventHandler(new RotationEventHandler());
         // 添加QT开关的时间轴行为
         rot.AddTriggerAction(new TriggerAction_QT());
+        //添加QT开关的时间轴行为
+        rot.AddTriggerCondition(new ITriggerCond_PLD忠义值());
 
         return rot;
     }

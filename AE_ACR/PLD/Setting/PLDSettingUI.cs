@@ -21,6 +21,11 @@ public class PLDSettingUI
         ImGui.DragFloat("近战最大攻击距离", ref pldSettings.近战最大攻击距离, 0.1f, 2.5f, 15f);
         ImGui.Checkbox("起手突进",ref pldSettings.起手突进);
         ImGui.DragInt("附近5M多少怪物放AOE", ref pldSettings.USE_AOE, 1, 1, 10);
+        
+        ImGui.Checkbox("起手幕帘",ref pldSettings.起手幕帘);
+        ImGui.Text("在倒计时多少的是使用幕帘，单位是毫秒，倒计时5秒填5000");
+        ImGui.DragInt("起手幕帘阈值", ref pldSettings.起手幕帘阈值, 1000, 100, 30_000);
+        
         if (ImGui.Button("Save[保存]"))
         {
             PLDSettings.Instance.Save();

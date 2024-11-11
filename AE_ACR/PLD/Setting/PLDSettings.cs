@@ -20,6 +20,8 @@ public class PLDSettings
     public float 远程圣灵阈值 = 5f;
     public float 近战最大攻击距离 = 2.99f;
     public bool 起手突进 = true;
+    public bool 起手幕帘 = false;
+    public int 起手幕帘阈值 = 5000;
     public int USE_AOE = 3;
 
     public JobViewSave JobViewSave = new(); // QT设置存档
