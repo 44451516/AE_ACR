@@ -37,7 +37,10 @@ public abstract class BaseIslotResolver : ISlotResolver
         留空 = 3624;
 
     public static uint lastComboActionID => Core.Resolve<MemApiSpell>().GetLastComboSpellId();
+    public static uint lastGCDActionID => Core.Resolve<MemApiSpellCastSuccess>().LastGcd;
     public static double comboTime => Core.Resolve<MemApiSpell>().GetComboTimeLeft().TotalSeconds;
+    
+    
 
     public static uint LastAction => Core.Resolve<MemApiSpellCastSuccess>().LastSpell;
     public static uint LastSpell => Core.Resolve<MemApiSpellCastSuccess>().LastSpell;

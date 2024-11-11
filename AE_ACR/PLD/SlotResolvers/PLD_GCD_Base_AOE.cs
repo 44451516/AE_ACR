@@ -1,6 +1,7 @@
 #region
 
 using AE_ACR.Base;
+using AE_ACR.PLD.Setting;
 using AE_ACR.utils;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
@@ -40,7 +41,7 @@ public class PLD_GCD_Base_AOE : PLDBaseSlotResolvers
             return 0;
         }
 
-        if (TargetHelper.GetNearbyEnemyCount(5) >= 2)
+        if (TargetHelper.GetNearbyEnemyCount(5) >= PLDSettings.Instance.USE_AOE)
         {
             if (全蚀斩TotalEclipse.MyIsUnlock())
             {

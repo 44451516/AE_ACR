@@ -3,6 +3,7 @@
 using AE_ACR.PLD.Setting;
 using AE_ACR.utils;
 using AEAssist.CombatRoutine.Module;
+using AEAssist.Helper;
 
 #endregion
 
@@ -32,7 +33,7 @@ public class Ability_安魂祈祷 : PLDBaseSlotResolvers
         {
             if (安魂祈祷Requiescat.OriginalHookActionReady())
             {
-                if (和目标的距离() > PLDSettings.Instance.近战最大攻击距离)
+                if (安魂祈祷Requiescatv2.IsUnlock() == false && 和目标的距离() > PLDSettings.Instance.近战最大攻击距离)
                 {
                     return Flag_超出攻击距离;
                 }

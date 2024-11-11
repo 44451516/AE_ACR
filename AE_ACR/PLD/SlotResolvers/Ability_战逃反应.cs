@@ -86,6 +86,13 @@ public class Ability_战逃反应 : PLDBaseSlotResolvers
                     {
                         return 0;
                     }
+
+                    //2024年11月5日20:24:50 
+                    if (lastGCDActionID == 赎罪剑Atonement3 && lastComboActionID == 暴乱剑RiotBlade && comboTime >= 16)
+                    {
+                        return 0;
+                    }
+
                 }
             }
         }

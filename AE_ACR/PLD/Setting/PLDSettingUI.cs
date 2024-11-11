@@ -20,6 +20,7 @@ public class PLDSettingUI
         ImGui.DragFloat("调停保留层数", ref pldSettings.调停保留层数, 0.1f, 0, 2);
         ImGui.DragFloat("近战最大攻击距离", ref pldSettings.近战最大攻击距离, 0.1f, 2.5f, 15f);
         ImGui.Checkbox("起手突进",ref pldSettings.起手突进);
+        ImGui.DragInt("附近5M多少怪物放AOE", ref pldSettings.USE_AOE, 1, 1, 10);
         if (ImGui.Button("Save[保存]"))
         {
             PLDSettings.Instance.Save();
