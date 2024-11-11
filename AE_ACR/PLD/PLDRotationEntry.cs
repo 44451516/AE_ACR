@@ -8,6 +8,7 @@ using AE_ACR.PLD.SlotResolvers.减伤;
 using AE_ACR.PLD.Triggers;
 using AE_ACR.PLD.起手;
 using AE_ACR.utils;
+using AE_ACR.utils.Triggers;
 using AEAssist;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
@@ -94,7 +95,10 @@ public class PLDRotationEntry : IRotationEntry
         // 添加各种事件回调
         rot.SetRotationEventHandler(new RotationEventHandler());
         // 添加QT开关的时间轴行为
-        rot.AddTriggerAction(new TriggerAction_QT());
+        rot.AddTriggerAction(
+            new TriggerAction_QT(),
+            new TriggerAction_M1S_Rot()
+        );
         //添加QT开关的时间轴行为
         rot.AddTriggerCondition(new ITriggerCond_PLD忠义值());
 

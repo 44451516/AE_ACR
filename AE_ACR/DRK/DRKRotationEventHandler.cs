@@ -6,10 +6,14 @@ using AE_ACR.DRK.SlotResolvers;
 using AE_ACR.PLD.Setting;
 using AE_ACR.PLD.SlotResolvers;
 using AE_ACR.utils;
+using AE_ACR.Utils;
+using AE_ACR.utils.Triggers;
+using AEAssist;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.CombatRoutine.Module.AILoop;
 using AEAssist.Helper;
+using AEAssist.MemoryApi;
 
 #endregion
 
@@ -62,6 +66,10 @@ public class DRKRotationEventHandler : IRotationEventHandler
         if (CombatTime.Instance.combatStart == DateTime.MinValue) CombatTime.Instance.combatStart = DateTime.Now;
 
         CombatTime.Instance.UpdateCombatTimer();
+        if (TriggerAction_M1S_Rot.Start && Core.Resolve<MemApiZoneInfo>().GetCurrTerrId() == 1226U)
+        {
+            RotUtil.M1S_FaceFarPointInSquare(Core.Me.Position);
+        }
     }
 
     public void OnEnterRotation()
