@@ -51,7 +51,7 @@ public abstract class DRKBaseSlotResolvers : TankBaseIslotResolver
         弃明投暗 = 3634,
         暗影墙 = 3636,
         至黑之夜 = 7393,
-        行尸走肉 = 3636,
+        行尸走肉 = 3638,
         献奉 = 25754,
         深恶痛绝 = 3629,
         暗黑布道 = 16471,

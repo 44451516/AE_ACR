@@ -63,7 +63,8 @@ public abstract class BaseIslotResolver : ISlotResolver
 
     public static bool CanWeave(int weaveTime = 660)
     {
-        if (GCDHelper.GetGCDCooldown() > weaveTime) return true;
+        if (GCDHelper.GetGCDCooldown() > weaveTime) 
+            return true;
 
         return false;
     }

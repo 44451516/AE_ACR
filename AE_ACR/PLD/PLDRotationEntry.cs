@@ -173,18 +173,19 @@ public class PLDRotationEntry : IRotationEntry
         QT.AddHotkey("LB", new HotKeyResolver_LB());
         QT.AddHotkey("一键减伤", new 一键减伤());
         
-        // QT.AddHotkey("钢铁信念",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.钢铁信念, SpellTargetType.Self));
-        // QT.AddHotkey("铁壁",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.铁壁, SpellTargetType.Self));
-        // QT.AddHotkey("预警",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.预警.OriginalHook().Id, SpellTargetType.Self));
-        // QT.AddHotkey("壁垒",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.壁垒, SpellTargetType.Self));
-        // QT.AddHotkey("圣盾阵",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.圣盾阵, SpellTargetType.Self));
-        // QT.AddHotkey("干预",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.干预, SpellTargetType.Pm2));
-        // QT.AddHotkey("圣光幕帘",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.圣光幕帘, SpellTargetType.Self));
-        // QT.AddHotkey("神圣领域",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.神圣领域, SpellTargetType.Self));
-        //
-        // QT.AddHotkey("亲疏自行",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.亲疏自行, SpellTargetType.Self));
-        // QT.AddHotkey("雪仇",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.雪仇, SpellTargetType.Self));
-        // QT.AddHotkey("退避",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.退避, SpellTargetType.Pm2));
+        QT.AddHotkey("铁壁",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.铁壁, SpellTargetType.Self));
+        QT.AddHotkey("预警",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.预警.OriginalHook().Id, SpellTargetType.Self));
+        QT.AddHotkey("壁垒",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.壁垒, SpellTargetType.Self));
+        QT.AddHotkey("干预",new HotkeyResolver_干预Pm2());
+        QT.AddHotkey("钢铁信念",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.钢铁信念, SpellTargetType.Self));
+        QT.AddHotkey("圣盾阵",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.圣盾阵.OriginalHook().Id, SpellTargetType.Self));
+        QT.AddHotkey("圣光幕帘",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.圣光幕帘, SpellTargetType.Self));
+        QT.AddHotkey("神圣领域",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.神圣领域, SpellTargetType.Self));
+        
+        QT.AddHotkey("亲疏自行",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.亲疏自行, SpellTargetType.Self));
+        QT.AddHotkey("雪仇",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.雪仇, SpellTargetType.Target));
+        QT.AddHotkey("挑衅",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.挑衅, SpellTargetType.Pm2));
+        QT.AddHotkey("退避2",new HotkeyResolver_退避());
 
     }
 

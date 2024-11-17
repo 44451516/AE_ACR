@@ -2,6 +2,7 @@
 
 using AE_ACR_DRK_Setting;
 using AE_ACR_DRK_Triggers;
+using AE_ACR_DRK.HotKey;
 using AE_ACR_DRK.SlotResolvers;
 using AE_ACR.Base;
 using AE_ACR.DRK.SlotResolvers;
@@ -205,6 +206,21 @@ public class DRKRotationEntry : IRotationEntry
         
         
         QT.AddHotkey("LB", new HotKeyResolver_LB());
+        QT.AddHotkey("铁壁",new HotKeyResolver_NormalSpell(TankBaseIslotResolver.铁壁, SpellTargetType.Self));
+        QT.AddHotkey("暗影墙",new HotKeyResolver_NormalSpell(DRKBaseSlotResolvers.暗影墙.OriginalHook().Id, SpellTargetType.Self));
+        QT.AddHotkey("弃明投暗",new HotKeyResolver_NormalSpell(DRKBaseSlotResolvers.弃明投暗.OriginalHook().Id, SpellTargetType.Self));
+        QT.AddHotkey("至黑之夜1",new HotKeyResolver_NormalSpell(DRKBaseSlotResolvers.至黑之夜, SpellTargetType.Self));
+        QT.AddHotkey("至黑之夜2",new HotkeyResolver_黑盾Pm2());
+        QT.AddHotkey("献奉1",new HotkeyResolver_献奉Pm1());
+        QT.AddHotkey("献奉2",new HotkeyResolver_献奉Pm2());
+        QT.AddHotkey("暗黑布道",new HotKeyResolver_NormalSpell(DRKBaseSlotResolvers.暗黑布道, SpellTargetType.Self));
+        QT.AddHotkey("行尸走肉",new HotKeyResolver_NormalSpell(DRKBaseSlotResolvers.行尸走肉, SpellTargetType.Self));
+        
+        QT.AddHotkey("亲疏自行",new HotKeyResolver_NormalSpell(TankBaseIslotResolver.亲疏自行, SpellTargetType.Self));
+        QT.AddHotkey("雪仇",new HotKeyResolver_NormalSpell(TankBaseIslotResolver.雪仇, SpellTargetType.Target));
+        QT.AddHotkey("挑衅",new HotKeyResolver_NormalSpell(TankBaseIslotResolver.挑衅, SpellTargetType.Pm2));
+        QT.AddHotkey("退避2",new HotKeyResolver_NormalSpell(TankBaseIslotResolver.退避, SpellTargetType.Pm2));
+        QT.AddHotkey("清马桶", new HotkeyResolver_清马桶());
     }
     
     private void DrawDailyMode(JobViewWindow obj)
