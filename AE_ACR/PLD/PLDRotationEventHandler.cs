@@ -20,7 +20,7 @@ namespace AE_ACR.PLD;
 /// <summary>
 ///     事件回调处理类 参考接口里的方法注释
 /// </summary>
-public class RotationEventHandler : IRotationEventHandler
+public class PLDRotationEventHandler : IRotationEventHandler
 {
     public async Task OnPreCombat()
     {

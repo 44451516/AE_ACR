@@ -25,6 +25,7 @@ public class PLDSettingUI
         ImGui.Checkbox("起手幕帘",ref pldSettings.起手幕帘);
         ImGui.Text("在倒计时多少的是使用幕帘，单位是毫秒，倒计时5秒填5000");
         ImGui.DragInt("起手幕帘阈值", ref pldSettings.起手幕帘阈值, 1000, 100, 30_000);
+        ImGui.DragFloat("最大突进距离(超过就不用了)", ref pldSettings.最大突进距离, 0.1f, 0f, 25f);
         
         if (ImGui.Button("Save[保存]"))
         {

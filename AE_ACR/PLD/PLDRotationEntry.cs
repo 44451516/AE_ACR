@@ -58,6 +58,7 @@ public class PLDRotationEntry : IRotationEntry
         new SlotResolverData(new GCD_大宝剑连击(), SlotMode.Gcd),
         new SlotResolverData(new GCD_大宝剑连击_圣灵_圣环(), SlotMode.Gcd),
         new SlotResolverData(new GCD_倾泻资源(), SlotMode.Gcd),
+        new SlotResolverData(new PLD_GCD_远程强化圣灵(), SlotMode.Gcd),
         new SlotResolverData(new PLD_GCD_远程圣灵(), SlotMode.Gcd),
         new SlotResolverData(new PLD_GCD_投盾(), SlotMode.Gcd),
         new SlotResolverData(new PLD_GCD_Base_AOE(), SlotMode.Gcd),
@@ -90,10 +91,11 @@ public class PLDRotationEntry : IRotationEntry
                           + "[即刻战逃]会立刻使用战逃，即使没有合适的资源\n"
                           + "[大保健连击]会再未学习大保健的情况下用代替\n"
                           + "[一键减伤]铁壁-圣盾阵-预警-壁垒-神圣领域\n"
+                          + "[远程强化圣灵]阈值在《远程圣灵阈值》里面设置\n"
         };
         rot.AddOpener(GetOpener);
         // 添加各种事件回调
-        rot.SetRotationEventHandler(new RotationEventHandler());
+        rot.SetRotationEventHandler(new PLDRotationEventHandler());
         // 添加QT开关的时间轴行为
         rot.AddTriggerAction(
             new TriggerAction_QT(),
@@ -154,6 +156,7 @@ public class PLDRotationEntry : IRotationEntry
         QT.MyAddQt(qtDict, BaseQTKey.倾泻资源, false);
         QT.MyAddQt(qtDict, PLDQTKey.起手序列, false);
         QT.MyAddQt(qtDict, BaseQTKey.AOE, true);
+        QT.MyAddQt(qtDict, PLDQTKey.远程强化圣灵, false,"阈值在《远程圣灵阈值》里面设置");
 
         if (PLDSettings.Instance.QtUnVisibleList.Any())
         {

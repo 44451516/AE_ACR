@@ -28,12 +28,12 @@ public class DK_GCD_蔑视厌恶 : DRKBaseSlotResolvers
         {
             return Flag_攒资源;
         }
-        
+
         if (!getQTValue(DRKQTKey.蔑视厌恶))
         {
             return Flag_QT;
         }
-        
+
         var darksideTimeRemaining = Core.Resolve<JobApi_DarkKnight>().DarksideTimeRemaining;
 
         if (darksideTimeRemaining == 0)
@@ -51,9 +51,15 @@ public class DK_GCD_蔑视厌恶 : DRKBaseSlotResolvers
         }
 
 
-        if (Core.Me.HasAura(Buffs.Scorn))
+        if (Buffs.Scorn.GetBuffRemainingTime() > 0 && Buffs.Scorn.GetBuffRemainingTime() < 4000)
         {
-            return 0;
+            return 1;
+        }
+
+
+        if (RaidBuff.爆发期_120())
+        {
+            return 5;
         }
 
 

@@ -33,9 +33,9 @@ public class RaidBuff
 
     public static bool 爆发期_120()
     {
-        //小于25f避免早打，反正爆发期很长
+        //小于20f避免早打，反正爆发期很长
         var 强化药BUFF = 强化药.GetBuffRemainingTime() / 1000f;
-        if (强化药BUFF > 0 && 强化药BUFF < 20f)
+        if (强化药BUFF is > 0 and < 20f)
             return true;
 
         if (Core.Me.HasAura(灼热之光))

@@ -34,7 +34,6 @@ public class GCD_优先强化圣灵 : PLDBaseSlotResolvers
 
         if (GetResourceCost(圣灵HolySpirit) <= Core.Me.CurrentMp)
         {
-
             if (圣灵HolySpirit.MyIsUnlock())
             {
                 if (HasEffect(Buffs.DivineMight))

@@ -20,4 +20,5 @@ public class PLDQTKey : BaseQTKey
     public const string 厄运流转 = "厄运流转";
     public const string 深奥之灵 = "深奥之灵";
     public const string 优先强化圣灵 = "优先强化圣灵";
+    public const string 远程强化圣灵 = "远程强化圣灵";
 }
