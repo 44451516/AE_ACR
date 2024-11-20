@@ -13,17 +13,17 @@ public class TriggerAction_M1S_Rot : ITriggerAction
 
     public bool Draw()
     {
-        ImGui.Checkbox("启用面对安全点", ref this.temp);
+        ImGui.Checkbox("启用面对安全点", ref this.tempStart);
         return true;
     }
 
     public bool Handle()
     {
-        TriggerAction_M1S_Rot.Start = this.temp;
+        TriggerAction_M1S_Rot.Start = this.tempStart;
         return true;
     }
 
     public static bool Start;
 
-    private bool temp;
+    private bool tempStart;
 }

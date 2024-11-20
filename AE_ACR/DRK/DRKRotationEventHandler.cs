@@ -70,6 +70,7 @@ public class DRKRotationEventHandler : IRotationEventHandler
         {
             RotUtil.M1S_FaceFarPointInSquare(Core.Me.Position);
         }
+        
     }
 
     public void OnEnterRotation()

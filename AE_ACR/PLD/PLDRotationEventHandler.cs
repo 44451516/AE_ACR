@@ -3,6 +3,7 @@
 using AE_ACR.Base;
 using AE_ACR.PLD.Setting;
 using AE_ACR.PLD.SlotResolvers;
+using AE_ACR.PLD.Triggers;
 using AE_ACR.utils;
 using AE_ACR.Utils;
 using AE_ACR.utils.Triggers;
@@ -67,6 +68,11 @@ public class PLDRotationEventHandler : IRotationEventHandler
         if (TriggerAction_M1S_Rot.Start && Core.Resolve<MemApiZoneInfo>().GetCurrTerrId() == 1226U)
         {
             RotUtil.M1S_FaceFarPointInSquare(Core.Me.Position);
+        }
+        
+        if (TriggerAction_大翅膀_Rot.Start )
+        {
+            RotUtil.骑士大翅膀FaceFarPoint();
         }
     }
 

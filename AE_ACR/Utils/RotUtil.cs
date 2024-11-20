@@ -1,5 +1,6 @@
 ﻿using System.Numerics;
 using AEAssist;
+using AEAssist.Helper;
 using AEAssist.MemoryApi;
 
 namespace AE_ACR.Utils
@@ -54,6 +55,64 @@ namespace AE_ACR.Utils
             float newRotation = (float)Math.Atan2(deltaX, deltaZ);
 
             Core.Resolve<MemApiMove>().SetRot(newRotation);
+        }
+        
+        public static void 骑士大翅膀FaceFarPoint()
+        {
+            var myPosition = Core.Me.Position;  // 自己的坐标
+            float maxDistance = 8.0f;           // 背后范围半径
+            float backwardAngleThreshold = MathF.PI / 2; // ±90度范围
+            int maxPlayers = 0;
+            float optimalRotation = Core.Me.Rotation; // 初始化为当前面向
+
+            // 枚举所有队友的方向作为候选面向
+            foreach (var battleChara in PartyHelper.CastableAlliesWithin10)
+            {
+                var battleCharaPosition = battleChara.Position;
+
+                // 计算与每个玩家的方向向量和角度
+                Vector3 directionToPlayer = battleCharaPosition - myPosition;
+                float candidateRotation = MathF.Atan2(directionToPlayer.Z, directionToPlayer.X);
+
+                // 统计该候选面向背后玩家数量
+                int playersBehind = 0;
+                foreach (var otherChara in PartyHelper.CastableAlliesWithin10)
+                {
+                    var otherCharaPosition = otherChara.Position;
+
+                    // 计算与其他玩家的方向向量
+                    Vector3 directionToOther = otherCharaPosition - myPosition;
+
+                    // 计算距离过滤
+                    if (directionToOther.Length() > maxDistance)
+                    {
+                        continue;
+                    }
+
+                    // 计算相对候选面向的角度
+                    float angleBetween = MathF.Atan2(directionToOther.Z, directionToOther.X) - candidateRotation;
+
+                    // 归一化角度到[-π, π]
+                    angleBetween = (angleBetween + MathF.PI) % (2 * MathF.PI) - MathF.PI;
+
+                    // 判断是否在背后范围
+                    if (angleBetween > MathF.PI / 2 || angleBetween < -MathF.PI / 2)
+                    {
+                        playersBehind++;
+                    }
+                }
+
+                // 更新最大值和最佳面向
+                if (playersBehind > maxPlayers)
+                {
+                    maxPlayers = playersBehind;
+                    optimalRotation = candidateRotation;
+                }
+            }
+            
+            // 设置自己的面向为最佳面向
+            Core.Resolve<MemApiMove>().SetRot(optimalRotation);
+            
         }
 
     }

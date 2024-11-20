@@ -99,7 +99,8 @@ public class PLDRotationEntry : IRotationEntry
         // 添加QT开关的时间轴行为
         rot.AddTriggerAction(
             new TriggerAction_QT(),
-            new TriggerAction_M1S_Rot()
+            new TriggerAction_M1S_Rot(),
+            new TriggerAction_大翅膀_Rot()
         );
         //添加QT开关的时间轴行为
         rot.AddTriggerCondition(new ITriggerCond_PLD忠义值());
