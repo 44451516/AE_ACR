@@ -44,7 +44,6 @@ public class PLDRotationEntry : IRotationEntry
 
         new SlotResolverData(new Ability_战逃反应(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_安魂祈祷(), SlotMode.OffGcd),
-        new SlotResolverData(new Ability_深奥之灵(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_厄运流转(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_深奥之灵(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_调停(), SlotMode.OffGcd),
@@ -104,6 +103,7 @@ public class PLDRotationEntry : IRotationEntry
         );
         //添加QT开关的时间轴行为
         rot.AddTriggerCondition(new ITriggerCond_PLD忠义值());
+        rot.AddTriggerCondition(new ITriggerCond_PLD调停充能());
 
         return rot;
     }
@@ -158,6 +158,7 @@ public class PLDRotationEntry : IRotationEntry
         QT.MyAddQt(qtDict, PLDQTKey.起手序列, false);
         QT.MyAddQt(qtDict, BaseQTKey.AOE, true);
         QT.MyAddQt(qtDict, PLDQTKey.远程强化圣灵, false,"阈值在《远程圣灵阈值》里面设置");
+        QT.MyAddQt(qtDict, PLDQTKey.战逃打完调停, false);
 
         if (PLDSettings.Instance.QtUnVisibleList.Any())
         {
@@ -228,6 +229,10 @@ public class PLDRotationEntry : IRotationEntry
     {
         ImGui.Text("画Dev信息");
 
+        ImGui.Text($"调停Intervene : {PLDBaseSlotResolvers.调停Intervene.ActionReady()}");
+        ImGui.Text($"Charges : {PLDBaseSlotResolvers.调停Intervene.Charges()}");
+        ImGui.Text($"调停充能释放时期 : { PLDSettings.Instance.调停保留层数}");
+        
         // var dutySchedule = Core.Resolve<MemApiDuty>().GetSchedule();
         // ImGui.Text($"CountPoint : {dutySchedule.CountPoint}");
         // ImGui.Text($"NowPoint : {dutySchedule.NowPoint}");

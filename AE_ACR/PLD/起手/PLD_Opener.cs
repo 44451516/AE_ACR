@@ -1,6 +1,7 @@
 ﻿using AE_ACR.Base;
 using AE_ACR.PLD.Setting;
 using AE_ACR.PLD.SlotResolvers;
+using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
@@ -56,13 +57,21 @@ public class PLD_Opener : IOpener
         countDownHandler.AddAction(2000, PLDBaseSlotResolvers.圣灵HolySpirit, SpellTargetType.Target);
         if (PLDSettings.Instance.起手突进 && PLDBaseSlotResolvers.调停Intervene.IsUnlock())
         {
-            countDownHandler.AddAction(100, PLDBaseSlotResolvers.调停Intervene, SpellTargetType.Target);
+            countDownHandler.AddAction(500, PLDBaseSlotResolvers.调停Intervene, SpellTargetType.Target);
         }
 
     }
 
     private static void Step0(Slot slot)
     {
+        if (PLDSettings.Instance.起手突进 && PLDBaseSlotResolvers.调停Intervene.IsUnlock())
+        {
+            if (PLDBaseSlotResolvers.调停Intervene.Charges() >= 2)
+            {
+                slot.Add(new Spell(PLDBaseSlotResolvers.调停Intervene, SpellTargetType.Target));
+            }
+        }
+        
         slot.Add(new Spell(PLDBaseSlotResolvers.先锋剑FastBlade, SpellTargetType.Target));
     }
 

@@ -33,6 +33,14 @@ public class Ability_调停 : PLDBaseSlotResolvers
         {
             if (调停Intervene.ActionReady() && !WasLastAction(调停Intervene))
             {
+                if (HasEffect(Buffs.FightOrFlight))
+                {
+                    if (PLDRotationEntry.QT.GetQt(PLDQTKey.战逃打完调停))
+                    {
+                        return 3;
+                    }
+                }
+                
                 if (调停Intervene.Charges() > PLDSettings.Instance.调停保留层数)
                 {
                     bool inAttackDistance = 和目标的距离() <= PLDSettings.Instance.最大突进距离;
@@ -40,20 +48,12 @@ public class Ability_调停 : PLDBaseSlotResolvers
                     {
                         if (HasEffect(Buffs.FightOrFlight))
                         {
-                            return 0;
+                            return 1;
                         }
-
-                        if (RaidBuff.爆发期_120() && GetCooldownRemainingTime(战逃反应FightOrFlight) >= 15)
-                        {
-                            return 0;
-                        }
+                        
                     }
-
-                  
                 }
-
             }
-
         }
 
         return -1;
