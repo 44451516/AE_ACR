@@ -159,6 +159,7 @@ public class PLDRotationEntry : IRotationEntry
         QT.MyAddQt(qtDict, BaseQTKey.AOE, true);
         QT.MyAddQt(qtDict, PLDQTKey.远程强化圣灵, false,"阈值在《远程圣灵阈值》里面设置");
         QT.MyAddQt(qtDict, PLDQTKey.战逃打完调停, false);
+        QT.MyAddQt(qtDict, PLDQTKey.移动不打调停, false);
 
         if (PLDSettings.Instance.QtUnVisibleList.Any())
         {
