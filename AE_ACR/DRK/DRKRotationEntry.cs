@@ -19,6 +19,7 @@ using AEAssist.CombatRoutine.Module.Opener;
 using AEAssist.CombatRoutine.View.JobView;
 using AEAssist.CombatRoutine.View.JobView.HotkeyResolver;
 using AEAssist.Extension;
+using AEAssist.JobApi;
 using ImGuiNET;
 
 #endregion
@@ -167,7 +168,7 @@ public class DRKRotationEntry : IRotationEntry
         QT.AddTab("Dev", DrawQtDev);
 #endif
         QT.AddTab("通用", DrawQtGeneral);
-        QT.AddTab("说明", DrawQtDescription);
+        // QT.AddTab("说明", DrawQtDescription);
         QT.AddTab("日常模式", DrawDailyMode);
         // QT.AddTab("自动减伤", DrawAutoBuff);
         Dictionary<string, bool> qtDict = DKSettings.Instance.MyQtDict;
@@ -259,6 +260,9 @@ public class DRKRotationEntry : IRotationEntry
 
     public void DrawQtDev(JobViewWindow jobViewWindow)
     {
+        
+        var shadowTimeRemaining = Core.Resolve<JobApi_DarkKnight>().ShadowTimeRemaining;
+        ImGui.Text($"shadowTimeRemaining:{shadowTimeRemaining}");
         // ImGui.Text("画Dev信息");
         // foreach (var v in jobViewWindow.GetQtArray())
         // {

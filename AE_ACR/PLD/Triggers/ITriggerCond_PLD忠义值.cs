@@ -8,7 +8,7 @@ namespace AE_ACR.PLD.Triggers;
 
 public class ITriggerCond_PLD忠义值 : ITriggerCond
 {
-    public int 自定义忠义值;
+    public int 自定义忠义值=50;
 
     public bool Draw()
     {

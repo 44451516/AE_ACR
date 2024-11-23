@@ -7,7 +7,7 @@ namespace AE_ACR.PLD.Triggers;
 
 public class ITriggerCond_PLD调停充能 : ITriggerCond
 {
-    public float 自定义调停充能;
+    public float 自定义调停充能 = 1;
 
     public bool Draw()
     {

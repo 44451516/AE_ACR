@@ -3,6 +3,8 @@
 using AE_ACR_DRK;
 using AE_ACR_DRK_Setting;
 using AE_ACR.Base;
+using AEAssist;
+using AEAssist.JobApi;
 
 #endregion
 
@@ -96,6 +98,9 @@ public abstract class DRKBaseSlotResolvers : TankBaseIslotResolver
         return DRKRotationEntry.QT.GetQt(key);
     }
 
+    
+    public static int 费雷时间 =>  Core.Resolve<JobApi_DarkKnight>().ShadowTimeRemaining;
+    
 
     public static class Buffs
     {

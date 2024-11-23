@@ -1,5 +1,6 @@
 #region
 
+using System.Numerics;
 using AE_ACR.Base;
 using AE_ACR.PLD.HotKey;
 using AE_ACR.PLD.Setting;
@@ -96,7 +97,8 @@ public class PLDRotationEntry : IRotationEntry
         // 添加各种事件回调
         rot.SetRotationEventHandler(new PLDRotationEventHandler());
         // 添加QT开关的时间轴行为
-        rot.AddTriggerAction(
+        rot.AddTriggerAction
+        (
             new TriggerAction_QT(),
             new TriggerAction_M1S_Rot(),
             new TriggerAction_大翅膀_Rot()
@@ -104,6 +106,7 @@ public class PLDRotationEntry : IRotationEntry
         //添加QT开关的时间轴行为
         rot.AddTriggerCondition(new ITriggerCond_PLD忠义值());
         rot.AddTriggerCondition(new ITriggerCond_PLD调停充能());
+        // rot.AddTriggerCondition(new ITriggerCond_PLD背后人数());
 
         return rot;
     }
@@ -145,7 +148,7 @@ public class PLDRotationEntry : IRotationEntry
         QT.MyAddQt(qtDict, BaseQTKey.爆发药, false);
         QT.MyAddQt(qtDict, BaseQTKey.突进, true);
         QT.MyAddQt(qtDict, PLDQTKey.战逃安魂, true);
-        QT.MyAddQt(qtDict, PLDQTKey.大宝剑连击, true,"没有学习大保健用圣灵代替");
+        QT.MyAddQt(qtDict, PLDQTKey.大宝剑连击, true, "没有学习大保健用圣灵代替");
         QT.MyAddQt(qtDict, PLDQTKey.远程投盾, false, "和目标距离过远的时候使用");
         QT.MyAddQt(qtDict, PLDQTKey.远程圣灵, true, "和目标距离过远的时候使用");
         QT.MyAddQt(qtDict, PLDQTKey.即刻战逃, false, "战逃好了就用");
@@ -157,7 +160,7 @@ public class PLDRotationEntry : IRotationEntry
         QT.MyAddQt(qtDict, BaseQTKey.倾泻资源, false);
         QT.MyAddQt(qtDict, PLDQTKey.起手序列, false);
         QT.MyAddQt(qtDict, BaseQTKey.AOE, true);
-        QT.MyAddQt(qtDict, PLDQTKey.远程强化圣灵, false,"阈值在《远程圣灵阈值》里面设置");
+        QT.MyAddQt(qtDict, PLDQTKey.远程强化圣灵, false, "阈值在《远程圣灵阈值》里面设置");
         QT.MyAddQt(qtDict, PLDQTKey.战逃打完调停, false);
         QT.MyAddQt(qtDict, PLDQTKey.移动不打调停, false);
 
@@ -175,23 +178,23 @@ public class PLDRotationEntry : IRotationEntry
             PLDSettings.Instance.JobViewSave.QtUnVisibleList.Add(PLDQTKey.优先圣灵);
             // PLDSettings.Instance.JobViewSave.QtUnVisibleList.Add(BaseQTKey.AOE);
         }
-        
+
         QT.AddHotkey("LB", new HotKeyResolver_LB());
         QT.AddHotkey("一键减伤", new 一键减伤());
-        
-        QT.AddHotkey("铁壁",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.铁壁, SpellTargetType.Self));
-        QT.AddHotkey("预警",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.预警.OriginalHook().Id, SpellTargetType.Self));
-        QT.AddHotkey("壁垒",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.壁垒, SpellTargetType.Self));
-        QT.AddHotkey("干预",new HotkeyResolver_干预Pm2());
-        QT.AddHotkey("钢铁信念",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.钢铁信念, SpellTargetType.Self));
-        QT.AddHotkey("圣盾阵",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.圣盾阵.OriginalHook().Id, SpellTargetType.Self));
-        QT.AddHotkey("圣光幕帘",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.圣光幕帘, SpellTargetType.Self));
-        QT.AddHotkey("神圣领域",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.神圣领域, SpellTargetType.Self));
-        
-        QT.AddHotkey("亲疏自行",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.亲疏自行, SpellTargetType.Self));
-        QT.AddHotkey("雪仇",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.雪仇, SpellTargetType.Target));
-        QT.AddHotkey("挑衅",new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.挑衅, SpellTargetType.Pm2));
-        QT.AddHotkey("退避2",new HotkeyResolver_退避());
+
+        QT.AddHotkey("铁壁", new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.铁壁, SpellTargetType.Self));
+        QT.AddHotkey("预警", new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.预警.OriginalHook().Id, SpellTargetType.Self));
+        QT.AddHotkey("壁垒", new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.壁垒, SpellTargetType.Self));
+        QT.AddHotkey("干预", new HotkeyResolver_干预Pm2());
+        QT.AddHotkey("钢铁信念", new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.钢铁信念, SpellTargetType.Self));
+        QT.AddHotkey("圣盾阵", new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.圣盾阵.OriginalHook().Id, SpellTargetType.Self));
+        QT.AddHotkey("圣光幕帘", new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.圣光幕帘, SpellTargetType.Self));
+        QT.AddHotkey("神圣领域", new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.神圣领域, SpellTargetType.Self));
+
+        QT.AddHotkey("亲疏自行", new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.亲疏自行, SpellTargetType.Self));
+        QT.AddHotkey("雪仇", new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.雪仇, SpellTargetType.Target));
+        QT.AddHotkey("挑衅", new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.挑衅, SpellTargetType.Pm2));
+        QT.AddHotkey("退避2", new HotkeyResolver_退避());
 
     }
 
@@ -226,14 +229,40 @@ public class PLDRotationEntry : IRotationEntry
         PLDSettingUI.BaseDraw();
     }
 
+    private List<string> devtest = new List<string>();
+
+  
+    
+    public static float 新面向(float angle)
+    {
+        if (angle > 0)
+        {
+            return angle - MathF.PI;
+        }
+
+        if (angle < 0)
+        {
+            return MathF.PI + angle;
+        }
+        return angle;
+    }
+    
     public void DrawQtDev(JobViewWindow jobViewWindow)
     {
         ImGui.Text("画Dev信息");
+        ImGui.Text($"玩家面向{(Core.Me.Rotation)}");
+        ImGui.Text($"新面向{(新面向(Core.Me.Rotation))}");
+        ImGui.Text($"CastableAlliesWithin10.Count{PartyHelper.CastableAlliesWithin10.Count}");
 
-        ImGui.Text($"调停Intervene : {PLDBaseSlotResolvers.调停Intervene.ActionReady()}");
-        ImGui.Text($"Charges : {PLDBaseSlotResolvers.调停Intervene.Charges()}");
-        ImGui.Text($"调停充能释放时期 : { PLDSettings.Instance.调停保留层数}");
-        
+        foreach (var se in devtest)
+        {
+            ImGui.Text($"背后_{se}");
+        }
+
+        // ImGui.Text($"调停Intervene : {PLDBaseSlotResolvers.调停Intervene.ActionReady()}");
+        // ImGui.Text($"Charges : {PLDBaseSlotResolvers.调停Intervene.Charges()}");
+        // ImGui.Text($"调停充能释放时期 : { PLDSettings.Instance.调停保留层数}");
+
         // var dutySchedule = Core.Resolve<MemApiDuty>().GetSchedule();
         // ImGui.Text($"CountPoint : {dutySchedule.CountPoint}");
         // ImGui.Text($"NowPoint : {dutySchedule.NowPoint}");

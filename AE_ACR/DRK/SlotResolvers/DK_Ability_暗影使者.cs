@@ -5,6 +5,7 @@ using AE_ACR_DRK_Setting;
 using AE_ACR.Base;
 using AE_ACR.utils;
 using AEAssist;
+using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.JobApi;
 using Dalamud.Game.ClientState.Objects.Types;
@@ -80,15 +81,25 @@ public class DK_Ability_暗影使者 : DRKBaseSlotResolvers
                 }
             }
 
-            if (RaidBuff.爆发期_120())
+            
+            if (费雷时间 is > 0 and <= 10_000)
             {
                 return 0;
             }
-
-            if (Shadowbringer暗影使者.GetCooldownRemainingTime() == 0)
-            {
-                return 0;
-            }
+            
+            //如果是高难模式
+            // if (Data.IsInHighEndDuty == true)
+            // {
+            //
+            //    
+            // }
+            // else
+            // {
+            //     if (Shadowbringer暗影使者.GetCooldownRemainingTime() == 0)
+            //     {
+            //         return 0;
+            //     } 
+            // }
         }
 
 
