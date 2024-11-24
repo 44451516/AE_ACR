@@ -106,7 +106,7 @@ public class PLDRotationEntry : IRotationEntry
         //添加QT开关的时间轴行为
         rot.AddTriggerCondition(new ITriggerCond_PLD忠义值());
         rot.AddTriggerCondition(new ITriggerCond_PLD调停充能());
-        // rot.AddTriggerCondition(new ITriggerCond_PLD背后人数());
+        rot.AddTriggerCondition(new ITriggerCond_PLD翅膀覆盖人数());
 
         return rot;
     }
@@ -233,57 +233,6 @@ public class PLDRotationEntry : IRotationEntry
 
 
 
-    public static float 新面向(float angle)
-    {
-        if (angle > 0)
-        {
-            return angle - MathF.PI;
-        }
-
-        if (angle < 0)
-        {
-            return MathF.PI + angle;
-        }
-        return angle;
-    }
-
-
-    // 合并为一个函数，计算玩家面向12点背后8米长、4米宽矩形所包含的玩家
-    public  void GetPlayersInRectangle()
-    {
-        devtest.Clear();
-        
-
-        // 矩形的宽和长
-        float length = 8f; // 4米
-        float width = 4f; // 8米
-
-        foreach (var player in PartyHelper.CastableAlliesWithin10)
-        {
-            if (player == Core.Me)
-                continue;
-
-            Vector3 relativePosition = player.Position - Core.Me.Position;
-            float relativeRotation = 新面向(Core.Me.Rotation);
-
-            // Convert the core player's rotation to a direction vector
-            Vector3 direction = new Vector3((float)Math.Cos(relativeRotation), 0, (float)Math.Sin(relativeRotation));
-
-            // Calculate the perpendicular direction to the player's facing direction
-            Vector3 perpendicularDirection = new Vector3(-direction.Z, 0, direction.X);
-
-            // Project the relative position onto the direction and perpendicular direction
-            float forwardDistance = Vector3.Dot(relativePosition, direction);
-            float sideDistance = Vector3.Dot(relativePosition, perpendicularDirection);
-
-            // Check if the player is within the rectangle
-            if (forwardDistance <= 0 && forwardDistance >= -length && Math.Abs(sideDistance) <= width / 2)
-            {
-                devtest.Add(player.Name.TextValue);
-            }
-        }
-
-    }
 
    
 
@@ -291,11 +240,9 @@ public class PLDRotationEntry : IRotationEntry
     {
         ImGui.Text("画Dev信息");
         ImGui.Text($"玩家面向{(Core.Me.Rotation)}");
-        ImGui.Text($"新面向{(新面向(Core.Me.Rotation))}");
-        GetPlayersInRectangle();
-        ImGui.Text($"CastableAlliesWithin10.Count{PartyHelper.CastableAlliesWithin10.Count}");
-
-        foreach (var se in devtest)
+        ITriggerCond_PLD翅膀覆盖人数.GetPlayersInFanShape();
+        ImGui.Text($"测试列表{ITriggerCond_PLD翅膀覆盖人数.测试列表.Count()}");
+        foreach (var se in ITriggerCond_PLD翅膀覆盖人数.测试列表)
         {
             ImGui.Text($"背后_{se}");
         }
