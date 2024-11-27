@@ -1,7 +1,9 @@
 ﻿using System.Numerics;
+using AE_ACR.DRK.SlotResolvers;
 using AEAssist;
 using AEAssist.CombatRoutine.Trigger;
 using AEAssist.Helper;
+using AEAssist.MemoryApi;
 using ImGuiNET;
 
 namespace AE_ACR.PLD.Triggers;
@@ -44,7 +46,7 @@ public class ITriggerCond_PLD翅膀覆盖人数 : ITriggerCond
         Vector3 selfPosition = Core.Me.Position;
         float selfRotation = Core.Me.Rotation;
         const float radius = 8f; // 扇形半径
-        const float sectorAngle = MathF.PI * 120f / 180f; // 扇形总角度（弧度）
+        const float sectorAngle = MathF.PI * 90f / 180f; // 扇形总角度（弧度）
         const float halfSectorAngle = sectorAngle / 2;
         int count = 0;
         
@@ -55,6 +57,8 @@ public class ITriggerCond_PLD翅膀覆盖人数 : ITriggerCond
             {
                 continue;
             }
+            
+            
 
             var selfPosition2D = selfPosition.ToVector2();
             var playerPosition2D = player.Position.ToVector2();
