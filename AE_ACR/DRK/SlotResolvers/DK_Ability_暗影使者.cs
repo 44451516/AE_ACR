@@ -89,7 +89,7 @@ public class DK_Ability_暗影使者 : DRKBaseSlotResolvers
             
             if (Shadowbringer暗影使者.GetCooldownRemainingTime() == 0)
             {
-                if (掠影示现.GetCooldownRemainingTime() >= 60 && 掠影示现.GetCooldownRemainingTime() < 70)
+                if (掠影示现.GetCooldownRemainingTime() >= 50 && 掠影示现.GetCooldownRemainingTime() < 70)
                 {
                     return 0;
                 }
