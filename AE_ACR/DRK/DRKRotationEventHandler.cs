@@ -28,7 +28,7 @@ public class DRKRotationEventHandler : IRotationEventHandler
     {
         CombatTime.Instance.combatEnd = DateTime.MinValue;
         CombatTime.Instance.combatStart = DateTime.MinValue;
-        if (PLDSettings.Instance.日常模式)
+        if (DKSettings.Instance.日常模式)
         {
             if (!BaseIslotResolver.HasEffect(DRKBaseSlotResolvers.Buffs.深恶痛绝) && DRKBaseSlotResolvers.深恶痛绝.ActionReady())
             {

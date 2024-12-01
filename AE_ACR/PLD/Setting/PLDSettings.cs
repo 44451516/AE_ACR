@@ -23,6 +23,7 @@ public class PLDSettings
     public float 最大突进距离 = 20f;
     public bool 起手幕帘 = false;
     public int 起手幕帘阈值 = 5000;
+    public int 起手圣灵阈值 = 1500;
     public int USE_AOE = 3;
 
     public JobViewSave JobViewSave = new(); // QT设置存档

@@ -30,7 +30,7 @@ public class PLDUsePotion : PLDBaseSlotResolvers
             {
                 if (lastComboActionID is 暴乱剑RiotBlade && 战逃反应FightOrFlight.ActionReady() && 安魂祈祷Requiescat.ActionReady())
                 {
-                    return 0;
+                    return 1;
                 }
 
                 if (战逃反应FightOrFlight.GetCooldownRemainingTime() <= 5)
@@ -67,7 +67,15 @@ public class PLDUsePotion : PLDBaseSlotResolvers
 
     public override void Build(Slot slot)
     {
-        slot.Add(Spell.CreatePotion());
-        slot.Wait2NextGcd = true;
+        if (Check() == 1)
+        {
+            slot.Add2NdWindowAbility(Spell.CreatePotion());
+            // slot.Wait2NextGcd = true; 
+        }
+        else
+        {
+            slot.Add(Spell.CreatePotion());
+        }
+
     }
 }
