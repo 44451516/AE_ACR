@@ -14,6 +14,11 @@ public class GCD_沥血剑 : PLDBaseSlotResolvers
 {
     public override int Check()
     {
+        if (getQTValue(PLDQTKey.沥血剑) == false)
+        {
+            return Flag_QT;
+        }
+
         if (是否停手())
         {
             return Flag_停手;
@@ -30,7 +35,7 @@ public class GCD_沥血剑 : PLDBaseSlotResolvers
             {
                 return Flag_超出攻击距离;
             }
-            
+
             return 0;
         }
 

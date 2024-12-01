@@ -14,8 +14,7 @@ namespace AE_ACR.Utils
             float squareHeight = 10;
             Vector3 mapBottomLeft = new Vector3(80, 0, 110);
             Vector3 mapTopRight = new Vector3(120, 0, 90);
-            if (!(testPosition.X >= mapBottomLeft.X && testPosition.X <= mapTopRight.X &&
-                  testPosition.Z <= mapBottomLeft.Z && testPosition.Z >= mapTopRight.Z))
+            if (!(testPosition.X >= mapBottomLeft.X && testPosition.X <= mapTopRight.X && testPosition.Z <= mapBottomLeft.Z && testPosition.Z >= mapTopRight.Z))
                 return;
 
             int xIndex = (int)((testPosition.X - mapBottomLeft.X) / squareWidth);
@@ -24,7 +23,8 @@ namespace AE_ACR.Utils
             Vector3 squareBottomLeft = new Vector3(mapBottomLeft.X + xIndex * squareWidth, 0, mapBottomLeft.Z - zIndex * squareHeight);
             Vector3 squareTopRight = new Vector3(squareBottomLeft.X + squareWidth, 0, squareBottomLeft.Z - squareHeight);
 
-            List<Vector3> possiblePoints = new List<Vector3>{
+            List<Vector3> possiblePoints = new List<Vector3>
+            {
                 squareBottomLeft,
                 new Vector3(squareBottomLeft.X, 0, squareTopRight.Z),
                 new Vector3(squareTopRight.X, 0, squareBottomLeft.Z),
@@ -56,64 +56,69 @@ namespace AE_ACR.Utils
 
             Core.Resolve<MemApiMove>().SetRot(newRotation);
         }
-        
+
         public static void 骑士大翅膀FaceFarPoint()
         {
-            var myPosition = Core.Me.Position;  // 自己的坐标
-            float maxDistance = 8.0f;           // 背后范围半径
-            float backwardAngleThreshold = MathF.PI / 2; // ±90度范围
-            int maxPlayers = 0;
-            float optimalRotation = Core.Me.Rotation; // 初始化为当前面向
+            const float radius = 8f; // 扇形半径
+            const float sectorAngle = MathF.PI * 90f / 180f; // 扇形总角度（弧度）
 
-            // 枚举所有队友的方向作为候选面向
-            foreach (var battleChara in PartyHelper.CastableAlliesWithin10)
+            var selfPosition = Core.Me.Position.ToVector2();
+
+            // 计算每个玩家相对于自身的位置角度
+            var validPlayerAngles = new List<float>();
+            foreach (var player in PartyHelper.CastableAlliesWithin10)
             {
-                var battleCharaPosition = battleChara.Position;
+                var toPlayer = player.Position.ToVector2() - selfPosition;
 
-                // 计算与每个玩家的方向向量和角度
-                Vector3 directionToPlayer = battleCharaPosition - myPosition;
-                float candidateRotation = MathF.Atan2(directionToPlayer.Z, directionToPlayer.X);
+                // 跳过超出半径的玩家
+                if (toPlayer.Length() > radius) continue;
 
-                // 统计该候选面向背后玩家数量
-                int playersBehind = 0;
-                foreach (var otherChara in PartyHelper.CastableAlliesWithin10)
+                // 计算玩家相对自身的角度
+                var angleToPlayer = MathF.Atan2(toPlayer.Y, toPlayer.X);
+                validPlayerAngles.Add(angleToPlayer);
+            }
+
+            // 如果没有玩家在半径内，返回当前面向（默认 0 角度）
+            if (validPlayerAngles.Count == 0)
+                return;
+
+            // 对角度进行排序并扩展成一个循环列表（加上360度范围的镜像）
+            validPlayerAngles.Sort();
+            validPlayerAngles.AddRange(validPlayerAngles.Select(angle => angle + 2 * MathF.PI));
+
+            // 滑动窗口寻找包含最多玩家的扇形起始角度
+            int maxPlayers = 0;
+            float bestAngle = 0f;
+            int start = 0;
+
+            for (int end = 0; end < validPlayerAngles.Count; end++)
+            {
+                while (validPlayerAngles[end] - validPlayerAngles[start] > sectorAngle)
                 {
-                    var otherCharaPosition = otherChara.Position;
-
-                    // 计算与其他玩家的方向向量
-                    Vector3 directionToOther = otherCharaPosition - myPosition;
-
-                    // 计算距离过滤
-                    if (directionToOther.Length() > maxDistance)
-                    {
-                        continue;
-                    }
-
-                    // 计算相对候选面向的角度
-                    float angleBetween = MathF.Atan2(directionToOther.Z, directionToOther.X) - candidateRotation;
-
-                    // 归一化角度到[-π, π]
-                    angleBetween = (angleBetween + MathF.PI) % (2 * MathF.PI) - MathF.PI;
-
-                    // 判断是否在背后范围
-                    if (angleBetween > MathF.PI / 2 || angleBetween < -MathF.PI / 2)
-                    {
-                        playersBehind++;
-                    }
+                    start++;
                 }
 
-                // 更新最大值和最佳面向
-                if (playersBehind > maxPlayers)
+                int currentPlayers = end - start + 1;
+                if (currentPlayers > maxPlayers)
                 {
-                    maxPlayers = playersBehind;
-                    optimalRotation = candidateRotation;
+                    maxPlayers = currentPlayers;
+                    bestAngle = validPlayerAngles[start] + sectorAngle / 2; // 扇形中心角度
                 }
             }
-            
+
+
+            // 将最佳角度归一化到 -π 到 π 范围内
+            var newRot = NormalizeAngle(bestAngle);
             // 设置自己的面向为最佳面向
-            Core.Resolve<MemApiMove>().SetRot(optimalRotation);
-            
+            Core.Resolve<MemApiMove>().SetRot(newRot);
         }
 
+        private static float NormalizeAngle(float angle)
+        {
+            // 将角度归一化到 -π 到 π 范围内
+            while (angle > MathF.PI) angle -= 2 * MathF.PI;
+            while (angle < -MathF.PI) angle += 2 * MathF.PI;
+            return angle;
+        }
     }
 }

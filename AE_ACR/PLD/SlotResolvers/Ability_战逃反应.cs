@@ -2,8 +2,10 @@
 
 using AE_ACR.PLD.Setting;
 using AE_ACR.utils;
+using AEAssist;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.Helper;
+using AEAssist.MemoryApi;
 
 #endregion
 
@@ -31,6 +33,20 @@ public class Ability_战逃反应 : PLDBaseSlotResolvers
                 if (战斗爽() == false)
                 {
                     return Flag_残血不打爆发;
+                }
+            }
+        }
+
+
+        if (PLDSettings.Instance.上天战逃)
+        {
+            if (战逃反应FightOrFlight.ActionReady())
+            {
+                if (CombatTime.Instance.CombatEngageDuration().TotalSeconds >= PLDSettings.Instance.上天战逃开始时间 
+                    && CombatTime.Instance.CombatEngageDuration().TotalSeconds <= PLDSettings.Instance.上天战逃结束时间)
+                {
+                    //1238 是因为绝伊甸开始的这个需要
+                    return 1238;
                 }
             }
         }

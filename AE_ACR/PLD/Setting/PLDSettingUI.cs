@@ -11,7 +11,7 @@ public class PLDSettingUI
     {
         BaseDraw();
     }
-    
+
     public static void BaseDraw()
     {
         var pldSettings = Instance.PldSettings;
@@ -21,12 +21,19 @@ public class PLDSettingUI
         ImGui.DragFloat("调停充能释放时期", ref pldSettings.调停保留层数, 0.1f, 0, 2);
         ImGui.DragFloat("近战最大攻击距离", ref pldSettings.近战最大攻击距离, 0.1f, 2.5f, 15f);
         ImGui.DragInt("附近5M多少怪物放AOE", ref pldSettings.USE_AOE, 1, 1, 10);
-        
+
         ImGui.DragFloat("最大突进距离(超过就不用了)", ref pldSettings.最大突进距离, 0.1f, 0f, 25f);
-        
+
+        ImGui.Spacing();
+        ImGui.Text("上天战逃(其实在这个战斗区间,战逃好了就回放,不管有没有上天");
+        ImGui.Checkbox("上天战逃", ref pldSettings.上天战逃);
+        ImGui.DragFloat("上天战逃开始时间", ref pldSettings.上天战逃开始时间, 1f, 30f, 30 * 20f);
+        ImGui.DragFloat("上天战逃结束时间", ref pldSettings.上天战逃结束时间, 1f, 30f, 30 * 20f);
+        ImGui.Spacing();
+
         ImGui.Text("起手设置");
-        ImGui.Checkbox("起手突进",ref pldSettings.起手突进);
-        ImGui.Checkbox("起手幕帘",ref pldSettings.起手幕帘);
+        ImGui.Checkbox("起手突进", ref pldSettings.起手突进);
+        ImGui.Checkbox("起手幕帘", ref pldSettings.起手幕帘);
         ImGui.Text("在倒计时多少的是使用幕帘，单位是毫秒，倒计时5秒填5000");
         ImGui.DragInt("起手幕帘阈值", ref pldSettings.起手幕帘阈值, 1000, 300, 30_000);
         ImGui.DragInt("起手圣灵阈值", ref pldSettings.起手圣灵阈值, 1000, 500, 2000);

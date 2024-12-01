@@ -26,6 +26,10 @@ public class PLDSettings
     public int 起手圣灵阈值 = 1500;
     public int USE_AOE = 3;
 
+    public bool 上天战逃 = false;
+    public float 上天战逃开始时间 = 30;
+    public float 上天战逃结束时间 = 60 * 5 + 30;
+
     public JobViewSave JobViewSave = new(); // QT设置存档
     public Dictionary<string, bool> MyQtDict = new();
     public List<string> QtUnVisibleList = new();

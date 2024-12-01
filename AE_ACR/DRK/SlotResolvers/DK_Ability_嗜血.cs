@@ -8,6 +8,7 @@ using AEAssist.CombatRoutine.Module;
 using AEAssist.JobApi;
 using Dalamud.Game.ClientState;
 using Dalamud.Logging;
+
 #endregion
 
 namespace AE_ACR.DRK.SlotResolvers;
@@ -26,6 +27,19 @@ public class DK_Ability_嗜血 : DRKBaseSlotResolvers
             return Flag_攒资源;
         }
 
+        if (DKSettings.Instance.上天血乱)
+        {
+            if (血乱Delirium.ActionReady() || 嗜血BloodWeapon.ActionReady())
+            {
+                if (CombatTime.Instance.CombatEngageDuration().TotalSeconds >= DKSettings.Instance.上天血乱开始时间
+                    && CombatTime.Instance.CombatEngageDuration().TotalSeconds <= DKSettings.Instance.上天血乱结束时间)
+                {
+                    //1238 是因为绝伊甸开始的这个需要
+                    return 1238;
+                }
+            }
+        }
+
 
         if (DKSettings.Instance.日常模式)
         {
@@ -37,6 +51,7 @@ public class DK_Ability_嗜血 : DRKBaseSlotResolvers
                 }
             }
         }
+
 
         if (!CanWeave())
         {
@@ -54,7 +69,7 @@ public class DK_Ability_嗜血 : DRKBaseSlotResolvers
         {
             return 0;
         }
-        
+
         if (血乱Delirium.ActionReady())
         {
             return 0;
@@ -67,6 +82,4 @@ public class DK_Ability_嗜血 : DRKBaseSlotResolvers
     {
         slot.Add(嗜血BloodWeapon.OriginalHook());
     }
-    
-   
 }

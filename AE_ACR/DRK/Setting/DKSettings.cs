@@ -32,10 +32,15 @@ public class DKSettings
     public bool 自动黑盾 = true;
     public float 近战最大攻击距离 = 2.99f;
 
+
+    public bool 上天血乱 = false;
+    public float 上天血乱开始时间 = 30;
+    public float 上天血乱结束时间 = 60 * 5 + 30;
+
     public JobViewSave JobViewSave = new(); // QT设置存档
     public Dictionary<string, bool> MyQtDict = new();
     public List<string> QtUnVisibleList = new();
-    
+
     public int get爆发目标血量()
     {
         return 爆发目标血量 * 10000;
@@ -79,7 +84,7 @@ public class DKSettings
                 MyQtDict[qtName] = qtValue;
             }
         }
-        
+
         if (JobViewSave.QtUnVisibleList.Any())
         {
             QtUnVisibleList.Clear();
@@ -89,8 +94,7 @@ public class DKSettings
             }
         }
 
-      
-        
+
         Directory.CreateDirectory(Path.GetDirectoryName(path));
         File.WriteAllText(path, JsonHelper.ToJson(this));
     }

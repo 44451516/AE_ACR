@@ -23,4 +23,5 @@ public class PLDQTKey : BaseQTKey
     public const string 远程强化圣灵 = "远程强化圣灵";
     public const string 战逃打完调停 = "战逃打完调停";
     public const string 移动不打调停 = "移动不打调停";
+    public const string 沥血剑 = "沥血剑";
 }

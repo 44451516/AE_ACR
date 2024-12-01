@@ -90,5 +90,13 @@ public class PLDRotationEventHandler : IRotationEventHandler
         {
             PLDSettings.Instance.日常模式 = false;
         }
+        
+        if (Core.Resolve<MemApiZoneInfo>().GetCurrTerrId() == 1238)
+        {
+            LogHelper.Print("ACR:进入LGBT讨伐战，自动开启上天战逃");
+            PLDSettings.Instance.上天战逃 = true;
+            PLDSettings.Instance.上天战逃开始时间 = 30;
+            PLDSettings.Instance.上天战逃结束时间 = 60 * 5 + 30;
+        }
     }
 }

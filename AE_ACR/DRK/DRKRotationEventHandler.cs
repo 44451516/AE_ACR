@@ -87,5 +87,13 @@ public class DRKRotationEventHandler : IRotationEventHandler
         {
             DKSettings.Instance.日常模式 = false;
         }
+        
+        if (Core.Resolve<MemApiZoneInfo>().GetCurrTerrId() == 1238)
+        {
+            LogHelper.Print("ACR:进入LGBT讨伐战，自动开启上天血乱");
+            DKSettings.Instance.上天血乱 = true;
+            DKSettings.Instance.上天血乱开始时间 = 30;
+            DKSettings.Instance.上天血乱结束时间 = 60 * 5 + 30;
+        }
     }
 }
