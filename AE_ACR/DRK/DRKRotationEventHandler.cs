@@ -50,7 +50,20 @@ public class DRKRotationEventHandler : IRotationEventHandler
 
     public async Task OnNoTarget()
     {
-        // await Task.CompletedTask;
+        if (DKSettings.Instance.上天血乱)
+        {
+            if (DRKBaseSlotResolvers.血乱Delirium.ActionReady() || DRKBaseSlotResolvers.嗜血BloodWeapon.ActionReady())
+            {
+                if (CombatTime.Instance.CombatEngageDuration().TotalSeconds >= DKSettings.Instance.上天血乱开始时间
+                    && CombatTime.Instance.CombatEngageDuration().TotalSeconds <= DKSettings.Instance.上天血乱结束时间)
+                {
+                    var slot = new Slot();
+                    Spell spell = new Spell(DRKBaseSlotResolvers.嗜血BloodWeapon, Core.Me);
+                    slot.Add(spell);
+                    await slot.Run(AI.Instance.BattleData, false);
+                }
+            }
+        }
     }
 
     public void OnSpellCastSuccess(Slot slot, Spell spell)
@@ -70,7 +83,8 @@ public class DRKRotationEventHandler : IRotationEventHandler
         {
             RotUtil.M1S_FaceFarPointInSquare(Core.Me.Position);
         }
-        
+
+
     }
 
     public void OnEnterRotation()
@@ -87,7 +101,7 @@ public class DRKRotationEventHandler : IRotationEventHandler
         {
             DKSettings.Instance.日常模式 = false;
         }
-        
+
         if (Core.Resolve<MemApiZoneInfo>().GetCurrTerrId() == 1238)
         {
             LogHelper.Print("ACR:进入LGBT讨伐战，自动开启上天血乱");

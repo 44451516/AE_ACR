@@ -25,7 +25,7 @@ public class PLDSettingUI
         ImGui.DragFloat("最大突进距离(超过就不用了)", ref pldSettings.最大突进距离, 0.1f, 0f, 25f);
 
         ImGui.Spacing();
-        ImGui.Text("上天战逃(其实在这个战斗区间,战逃好了就回放,不管有没有上天");
+        ImGui.Text("上天战逃");
         ImGui.Checkbox("上天战逃", ref pldSettings.上天战逃);
         ImGui.DragFloat("上天战逃开始时间", ref pldSettings.上天战逃开始时间, 1f, 30f, 30 * 20f);
         ImGui.DragFloat("上天战逃结束时间", ref pldSettings.上天战逃结束时间, 1f, 30f, 30 * 20f);

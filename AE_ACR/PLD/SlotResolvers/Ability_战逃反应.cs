@@ -3,6 +3,7 @@
 using AE_ACR.PLD.Setting;
 using AE_ACR.utils;
 using AEAssist;
+using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.Helper;
 using AEAssist.MemoryApi;
@@ -36,22 +37,8 @@ public class Ability_战逃反应 : PLDBaseSlotResolvers
                 }
             }
         }
-
-
-        if (PLDSettings.Instance.上天战逃)
-        {
-            if (战逃反应FightOrFlight.ActionReady())
-            {
-                if (CombatTime.Instance.CombatEngageDuration().TotalSeconds >= PLDSettings.Instance.上天战逃开始时间 
-                    && CombatTime.Instance.CombatEngageDuration().TotalSeconds <= PLDSettings.Instance.上天战逃结束时间)
-                {
-                    //1238 是因为绝伊甸开始的这个需要
-                    return 1238;
-                }
-            }
-        }
-
-
+        
+        
         if (CanWeave())
         {
             if (战逃反应FightOrFlight.ActionReady())
@@ -120,6 +107,7 @@ public class Ability_战逃反应 : PLDBaseSlotResolvers
 
     public override void Build(Slot slot)
     {
-        slot.Add(战逃反应FightOrFlight.GetSpell());
+        Spell spell = new Spell(战逃反应FightOrFlight,Core.Me);
+        slot.Add(spell);
     }
 }

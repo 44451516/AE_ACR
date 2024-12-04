@@ -49,7 +49,20 @@ public class PLDRotationEventHandler : IRotationEventHandler
 
     public async Task OnNoTarget()
     {
-        // await Task.CompletedTask;
+        if (PLDSettings.Instance.上天战逃)
+        {
+            if (PLDBaseSlotResolvers.战逃反应FightOrFlight.ActionReady() )
+            {
+                if (CombatTime.Instance.CombatEngageDuration().TotalSeconds >= PLDSettings.Instance.上天战逃开始时间
+                    && CombatTime.Instance.CombatEngageDuration().TotalSeconds <= PLDSettings.Instance.上天战逃结束时间)
+                {
+                    var slot = new Slot();
+                    Spell spell = new Spell(PLDBaseSlotResolvers.战逃反应FightOrFlight,Core.Me);
+                    slot.Add(spell);
+                    await slot.Run(AI.Instance.BattleData, false);
+                }
+            }
+        }
     }
 
     public void OnSpellCastSuccess(Slot slot, Spell spell)

@@ -51,11 +51,15 @@ public class DK_GCD_蔑视厌恶 : DRKBaseSlotResolvers
         }
 
 
-        if (Buffs.Scorn.GetBuffRemainingTime() > 0 && Buffs.Scorn.GetBuffRemainingTime() < 4000)
+        // if (Buffs.Scorn.GetBuffRemainingTime() > 0 && Buffs.Scorn.GetBuffRemainingTime() < 4000)
+        // {
+        //     return 1;
+        // }
+
+        if (费雷时间 is > 0 and <= 10_000)
         {
             return 1;
         }
-
 
         if (RaidBuff.爆发期_120())
         {
