@@ -33,7 +33,11 @@ public class HotkeyResolver_黑盾Pm2:IHotkeyResolver
 
     public int Check()
     {
-        return 0;
+        if (DRKBaseSlotResolvers.至黑之夜.GetSpell().IsReadyWithCanCast())
+        {
+            return 0;
+        }
+        return -1;
     }
 
     public void Run()

@@ -33,7 +33,12 @@ public class HotkeyResolver_献奉Pm2:IHotkeyResolver
 
     public int Check()
     {
-        return 0;
+        if (DRKBaseSlotResolvers.献奉.GetSpell().IsReadyWithCanCast())
+        {
+            return 0;
+        }
+        
+        return -1;
     }
 
     public void Run()
