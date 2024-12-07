@@ -24,4 +24,6 @@ public class PLDQTKey : BaseQTKey
     public const string 战逃打完调停 = "战逃打完调停";
     public const string 移动不打调停 = "移动不打调停";
     public const string 沥血剑 = "沥血剑";
+    public const string 大翅膀最优面向 = "大翅膀最优面向";
+    public const string 即刻厄运_深奥 = "即刻厄运/深奥";
 }

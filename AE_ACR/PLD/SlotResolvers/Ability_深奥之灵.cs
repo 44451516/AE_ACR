@@ -40,6 +40,11 @@ public class Ability_深奥之灵 : PLDBaseSlotResolvers
                     return Flag_超出攻击距离;
                 }
 
+                if (getQTValue(PLDQTKey.即刻厄运_深奥))
+                {
+                    return 1000;
+                }
+                
                 if (HasEffect(Buffs.FightOrFlight))
                 {
                     if (安魂祈祷Requiescat.MyIsUnlock())

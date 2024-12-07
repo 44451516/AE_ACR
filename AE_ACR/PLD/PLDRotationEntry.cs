@@ -9,11 +9,13 @@ using AE_ACR.PLD.SlotResolvers.减伤;
 using AE_ACR.PLD.Triggers;
 using AE_ACR.PLD.起手;
 using AE_ACR.utils;
+using AE_ACR.Utils;
 using AE_ACR.utils.Triggers;
 using AEAssist;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.CombatRoutine.Module.Opener;
+using AEAssist.CombatRoutine.Module.Target;
 using AEAssist.CombatRoutine.View.JobView;
 using AEAssist.CombatRoutine.View.JobView.HotkeyResolver;
 using AEAssist.Extension;
@@ -164,6 +166,8 @@ public class PLDRotationEntry : IRotationEntry
         QT.MyAddQt(qtDict, PLDQTKey.战逃打完调停, false);
         QT.MyAddQt(qtDict, PLDQTKey.移动不打调停, false);
         QT.MyAddQt(qtDict, PLDQTKey.沥血剑, true);
+        QT.MyAddQt(qtDict, PLDQTKey.即刻厄运_深奥, false);
+        QT.MyAddQt(qtDict, PLDQTKey.大翅膀最优面向, false, "测试用的,没事别打开,交给时间轴,和ReAction冲突");
 
         if (PLDSettings.Instance.QtUnVisibleList.Any())
         {
@@ -177,6 +181,7 @@ public class PLDRotationEntry : IRotationEntry
         {
             PLDSettings.Instance.JobViewSave.QtUnVisibleList.Clear();
             PLDSettings.Instance.JobViewSave.QtUnVisibleList.Add(PLDQTKey.优先圣灵);
+            PLDSettings.Instance.JobViewSave.QtUnVisibleList.Add(PLDQTKey.大翅膀最优面向);
             // PLDSettings.Instance.JobViewSave.QtUnVisibleList.Add(BaseQTKey.AOE);
         }
 
@@ -235,13 +240,15 @@ public class PLDRotationEntry : IRotationEntry
 
 
 
-   
+
+
 
     public void DrawQtDev(JobViewWindow jobViewWindow)
     {
         ImGui.Text("画Dev信息");
-        ImGui.Text($"玩家面向{(Core.Me.Rotation)}");
-        ITriggerCond_PLD翅膀覆盖人数.GetPlayersInFanShape();
+        ImGui.Text($"当前面向{Core.Me.Rotation}");
+        ImGui.Text($"玩家数量{(ECHelperObjectsUtils.get8().Count())}");
+        ITriggerCond_PLD翅膀覆盖人数.GetPlayersInFanShape(ECHelperObjectsUtils.get8(), Core.Me.Rotation);
         ImGui.Text($"测试列表{ITriggerCond_PLD翅膀覆盖人数.测试列表.Count()}");
         foreach (var se in ITriggerCond_PLD翅膀覆盖人数.测试列表)
         {

@@ -1,4 +1,6 @@
-﻿using System.Numerics;
+﻿using System.Data;
+using System.Numerics;
+using AE_ACR.PLD.Triggers;
 using AEAssist;
 using AEAssist.Helper;
 using AEAssist.MemoryApi;
@@ -59,66 +61,32 @@ namespace AE_ACR.Utils
 
         public static void 骑士大翅膀FaceFarPoint()
         {
-            const float radius = 8f; // 扇形半径
-            const float sectorAngle = MathF.PI * 90f / 180f; // 扇形总角度（弧度）
+            float step = MathF.PI / 360;
+            float temp = -555f;
+            float tplayerCount = 0f;
 
-            var selfPosition = Core.Me.Position.ToVector2();
+            var 新面向 = false;
 
-            // 计算每个玩家相对于自身的位置角度
-            var validPlayerAngles = new List<float>();
-            foreach (var player in PartyHelper.CastableAlliesWithin10)
+            // 从 MathF.PI 到 -MathF.PI 遍历
+            for (float angle = MathF.PI; angle >= -MathF.PI; angle -= step)
             {
-                var toPlayer = player.Position.ToVector2() - selfPosition;
-
-                // 跳过超出半径的玩家
-                if (toPlayer.Length() > radius) continue;
-
-                // 计算玩家相对自身的角度
-                var angleToPlayer = MathF.Atan2(toPlayer.Y, toPlayer.X);
-                validPlayerAngles.Add(angleToPlayer);
-            }
-
-            // 如果没有玩家在半径内，返回当前面向（默认 0 角度）
-            if (validPlayerAngles.Count == 0)
-                return;
-
-            // 对角度进行排序并扩展成一个循环列表（加上360度范围的镜像）
-            validPlayerAngles.Sort();
-            validPlayerAngles.AddRange(validPlayerAngles.Select(angle => angle + 2 * MathF.PI));
-
-            // 滑动窗口寻找包含最多玩家的扇形起始角度
-            int maxPlayers = 0;
-            float bestAngle = 0f;
-            int start = 0;
-
-            for (int end = 0; end < validPlayerAngles.Count; end++)
-            {
-                while (validPlayerAngles[end] - validPlayerAngles[start] > sectorAngle)
+                var playerCount = ITriggerCond_PLD翅膀覆盖人数.GetPlayersInFanShape(PartyHelper.CastableAlliesWithin10, angle);
+                // var playerCount = ITriggerCond_PLD翅膀覆盖人数.GetPlayersInFanShape(ECHelperObjectsUtils.get8(), angle);
+                if (playerCount > tplayerCount)
                 {
-                    start++;
-                }
-
-                int currentPlayers = end - start + 1;
-                if (currentPlayers > maxPlayers)
-                {
-                    maxPlayers = currentPlayers;
-                    bestAngle = validPlayerAngles[start] + sectorAngle / 2; // 扇形中心角度
+                    tplayerCount = playerCount;
+                    temp = angle;
+                    新面向 = true;
                 }
             }
 
-
-            // 将最佳角度归一化到 -π 到 π 范围内
-            var newRot = NormalizeAngle(bestAngle);
+            var newRot = temp;
             // 设置自己的面向为最佳面向
-            Core.Resolve<MemApiMove>().SetRot(newRot);
-        }
-
-        private static float NormalizeAngle(float angle)
-        {
-            // 将角度归一化到 -π 到 π 范围内
-            while (angle > MathF.PI) angle -= 2 * MathF.PI;
-            while (angle < -MathF.PI) angle += 2 * MathF.PI;
-            return angle;
+            if (新面向)
+            {
+                LogHelper.Print($"新面向{temp} -{tplayerCount}");
+                Core.Resolve<MemApiMove>().SetRot(newRot);
+            }
         }
     }
 }
