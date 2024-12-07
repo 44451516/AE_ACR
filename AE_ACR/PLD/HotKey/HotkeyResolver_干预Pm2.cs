@@ -34,15 +34,23 @@ public class HotkeyResolver_干预Pm2:IHotkeyResolver
 
     public int Check()
     {
-        return 0;
+        if (PLDBaseSlotResolvers.干预.GetSpell().IsReadyWithCanCast())
+        {
+            return 0;
+        }
+        
+        return -1;
     }
 
     public void Run()
     {
-        if (AI.Instance.BattleData.NextSlot == null)
-            AI.Instance.BattleData.NextSlot = new Slot();
-        
+       
+
         if (PLDBaseSlotResolvers.干预.GetSpell().IsReadyWithCanCast())
+        {
+            if (AI.Instance.BattleData.NextSlot == null)
+                AI.Instance.BattleData.NextSlot = new Slot();
             AI.Instance.BattleData.NextSlot.Add(new Spell(PLDBaseSlotResolvers.干预.GetSpell().Id, SpellTargetType.Pm2));
+        }
     }
 }

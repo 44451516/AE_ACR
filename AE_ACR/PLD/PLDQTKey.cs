@@ -26,4 +26,5 @@ public class PLDQTKey : BaseQTKey
     public const string 沥血剑 = "沥血剑";
     public const string 大翅膀最优面向 = "大翅膀最优面向";
     public const string 即刻厄运_深奥 = "即刻厄运/深奥";
+    public const string 大翅膀最优面向_测试 = "大翅膀最优面向_测试";
 }

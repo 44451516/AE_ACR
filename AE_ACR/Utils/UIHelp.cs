@@ -32,4 +32,19 @@ public static class UIHelp
             jobView.AddQt(name, qtValueDefault, toolTip);
         }
     }
+
+
+    public static void MyAddQt(this JobViewWindow jobView, Dictionary<string, bool> MyQtDict, string name, bool qtValueDefault, Action<bool> action, string toolTip = "")
+    {
+        var qtArray = MyQtDict;
+
+        if (qtArray.TryGetValue(name, out var qt))
+        {
+            jobView.AddQt(name, qt, action);
+        }
+        else
+        {
+            jobView.AddQt(name, qtValueDefault, action);
+        }
+    }
 }

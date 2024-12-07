@@ -46,6 +46,7 @@ public abstract class PLDBaseSlotResolvers : TankBaseIslotResolver
         钢铁信念 = 28,
         圣光幕帘 = 3540,
         干预= 7382,
+        大翅膀 = 7385,
         留空 = 16532;
 
 

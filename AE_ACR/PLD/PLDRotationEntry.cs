@@ -94,6 +94,7 @@ public class PLDRotationEntry : IRotationEntry
                           + "[大保健连击]会再未学习大保健的情况下用代替\n"
                           + "[一键减伤]铁壁-圣盾阵-预警-壁垒-神圣领域\n"
                           + "[远程强化圣灵]阈值在《远程圣灵阈值》里面设置\n"
+                          +" [大翅膀最优面向]这个QT开启会先设置面向然后自动放翅膀"
         };
         rot.AddOpener(GetOpener);
         // 添加各种事件回调
@@ -145,6 +146,8 @@ public class PLDRotationEntry : IRotationEntry
         // QT.AddTab("反馈建议", UIHelp.Feedback);
         Dictionary<string, bool> qtDict = PLDSettings.Instance.MyQtDict;
 
+    
+        
         // 添加QT开关 第二个参数是默认值 (开or关) 第三个参数是鼠标悬浮时的tips
         QT.MyAddQt(qtDict, BaseQTKey.停手, false, "是否使用基础的Gcd");
         QT.MyAddQt(qtDict, BaseQTKey.爆发药, false);
@@ -159,16 +162,29 @@ public class PLDRotationEntry : IRotationEntry
         QT.MyAddQt(qtDict, PLDQTKey.优先赎罪, false);
         QT.MyAddQt(qtDict, PLDQTKey.厄运流转, true);
         QT.MyAddQt(qtDict, PLDQTKey.深奥之灵, true);
-        QT.MyAddQt(qtDict, BaseQTKey.倾泻资源, false);
+        QT.MyAddQt(qtDict, BaseQTKey.倾泻资源, false,"卸掉强化[圣灵]和[赎罪]");
         QT.MyAddQt(qtDict, PLDQTKey.起手序列, false);
         QT.MyAddQt(qtDict, BaseQTKey.AOE, true);
         QT.MyAddQt(qtDict, PLDQTKey.远程强化圣灵, false, "阈值在《远程圣灵阈值》里面设置");
         QT.MyAddQt(qtDict, PLDQTKey.战逃打完调停, false);
         QT.MyAddQt(qtDict, PLDQTKey.移动不打调停, false);
         QT.MyAddQt(qtDict, PLDQTKey.沥血剑, true);
-        QT.MyAddQt(qtDict, PLDQTKey.即刻厄运_深奥, false);
-        QT.MyAddQt(qtDict, PLDQTKey.大翅膀最优面向, false, "测试用的,没事别打开,交给时间轴,和ReAction冲突");
-
+        QT.MyAddQt(qtDict, PLDQTKey.即刻厄运_深奥, false,"即刻[厄运流转]和[深奥之灵]");
+        QT.MyAddQt(qtDict, PLDQTKey.大翅膀最优面向_测试, false, "测试用的,没事别打开,交给时间轴,和ReAction冲突");
+        QT.MyAddQt( qtDict,PLDQTKey.大翅膀最优面向,false,v =>
+        {
+            if (v)
+            {
+                if (PLDBaseSlotResolvers.大翅膀.GetSpell().IsReadyWithCanCast())
+                {
+                    if (AI.Instance.BattleData.NextSlot == null)
+                        AI.Instance.BattleData.NextSlot = new Slot();
+                    RotUtil.骑士大翅膀FaceFarPoint();
+                    AI.Instance.BattleData.NextSlot.Add(new Spell(PLDBaseSlotResolvers.大翅膀.GetSpell().Id, SpellTargetType.Self));
+                }
+            }
+        });
+        
         if (PLDSettings.Instance.QtUnVisibleList.Any())
         {
             PLDSettings.Instance.JobViewSave.QtUnVisibleList.Clear();
@@ -201,6 +217,8 @@ public class PLDRotationEntry : IRotationEntry
         QT.AddHotkey("雪仇", new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.雪仇, SpellTargetType.Target));
         QT.AddHotkey("挑衅", new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.挑衅, SpellTargetType.Pm2));
         QT.AddHotkey("退避2", new HotkeyResolver_退避());
+        QT.AddHotkey("大翅膀", new HotkeyResolver_大翅膀());
+        QT.SetHotkeyToolTip("会自动设置面向，尽量覆盖到最多的人");
 
     }
 
