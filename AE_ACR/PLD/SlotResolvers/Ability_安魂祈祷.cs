@@ -38,24 +38,24 @@ public class Ability_安魂祈祷 : PLDBaseSlotResolvers
                     return Flag_超出攻击距离;
                 }
                 
-                if (战逃反应FightOrFlight.RecentlyUsed())
-                {
-                    return 0;
-                }
-                
-                if (WasLastAction(战逃反应FightOrFlight))
-                {
-                    return 0;
-                }
+                // if (战逃反应FightOrFlight.RecentlyUsed())
+                // {
+                //     return 0;
+                // }
+                //
+                // if (WasLastAction(战逃反应FightOrFlight))
+                // {
+                //     return 0;
+                // }
 
                 if (HasEffect(Buffs.FightOrFlight))
                 {
-                    return 0;
+                    return 1;
                 }
                 
                 if (HasEffect(Buffs.荣耀之剑预备))
                 {
-                    return 0;
+                    return 2;
                 }
             }
 
