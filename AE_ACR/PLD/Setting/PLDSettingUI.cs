@@ -23,6 +23,7 @@ public class PLDSettingUI
         ImGui.DragInt("附近5M多少怪物放AOE", ref pldSettings.USE_AOE, 1, 1, 10);
 
         ImGui.DragFloat("最大突进距离(超过就不用了)", ref pldSettings.最大突进距离, 0.1f, 0f, 25f);
+        ImGui.Checkbox("最优面向大翅膀只在战斗中", ref pldSettings.最优面向大翅膀只在战斗中);
 
         ImGui.Spacing();
         ImGui.Text("上天战逃");

@@ -48,6 +48,7 @@ public class PLDRotationEventHandler : IRotationEventHandler
 
         TriggerAction_大翅膀_Rot.Start = false;
         TriggerAction_M1S_Rot.Start = false;
+        PLDRotationEntry.QT.SetQt(PLDQTKey.大翅膀最优面向, false);
     }
 
     public async Task OnNoTarget()
@@ -86,6 +87,24 @@ public class PLDRotationEventHandler : IRotationEventHandler
         {
             RotUtil.M1S_FaceFarPointInSquare(Core.Me.Position);
         }
+        
+        if (PLDRotationEntry.QT.GetQt(PLDQTKey.大翅膀最优面向_测试) || TriggerAction_大翅膀_Rot.Start)
+        {
+            RotUtil.骑士大翅膀FaceFarPoint();
+        }
+        
+        
+        if (PLDRotationEntry.QT.GetQt(PLDQTKey.大翅膀最优面向))
+        {
+            if (PLDBaseSlotResolvers.大翅膀.GetSpell().IsReadyWithCanCast())
+            {
+                    
+                RotUtil.骑士大翅膀FaceFarPoint();
+                var slot = new Slot();
+                slot.Add(new Spell(PLDBaseSlotResolvers.大翅膀.GetSpell().Id, SpellTargetType.Self));
+                slot.Run(AI.Instance.BattleData, false);
+            }
+        }
 
         // if (TriggerAction_大翅膀_Rot.Start )
         // {
@@ -93,10 +112,7 @@ public class PLDRotationEventHandler : IRotationEventHandler
         // }
         //
 
-        if (PLDRotationEntry.QT.GetQt(PLDQTKey.大翅膀最优面向) || TriggerAction_大翅膀_Rot.Start)
-        {
-            RotUtil.骑士大翅膀FaceFarPoint();
-        }
+      
     }
 
     public void OnEnterRotation()

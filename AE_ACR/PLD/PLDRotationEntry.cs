@@ -14,6 +14,7 @@ using AE_ACR.utils.Triggers;
 using AEAssist;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
+using AEAssist.CombatRoutine.Module.AILoop;
 using AEAssist.CombatRoutine.Module.Opener;
 using AEAssist.CombatRoutine.Module.Target;
 using AEAssist.CombatRoutine.View.JobView;
@@ -110,6 +111,7 @@ public class PLDRotationEntry : IRotationEntry
         rot.AddTriggerCondition(new ITriggerCond_PLD忠义值());
         rot.AddTriggerCondition(new ITriggerCond_PLD调停充能());
         rot.AddTriggerCondition(new ITriggerCond_PLD翅膀覆盖人数());
+        rot.AddTriggerCondition(new ITriggerCond_PLD自动面向翅膀覆盖人数());
 
         return rot;
     }
@@ -171,19 +173,8 @@ public class PLDRotationEntry : IRotationEntry
         QT.MyAddQt(qtDict, PLDQTKey.沥血剑, true);
         QT.MyAddQt(qtDict, PLDQTKey.即刻厄运_深奥, false,"即刻[厄运流转]和[深奥之灵]");
         QT.MyAddQt(qtDict, PLDQTKey.大翅膀最优面向_测试, false, "测试用的,没事别打开,交给时间轴,和ReAction冲突");
-        QT.MyAddQt( qtDict,PLDQTKey.大翅膀最优面向,false,v =>
-        {
-            if (v)
-            {
-                if (PLDBaseSlotResolvers.大翅膀.GetSpell().IsReadyWithCanCast())
-                {
-                    if (AI.Instance.BattleData.NextSlot == null)
-                        AI.Instance.BattleData.NextSlot = new Slot();
-                    RotUtil.骑士大翅膀FaceFarPoint();
-                    AI.Instance.BattleData.NextSlot.Add(new Spell(PLDBaseSlotResolvers.大翅膀.GetSpell().Id, SpellTargetType.Self));
-                }
-            }
-        });
+        QT.MyAddQt(qtDict, PLDQTKey.大翅膀最优面向, false, "自动面向,自动放技能.");
+     
         
         if (PLDSettings.Instance.QtUnVisibleList.Any())
         {
@@ -220,6 +211,13 @@ public class PLDRotationEntry : IRotationEntry
         QT.AddHotkey("大翅膀", new HotkeyResolver_大翅膀());
         QT.SetHotkeyToolTip("会自动设置面向，尽量覆盖到最多的人");
 
+    }
+    
+    public async Task 释放大翅膀()
+    {
+        var slot = new Slot();
+        slot.Add(PLDBaseSlotResolvers.钢铁信念.GetSpell());
+        await slot.Run(AI.Instance.BattleData, false);
     }
 
     private void DrawDailyMode(JobViewWindow obj)
@@ -266,7 +264,7 @@ public class PLDRotationEntry : IRotationEntry
         ImGui.Text("画Dev信息");
         ImGui.Text($"当前面向{Core.Me.Rotation}");
         ImGui.Text($"玩家数量{(ECHelperObjectsUtils.get8().Count())}");
-        ITriggerCond_PLD翅膀覆盖人数.GetPlayersInFanShape(ECHelperObjectsUtils.get8(), Core.Me.Rotation);
+        RotUtil.GetPlayersInFanShape(ECHelperObjectsUtils.get8(), Core.Me.Rotation);
         ImGui.Text($"测试列表{ITriggerCond_PLD翅膀覆盖人数.测试列表.Count()}");
         foreach (var se in ITriggerCond_PLD翅膀覆盖人数.测试列表)
         {

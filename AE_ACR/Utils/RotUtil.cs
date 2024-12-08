@@ -2,8 +2,11 @@
 using System.Numerics;
 using AE_ACR.PLD.Triggers;
 using AEAssist;
+using AEAssist.Avoid;
+using AEAssist.Extension;
 using AEAssist.Helper;
 using AEAssist.MemoryApi;
+using Dalamud.Game.ClientState.Objects.Types;
 
 namespace AE_ACR.Utils
 {
@@ -63,14 +66,14 @@ namespace AE_ACR.Utils
         {
             float step = MathF.PI / 360;
             float temp = -555f;
-            float tplayerCount = 0f;
+            int tplayerCount = 0;
 
             var 新面向 = false;
 
             // 从 MathF.PI 到 -MathF.PI 遍历
             for (float angle = MathF.PI; angle >= -MathF.PI; angle -= step)
             {
-                var playerCount = ITriggerCond_PLD翅膀覆盖人数.GetPlayersInFanShape(PartyHelper.CastableAlliesWithin10, angle);
+                var playerCount = GetPlayersInFanShape(PartyHelper.CastableAlliesWithin10, angle);
                 // var playerCount = ITriggerCond_PLD翅膀覆盖人数.GetPlayersInFanShape(ECHelperObjectsUtils.get8(), angle);
                 if (playerCount > tplayerCount)
                 {
@@ -84,9 +87,40 @@ namespace AE_ACR.Utils
             // 设置自己的面向为最佳面向
             if (新面向)
             {
-                LogHelper.Print($"新面向{temp} -{tplayerCount}");
+                // LogHelper.Print($"新面向{temp} -{tplayerCount}");
                 Core.Resolve<MemApiMove>().SetRot(newRot);
             }
+        }
+
+        public static int GetPlayersInFanShape(List<IBattleChara> list, float Rotation)
+        {
+            int count = 0;
+            SectorShape sectorShape = new SectorShape()
+            {
+                Origin = Core.Me.Position, Angle = 90, Dir = -Rotation.GetDir(), Radius = 8f
+            };
+
+            foreach (var battleChara in list)
+            {
+                //去掉自己
+                if (battleChara.GameObjectId == Core.Me.GameObjectId)
+                {
+                    continue;
+                }
+
+                var distance = Core.Me.Distance(battleChara);
+                if (distance > 8)
+                {
+                    continue;
+                }
+
+                if (sectorShape.IsInShape(battleChara.Position))
+                {
+                    count++;
+                }
+            }
+
+            return count;
         }
     }
 }

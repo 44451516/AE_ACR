@@ -38,6 +38,11 @@ public class Ability_安魂祈祷 : PLDBaseSlotResolvers
                     return Flag_超出攻击距离;
                 }
                 
+                if (战逃反应FightOrFlight.RecentlyUsed())
+                {
+                    return 0;
+                }
+                
                 if (WasLastAction(战逃反应FightOrFlight))
                 {
                     return 0;

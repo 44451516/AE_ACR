@@ -29,6 +29,7 @@ public class PLDSettings
     public bool 上天战逃 = false;
     public float 上天战逃开始时间 = 30;
     public float 上天战逃结束时间 = 60 * 5 + 30;
+    public bool 最优面向大翅膀只在战斗中 = true;
 
     public JobViewSave JobViewSave = new(); // QT设置存档
     public Dictionary<string, bool> MyQtDict = new();

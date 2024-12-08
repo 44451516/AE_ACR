@@ -18,7 +18,6 @@ public class ITriggerCond_PLD翅膀覆盖人数 : ITriggerCond
     public bool Draw()
     {
         ImGui.Text(">=PLD翅膀可以覆盖人数返回真");
-        ImGui.Text("[写的有问题不一定准]");
         ImGui.Text("当前位置和面向释放大翅膀能覆盖的人数");
         ImGui.DragInt("PLD翅膀可以覆盖人数", ref 人数, 1f, 0, 7);
         return true;
@@ -43,7 +42,7 @@ public class ITriggerCond_PLD翅膀覆盖人数 : ITriggerCond
 
     public static List<string> 测试列表 = new List<string>();
 
-    public static int GetPlayersInFanShape(List<IBattleChara> list, float Rotation)
+    public  int GetPlayersInFanShape(List<IBattleChara> list, float Rotation)
     {
         测试列表.Clear();
         int count = 0;
