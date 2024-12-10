@@ -3,6 +3,7 @@ using AE_ACR.DRK.SlotResolvers;
 using AEAssist;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
+using AEAssist.CombatRoutine.Module.AILoop;
 using AEAssist.CombatRoutine.View.JobView;
 using AEAssist.Helper;
 using AEAssist.MemoryApi;
@@ -42,10 +43,15 @@ public class HotkeyResolver_献奉Pm1 : IHotkeyResolver
 
     public void Run()
     {
-        if (AI.Instance.BattleData.NextSlot == null)
-            AI.Instance.BattleData.NextSlot = new Slot();
-
-        if (DRKBaseSlotResolvers.献奉.GetSpell().IsReadyWithCanCast())
-            AI.Instance.BattleData.NextSlot.Add(new Spell(DRKBaseSlotResolvers.献奉.GetSpell().Id, SpellTargetType.Pm1));
+        
+        var slot = new Slot();
+        slot.Add(new Spell(DRKBaseSlotResolvers.献奉.GetSpell().Id, Core.Me));
+        slot.Run(AI.Instance.BattleData, false);
+        
+        // if (AI.Instance.BattleData.NextSlot == null)
+        //     AI.Instance.BattleData.NextSlot = new Slot();
+        //
+        // if (DRKBaseSlotResolvers.献奉.GetSpell().IsReadyWithCanCast())
+        //     AI.Instance.BattleData.NextSlot.Add(new Spell(DRKBaseSlotResolvers.献奉.GetSpell().Id, SpellTargetType.Pm1));
     }
 }

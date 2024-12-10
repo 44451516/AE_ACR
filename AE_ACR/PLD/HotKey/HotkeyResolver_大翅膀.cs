@@ -4,6 +4,7 @@ using AE_ACR.Utils;
 using AEAssist;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
+using AEAssist.CombatRoutine.Module.AILoop;
 using AEAssist.CombatRoutine.View.JobView;
 using AEAssist.Helper;
 using AEAssist.MemoryApi;
@@ -46,10 +47,11 @@ public class HotkeyResolver_大翅膀 : IHotkeyResolver
     {
         if (PLDBaseSlotResolvers.大翅膀.GetSpell().IsReadyWithCanCast())
         {
-            if (AI.Instance.BattleData.NextSlot == null)
-                AI.Instance.BattleData.NextSlot = new Slot();
             RotUtil.骑士大翅膀FaceFarPoint();
-            AI.Instance.BattleData.NextSlot.Add(new Spell(PLDBaseSlotResolvers.大翅膀.GetSpell().Id, SpellTargetType.Self));
+            var slot = new Slot();
+            Spell spell = new Spell(PLDBaseSlotResolvers.大翅膀.GetSpell().Id, SpellTargetType.Self);
+            slot.Add(spell);
+            slot.Run(AI.Instance.BattleData, false);
         }
     }
 }

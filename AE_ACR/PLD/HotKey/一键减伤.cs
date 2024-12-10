@@ -4,6 +4,7 @@ using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
+using AEAssist.CombatRoutine.Module.AILoop;
 using AEAssist.CombatRoutine.View.JobView;
 using AEAssist.Helper;
 using AEAssist.MemoryApi;
@@ -108,11 +109,17 @@ public class 一键减伤 : IHotkeyResolver
             spell = new Spell(PLDBaseSlotResolvers.铁壁, Core.Me);
         }
 
+        if (spell != null)
+        {
+            var slot = new Slot();
+            slot.Add(spell);
+            slot.Run(AI.Instance.BattleData, false);
+        }
+   
 
-        if (AI.Instance.BattleData.NextSlot == null)
-            AI.Instance.BattleData.NextSlot = new();
-
-        AI.Instance.BattleData.NextSlot.Add(spell);
+        // if (AI.Instance.BattleData.NextSlot == null)
+        // AI.Instance.BattleData.NextSlot = new();
+        // AI.Instance.BattleData.NextSlot.Add(spell);
 
     }
 }
