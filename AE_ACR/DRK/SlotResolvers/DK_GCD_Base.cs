@@ -56,17 +56,17 @@ public class DK_GCD_Base : DRKBaseSlotResolvers
         
         if (DKSettings.Instance.日常模式)
         {
-            if (Core.Me.TargetObject is IBattleChara battleChara)
-            {
-                if (伤残.MyIsUnlock())
-                {
-                    var 伤残阈值 = DKSettings.Instance.伤残阈值;
-                    if (和目标的距离() >= 伤残阈值 && 和目标的距离() <= 20f)
-                    {
-                        return 伤残.GetSpell();
-                    }
-                }
-            }
+            // if (Core.Me.TargetObject is IBattleChara battleChara)
+            // {
+            //     if (伤残.MyIsUnlock())
+            //     {
+            //         var 伤残阈值 = DKSettings.Instance.伤残阈值;
+            //         if (和目标的距离() >= 伤残阈值 && 和目标的距离() <= 20f)
+            //         {
+            //             return 伤残.GetSpell();
+            //         }
+            //     }
+            // }
         }
 
         if (lastComboActionID == 单体1HardSlash && 单体2SyphonStrike.MyIsUnlock() && inAttackDistance)

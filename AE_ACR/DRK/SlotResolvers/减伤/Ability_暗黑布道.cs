@@ -1,5 +1,6 @@
 ﻿#region
 
+using AE_ACR_DRK_Setting;
 using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine.Module;
@@ -19,6 +20,11 @@ public class Ability_暗黑布道 : DRKBaseSlotResolvers
         {
             return Flag_减伤;
         }
+        
+        if (DKSettings.Instance.AOE步道 == false)
+        {
+            return Flag_QT;
+        }
 
         if (CanWeave())
         {
@@ -28,6 +34,7 @@ public class Ability_暗黑布道 : DRKBaseSlotResolvers
                 {
                     if (TargetHelper.TargercastingIsbossaoe(target,10_000))
                     {
+                       
                         return 0;
                     }
                 }

@@ -210,6 +210,7 @@ public class PLDRotationEntry : IRotationEntry
         QT.AddHotkey("退避2", new HotkeyResolver_退避());
         QT.AddHotkey("大翅膀", new HotkeyResolver_大翅膀());
         QT.SetHotkeyToolTip("会自动设置面向，尽量覆盖到最多的人");
+        QT.AddHotkey("爆发药", new HotKeyResolver_Potion());
 
     }
     
@@ -271,7 +272,7 @@ public class PLDRotationEntry : IRotationEntry
             ImGui.Text($"背后_{se}");
         }
 
-        // ImGui.Text($"调停Intervene : {PLDBaseSlotResolvers.调停Intervene.ActionReady()}");
+        ImGui.Text($"大保健连击Confiteor是否解锁 : {PLDBaseSlotResolvers.大保健连击Confiteor.IsUnlock()}");
         // ImGui.Text($"Charges : {PLDBaseSlotResolvers.调停Intervene.Charges()}");
         // ImGui.Text($"调停充能释放时期 : { PLDSettings.Instance.调停保留层数}");
 

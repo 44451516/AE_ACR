@@ -38,6 +38,12 @@ public class PLDSettingUI
         ImGui.Text("在倒计时多少的是使用幕帘，单位是毫秒，倒计时5秒填5000");
         ImGui.DragInt("起手幕帘阈值", ref pldSettings.起手幕帘阈值, 1000, 300, 30_000);
         ImGui.DragInt("起手圣灵阈值", ref pldSettings.起手圣灵阈值, 1000, 500, 2000);
+        
+        ImGui.Spacing();
+        ImGui.Checkbox("AOE雪仇", ref pldSettings.AOE雪仇);
+        ImGui.Checkbox("AOE幕帘", ref pldSettings.AOE幕帘);
+        
+        ImGui.Spacing();
         if (ImGui.Button("Save[保存]"))
         {
             PLDSettings.Instance.Save();

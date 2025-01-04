@@ -39,7 +39,7 @@ public class PLD_GCD_Base : PLDBaseSlotResolvers
     {
         bool inAttackDistance = 和目标的距离() <= PLDSettings.Instance.近战最大攻击距离;
         bool inAttackDistance25 = 和目标的距离() <= 25;
-        
+
         if (HasEffect(Buffs.FightOrFlight) && 王权剑RoyalAuthority.MyIsUnlock())
         {
             if (GetBuffRemainingTime(Buffs.DivineMight) >= 27
@@ -71,7 +71,7 @@ public class PLD_GCD_Base : PLDBaseSlotResolvers
                 return 战女神之怒RageOfHalone.OriginalHook();
             }
 
-            if (HasEffect(Buffs.Requiescat) && 圣灵HolySpirit.MyIsUnlock() && GetResourceCost(圣灵HolySpirit) <= Core.Me.CurrentMp && inAttackDistance25)
+            if (大保健连击Confiteor.IsUnlock() == false && HasEffect(Buffs.Requiescat) && 圣灵HolySpirit.MyIsUnlock() && GetResourceCost(圣灵HolySpirit) <= Core.Me.CurrentMp && inAttackDistance25)
             {
                 return 圣灵HolySpirit.OriginalHook();
             }

@@ -36,6 +36,9 @@ public class DKSettings
     public bool 上天血乱 = false;
     public float 上天血乱开始时间 = 30;
     public float 上天血乱结束时间 = 60 * 5 + 30;
+    
+    public bool AOE雪仇 = true;
+    public bool AOE步道 = true;
 
     public JobViewSave JobViewSave = new(); // QT设置存档
     public Dictionary<string, bool> MyQtDict = new();

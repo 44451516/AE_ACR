@@ -1,6 +1,7 @@
 ﻿#region
 
 using AE_ACR.DRK.SlotResolvers;
+using AE_ACR.PLD.Setting;
 using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine.Module;
@@ -19,7 +20,12 @@ public class Ability_圣光幕帘 : PLDBaseSlotResolvers
         {
             return Flag_减伤;
         }
-
+        
+        if (PLDSettings.Instance.AOE幕帘 == false)
+        {
+            return Flag_QT;
+        }
+        
         if (CanWeave())
         {
             if (圣光幕帘.ActionReady() )
