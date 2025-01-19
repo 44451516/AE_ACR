@@ -1,5 +1,6 @@
 ﻿#region
 
+using AE_ACR.PLD.Setting;
 using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine.Module;
@@ -14,6 +15,11 @@ public class Ability_神圣领域 : PLDBaseSlotResolvers
     public override int Check()
     {
         if (!是否减伤())
+        {
+            return Flag_减伤;
+        }
+
+        if (PLDSettings.Instance.自动无敌 == false)
         {
             return Flag_减伤;
         }

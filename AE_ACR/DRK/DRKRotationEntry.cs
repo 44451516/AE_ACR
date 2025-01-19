@@ -30,11 +30,10 @@ namespace AE_ACR_DRK;
 public class DRKRotationEntry : IRotationEntry
 {
     private const string 说明 = "1、如果你发现在非高难副本不打爆发，请把[爆发药]关了\n"
-                                + "2、开启[起手序列]和[通用]里面的选项冲突\n"
-                                + "3、[赞资源]开启嗜血血乱、掠影示现、暗影使者、暗黑锋、精雕怒斩、腐秽大地、蔑视厌恶、血溅将不会释放\n"
-                                + "4、如果你发现没有保留蓝量，请把[目标小于多少血打完所有资源]设置为0\n"
-                                + "请支持Sinclair\n"
-                                ;
+                              + "2、开启[起手序列]和[通用]里面的选项冲突\n"
+                              + "3、[赞资源]开启嗜血血乱、掠影示现、暗影使者、暗黑锋、精雕怒斩、腐秽大地、蔑视厌恶、血溅将不会释放\n"
+                              + "4、如果你发现没有保留蓝量，请把[目标小于多少血打完所有资源]设置为0\n"
+                              + "请支持Sinclair\n";
 
     // 逻辑从上到下判断，通用队列是无论如何都会判断的 
     // gcd则在可以使用gcd时判断
@@ -101,11 +100,13 @@ public class DRKRotationEntry : IRotationEntry
         // 添加各种事件回调
         rot.SetRotationEventHandler(new DRKRotationEventHandler());
         // 添加QT开关的时间轴行为
-        rot.AddTriggerAction(
+        rot.AddTriggerAction
+        (
             new TriggerAction_QT(),
             new TriggerAction_M1S_Rot()
-            );
-        rot.AddTriggerCondition(
+        );
+        rot.AddTriggerCondition
+        (
             new ITriggerCond_DRK暗血值(),
             new ITriggerCond_DRK蓝量检查(),
             new ITriggerCond_DRK暗技检查()
@@ -172,25 +173,25 @@ public class DRKRotationEntry : IRotationEntry
         QT.AddTab("日常模式", DrawDailyMode);
         // QT.AddTab("自动减伤", DrawAutoBuff);
         Dictionary<string, bool> qtDict = DKSettings.Instance.MyQtDict;
-        
-        
-        QT.MyAddQt(qtDict,BaseQTKey.停手, false, "是否使用基础的Gcd");
-        QT.MyAddQt(qtDict,BaseQTKey.攒资源, false, "攒资源不会卸暗血和打暗影峰");
-        QT.MyAddQt(qtDict,BaseQTKey.爆发药, false);
-        QT.MyAddQt(qtDict,DRKQTKey.腐秽大地, true);
-        QT.MyAddQt(qtDict,DRKQTKey.腐秽黑暗, true);
-        QT.MyAddQt(qtDict,DRKQTKey.暗影使者, true);
-        QT.MyAddQt(qtDict,DRKQTKey.掠影示现, true);
-        QT.MyAddQt(qtDict,DRKQTKey.蔑视厌恶, true);
-        QT.MyAddQt(qtDict,DRKQTKey.精雕吸血, true);
-        QT.MyAddQt(qtDict,DRKQTKey.伤残, false, "和目标距离过远的时候使用");
-        QT.MyAddQt(qtDict,DRKQTKey.起手序列, true);
-        QT.MyAddQt(qtDict,DRKQTKey.卸掉豆子, false);
-        QT.MyAddQt(qtDict,BaseQTKey.倾泻资源, false);
-        QT.MyAddQt(qtDict,DRKQTKey.不打血溅, false);
-        QT.MyAddQt(qtDict,DRKQTKey.不打暗影峰, false);
-        QT.MyAddQt(qtDict,BaseQTKey.AOE, true);
-        
+
+
+        QT.MyAddQt(qtDict, BaseQTKey.停手, false, "是否使用基础的Gcd");
+        QT.MyAddQt(qtDict, BaseQTKey.攒资源, false, "攒资源不会卸暗血和打暗影峰");
+        QT.MyAddQt(qtDict, BaseQTKey.爆发药, false);
+        QT.MyAddQt(qtDict, DRKQTKey.腐秽大地, true);
+        QT.MyAddQt(qtDict, DRKQTKey.腐秽黑暗, true);
+        QT.MyAddQt(qtDict, DRKQTKey.暗影使者, true);
+        QT.MyAddQt(qtDict, DRKQTKey.掠影示现, true);
+        QT.MyAddQt(qtDict, DRKQTKey.蔑视厌恶, true);
+        QT.MyAddQt(qtDict, DRKQTKey.精雕吸血, true);
+        QT.MyAddQt(qtDict, DRKQTKey.伤残, false, "和目标距离过远的时候使用");
+        QT.MyAddQt(qtDict, DRKQTKey.起手序列, true);
+        QT.MyAddQt(qtDict, DRKQTKey.卸掉豆子, false);
+        QT.MyAddQt(qtDict, BaseQTKey.倾泻资源, false);
+        QT.MyAddQt(qtDict, DRKQTKey.不打血溅, false);
+        QT.MyAddQt(qtDict, DRKQTKey.不打暗影峰, false);
+        QT.MyAddQt(qtDict, BaseQTKey.AOE, true);
+
         if (DKSettings.Instance.QtUnVisibleList.Any())
         {
             DKSettings.Instance.JobViewSave.QtUnVisibleList.Clear();
@@ -204,27 +205,27 @@ public class DRKRotationEntry : IRotationEntry
             DKSettings.Instance.JobViewSave.QtUnVisibleList.Clear();
             // DKSettings.Instance.JobViewSave.QtUnVisibleList.Add(BaseQTKey.AOE);
         }
-        
-        
+
+
         QT.AddHotkey("LB", new HotKeyResolver_LB());
-        QT.AddHotkey("铁壁",new HotKeyResolver_NormalSpell(TankBaseIslotResolver.铁壁, SpellTargetType.Self));
-        QT.AddHotkey("暗影墙",new HotKeyResolver_NormalSpell(DRKBaseSlotResolvers.暗影墙.OriginalHook().Id, SpellTargetType.Self));
-        QT.AddHotkey("弃明投暗",new HotKeyResolver_NormalSpell(DRKBaseSlotResolvers.弃明投暗.OriginalHook().Id, SpellTargetType.Self));
-        QT.AddHotkey("至黑之夜1",new HotKeyResolver_NormalSpell(DRKBaseSlotResolvers.至黑之夜, SpellTargetType.Self));
-        QT.AddHotkey("至黑之夜2",new HotkeyResolver_黑盾Pm2());
-        QT.AddHotkey("献奉1",new HotkeyResolver_献奉Pm1());
-        QT.AddHotkey("献奉2",new HotkeyResolver_献奉Pm2());
-        QT.AddHotkey("暗黑布道",new HotKeyResolver_NormalSpell(DRKBaseSlotResolvers.暗黑布道, SpellTargetType.Self));
-        QT.AddHotkey("行尸走肉",new HotKeyResolver_NormalSpell(DRKBaseSlotResolvers.行尸走肉, SpellTargetType.Self));
-        
-        QT.AddHotkey("亲疏自行",new HotKeyResolver_NormalSpell(TankBaseIslotResolver.亲疏自行, SpellTargetType.Self));
-        QT.AddHotkey("雪仇",new HotKeyResolver_NormalSpell(TankBaseIslotResolver.雪仇, SpellTargetType.Target));
-        QT.AddHotkey("挑衅",new HotKeyResolver_NormalSpell(TankBaseIslotResolver.挑衅, SpellTargetType.Pm2));
-        QT.AddHotkey("退避2",new HotKeyResolver_NormalSpell(TankBaseIslotResolver.退避, SpellTargetType.Pm2));
+        QT.AddHotkey("铁壁", new HotKeyResolver_NormalSpell(TankBaseIslotResolver.铁壁, SpellTargetType.Self));
+        QT.AddHotkey("暗影墙", new HotKeyResolver_NormalSpell(DRKBaseSlotResolvers.暗影墙.OriginalHook().Id, SpellTargetType.Self));
+        QT.AddHotkey("弃明投暗", new HotKeyResolver_NormalSpell(DRKBaseSlotResolvers.弃明投暗.OriginalHook().Id, SpellTargetType.Self));
+        QT.AddHotkey("至黑之夜1", new HotKeyResolver_NormalSpell(DRKBaseSlotResolvers.至黑之夜, SpellTargetType.Self));
+        QT.AddHotkey("至黑之夜2", new HotkeyResolver_黑盾Pm2());
+        QT.AddHotkey("献奉1", new HotkeyResolver_献奉Pm1());
+        QT.AddHotkey("献奉2", new HotkeyResolver_献奉Pm2());
+        QT.AddHotkey("暗黑布道", new HotKeyResolver_NormalSpell(DRKBaseSlotResolvers.暗黑布道, SpellTargetType.Self));
+        QT.AddHotkey("行尸走肉", new HotKeyResolver_NormalSpell(DRKBaseSlotResolvers.行尸走肉, SpellTargetType.Self));
+
+        QT.AddHotkey("亲疏自行", new HotKeyResolver_NormalSpell(TankBaseIslotResolver.亲疏自行, SpellTargetType.Self));
+        QT.AddHotkey("雪仇", new HotKeyResolver_NormalSpell(TankBaseIslotResolver.雪仇, SpellTargetType.Target));
+        QT.AddHotkey("挑衅", new HotKeyResolver_NormalSpell(TankBaseIslotResolver.挑衅, SpellTargetType.Pm2));
+        QT.AddHotkey("退避2", new HotKeyResolver_NormalSpell(TankBaseIslotResolver.退避, SpellTargetType.Pm2));
         QT.AddHotkey("爆发药", new HotKeyResolver_Potion());
         QT.AddHotkey("清马桶", new HotkeyResolver_清马桶());
     }
-    
+
     private void DrawDailyMode(JobViewWindow obj)
     {
         var DkSettings = DKSettings.Instance;
@@ -237,8 +238,14 @@ public class DRKRotationEntry : IRotationEntry
             ImGui.Checkbox("使用挑衅", ref DkSettings.挑衅);
             ImGui.SetNextItemWidth(150f);
             ImGui.Checkbox("日常模式_残血不打爆发[测试中]", ref DkSettings.日常模式_残血不打爆发);
+            ImGui.Spacing();
+            ImGui.Text("自动减伤设置");
             ImGui.SetNextItemWidth(150f);
             ImGui.Checkbox("自动黑盾", ref DkSettings.自动黑盾);
+            ImGui.SetNextItemWidth(150f);
+            ImGui.Checkbox("AOE雪仇", ref DkSettings.AOE雪仇);
+            ImGui.SetNextItemWidth(150f);
+            ImGui.Checkbox("AOE步道", ref DkSettings.AOE步道);
             ImGui.Spacing();
         }
     }
@@ -261,7 +268,7 @@ public class DRKRotationEntry : IRotationEntry
 
     public void DrawQtDev(JobViewWindow jobViewWindow)
     {
-        
+
         var shadowTimeRemaining = Core.Resolve<JobApi_DarkKnight>().ShadowTimeRemaining;
         ImGui.Text($"shadowTimeRemaining:{shadowTimeRemaining}");
         // ImGui.Text("画Dev信息");
@@ -282,12 +289,12 @@ public class DRKRotationEntry : IRotationEntry
         // ImGui.Text($"强化药:{RaidBuff.强化药.GetBuffRemainingTime() / 1000f}");
         // ImGui.Text($"爆发期_120:{RaidBuff.爆发期_120()}");
         // ImGui.Text($"掠影示现:{DRKBaseSlotResolvers.掠影示现.GetCooldownRemainingTime()}");
-        
+
         ImGui.Text($"暗影墙:{DRKBaseSlotResolvers.Buffs.暗影墙.GetBuffRemainingTime()}");
         ImGui.Text($"暗影墙v2:{DRKBaseSlotResolvers.Buffs.暗影墙v2.GetBuffRemainingTime()}");
         ImGui.Text($"铁壁:{TankBaseIslotResolver.TankBuffs.铁壁.GetBuffRemainingTime()}");
-        
-        
+
+
         // ImGui.Text($"血溅Bloodspiller.IsUnlock:{Core.Resolve<MemApiSpell>().CheckActionChange(DRKBaseSlotResolvers.血溅Bloodspiller).GetSpell()}");
         // ImGui.Text($"目标距离:{TargetHelper.GetTargetDistanceFromMeTest2D(battleChara, Core.Me)}");
         // ImGui.Text($"挑衅cd:{DRKBaseSlotResolvers.挑衅.GetCooldownRemainingTime()}");

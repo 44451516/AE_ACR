@@ -39,9 +39,6 @@ public class PLDSettingUI
         ImGui.DragInt("起手幕帘阈值", ref pldSettings.起手幕帘阈值, 1000, 300, 30_000);
         ImGui.DragInt("起手圣灵阈值", ref pldSettings.起手圣灵阈值, 1000, 500, 2000);
         
-        ImGui.Spacing();
-        ImGui.Checkbox("AOE雪仇", ref pldSettings.AOE雪仇);
-        ImGui.Checkbox("AOE幕帘", ref pldSettings.AOE幕帘);
         
         ImGui.Spacing();
         if (ImGui.Button("Save[保存]"))

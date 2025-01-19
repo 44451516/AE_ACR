@@ -50,6 +50,9 @@ public class PLD_Opener : IOpener
 
     public void InitCountDown(CountDownHandler countDownHandler)
     {
+        //QT开关
+        // AE_ACR.PLD.PLDRotationEntry.QT.SetQt("即刻战逃", true);
+        
         if (PLDSettings.Instance.起手幕帘 && PLDBaseSlotResolvers.圣光幕帘.IsUnlock())
         {
             countDownHandler.AddAction(PLDSettings.Instance.起手幕帘阈值, PLDBaseSlotResolvers.圣光幕帘, SpellTargetType.Self);

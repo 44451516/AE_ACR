@@ -42,9 +42,7 @@ public class DKSettingUI
         ImGui.Checkbox("起手突进",ref dkSettings.起手突进);
         ImGui.Checkbox("只在高难模式使用起手序列",ref dkSettings.只在高难模式使用起手序列);
         
-        ImGui.Spacing();
-        ImGui.Checkbox("AOE雪仇", ref dkSettings.AOE雪仇);
-        ImGui.Checkbox("AOE步道", ref dkSettings.AOE步道);
+      
         ImGui.Spacing();
         
         if (ImGui.Button("Save[保存]"))

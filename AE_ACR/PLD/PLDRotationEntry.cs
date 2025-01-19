@@ -95,7 +95,7 @@ public class PLDRotationEntry : IRotationEntry
                           + "[大保健连击]会再未学习大保健的情况下用代替\n"
                           + "[一键减伤]铁壁-圣盾阵-预警-壁垒-神圣领域\n"
                           + "[远程强化圣灵]阈值在《远程圣灵阈值》里面设置\n"
-                          +" [大翅膀最优面向]这个QT开启会先设置面向然后自动放翅膀"
+                          + "[大翅膀最优面向]这个QT开启会先设置面向然后自动放翅膀"
         };
         rot.AddOpener(GetOpener);
         // 添加各种事件回调
@@ -231,7 +231,17 @@ public class PLDRotationEntry : IRotationEntry
         ImGui.Checkbox("使用挑衅", ref pldSettings.挑衅);
         // ImGui.SetNextItemWidth(150f);
         ImGui.Checkbox("日常模式-残血不打爆发[测试中]", ref pldSettings.日常模式_残血不打爆发);
+        
         ImGui.Spacing();
+        ImGui.Text("自动减伤设置");
+        ImGui.SetNextItemWidth(150f);
+        ImGui.Checkbox("自动无敌", ref pldSettings.自动无敌);
+        ImGui.SetNextItemWidth(150f);
+        ImGui.Checkbox("AOE雪仇", ref pldSettings.AOE雪仇);
+        ImGui.SetNextItemWidth(150f);
+        ImGui.Checkbox("AOE幕帘", ref pldSettings.AOE幕帘);
+        ImGui.Spacing();
+       
     }
 
     private IOpener? GetOpener(uint level)

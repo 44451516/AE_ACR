@@ -3,6 +3,7 @@
 using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine.Module;
+using AEAssist.Extension;
 using AEAssist.Helper;
 
 #endregion
@@ -33,20 +34,25 @@ public class GCD_大宝剑连击_圣灵_圣环 : PLDBaseSlotResolvers
         }
 
 
-        if (大保健连击Confiteor.IsUnlock() == false && HasEffect(Buffs.Requiescat) && GetResourceCost(圣灵HolySpirit) <= Core.Me.CurrentMp)
+        if (HasEffect(Buffs.Requiescat) && GetResourceCost(圣灵HolySpirit) <= Core.Me.CurrentMp)
         {
-            if (和目标的距离() > 25f)
+            if (大保健连击Confiteor.IsUnlock() == false 
+                || (大保健连击Confiteor.IsUnlock() && 信念之剑BladeOfFaith.IsUnlock() == false && Core.Me.GetAuraStack(Buffs.Requiescat) <= 4))
             {
-                return Flag_超出攻击距离;
+                if (和目标的距离() > 25f)
+                {
+                    return Flag_超出攻击距离;
+                }
+
+
+                if (圣灵HolySpirit.MyIsUnlock())
+                {
+                    return 0;
+                }
+
             }
-
-
-            if (圣灵HolySpirit.MyIsUnlock())
-            {
-                return 0;
-            }
-
         }
+
         return -1;
     }
 

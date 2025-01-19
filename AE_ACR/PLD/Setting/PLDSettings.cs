@@ -15,6 +15,7 @@ public class PLDSettings
 
     public bool 日常模式 = false;
     public bool 日常模式_残血不打爆发 = false;
+    public bool 自动无敌 = true;
     public bool 挑衅 = true;
     public float 投盾阈值 = 5f;
     public float 远程圣灵阈值 = 5f;

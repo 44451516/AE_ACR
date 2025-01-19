@@ -28,7 +28,7 @@ public abstract class PLDBaseSlotResolvers : TankBaseIslotResolver
         圣环HolyCircle = 16458,
         大保健连击Confiteor = 16459,
         偿赎剑Expiacion = 25747,
-        BladeOfFaith = 25748,
+        信念之剑BladeOfFaith = 25748,
         BladeOfTruth = 25749,
         BladeOfValor = 25750,
         战逃反应FightOrFlight = 20,
