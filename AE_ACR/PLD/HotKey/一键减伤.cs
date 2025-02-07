@@ -35,7 +35,7 @@ public class 一键减伤 : IHotkeyResolver
 
     public void DrawExternal(Vector2 size, bool isActive)
     {
-        // SpellHelper.DrawSpellInfo(SpellId.GetSpell(), size, isActive);
+        SpellHelper.DrawSpellInfo(SpellId.GetSpell(), size, isActive);
     }
 
 

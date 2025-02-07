@@ -1,5 +1,6 @@
 ﻿using System.Numerics;
 using AE_ACR.DRK.SlotResolvers;
+using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
@@ -29,7 +30,7 @@ public class HotkeyResolver_献奉Pm1 : IHotkeyResolver
 
     public void DrawExternal(Vector2 size, bool isActive)
     {
-        SpellHelper.DrawSpellInfo(DRKBaseSlotResolvers.献奉.GetSpell(), size, isActive);
+        UIHelp.DrawSpellNormal(DRKBaseSlotResolvers.献奉.GetSpell(), size, isActive);
     }
 
     public int Check()
@@ -43,15 +44,12 @@ public class HotkeyResolver_献奉Pm1 : IHotkeyResolver
 
     public void Run()
     {
-        
-        var slot = new Slot();
-        slot.Add(new Spell(DRKBaseSlotResolvers.献奉.GetSpell().Id, Core.Me));
-        slot.Run(AI.Instance.BattleData, false);
-        
-        // if (AI.Instance.BattleData.NextSlot == null)
-        //     AI.Instance.BattleData.NextSlot = new Slot();
-        //
-        // if (DRKBaseSlotResolvers.献奉.GetSpell().IsReadyWithCanCast())
-        //     AI.Instance.BattleData.NextSlot.Add(new Spell(DRKBaseSlotResolvers.献奉.GetSpell().Id, SpellTargetType.Pm1));
+        if (DRKBaseSlotResolvers.献奉.IsUnlockWithCDCheck())
+        {
+            var slot = new Slot();
+            Spell spell = new Spell(DRKBaseSlotResolvers.献奉.GetSpell().Id, SpellTargetType.Pm1);
+            slot.Add(spell);
+            slot.Run(AI.Instance.BattleData, false);
+        }
     }
 }

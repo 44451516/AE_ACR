@@ -1,9 +1,10 @@
 ﻿using System.Numerics;
-using AE_ACR.DRK.SlotResolvers;
 using AE_ACR.PLD.SlotResolvers;
+using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
+using AEAssist.CombatRoutine.Module.AILoop;
 using AEAssist.CombatRoutine.View.JobView;
 using AEAssist.Helper;
 using AEAssist.MemoryApi;
@@ -29,12 +30,13 @@ public class HotkeyResolver_干预Pm2:IHotkeyResolver
 
     public void DrawExternal(Vector2 size, bool isActive)
     {
-        SpellHelper.DrawSpellInfo(PLDBaseSlotResolvers.干预.GetSpell(), size, isActive);
+        Spell spell = new Spell(PLDBaseSlotResolvers.干预.GetSpell().Id, SpellTargetType.Pm2);
+        UIHelp.DrawSpellNormal(spell, size, isActive);
     }
 
     public int Check()
     {
-        if (PLDBaseSlotResolvers.干预.GetSpell().IsReadyWithCanCast())
+        if (PLDBaseSlotResolvers.干预.IsUnlockWithCDCheck())
         {
             return 0;
         }
@@ -44,13 +46,12 @@ public class HotkeyResolver_干预Pm2:IHotkeyResolver
 
     public void Run()
     {
-       
-
-        if (PLDBaseSlotResolvers.干预.GetSpell().IsReadyWithCanCast())
+        if (PLDBaseSlotResolvers.干预.IsUnlockWithCDCheck())
         {
-            if (AI.Instance.BattleData.NextSlot == null)
-                AI.Instance.BattleData.NextSlot = new Slot();
-            AI.Instance.BattleData.NextSlot.Add(new Spell(PLDBaseSlotResolvers.干预.GetSpell().Id, SpellTargetType.Pm2));
+            var slot = new Slot();
+            Spell spell = new Spell(PLDBaseSlotResolvers.干预.GetSpell().Id, SpellTargetType.Pm2);
+            slot.Add(spell);
+            slot.Run(AI.Instance.BattleData, false);
         }
     }
 }

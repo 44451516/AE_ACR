@@ -1,6 +1,5 @@
 ﻿using System.Numerics;
-using AE_ACR.DRK.SlotResolvers;
-using AE_ACR.utils;
+using AE_ACR.PLD.SlotResolvers;
 using AEAssist;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
@@ -11,9 +10,9 @@ using AEAssist.MemoryApi;
 using Dalamud.Interface.Textures.TextureWraps;
 using ImGuiNET;
 
-namespace AE_ACR_DRK.HotKey;
+namespace AE_ACR.PLD.HotKey;
 
-public class HotkeyResolver_黑盾Pm2 : IHotkeyResolver
+public class HotkeyResolver_挑衅:IHotkeyResolver
 {
     public void Draw(Vector2 size)
     {
@@ -21,7 +20,7 @@ public class HotkeyResolver_黑盾Pm2 : IHotkeyResolver
         var iconSize = size * 0.8f;
         //技能图标
         ImGui.SetCursorPos(size * 0.1f);
-        if (Core.Resolve<MemApiIcon>().GetActionTexture(DRKBaseSlotResolvers.至黑之夜, out IDalamudTextureWrap textureWrap))
+        if (Core.Resolve<MemApiIcon>().GetActionTexture(PLDBaseSlotResolvers.挑衅, out IDalamudTextureWrap textureWrap))
         {
             ImGui.Image(textureWrap.ImGuiHandle, iconSize);
         }
@@ -30,24 +29,25 @@ public class HotkeyResolver_黑盾Pm2 : IHotkeyResolver
 
     public void DrawExternal(Vector2 size, bool isActive)
     {
-        UIHelp.DrawSpellNormal(DRKBaseSlotResolvers.至黑之夜.GetSpell(), size, isActive);
+        SpellHelper.DrawSpellInfo(PLDBaseSlotResolvers.挑衅.GetSpell(), size, isActive);
     }
 
     public int Check()
     {
-        if (DRKBaseSlotResolvers.至黑之夜.IsUnlockWithCDCheck())
+        if (PLDBaseSlotResolvers.挑衅.GetSpell().IsReadyWithCanCast())
         {
             return 0;
         }
+        
         return -1;
     }
 
     public void Run()
     {
-        if (DRKBaseSlotResolvers.至黑之夜.IsUnlockWithCDCheck())
+        if (PLDBaseSlotResolvers.挑衅.GetSpell().IsReadyWithCanCast())
         {
             var slot = new Slot();
-            Spell spell = new Spell(DRKBaseSlotResolvers.至黑之夜.GetSpell().Id, SpellTargetType.Pm2);
+            Spell spell = new Spell(PLDBaseSlotResolvers.挑衅.GetSpell().Id, SpellTargetType.Target);
             slot.Add(spell);
             slot.Run(AI.Instance.BattleData, false);
         }

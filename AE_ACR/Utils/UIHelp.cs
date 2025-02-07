@@ -1,5 +1,11 @@
-﻿using AE_ACR.PLD.Setting;
+﻿using System.Numerics;
+using AE_ACR.PLD.Setting;
+using AEAssist;
+using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.View.JobView;
+using AEAssist.Helper;
+using AEAssist.MemoryApi;
+using Dalamud.Interface.Textures.TextureWraps;
 using Dalamud.Utility;
 using ImGuiNET;
 
@@ -45,6 +51,99 @@ public static class UIHelp
         else
         {
             jobView.AddQt(name, qtValueDefault, action);
+        }
+    }
+
+    public static void DrawSpellNormal(Spell spell, Vector2 hotKeySize, bool isActive)
+    {
+        if (spell.IsAbility())
+        {
+            if (spell.Id.IsUnlockWithCDCheck())
+            {
+                if (isActive)
+                {
+                    //激活状态
+                    ImGui.SetCursorPos(new Vector2(0, 0));
+                    if (Core.Resolve<MemApiIcon>().TryGetTexture
+                        (
+                            @"Resources\Spells\Icon\activeaction.png",
+                            out IDalamudTextureWrap? textureWrap_active
+                        ))
+                        ImGui.Image(textureWrap_active.ImGuiHandle, hotKeySize);
+                }
+                else
+                {
+                    //常规状态
+                    ImGui.SetCursorPos(new Vector2(0, 0));
+                    if (Core.Resolve<MemApiIcon>().TryGetTexture
+                        (
+                            @"Resources\Spells\Icon\iconframe.png",
+                            out IDalamudTextureWrap? textureWrap_normal
+                        ))
+                        ImGui.Image(textureWrap_normal.ImGuiHandle, hotKeySize);
+                }
+            }
+            else
+            {
+                //技能不可使用
+                //变黑
+                ImGui.SetCursorPos(new Vector2(0, 0));
+                if (Core.Resolve<MemApiIcon>().TryGetTexture
+                    (
+                        @"Resources\Spells\Icon\icona_frame_disabled.png",
+                        out IDalamudTextureWrap? textureWrap_black
+                    ))
+                    ImGui.Image(textureWrap_black.ImGuiHandle, hotKeySize);
+            }
+        }
+        else
+        {
+            //技能可使用
+            if (isActive)
+            {
+                //激活状态
+                ImGui.SetCursorPos(new Vector2(0, 0));
+                if (Core.Resolve<MemApiIcon>().TryGetTexture
+                    (
+                        @"Resources\Spells\Icon\activeaction.png",
+                        out IDalamudTextureWrap? textureWrap_active
+                    ))
+                    ImGui.Image(textureWrap_active.ImGuiHandle, hotKeySize);
+            }
+            else
+            {
+                //常规状态
+                ImGui.SetCursorPos(new Vector2(0, 0));
+                if (Core.Resolve<MemApiIcon>().TryGetTexture
+                    (
+                        @"Resources\Spells\Icon\iconframe.png",
+                        out IDalamudTextureWrap? textureWrap_normal
+                    ))
+                    ImGui.Image(textureWrap_normal.ImGuiHandle, hotKeySize);
+            }
+        }
+        
+        var cd = spell.Cooldown.TotalSeconds;
+        //cd文字显示
+        if (cd > 0 && (int)(cd * 1000) + 1 !=
+            Core.Resolve<MemApiSpell>().GetGCDDuration() - Core.Resolve<MemApiSpell>().GetElapsedGCD())
+        {
+            //cd
+            if (spell.Id != 0)
+                cd = cd % ((int)spell.RecastTime.TotalSeconds / spell.MaxCharges);
+            ImGui.SetCursorPos(new Vector2(4, hotKeySize.Y - 17));
+            ImGui.Text($"{(int)cd + 1}");
+        }
+
+        //Charge
+        if (spell.MaxCharges > 1)
+        {
+            var charge = (int)spell.Charges;
+            var chargeSize = hotKeySize * 0.3f;
+            ImGui.SetCursorPos(new Vector2(hotKeySize.X - chargeSize.X - 3, hotKeySize.Y - chargeSize.Y - 5));
+            if (Core.Resolve<MemApiIcon>().TryGetTexture($"Resources\\Spells\\Icon\\Charge{charge}.png",
+                    out IDalamudTextureWrap? textureWrap_normal))
+                ImGui.Image(textureWrap_normal.ImGuiHandle, chargeSize);
         }
     }
 }
