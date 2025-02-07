@@ -205,7 +205,7 @@ public class PLDRotationEntry : IRotationEntry
 
         QT.AddHotkey("亲疏自行", new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.亲疏自行, SpellTargetType.Self));
         QT.AddHotkey("雪仇", new HotKeyResolver_NormalSpell(PLDBaseSlotResolvers.雪仇, SpellTargetType.Self));
-        QT.AddHotkey("挑衅", new HotkeyResolver_挑衅());
+        QT.AddHotkey("挑衅", new HotKeyResolver_NormalSpell(TankBaseIslotResolver.挑衅, SpellTargetType.Target));
         QT.AddHotkey("退避2", new HotkeyResolver_退避());
         QT.AddHotkey("大翅膀", new HotkeyResolver_大翅膀());
         QT.SetHotkeyToolTip("会自动设置面向，尽量覆盖到最多的人");

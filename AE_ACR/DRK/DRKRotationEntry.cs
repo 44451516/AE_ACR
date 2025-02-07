@@ -220,7 +220,7 @@ public class DRKRotationEntry : IRotationEntry
 
         QT.AddHotkey("亲疏自行", new HotKeyResolver_NormalSpell(TankBaseIslotResolver.亲疏自行, SpellTargetType.Self));
         QT.AddHotkey("雪仇", new HotKeyResolver_NormalSpell(TankBaseIslotResolver.雪仇, SpellTargetType.Target));
-        QT.AddHotkey("挑衅", new HotKeyResolver_NormalSpell(TankBaseIslotResolver.挑衅, SpellTargetType.Pm2));
+        QT.AddHotkey("挑衅", new HotKeyResolver_NormalSpell(TankBaseIslotResolver.挑衅, SpellTargetType.Target));
         QT.AddHotkey("退避2", new HotKeyResolver_NormalSpell(TankBaseIslotResolver.退避, SpellTargetType.Pm2));
         QT.AddHotkey("爆发药", new HotKeyResolver_Potion());
         QT.AddHotkey("清马桶", new HotkeyResolver_清马桶());
