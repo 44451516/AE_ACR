@@ -191,6 +191,7 @@ public class DRKRotationEntry : IRotationEntry
         QT.MyAddQt(qtDict, DRKQTKey.不打血溅, false);
         QT.MyAddQt(qtDict, DRKQTKey.不打暗影峰, false);
         QT.MyAddQt(qtDict, BaseQTKey.AOE, true);
+        QT.MyAddQt(qtDict, DRKQTKey.保留蓝量, false,"选项开启保留6000蓝量,优先级低于[倾泻资源]");
 
         if (DKSettings.Instance.QtUnVisibleList.Any())
         {

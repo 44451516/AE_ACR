@@ -1,5 +1,4 @@
 ﻿using System.Numerics;
-using AE_ACR.PLD.Setting;
 using AEAssist;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.View.JobView;

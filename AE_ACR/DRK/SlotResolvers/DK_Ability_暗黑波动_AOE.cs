@@ -69,6 +69,12 @@ public class DK_Ability_暗黑波动_AOE : DRKBaseSlotResolvers
                     return 2;
                 }
                 
+                
+                if (getQTValue(DRKQTKey.保留蓝量) && Core.Me.CurrentMp < 6000)
+                {
+                    return Flag_QT;
+                }
+                
                 if (darksideTimeRemaining <= 6 * 1000)
                     return 0;
 

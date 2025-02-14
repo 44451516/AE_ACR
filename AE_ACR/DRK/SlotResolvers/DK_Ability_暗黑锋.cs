@@ -34,7 +34,7 @@ public class DK_Ability_暗黑锋 : DRKBaseSlotResolvers
         {
             return Flag_攒资源;
         }
-        
+
         if (!暗黑锋.ActionReadyAE())
         {
             return -1;
@@ -62,23 +62,30 @@ public class DK_Ability_暗黑锋 : DRKBaseSlotResolvers
             {
                 return Flag_超出攻击距离;
             }
-            
+
+
             if (getQTValue(BaseQTKey.倾泻资源))
             {
                 return 1;
             }
-            
+
             if (getQTValue(DRKQTKey.卸掉豆子) && gauge.HasDarkArts)
             {
                 return 2;
             }
             
+            if (getQTValue(DRKQTKey.保留蓝量) && Core.Me.CurrentMp < 6000)
+            {
+                return Flag_QT;
+            }
+            
+
             if (darksideTimeRemaining <= 6 * 1000)
             {
                 return 0;
             }
 
-          
+
             if (Core.Me.CurrentMp >= 9800)
             {
                 return 0;
@@ -114,7 +121,7 @@ public class DK_Ability_暗黑锋 : DRKBaseSlotResolvers
             {
                 return 0;
             }
-            
+
             if (Core.Me.TargetObject is IBattleChara chara)
             {
                 if (chara.CurrentHp <= DKSettings.Instance.get爆发目标血量())
