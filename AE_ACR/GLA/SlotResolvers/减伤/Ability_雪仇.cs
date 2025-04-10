@@ -36,7 +36,7 @@ public class Ability_雪仇 : GLABaseSlotResolvers
                 
                 if (Core.Me.TargetObject is IBattleChara target)
                 {
-                    if (TargetHelper.TargercastingIsDeathSentence(target, 3))
+                    if (TargetHelper.targetCastingIsDeathSentenceWithTime(target, 3))
                     {
                         return 0;
                     }

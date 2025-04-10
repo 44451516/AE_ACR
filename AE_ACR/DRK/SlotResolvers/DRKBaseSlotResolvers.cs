@@ -56,6 +56,7 @@ public abstract class DRKBaseSlotResolvers : TankBaseIslotResolver
         行尸走肉 = 3638,
         献奉 = 25754,
         深恶痛绝 = 3629,
+        解除深恶痛绝 = 32067,
         暗黑布道 = 16471,
         暗影步 = 36926,
         伤残 = 3624;

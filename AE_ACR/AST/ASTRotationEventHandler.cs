@@ -24,7 +24,7 @@ public class ASTRotationEventHandler : IRotationEventHandler
         // 重置战斗中缓存的数据
         CombatTime.Instance = new CombatTime();
         // QT的设置重置为默认值
-        ASTRotationEntry.QT.Reset();
+        // ASTRotationEntry.QT.Reset();
     }
 
     public async Task OnNoTarget()

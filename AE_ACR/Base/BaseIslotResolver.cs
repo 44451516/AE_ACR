@@ -34,6 +34,7 @@ public abstract class BaseIslotResolver : ISlotResolver
         Flag_超出攻击距离 = -114,
         Flag_GCD_Base_NULL = -115,
         Flag_伤害太低了 = -116,
+        Flag_反转关闭 = -117,
         留空 = 3624;
 
     public static uint lastComboActionID => Core.Resolve<MemApiSpell>().GetLastComboSpellId();

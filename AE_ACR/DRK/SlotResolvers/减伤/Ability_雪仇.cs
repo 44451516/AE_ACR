@@ -59,7 +59,7 @@ public class Ability_雪仇 : DRKBaseSlotResolvers
             {
                 if (Core.Me.TargetObject is IBattleChara target)
                 {
-                    if (DKSettings.Instance.AOE雪仇 && TargetHelper.TargercastingIsbossaoe(target,14_000))
+                    if (DKSettings.Instance.AOE雪仇 && TargetHelper.targetCastingIsBossAOE(target,14_000))
                     {
                         return 0;
                     }

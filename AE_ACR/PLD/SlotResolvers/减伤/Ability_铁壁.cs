@@ -72,7 +72,7 @@ public class Ability_铁壁 : PLDBaseSlotResolvers
             {
                 if (Core.Me.TargetObject is IBattleChara target)
                 {
-                    if (TargetHelper.TargercastingIsDeathSentence(target, 5) && target.TargetObjectId== Core.Me.GameObjectId)
+                    if (TargetHelper.targetCastingIsDeathSentenceWithTime(target, 5) && target.TargetObjectId== Core.Me.GameObjectId)
                     {
                         return 0;
                     }

@@ -32,7 +32,7 @@ public class Ability_暗黑布道 : DRKBaseSlotResolvers
             {
                 if (Core.Me.TargetObject is IBattleChara target)
                 {
-                    if (TargetHelper.TargercastingIsbossaoe(target,10_000))
+                    if (TargetHelper.targetCastingIsBossAOE(target,10_000))
                     {
                        
                         return 0;

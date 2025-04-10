@@ -39,6 +39,7 @@ public class DKSettings
     
     public bool AOE雪仇 = true;
     public bool AOE步道 = true;
+    public bool 绝伊甸设置 = true;
 
     public JobViewSave JobViewSave = new(); // QT设置存档
     public Dictionary<string, bool> MyQtDict = new();

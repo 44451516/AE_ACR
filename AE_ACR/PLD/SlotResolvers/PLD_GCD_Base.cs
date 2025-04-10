@@ -5,6 +5,8 @@ using AE_ACR.utils;
 using AEAssist;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
+using AEAssist.CombatRoutine.Module.Target;
+using AEAssist.Extension;
 using AEAssist.Helper;
 using Dalamud.Game.ClientState.Objects.Types;
 
@@ -157,6 +159,30 @@ public class PLD_GCD_Base : PLDBaseSlotResolvers
         var spell = GetBaseGCDSpell();
         if (spell != null)
         {
+            if (spell.Id == 圣灵HolySpirit)
+            {
+                if (PLDSettings.Instance.M6S设置 && CombatTime.Instance.CombatEngageDuration().TotalSeconds > 281)
+                {
+                    IBattleChara? 鱼 = TargetMgr.Instance.EnemysIn25.Values.FirstOrDefault(x => x.DataId == 18346 && x.IsValid() && x is { IsDead: false, IsTargetable: true } && x.CurrentHpPercent() <= 0.95f);
+                    if (鱼 != null)
+                    {
+                        spell = new Spell(圣灵HolySpirit, 鱼);
+                    }
+
+                    IBattleChara? 猫 = TargetMgr.Instance.EnemysIn25.Values.FirstOrDefault(x => x.DataId == 18347 && x.IsValid() && x is { IsDead: false, IsTargetable: true });
+                    if (猫 != null)
+                    {
+                        spell = new Spell(圣灵HolySpirit, 猫);
+                    }
+
+                    IBattleChara? 人马 = TargetMgr.Instance.EnemysIn25.Values.FirstOrDefault(x => x.DataId == 18345 && x.IsValid() && x is { IsDead: false, IsTargetable: true });
+                    if (人马 != null)
+                    {
+                        spell = new Spell(圣灵HolySpirit, 人马);
+                    } 
+                }
+              
+            }
             slot.Add(spell);
         }
     }

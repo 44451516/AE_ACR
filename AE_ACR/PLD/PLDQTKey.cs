@@ -16,6 +16,8 @@ public class PLDQTKey : BaseQTKey
     public const string 即刻战逃 = "即刻战逃";
     public const string 优先圣灵 = "优先圣灵";
     public const string 优先赎罪 = "优先赎罪";
+    public const string 优先赎罪2 = "优先赎罪2";
+    public const string 优先赎罪3 = "优先赎罪3";
     public const string 起手序列 = "起手序列";
     public const string 厄运流转 = "厄运流转";
     public const string 深奥之灵 = "深奥之灵";
@@ -27,4 +29,5 @@ public class PLDQTKey : BaseQTKey
     public const string 大翅膀最优面向 = "大翅膀最优面向";
     public const string 即刻厄运_深奥 = "即刻厄运/深奥";
     public const string 大翅膀最优面向_测试 = "大翅膀最优面向_测试";
+    public const string 优先圣环 = "优先圣环";
 }

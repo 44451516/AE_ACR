@@ -26,7 +26,6 @@ public class PLDSettingUI
         // ImGui.Checkbox("最优面向大翅膀只在战斗中", ref pldSettings.最优面向大翅膀只在战斗中);
 
         ImGui.Spacing();
-        ImGui.Text("上天战逃");
         ImGui.Checkbox("上天战逃", ref pldSettings.上天战逃);
         ImGui.DragFloat("上天战逃开始时间", ref pldSettings.上天战逃开始时间, 1f, 30f, 30 * 20f);
         ImGui.DragFloat("上天战逃结束时间", ref pldSettings.上天战逃结束时间, 1f, 30f, 30 * 20f);
@@ -38,7 +37,12 @@ public class PLDSettingUI
         ImGui.Text("在倒计时多少的是使用幕帘，单位是毫秒，倒计时5秒填5000");
         ImGui.DragInt("起手幕帘阈值", ref pldSettings.起手幕帘阈值, 1000, 300, 30_000);
         ImGui.DragInt("起手圣灵阈值", ref pldSettings.起手圣灵阈值, 1000, 500, 2000);
-        
+        ImGui.Spacing();
+        ImGui.Checkbox("绝伊甸设置", ref pldSettings.绝伊甸设置);
+        ImGui.Checkbox("M6S设置", ref pldSettings.M6S设置);
+        ImGui.SameLine();
+        ImGui.Text("圣灵优先打人马/猫/鱼");
+        // ImGuiEx.H
         
         ImGui.Spacing();
         if (ImGui.Button("Save[保存]"))

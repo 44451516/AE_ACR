@@ -1,6 +1,7 @@
 ﻿#region
 
 using AE_ACR_DRK_Setting;
+using AE_ACR_DRK;
 using AE_ACR.Base;
 using AE_ACR.utils;
 using AEAssist;
@@ -28,6 +29,10 @@ public class DK_Ability_嗜血 : DRKBaseSlotResolvers
             return Flag_攒资源;
         }
 
+        if (getQTValue(DRKQTKey.血乱) == false)
+        {
+            return -2000;
+        }
 
 
         if (DKSettings.Instance.日常模式)

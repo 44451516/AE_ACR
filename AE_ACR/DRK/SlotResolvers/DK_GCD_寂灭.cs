@@ -27,6 +27,12 @@ public class DK_GCD_寂灭 : DRKBaseSlotResolvers
             return Flag_攒资源;
         }
 
+        
+        if (getQTValue(DRKQTKey.不打寂灭))
+        {
+            return Flag_攒资源;
+        }
+        
         if (!寂灭Quietus.MyIsUnlock())
         {
             return -1;

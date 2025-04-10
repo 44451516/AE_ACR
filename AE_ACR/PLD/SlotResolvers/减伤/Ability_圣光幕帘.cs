@@ -32,7 +32,7 @@ public class Ability_圣光幕帘 : PLDBaseSlotResolvers
             {
                 if (Core.Me.TargetObject is IBattleChara target)
                 {
-                    if (TargetHelper.TargercastingIsbossaoe(target,15_000))
+                    if (TargetHelper.targetCastingIsBossAOE(target,15_000))
                     {
                         return 0;
                     }

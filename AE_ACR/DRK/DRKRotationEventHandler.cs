@@ -45,7 +45,7 @@ public class DRKRotationEventHandler : IRotationEventHandler
         // 重置战斗中缓存的数据
         CombatTime.Instance = new CombatTime();
         // QT的设置重置为默认值
-        DRKRotationEntry.QT.Reset();
+        // DRKRotationEntry.QT.Reset();
     }
 
     public async Task OnNoTarget()
@@ -104,10 +104,13 @@ public class DRKRotationEventHandler : IRotationEventHandler
 
         if (Core.Resolve<MemApiZoneInfo>().GetCurrTerrId() == 1238)
         {
-            LogHelper.Print("ACR:进入LGBT讨伐战，自动开启上天血乱");
-            DKSettings.Instance.上天血乱 = true;
-            DKSettings.Instance.上天血乱开始时间 = 30;
-            DKSettings.Instance.上天血乱结束时间 = 60 * 5 + 30;
+            if (DKSettings.Instance.绝伊甸设置)
+            {
+                LogHelper.Print("ACR:进入LGBT讨伐战，自动开启上天血乱");
+                DKSettings.Instance.上天血乱 = true;
+                DKSettings.Instance.上天血乱开始时间 = 30;
+                DKSettings.Instance.上天血乱结束时间 = 60 * 5 + 30;  
+            }
         }
     }
 }

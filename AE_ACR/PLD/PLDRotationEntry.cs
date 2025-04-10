@@ -60,7 +60,10 @@ public class PLDRotationEntry : IRotationEntry
         new SlotResolverData(new GCD_沥血剑(), SlotMode.Gcd),
         new SlotResolverData(new GCD_大宝剑连击(), SlotMode.Gcd),
         new SlotResolverData(new GCD_大宝剑连击_圣灵_圣环(), SlotMode.Gcd),
+        new SlotResolverData(new GCD_优先赎罪2(), SlotMode.Gcd),
+        new SlotResolverData(new GCD_优先赎罪3(), SlotMode.Gcd),
         new SlotResolverData(new GCD_倾泻资源(), SlotMode.Gcd),
+        new SlotResolverData(new PLD_优先圣环_AOE(), SlotMode.Gcd),
         new SlotResolverData(new PLD_GCD_远程强化圣灵(), SlotMode.Gcd),
         new SlotResolverData(new PLD_GCD_远程圣灵(), SlotMode.Gcd),
         new SlotResolverData(new PLD_GCD_投盾(), SlotMode.Gcd),
@@ -161,6 +164,8 @@ public class PLDRotationEntry : IRotationEntry
         QT.MyAddQt(qtDict, PLDQTKey.优先强化圣灵, false, "有强化圣灵的时候用");
         QT.MyAddQt(qtDict, PLDQTKey.优先圣灵, false, "有蓝就用");
         QT.MyAddQt(qtDict, PLDQTKey.优先赎罪, false);
+        QT.MyAddQt(qtDict, PLDQTKey.优先赎罪2, false,"优先级在大保健之后");
+        QT.MyAddQt(qtDict, PLDQTKey.优先赎罪3, false,"优先级在大保健之后,战逃反应剩余10S关闭");
         QT.MyAddQt(qtDict, PLDQTKey.厄运流转, true);
         QT.MyAddQt(qtDict, PLDQTKey.深奥之灵, true);
         QT.MyAddQt(qtDict, BaseQTKey.倾泻资源, false, "卸掉强化[圣灵]和[赎罪]");
@@ -173,6 +178,7 @@ public class PLDRotationEntry : IRotationEntry
         QT.MyAddQt(qtDict, PLDQTKey.即刻厄运_深奥, false, "即刻[厄运流转]和[深奥之灵]");
         QT.MyAddQt(qtDict, PLDQTKey.大翅膀最优面向_测试, false, "测试用的,没事别打开,交给时间轴,和ReAction冲突");
         QT.MyAddQt(qtDict, PLDQTKey.大翅膀最优面向, false, "自动面向,自动放技能.");
+        QT.MyAddQt(qtDict, PLDQTKey.优先圣环, false,"M6S小怪有用的");
 
 
         if (PLDSettings.Instance.QtUnVisibleList.Any())
@@ -235,6 +241,7 @@ public class PLDRotationEntry : IRotationEntry
         ImGui.SetNextItemWidth(150f);
         ImGui.Checkbox("AOE幕帘", ref pldSettings.AOE幕帘);
         ImGui.Spacing();
+    
 
     }
 

@@ -62,7 +62,7 @@ public class Ability_雪仇 : PLDBaseSlotResolvers
             {
                 if (Core.Me.TargetObject is IBattleChara target)
                 {
-                    if (PLDSettings.Instance.AOE雪仇 && TargetHelper.TargercastingIsbossaoe(target,14_000))
+                    if (PLDSettings.Instance.AOE雪仇 && TargetHelper.targetCastingIsBossAOE(target,14_000))
                     {
                         return 0;
                     }

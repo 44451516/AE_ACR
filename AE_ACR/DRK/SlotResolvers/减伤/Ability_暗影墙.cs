@@ -41,7 +41,7 @@ public class Ability_暗影墙 : DRKBaseSlotResolvers
             {
                 if (Core.Me.TargetObject is IBattleChara target)
                 {
-                    if (TargetHelper.TargercastingIsDeathSentence(target, 5) && target.TargetObjectId== Core.Me.GameObjectId)
+                    if (TargetHelper.targetCastingIsDeathSentenceWithTime(target, 5) && target.TargetObjectId== Core.Me.GameObjectId)
                     {
                         return 0;
                     }

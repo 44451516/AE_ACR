@@ -44,7 +44,7 @@ public class PLDRotationEventHandler : IRotationEventHandler
         // 重置战斗中缓存的数据
         CombatTime.Instance = new CombatTime();
         // QT的设置重置为默认值
-        PLDRotationEntry.QT.Reset();
+        // PLDRotationEntry.QT.Reset();
 
         TriggerAction_大翅膀_Rot.Start = false;
         TriggerAction_M1S_Rot.Start = false;
@@ -141,10 +141,14 @@ public class PLDRotationEventHandler : IRotationEventHandler
 
         if (Core.Resolve<MemApiZoneInfo>().GetCurrTerrId() == 1238)
         {
-            LogHelper.Print("ACR:进入LGBT讨伐战，自动开启上天战逃");
-            PLDSettings.Instance.上天战逃 = true;
-            PLDSettings.Instance.上天战逃开始时间 = 30;
-            PLDSettings.Instance.上天战逃结束时间 = 60 * 5 + 30;
+            if (PLDSettings.Instance.绝伊甸设置)
+            {
+                LogHelper.Print("ACR:进入LGBT讨伐战，自动开启上天战逃");
+                PLDSettings.Instance.上天战逃 = true;
+                PLDSettings.Instance.上天战逃开始时间 = 30;
+                PLDSettings.Instance.上天战逃结束时间 = 60 * 5 + 30; 
+            }
+            
         }
     }
 }

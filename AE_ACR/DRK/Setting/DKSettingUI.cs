@@ -33,7 +33,6 @@ public class DKSettingUI
         ImGui.DragFloat("近战最大攻击距离", ref dkSettings.近战最大攻击距离, 0.1f, 2.5f, 15f);
         
         ImGui.Spacing();
-        ImGui.Text("上天血乱");
         ImGui.Checkbox("上天血乱", ref dkSettings.上天血乱);
         ImGui.DragFloat("上天血乱开始时间", ref dkSettings.上天血乱开始时间, 1f, 30f, 30 * 20f);
         ImGui.DragFloat("上天血乱结束时间", ref dkSettings.上天血乱结束时间, 1f, 30f, 30 * 20f);
@@ -41,8 +40,9 @@ public class DKSettingUI
         
         ImGui.Checkbox("起手突进",ref dkSettings.起手突进);
         ImGui.Checkbox("只在高难模式使用起手序列",ref dkSettings.只在高难模式使用起手序列);
-        
-      
+        ImGui.Spacing();
+        ImGui.Checkbox("绝伊甸设置", ref dkSettings.绝伊甸设置);
+        ImGui.Spacing();
         ImGui.Spacing();
         
         if (ImGui.Button("Save[保存]"))

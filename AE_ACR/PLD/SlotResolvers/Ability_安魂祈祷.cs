@@ -33,11 +33,19 @@ public class Ability_安魂祈祷 : PLDBaseSlotResolvers
         {
             if (安魂祈祷Requiescat.OriginalHookActionReady())
             {
-                if (安魂祈祷Requiescatv2.IsUnlock() == false && 和目标的距离() > PLDSettings.Instance.近战最大攻击距离)
+                if (安魂祈祷Requiescatv2.IsUnlock() == false)
                 {
-                    return Flag_超出攻击距离;
+                    if (和目标的距离() > PLDSettings.Instance.近战最大攻击距离)
+                    {
+                        return Flag_超出攻击距离;
+                    }
                 }
                 
+                if (战逃反应FightOrFlight.RecentlyUsed())
+                {
+                    return 2;
+                } 
+
                 // if (战逃反应FightOrFlight.RecentlyUsed())
                 // {
                 //     return 0;
@@ -52,7 +60,18 @@ public class Ability_安魂祈祷 : PLDBaseSlotResolvers
                 {
                     return 1;
                 }
-                
+
+
+            }
+
+            if (安魂祈祷Requiescat.OriginalHook().Id == 安魂祈祷徐剑)
+            {
+                return 3;
+            }
+
+
+            if (安魂祈祷Requiescatv2.IsUnlock())
+            {
                 if (HasEffect(Buffs.荣耀之剑预备))
                 {
                     return 2;

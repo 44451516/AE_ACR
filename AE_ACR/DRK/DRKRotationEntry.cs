@@ -189,10 +189,11 @@ public class DRKRotationEntry : IRotationEntry
         QT.MyAddQt(qtDict, DRKQTKey.卸掉豆子, false);
         QT.MyAddQt(qtDict, BaseQTKey.倾泻资源, false);
         QT.MyAddQt(qtDict, DRKQTKey.不打血溅, false);
+        QT.MyAddQt(qtDict, DRKQTKey.不打寂灭, false);
         QT.MyAddQt(qtDict, DRKQTKey.不打暗影峰, false);
         QT.MyAddQt(qtDict, BaseQTKey.AOE, true);
         QT.MyAddQt(qtDict, DRKQTKey.保留蓝量, false,"选项开启保留6000蓝量,优先级低于[倾泻资源]");
-
+        QT.MyAddQt(qtDict, DRKQTKey.血乱, true);
         if (DKSettings.Instance.QtUnVisibleList.Any())
         {
             DKSettings.Instance.JobViewSave.QtUnVisibleList.Clear();
@@ -247,7 +248,8 @@ public class DRKRotationEntry : IRotationEntry
             ImGui.Checkbox("AOE雪仇", ref DkSettings.AOE雪仇);
             ImGui.SetNextItemWidth(150f);
             ImGui.Checkbox("AOE步道", ref DkSettings.AOE步道);
-            ImGui.Spacing();
+            ImGui.Spacing(); 
+        
         }
     }
 
