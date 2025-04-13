@@ -47,6 +47,7 @@ public abstract class PLDBaseSlotResolvers : TankBaseIslotResolver
         圣光幕帘 = 3540,
         干预= 7382,
         大翅膀 = 7385,
+        关盾 = 32065,
         留空 = 16532;
 
 
@@ -112,6 +113,7 @@ public abstract class PLDBaseSlotResolvers : TankBaseIslotResolver
             赎罪剑Atonement2BUFF = 3827,
             赎罪剑Atonement3BUFF = 3828,
             荣耀之剑预备 = 3831,
+            盾姿 = 79,
             留空 = 0;
     }
 }

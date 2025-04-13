@@ -42,6 +42,7 @@ public class DKSettingUI
         
         
         ImGui.Checkbox("起手突进",ref dkSettings.起手突进);
+        ImGui.Checkbox("起手关盾",ref dkSettings.起手关盾);
         ImGui.Checkbox("只在高难模式使用起手序列",ref dkSettings.只在高难模式使用起手序列);
         ImGui.Spacing();
         ImGui.Checkbox("绝伊甸设置", ref dkSettings.绝伊甸设置);

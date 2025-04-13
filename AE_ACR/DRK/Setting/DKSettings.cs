@@ -28,7 +28,8 @@ public class DKSettings
     public bool 挑衅 = true;
     public float GCD爆发延时 = 7f;
     public bool 起手突进 = true;
-    public bool 起手盾姿 = false;
+    public bool 起手关盾 = false;
+    public int 起手关盾阈值 = 10_000;
     public bool 只在高难模式使用起手序列 = true;
     public bool 自动黑盾 = true;
     public float 近战最大攻击距离 = 2.99f;

@@ -34,6 +34,7 @@ public class PLDSettingUI
         ImGui.Text("起手设置");
         ImGui.Checkbox("起手突进", ref pldSettings.起手突进);
         ImGui.Checkbox("起手幕帘", ref pldSettings.起手幕帘);
+        ImGui.Checkbox("起手关盾", ref pldSettings.起手关盾);
         ImGui.Text("在倒计时多少的是使用幕帘，单位是毫秒，倒计时5秒填5000");
         ImGui.DragInt("起手幕帘阈值", ref pldSettings.起手幕帘阈值, 1000, 300, 30_000);
         ImGui.DragInt("起手圣灵阈值", ref pldSettings.起手圣灵阈值, 1000, 500, 2000);

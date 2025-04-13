@@ -62,6 +62,14 @@ public class DRK_Opener100 : IOpener
         if (DKSettings.Instance.起手突进)
         {
             countDownHandler.AddAction(500, DRKBaseSlotResolvers.暗影步, SpellTargetType.Target);
+        } 
+    
+        if (DKSettings.Instance.起手关盾 && DRKBaseSlotResolvers.关盾.IsUnlock())
+        {
+            if (BaseIslotResolver.HasEffect(DRKBaseSlotResolvers.Buffs.深恶痛绝))
+            {
+                countDownHandler.AddAction(DKSettings.Instance.起手关盾阈值, DRKBaseSlotResolvers.关盾, SpellTargetType.Self);
+            }
         }
     }
 

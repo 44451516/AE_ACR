@@ -33,7 +33,7 @@ public class Ability_深奥之灵 : PLDBaseSlotResolvers
 
         if (CanWeave())
         {
-            if (深奥之灵SpiritsWithin.ActionReady())
+            if (深奥之灵SpiritsWithin.ActionReady2())
             {
                 if (和目标的距离() > PLDSettings.Instance.近战最大攻击距离)
                 {

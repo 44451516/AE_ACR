@@ -17,7 +17,8 @@
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
         <!--        <OutputPath>$(appdata)\XIVLauncher\devPlugins\AEAssist3.0\ACR\44451516</OutputPath>-->
-        <OutputPath>E:\DevProject\FF14\AEAssist3\Output\ACR\44451516</OutputPath>
+<!--        <OutputPath>E:\DevProject\FF14\AEAssist3\Output\ACR\44451516</OutputPath>-->
+        <OutputPath>E:\DevProject\FF14\AEAssist3EN\Output\ACR\44451516</OutputPath>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">

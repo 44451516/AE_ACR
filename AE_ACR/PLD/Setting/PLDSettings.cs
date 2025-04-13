@@ -23,8 +23,10 @@ public class PLDSettings
     public bool 起手突进 = true;
     public float 最大突进距离 = 20f;
     public bool 起手幕帘 = false;
+    public bool 起手关盾 = false;
     public int 起手幕帘阈值 = 5000;
     public int 起手圣灵阈值 = 1500;
+    public int 起手关盾阈值 = 10_000;
     public int USE_AOE = 3;
 
     public bool 上天战逃 = false;

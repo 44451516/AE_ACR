@@ -59,6 +59,7 @@ public abstract class DRKBaseSlotResolvers : TankBaseIslotResolver
         解除深恶痛绝 = 32067,
         暗黑布道 = 16471,
         暗影步 = 36926,
+        关盾 = 32067,
         伤残 = 3624;
 
     public static bool 是否停手()

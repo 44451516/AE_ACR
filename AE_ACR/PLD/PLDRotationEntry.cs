@@ -165,7 +165,7 @@ public class PLDRotationEntry : IRotationEntry
         QT.MyAddQt(qtDict, PLDQTKey.优先圣灵, false, "有蓝就用");
         QT.MyAddQt(qtDict, PLDQTKey.优先赎罪, false);
         QT.MyAddQt(qtDict, PLDQTKey.优先赎罪2, false,"优先级在大保健之后");
-        QT.MyAddQt(qtDict, PLDQTKey.优先赎罪3, false,"优先级在大保健之后,战逃反应剩余10S关闭");
+        QT.MyAddQt(qtDict, PLDQTKey.优先赎罪3, true,"优先级在大保健之后,战逃反应剩余10S关闭");
         QT.MyAddQt(qtDict, PLDQTKey.厄运流转, true);
         QT.MyAddQt(qtDict, PLDQTKey.深奥之灵, true);
         QT.MyAddQt(qtDict, BaseQTKey.倾泻资源, false, "卸掉强化[圣灵]和[赎罪]");
@@ -192,8 +192,15 @@ public class PLDRotationEntry : IRotationEntry
         else
         {
             PLDSettings.Instance.JobViewSave.QtUnVisibleList.Clear();
+            PLDSettings.Instance.JobViewSave.QtUnVisibleList.Add(PLDQTKey.沥血剑);
+            PLDSettings.Instance.JobViewSave.QtUnVisibleList.Add(PLDQTKey.优先赎罪);
+            PLDSettings.Instance.JobViewSave.QtUnVisibleList.Add(PLDQTKey.优先赎罪2);
+            PLDSettings.Instance.JobViewSave.QtUnVisibleList.Add(PLDQTKey.战逃打完调停);
+            PLDSettings.Instance.JobViewSave.QtUnVisibleList.Add(PLDQTKey.移动不打调停);
+            PLDSettings.Instance.JobViewSave.QtUnVisibleList.Add(PLDQTKey.移动不打调停);
             PLDSettings.Instance.JobViewSave.QtUnVisibleList.Add(PLDQTKey.优先圣灵);
             PLDSettings.Instance.JobViewSave.QtUnVisibleList.Add(PLDQTKey.大翅膀最优面向);
+            PLDSettings.Instance.JobViewSave.QtUnVisibleList.Add(PLDQTKey.大翅膀最优面向_测试);
             // PLDSettings.Instance.JobViewSave.QtUnVisibleList.Add(BaseQTKey.AOE);
         }
 
@@ -274,6 +281,10 @@ public class PLDRotationEntry : IRotationEntry
     public void DrawQtDev(JobViewWindow jobViewWindow)
     {
         ImGui.Text("画Dev信息");
+        
+        ImGui.Text($"战逃反应：{PLDBaseSlotResolvers.战逃反应FightOrFlight.GetCooldownRemainingTime()}");
+        ImGui.Text($"先锋剑：{PLDBaseSlotResolvers.先锋剑FastBlade.GetCooldownRemainingTime()}");
+        
         ImGui.Text($"当前面向{Core.Me.Rotation}");
         ImGui.Text($"玩家数量{(ECHelperObjectsUtils.get8().Count())}");
         RotUtil.GetPlayersInFanShape(ECHelperObjectsUtils.get8(), Core.Me.Rotation);

@@ -30,7 +30,8 @@ internal static class ActionUtils
     
     internal static bool ActionReady2(this uint value)
     {
-        return value.MyIsUnlock() && value.IsLevelEnough() && value.GetCooldownRemainingTime() <0.5f;
+        return value.MyIsUnlock() && value.IsLevelEnough() && 
+               value.GetCooldownRemainingTime() <0.5f && value.GetCooldownRemainingTime() <= 9U.GetCooldownRemainingTime();
     }
 
 
@@ -38,6 +39,11 @@ internal static class ActionUtils
     {
         var id = value.OriginalHook().Id;
         return id.ActionReady();
+    }   
+    internal static bool OriginalHookActionReady2(this uint value)
+    {
+        var id = value.OriginalHook().Id;
+        return id.ActionReady2();
     }
     
     internal static bool ActionReadyAE(this uint value)

@@ -15,7 +15,7 @@ public class PLD_Opener : IOpener
 {
     public int StartCheck()
     {
-        if (!PLDRotationEntry.QT.GetQt(PLDQTKey.起手序列))
+        if (PLDRotationEntry.QT != null && !PLDRotationEntry.QT.GetQt(PLDQTKey.起手序列))
         {
             return -100;
         }
@@ -52,6 +52,16 @@ public class PLD_Opener : IOpener
     {
         //QT开关
         // AE_ACR.PLD.PLDRotationEntry.QT.SetQt("即刻战逃", true);
+        
+        if (PLDSettings.Instance.起手关盾 && PLDBaseSlotResolvers.关盾.IsUnlock())
+        {
+            if (BaseIslotResolver.HasEffect(PLDBaseSlotResolvers.Buffs.盾姿))
+            {
+                countDownHandler.AddAction(PLDSettings.Instance.起手关盾阈值, PLDBaseSlotResolvers.关盾, SpellTargetType.Self);
+            }
+
+        }
+        
         
         if (PLDSettings.Instance.起手幕帘 && PLDBaseSlotResolvers.圣光幕帘.IsUnlock())
         {

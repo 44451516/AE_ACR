@@ -62,6 +62,14 @@ public class DRK_Opener70 : IOpener
         {
             countDownHandler.AddAction(500, DRKBaseSlotResolvers.暗影步, SpellTargetType.Target);
         }
+        
+        if (DKSettings.Instance.起手关盾 && DRKBaseSlotResolvers.关盾.IsUnlock())
+        {
+            if (BaseIslotResolver.HasEffect(DRKBaseSlotResolvers.Buffs.深恶痛绝))
+            {
+                countDownHandler.AddAction(DKSettings.Instance.起手关盾阈值, DRKBaseSlotResolvers.关盾, SpellTargetType.Self);
+            }
+        }
     }
 
     private static void Step0(Slot slot)

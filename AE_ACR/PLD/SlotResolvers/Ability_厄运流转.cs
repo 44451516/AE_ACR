@@ -25,7 +25,7 @@ public class Ability_厄运流转 : PLDBaseSlotResolvers
 
         if (CanWeave())
         {
-            if (厄运流转CircleOfScorn.OriginalHookActionReady() && TargetHelper.GetNearbyEnemyCount(5) > 0)
+            if (厄运流转CircleOfScorn.OriginalHookActionReady2() && TargetHelper.GetNearbyEnemyCount(5) > 0)
             {
                 
                 if (getQTValue(PLDQTKey.即刻厄运_深奥))

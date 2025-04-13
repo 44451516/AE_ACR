@@ -41,7 +41,7 @@ public class Ability_战逃反应 : PLDBaseSlotResolvers
         
         if (CanWeave())
         {
-            if (战逃反应FightOrFlight.ActionReady())
+            if (战逃反应FightOrFlight.ActionReady2())
             {
                 if (getQTValue(PLDQTKey.即刻战逃))
                 {

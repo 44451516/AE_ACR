@@ -51,6 +51,14 @@ public class PLD_GCD_Base : PLDBaseSlotResolvers
             {
                 return 圣灵HolySpirit.OriginalHook();
             }
+            
+            
+            if (GetBuffRemainingTime(Buffs.DivineMight) <=3 
+                && GetResourceCost(圣灵HolySpirit) <= Core.Me.CurrentMp
+                && inAttackDistance25)
+            {
+                return 圣灵HolySpirit.OriginalHook();
+            }
 
 
             if (lastComboActionID == 王权剑RoyalAuthority && (HasEffect(Buffs.赎罪剑Atonement1BUFF) || HasEffect(Buffs.赎罪剑Atonement2BUFF) || HasEffect(Buffs.赎罪剑Atonement3BUFF)) && inAttackDistance)
