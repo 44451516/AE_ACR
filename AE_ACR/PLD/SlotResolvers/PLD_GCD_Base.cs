@@ -53,7 +53,7 @@ public class PLD_GCD_Base : PLDBaseSlotResolvers
             }
             
             
-            if (GetBuffRemainingTime(Buffs.DivineMight) <=3 
+            if (GetBuffRemainingTime(Buffs.DivineMight) >0 && GetBuffRemainingTime(Buffs.DivineMight) <=3 
                 && GetResourceCost(圣灵HolySpirit) <= Core.Me.CurrentMp
                 && inAttackDistance25)
             {
