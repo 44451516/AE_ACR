@@ -38,6 +38,9 @@ public class DKSettingUI
         ImGui.DragFloat("上天血乱结束时间", ref dkSettings.上天血乱结束时间, 1f, 30f, 30 * 20f);
         ImGui.Spacing();
         
+        // ImGui.Checkbox("起手盾姿",ref dkSettings.起手盾姿);
+        
+        
         ImGui.Checkbox("起手突进",ref dkSettings.起手突进);
         ImGui.Checkbox("只在高难模式使用起手序列",ref dkSettings.只在高难模式使用起手序列);
         ImGui.Spacing();

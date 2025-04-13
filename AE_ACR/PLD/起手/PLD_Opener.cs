@@ -57,7 +57,9 @@ public class PLD_Opener : IOpener
         {
             countDownHandler.AddAction(PLDSettings.Instance.起手幕帘阈值, PLDBaseSlotResolvers.圣光幕帘, SpellTargetType.Self);
         }
+        
         countDownHandler.AddAction(PLDSettings.Instance.起手圣灵阈值, PLDBaseSlotResolvers.圣灵HolySpirit, SpellTargetType.Target);
+        
         if (PLDSettings.Instance.起手突进 && PLDBaseSlotResolvers.调停Intervene.IsUnlock())
         {
             countDownHandler.AddAction(500, PLDBaseSlotResolvers.调停Intervene, SpellTargetType.Target);

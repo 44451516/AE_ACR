@@ -33,7 +33,8 @@ public class PLDSettings
     // public bool 最优面向大翅膀只在战斗中 = true;
     public bool AOE雪仇 = true;
     public bool AOE幕帘 = true;
-    public bool 绝伊甸设置 = true;
+    
+    public bool 绝伊甸设置 = false;
     public bool M6S设置 = true;
     
     public JobViewSave JobViewSave = new(); // QT设置存档

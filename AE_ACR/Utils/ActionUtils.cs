@@ -26,6 +26,13 @@ internal static class ActionUtils
     {
         return value.MyIsUnlock() && value.IsLevelEnough() && value.GetSpell().IsReadyWithCanCast();
     }
+    
+    
+    internal static bool ActionReady2(this uint value)
+    {
+        return value.MyIsUnlock() && value.IsLevelEnough() && value.GetCooldownRemainingTime() <0.5f;
+    }
+
 
     internal static bool OriginalHookActionReady(this uint value)
     {

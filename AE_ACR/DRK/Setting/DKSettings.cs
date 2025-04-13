@@ -28,6 +28,7 @@ public class DKSettings
     public bool 挑衅 = true;
     public float GCD爆发延时 = 7f;
     public bool 起手突进 = true;
+    public bool 起手盾姿 = false;
     public bool 只在高难模式使用起手序列 = true;
     public bool 自动黑盾 = true;
     public float 近战最大攻击距离 = 2.99f;
@@ -39,7 +40,7 @@ public class DKSettings
     
     public bool AOE雪仇 = true;
     public bool AOE步道 = true;
-    public bool 绝伊甸设置 = true;
+    public bool 绝伊甸设置 = false;
 
     public JobViewSave JobViewSave = new(); // QT设置存档
     public Dictionary<string, bool> MyQtDict = new();
