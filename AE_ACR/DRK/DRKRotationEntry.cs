@@ -275,6 +275,11 @@ public class DRKRotationEntry : IRotationEntry
 
         var shadowTimeRemaining = Core.Resolve<JobApi_DarkKnight>().ShadowTimeRemaining;
         ImGui.Text($"shadowTimeRemaining:{shadowTimeRemaining}");
+        //力量
+        ImGui.Text($"爆发药ID1:{SettingMgr.GetSetting<PotionSetting>().ChoosedPotion[PotionType.Str]}");
+        //巧力
+        ImGui.Text($"爆发药ID2:{SettingMgr.GetSetting<PotionSetting>().ChoosedPotion[PotionType.Dex]}");
+        ImGui.Text($"爆发药数量:{BattleCharaUtils.爆发药数量()}");
         // ImGui.Text("画Dev信息");
         // foreach (var v in jobViewWindow.GetQtArray())
         // {

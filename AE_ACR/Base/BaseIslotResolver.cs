@@ -35,6 +35,8 @@ public abstract class BaseIslotResolver : ISlotResolver
         Flag_GCD_Base_NULL = -115,
         Flag_伤害太低了 = -116,
         Flag_反转关闭 = -117,
+        Flag_没有设置爆发药 = -118,
+        Flag_没有爆发药数量为0 = -119,
         留空 = 3624;
 
     public static uint lastComboActionID => Core.Resolve<MemApiSpell>().GetLastComboSpellId();

@@ -40,6 +40,11 @@
             <Private>False</Private>
         </Reference>
 
+        <Reference Include="FFXIVClientStructs">
+            <HintPath>$(DalamudLibPath)\FFXIVClientStructs.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+
         <Reference Include="AEAssist.dll">
             <HintPath>E:\DevProject\FF14\AEAssist3\Output\AEAssistCNVersion\AEAssist\AEAssist.dll</HintPath>
             <Private>False</Private>

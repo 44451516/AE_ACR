@@ -23,6 +23,18 @@ public class PLDUsePotion : PLDBaseSlotResolvers
             return Flag_爆发药;
         }
 
+        
+        if (BattleCharaUtils.爆发药Id() == 0)
+        {
+            return Flag_没有设置爆发药;
+        }  
+        
+        if (BattleCharaUtils.爆发药数量() == 0)
+        {
+            return Flag_没有爆发药数量为0;
+        }
+
+        
 
         if (CanWeave())
         {

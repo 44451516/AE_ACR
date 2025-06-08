@@ -8,6 +8,7 @@ using AEAssist.CombatRoutine.Module;
 using AEAssist.CombatRoutine.Module.Target;
 using AEAssist.Extension;
 using AEAssist.Helper;
+using AEAssist.MemoryApi;
 using Dalamud.Game.ClientState.Objects.Types;
 
 #endregion
@@ -169,7 +170,7 @@ public class PLD_GCD_Base : PLDBaseSlotResolvers
         {
             if (spell.Id == 圣灵HolySpirit)
             {
-                if (PLDSettings.Instance.M6S设置 && CombatTime.Instance.CombatEngageDuration().TotalSeconds > 281)
+                if (PLDSettings.Instance.M6S设置 && Core.Resolve<MemApiZoneInfo>().GetCurrTerrId() == 1259 && CombatTime.Instance.CombatEngageDuration().TotalSeconds > 281)
                 {
                     IBattleChara? 鱼 = TargetMgr.Instance.EnemysIn25.Values.FirstOrDefault(x => x.DataId == 18346 && x.IsValid() && x is { IsDead: false, IsTargetable: true } && x.CurrentHpPercent() <= 0.95f);
                     if (鱼 != null)

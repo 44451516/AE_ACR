@@ -117,6 +117,11 @@ public class PLDRotationEventHandler : IRotationEventHandler
 
     public void OnEnterRotation()
     {
+        if (BattleCharaUtils.爆发药Id() == 0)
+        {
+            LogHelper.Print("当前没有设置爆发药id-请去ACR设置里面设置");
+        }
+
     }
 
     public void OnExitRotation()
