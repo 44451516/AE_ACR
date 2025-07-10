@@ -6,6 +6,7 @@ using AE_ACR.PLD.HotKey;
 using AE_ACR.PLD.Setting;
 using AE_ACR.PLD.SlotResolvers;
 using AE_ACR.PLD.SlotResolvers.减伤;
+using AE_ACR.PLD.SlotResolvers.副本;
 using AE_ACR.PLD.Triggers;
 using AE_ACR.PLD.起手;
 using AE_ACR.utils;
@@ -33,6 +34,7 @@ public class PLDRotationEntry : IRotationEntry
     private readonly List<SlotResolverData> SlotResolvers = new()
     {
         new SlotResolverData(new Ability_钢铁信念(), SlotMode.Always),
+
         new SlotResolverData(new PLDUsePotion(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_神圣领域(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_预警(), SlotMode.OffGcd),
@@ -51,6 +53,9 @@ public class PLDRotationEntry : IRotationEntry
         new SlotResolverData(new Ability_厄运流转(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_深奥之灵(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_调停(), SlotMode.OffGcd),
+        new SlotResolverData(new Ability_下踢(), SlotMode.OffGcd),
+        new SlotResolverData(new PLD_Always_M7S(), SlotMode.Always),
+        // new SlotResolverData(new Ability_沉默(), SlotMode.OffGcd),
 
 
         // gcd队列
@@ -108,7 +113,8 @@ public class PLDRotationEntry : IRotationEntry
         (
             new TriggerAction_QT(),
             new TriggerAction_M1S_Rot(),
-            new TriggerAction_大翅膀_Rot()
+            new TriggerAction_大翅膀_Rot(),
+            new TriggerAction_QT_UI()
         );
         //添加QT开关的时间轴行为
         rot.AddTriggerCondition(new ITriggerCond_PLD忠义值());

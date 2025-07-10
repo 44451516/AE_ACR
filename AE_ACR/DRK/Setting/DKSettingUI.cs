@@ -46,6 +46,12 @@ public class DKSettingUI
         ImGui.Checkbox("只在高难模式使用起手序列",ref dkSettings.只在高难模式使用起手序列);
         ImGui.Spacing();
         ImGui.Checkbox("绝伊甸设置", ref dkSettings.绝伊甸设置);
+        ImGui.Checkbox("M6S设置", ref dkSettings.M6S设置);
+        ImGui.SameLine();
+        ImGui.Text("圣灵优先打人马/猫/鱼,自动下踢炸脖龙");
+        ImGui.Checkbox("M7S设置", ref dkSettings.M7S设置);
+        ImGui.SameLine();
+        ImGui.Text("自动沉默，自动拉小怪");
         ImGui.Spacing();
         ImGui.Spacing();
         

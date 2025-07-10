@@ -7,8 +7,11 @@ using AE_ACR_DRK.SlotResolvers;
 using AE_ACR.Base;
 using AE_ACR.DRK.SlotResolvers;
 using AE_ACR.DRK.SlotResolvers.减伤;
+using AE_ACR.DRK.SlotResolvers.副本;
 using AE_ACR.DRK.Triggers;
+using AE_ACR.DRK.Triggers.TriggerAction;
 using AE_ACR.DRK.起手;
+using AE_ACR.PLD.SlotResolvers;
 using AE_ACR.PLD.起手;
 using AE_ACR.utils;
 using AE_ACR.utils.Triggers;
@@ -43,6 +46,9 @@ public class DRKRotationEntry : IRotationEntry
     {
         // offGcd队列
         new SlotResolverData(new Ability_深恶痛绝(), SlotMode.Always),
+        new SlotResolverData(new DK_Always_M7S(), SlotMode.Always),
+        
+        
         new SlotResolverData(new Ability_行尸走肉(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_暗影墙(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_铁壁(), SlotMode.OffGcd),
@@ -55,6 +61,7 @@ public class DRKRotationEntry : IRotationEntry
         new SlotResolverData(new Ability_雪仇(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_暗黑布道(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_挑衅(), SlotMode.OffGcd),
+        new SlotResolverData(new DK_Ability_下踢(), SlotMode.OffGcd),
 
         new SlotResolverData(new DKUsePotion(), SlotMode.OffGcd),
         new SlotResolverData(new DK_Ability_嗜血(), SlotMode.OffGcd),
@@ -103,7 +110,9 @@ public class DRKRotationEntry : IRotationEntry
         rot.AddTriggerAction
         (
             new TriggerAction_QT(),
-            new TriggerAction_M1S_Rot()
+            new TriggerAction_M1S_Rot(),
+            new TriggerAction_UI_QT()
+            // new TriggerAction_UI_Settings()
         );
         rot.AddTriggerCondition
         (

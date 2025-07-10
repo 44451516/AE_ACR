@@ -1,0 +1,109 @@
+﻿#region
+
+using System.Numerics;
+using AE_ACR_DRK_Setting;
+using AE_ACR.Base;
+using AE_ACR.DRK.SlotResolvers;
+using AE_ACR.utils;
+using AEAssist.CombatRoutine;
+using AEAssist.CombatRoutine.Module;
+using AEAssist.CombatRoutine.Module.Target;
+using Dalamud.Game.ClientState.Objects.Types;
+
+#endregion
+
+namespace AE_ACR.PLD.SlotResolvers;
+
+public class DK_Ability_下踢 : DRKBaseSlotResolvers
+{
+    public override int Check()
+    {
+        if (是否停手())
+        {
+            return Flag_停手;
+        }
+
+        if (isHasCanAttackBattleChara() == false)
+        {
+            return Flag_无效目标;
+        }
+
+
+        if (CanWeave())
+        {
+            if (下踢.ActionReady2())
+            {
+                if (和目标的距离() > 3)
+                {
+                    return Flag_超出攻击距离;
+                }
+
+                if (DKSettings.Instance.M6S设置)
+                {
+                    if (GetSpell() != null)
+                    {
+                        return 0;
+                    }
+                }
+
+            }
+        }
+
+        return -1;
+    }
+
+    public override void Build(Slot slot)
+    {
+        
+        var spell = GetSpell();
+        if (spell != null)
+        {
+            slot.Add(spell);
+        }
+
+        slot.Add(下踢.OriginalHook());
+    }
+
+
+    private Spell? GetSpell()
+    {
+        IBattleChara? 炸脖龙 = TargetMgr.Instance.EnemysIn12.Values.FirstOrDefault(x => x.DataId == 怪物ID.m6s_炸脖龙 && x.IsValid() && x is { IsDead: false, IsTargetable: true });
+        if (炸脖龙 != null)
+        {
+            //MT位置
+            {
+                Vector3 MT第一下 = new Vector3(100.269f, 0f, 108.292f);
+                float distance = Vector3.Distance(炸脖龙.Position, MT第一下);
+                if (distance < 5.0f)
+                {
+                    return new Spell(下踢, 炸脖龙);
+                }
+            }
+
+            //ST位置
+            {
+                Vector3 ST第一下 = new Vector3(101.630f, 0f, 94.777f);
+                float distance = Vector3.Distance(炸脖龙.Position, ST第一下);
+                if (distance < 5.0f)
+                {
+                    return new Spell(下踢, 炸脖龙);
+                }
+
+            }
+
+            //第二只 
+            {
+                Vector3 MT第二下 = new Vector3(107.600f, 0f, 101.370f);
+                float distance = Vector3.Distance(炸脖龙.Position, MT第二下);
+                if (distance < 5.0f)
+                {
+                    return new Spell(下踢, 炸脖龙);
+                }
+            }
+
+
+        }
+
+        return null;
+    }
+}

@@ -1,5 +1,6 @@
 #region
 
+using AE_ACR.Base;
 using AE_ACR.PLD.Setting;
 using AE_ACR.utils;
 using AEAssist;
@@ -74,7 +75,7 @@ public class GCD_大宝剑连击 : PLDBaseSlotResolvers
             }
 
 
-            IBattleChara? 人马 = TargetMgr.Instance.EnemysIn25.Values.FirstOrDefault(x => x.DataId == 18345 && x.IsValid() && x is { IsDead: false, IsTargetable: true });
+            IBattleChara? 人马 = TargetMgr.Instance.EnemysIn25.Values.FirstOrDefault(x => x.DataId == 怪物ID.m6s_炸脖龙 && x.IsValid() && x is { IsDead: false, IsTargetable: true });
             if (人马 != null)
             {
                 spell = new Spell(大保健连击Confiteor.OriginalHook().Id, 人马);

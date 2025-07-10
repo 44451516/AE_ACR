@@ -38,6 +38,7 @@ public class PLDSettings
     
     public bool 绝伊甸设置 = false;
     public bool M6S设置 = true;
+    public bool M7S设置 = true;
     
     public JobViewSave JobViewSave = new(); // QT设置存档
     public Dictionary<string, bool> MyQtDict = new();

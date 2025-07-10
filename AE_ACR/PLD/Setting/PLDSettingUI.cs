@@ -42,9 +42,13 @@ public class PLDSettingUI
         ImGui.Checkbox("绝伊甸设置", ref pldSettings.绝伊甸设置);
         ImGui.Checkbox("M6S设置", ref pldSettings.M6S设置);
         ImGui.SameLine();
-        ImGui.Text("圣灵优先打人马/猫/鱼");
+        ImGui.Text("圣灵优先打人马/猫/鱼,自动下踢炸脖龙");
+        ImGui.Checkbox("M7S设置", ref pldSettings.M7S设置);
+        ImGui.SameLine();
+        ImGui.Text("自动沉默，自动拉小怪");
         // ImGuiEx.H
         
+        ImGui.Spacing();
         ImGui.Spacing();
         if (ImGui.Button("Save[保存]"))
         {

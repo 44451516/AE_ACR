@@ -1,5 +1,6 @@
 #region
 
+using AE_ACR.Base;
 using AE_ACR.PLD.Setting;
 using AE_ACR.utils;
 using AEAssist;
@@ -170,21 +171,21 @@ public class PLD_GCD_Base : PLDBaseSlotResolvers
         {
             if (spell.Id == 圣灵HolySpirit)
             {
-                if (PLDSettings.Instance.M6S设置 && Core.Resolve<MemApiZoneInfo>().GetCurrTerrId() == 1259 && CombatTime.Instance.CombatEngageDuration().TotalSeconds > 281)
+                if (PLDSettings.Instance.M6S设置 && Core.Resolve<MemApiZoneInfo>().GetCurrTerrId() == 地区ID.m6s && CombatTime.Instance.CombatEngageDuration().TotalSeconds > 281)
                 {
-                    IBattleChara? 鱼 = TargetMgr.Instance.EnemysIn25.Values.FirstOrDefault(x => x.DataId == 18346 && x.IsValid() && x is { IsDead: false, IsTargetable: true } && x.CurrentHpPercent() <= 0.95f);
+                    IBattleChara? 鱼 = TargetMgr.Instance.EnemysIn25.Values.FirstOrDefault(x => x.DataId == 怪物ID.m6s_鱼 && x.IsValid() && x is { IsDead: false, IsTargetable: true } && x.CurrentHpPercent() <= 0.95f);
                     if (鱼 != null)
                     {
                         spell = new Spell(圣灵HolySpirit, 鱼);
                     }
 
-                    IBattleChara? 猫 = TargetMgr.Instance.EnemysIn25.Values.FirstOrDefault(x => x.DataId == 18347 && x.IsValid() && x is { IsDead: false, IsTargetable: true });
+                    IBattleChara? 猫 = TargetMgr.Instance.EnemysIn25.Values.FirstOrDefault(x => x.DataId == 怪物ID.m6s_猫 && x.IsValid() && x is { IsDead: false, IsTargetable: true });
                     if (猫 != null)
                     {
                         spell = new Spell(圣灵HolySpirit, 猫);
                     }
 
-                    IBattleChara? 人马 = TargetMgr.Instance.EnemysIn25.Values.FirstOrDefault(x => x.DataId == 18345 && x.IsValid() && x is { IsDead: false, IsTargetable: true });
+                    IBattleChara? 人马 = TargetMgr.Instance.EnemysIn25.Values.FirstOrDefault(x => x.DataId == 怪物ID.m6s_炸脖龙 && x.IsValid() && x is { IsDead: false, IsTargetable: true });
                     if (人马 != null)
                     {
                         spell = new Spell(圣灵HolySpirit, 人马);
