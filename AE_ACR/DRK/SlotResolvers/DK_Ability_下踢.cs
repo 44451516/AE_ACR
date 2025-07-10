@@ -5,9 +5,11 @@ using AE_ACR_DRK_Setting;
 using AE_ACR.Base;
 using AE_ACR.DRK.SlotResolvers;
 using AE_ACR.utils;
+using AEAssist;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.CombatRoutine.Module.Target;
+using AEAssist.MemoryApi;
 using Dalamud.Game.ClientState.Objects.Types;
 
 #endregion
@@ -38,7 +40,7 @@ public class DK_Ability_下踢 : DRKBaseSlotResolvers
                     return Flag_超出攻击距离;
                 }
 
-                if (DKSettings.Instance.M6S设置)
+                if (DKSettings.Instance.M6S设置 && Core.Resolve<MemApiZoneInfo>().GetCurrTerrId() == 地区ID.m6s)
                 {
                     if (GetSpell() != null)
                     {
@@ -54,14 +56,13 @@ public class DK_Ability_下踢 : DRKBaseSlotResolvers
 
     public override void Build(Slot slot)
     {
-        
+
         var spell = GetSpell();
         if (spell != null)
         {
             slot.Add(spell);
         }
 
-        slot.Add(下踢.OriginalHook());
     }
 
 

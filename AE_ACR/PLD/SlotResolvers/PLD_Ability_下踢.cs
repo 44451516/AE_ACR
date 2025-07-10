@@ -4,16 +4,18 @@ using System.Numerics;
 using AE_ACR.Base;
 using AE_ACR.PLD.Setting;
 using AE_ACR.utils;
+using AEAssist;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.CombatRoutine.Module.Target;
+using AEAssist.MemoryApi;
 using Dalamud.Game.ClientState.Objects.Types;
 
 #endregion
 
 namespace AE_ACR.PLD.SlotResolvers;
 
-public class Ability_下踢 : PLDBaseSlotResolvers
+public class PLD_Ability_下踢 : PLDBaseSlotResolvers
 {
     public override int Check()
     {
@@ -37,11 +39,11 @@ public class Ability_下踢 : PLDBaseSlotResolvers
                     return Flag_超出攻击距离;
                 }
 
-                if (PLDSettings.Instance.M6S设置)
+                if (PLDSettings.Instance.M6S设置 && Core.Resolve<MemApiZoneInfo>().GetCurrTerrId() == 地区ID.m6s)
                 {
                     if (GetSpell() != null)
                     {
-                        return 0;
+                        return 1;
                     }
                 }
 
@@ -59,8 +61,6 @@ public class Ability_下踢 : PLDBaseSlotResolvers
         {
             slot.Add(spell);
         }
-
-        slot.Add(下踢.OriginalHook());
     }
 
 

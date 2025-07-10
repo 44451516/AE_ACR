@@ -53,7 +53,7 @@ public class PLDRotationEntry : IRotationEntry
         new SlotResolverData(new Ability_厄运流转(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_深奥之灵(), SlotMode.OffGcd),
         new SlotResolverData(new Ability_调停(), SlotMode.OffGcd),
-        new SlotResolverData(new Ability_下踢(), SlotMode.OffGcd),
+        new SlotResolverData(new PLD_Ability_下踢(), SlotMode.OffGcd),
         new SlotResolverData(new PLD_Always_M7S(), SlotMode.Always),
         // new SlotResolverData(new Ability_沉默(), SlotMode.OffGcd),
 
