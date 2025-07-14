@@ -50,26 +50,40 @@ public class PLD_Opener : IOpener
 
     public void InitCountDown(CountDownHandler countDownHandler)
     {
+        if (PLDRotationEntry.QT != null && !PLDRotationEntry.QT.GetQt(PLDQTKey.起手序列))
+        {
+            return ;
+        }
+        
         //QT开关
         // AE_ACR.PLD.PLDRotationEntry.QT.SetQt("即刻战逃", true);
         
         if (PLDSettings.Instance.起手关盾 && PLDBaseSlotResolvers.关盾.IsUnlock())
         {
-            if (BaseIslotResolver.HasEffect(PLDBaseSlotResolvers.Buffs.盾姿))
+            if (PLDSettings.Instance.起手关盾阈值 > 0)
             {
-                countDownHandler.AddAction(PLDSettings.Instance.起手关盾阈值, PLDBaseSlotResolvers.关盾, SpellTargetType.Self);
+                if (BaseIslotResolver.HasEffect(PLDBaseSlotResolvers.Buffs.盾姿))
+                {
+                    countDownHandler.AddAction(PLDSettings.Instance.起手关盾阈值, PLDBaseSlotResolvers.关盾, SpellTargetType.Self);
+                } 
             }
-
         }
         
         
         if (PLDSettings.Instance.起手幕帘 && PLDBaseSlotResolvers.圣光幕帘.IsUnlock())
         {
-            countDownHandler.AddAction(PLDSettings.Instance.起手幕帘阈值, PLDBaseSlotResolvers.圣光幕帘, SpellTargetType.Self);
+            if (PLDSettings.Instance.起手幕帘阈值 > 0)
+            {
+                countDownHandler.AddAction(PLDSettings.Instance.起手幕帘阈值, PLDBaseSlotResolvers.圣光幕帘, SpellTargetType.Self);
+            }
         }
-        
-        countDownHandler.AddAction(PLDSettings.Instance.起手圣灵阈值, PLDBaseSlotResolvers.圣灵HolySpirit, SpellTargetType.Target);
-        
+
+        if (PLDSettings.Instance.起手圣灵阈值 > 0)
+        {
+            countDownHandler.AddAction(PLDSettings.Instance.起手圣灵阈值, PLDBaseSlotResolvers.圣灵HolySpirit, SpellTargetType.Target);
+        }
+
+       
         if (PLDSettings.Instance.起手突进 && PLDBaseSlotResolvers.调停Intervene.IsUnlock())
         {
             countDownHandler.AddAction(500, PLDBaseSlotResolvers.调停Intervene, SpellTargetType.Target);

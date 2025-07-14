@@ -3,6 +3,7 @@
 using AE_ACR.Base;
 using AE_ACR.PLD.Setting;
 using AE_ACR.utils;
+using AEAssist;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.Helper;
@@ -24,12 +25,12 @@ public class PLD_优先圣环_AOE : PLDBaseSlotResolvers
         {
             return Flag_QT;
         }
-        
+
         if (GetBaseGCDSpell() != null)
         {
             return 0;
         }
-        
+
         return -1;
     }
 
@@ -37,14 +38,31 @@ public class PLD_优先圣环_AOE : PLDBaseSlotResolvers
     {
 
         var aoeCount = TargetHelper.GetNearbyEnemyCount(5);
-
-        if (lastComboActionID == 全蚀斩TotalEclipse && HasEffect(Buffs.DivineMight) && 圣环HolyCircle.MyIsUnlock())
+        
+        if (圣环HolyCircle.MyIsUnlock() && GetResourceCost(圣灵HolySpirit) <= Core.Me.CurrentMp && aoeCount >= PLDSettings.Instance.USE_AOE)
         {
-            if (aoeCount >= PLDSettings.Instance.USE_AOE)
+            //
+            // if (GetBuffRemainingTime(Buffs.DivineMight) > 0 && GetBuffRemainingTime(Buffs.DivineMight) <= 3)
+            // {
+            //     return 圣环HolyCircle.OriginalHook();
+            // }
+            //
+            // if (lastComboActionID == 全蚀斩TotalEclipse && HasEffect(Buffs.DivineMight))
+            // {
+            //     if (aoeCount >= PLDSettings.Instance.USE_AOE)
+            //     {
+            //         return 圣环HolyCircle.OriginalHook();
+            //     }
+            // }
+            if (HasEffect(Buffs.DivineMight))
             {
-                return 圣环HolyCircle.OriginalHook();
+                if (aoeCount >= PLDSettings.Instance.USE_AOE)
+                {
+                    return 圣环HolyCircle.OriginalHook();
+                }
             }
         }
+
         return null;
     }
 

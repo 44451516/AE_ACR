@@ -8,6 +8,7 @@ using AEAssist;
 using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.CombatRoutine.Module.Target;
+using AEAssist.Helper;
 using AEAssist.MemoryApi;
 using Dalamud.Game.ClientState.Objects.Types;
 
@@ -28,10 +29,6 @@ public class DK_Always_M7S : DRKBaseSlotResolvers
             {
                 if (沉默.ActionReady2())
                 {
-                    if (和目标的距离() > 3)
-                    {
-                        return Flag_超出攻击距离;
-                    }
                     if (GetSpell_沉默() != null)
                     {
                         return 1;
@@ -103,21 +100,25 @@ public class DK_Always_M7S : DRKBaseSlotResolvers
                 if (boss.仇恨是否在自己身上())
                 {
                     IBattleChara? MT小怪 = TargetMgr.Instance.EnemysIn12.Values.Where(x => x.DataId == 怪物ID.m7s_小怪 && x.CastActionId == 读条ID.m7s_小怪_月环 && x.IsValid() && x is { IsDead: false, IsTargetable: true }).OrderBy(x => x.GameObjectId).FirstOrDefault();
-
-
                     if (MT小怪 != null)
                     {
-                        return new Spell(沉默, MT小怪);
+                        float 和我的距离 = TargetHelper.GetTargetDistanceFromMeTest2D(MT小怪, Core.Me);
+                        if (和我的距离 <= 3)
+                        {
+                            return new Spell(沉默, MT小怪);
+                        }
                     }
                 }
                 else
                 {
                     IBattleChara? ST小怪 = TargetMgr.Instance.EnemysIn12.Values.Where(x => x.DataId == 怪物ID.m7s_小怪 && x.CastActionId == 读条ID.m7s_小怪_月环 && x.IsValid() && x is { IsDead: false, IsTargetable: true }).OrderByDescending(x => x.GameObjectId).FirstOrDefault();
-
-
                     if (ST小怪 != null)
                     {
-                        return new Spell(沉默, ST小怪);
+                        float 和我的距离 = TargetHelper.GetTargetDistanceFromMeTest2D(ST小怪, Core.Me);
+                        if (和我的距离 <= 3)
+                        {
+                            return new Spell(沉默, ST小怪);
+                        }
                     }
                 }
             }
@@ -129,7 +130,7 @@ public class DK_Always_M7S : DRKBaseSlotResolvers
     private Spell? GetSpell_挑衅()
     {
         if (CombatTime.Instance.CombatEngageDuration().TotalSeconds >= 55 && CombatTime.Instance.CombatEngageDuration().TotalSeconds <= 70
-            ||CombatTime.Instance.CombatEngageDuration().TotalSeconds >= 495 && CombatTime.Instance.CombatEngageDuration().TotalSeconds <= 515)
+            || CombatTime.Instance.CombatEngageDuration().TotalSeconds >= 495 && CombatTime.Instance.CombatEngageDuration().TotalSeconds <= 515)
         {
             IBattleChara? boss = TargetMgr.Instance.EnemysIn25.Values.FirstOrDefault(x => x.DataId == 怪物ID.m7s_boss && x.IsValid() && x is { IsDead: false, IsTargetable: true });
 
@@ -138,7 +139,7 @@ public class DK_Always_M7S : DRKBaseSlotResolvers
                 //mt
                 if (boss.仇恨是否在自己身上())
                 {
-                    IEnumerable<IBattleChara> battleCharas = TargetMgr.Instance.EnemysIn12.Values.Where(x => x.DataId == 怪物ID.m7s_小怪 && x.IsValid() && x is { IsDead: false, IsTargetable: true });
+                    IEnumerable<IBattleChara> battleCharas = TargetMgr.Instance.EnemysIn25.Values.Where(x => x.DataId == 怪物ID.m7s_小怪 && x.IsValid() && x is { IsDead: false, IsTargetable: true });
 
                     foreach (var battleChara in battleCharas)
                     {
@@ -167,7 +168,7 @@ public class DK_Always_M7S : DRKBaseSlotResolvers
                 }
                 else
                 {
-                    IEnumerable<IBattleChara> battleCharas = TargetMgr.Instance.EnemysIn12.Values.Where(x => x.DataId == 怪物ID.m7s_小怪 && x.IsValid() && x is { IsDead: false, IsTargetable: true });
+                    IEnumerable<IBattleChara> battleCharas = TargetMgr.Instance.EnemysIn25.Values.Where(x => x.DataId == 怪物ID.m7s_小怪 && x.IsValid() && x is { IsDead: false, IsTargetable: true });
 
                     foreach (var battleChara in battleCharas)
                     {
@@ -201,10 +202,11 @@ public class DK_Always_M7S : DRKBaseSlotResolvers
     }
 
 
+
     private Spell? GetSpell_投盾()
     {
         if (CombatTime.Instance.CombatEngageDuration().TotalSeconds >= 55 && CombatTime.Instance.CombatEngageDuration().TotalSeconds <= 70
-            ||CombatTime.Instance.CombatEngageDuration().TotalSeconds >= 495 && CombatTime.Instance.CombatEngageDuration().TotalSeconds <= 515)
+            || CombatTime.Instance.CombatEngageDuration().TotalSeconds >= 495 && CombatTime.Instance.CombatEngageDuration().TotalSeconds <= 515)
         {
             IBattleChara? boss = TargetMgr.Instance.EnemysIn25.Values.FirstOrDefault(x => x.DataId == 怪物ID.m7s_boss && x.IsValid() && x is { IsDead: false, IsTargetable: true });
 
@@ -213,15 +215,16 @@ public class DK_Always_M7S : DRKBaseSlotResolvers
                 //mt
                 if (boss.仇恨是否在自己身上())
                 {
-                    IEnumerable<IBattleChara> battleCharas = TargetMgr.Instance.EnemysIn12.Values.Where(x => x.DataId == 怪物ID.m7s_小怪 && x.IsValid() && x is { IsDead: false, IsTargetable: true });
+                    IEnumerable<IBattleChara> battleCharas = TargetMgr.Instance.EnemysIn25.Values.Where(x => x.DataId == 怪物ID.m7s_小怪 && x.IsValid() && x is { IsDead: false, IsTargetable: true });
 
                     foreach (var battleChara in battleCharas)
                     {
+                        float 和我的距离 = TargetHelper.GetTargetDistanceFromMeTest2D(battleChara, Core.Me);
                         //北 P1
                         {
                             Vector3 vector3 = new Vector3(98.756f, 0, 83.583f);
                             float distance = Vector3.Distance(battleChara.Position, vector3);
-                            if (distance <= 10 && (!battleChara.仇恨是否在自己身上() || battleChara.CurrentHp == battleChara.MaxHp))
+                            if (distance <= 10 && 和我的距离 <= 15 && (!battleChara.仇恨是否在自己身上() || battleChara.CurrentHp == battleChara.MaxHp))
                             {
                                 return new Spell(伤残, battleChara);
                             }
@@ -231,7 +234,7 @@ public class DK_Always_M7S : DRKBaseSlotResolvers
                         {
                             Vector3 vector3 = new Vector3(100.020f, -200.000f, -11.403f);
                             float distance = Vector3.Distance(battleChara.Position, vector3);
-                            if (distance <= 10 && (!battleChara.仇恨是否在自己身上() || battleChara.CurrentHp == battleChara.MaxHp))
+                            if (distance <= 10 && 和我的距离 <= 15 &&(!battleChara.仇恨是否在自己身上() || battleChara.CurrentHp == battleChara.MaxHp))
                             {
                                 return new Spell(伤残, battleChara);
                             }
@@ -242,14 +245,15 @@ public class DK_Always_M7S : DRKBaseSlotResolvers
                 }
                 else
                 {
-                    IEnumerable<IBattleChara> battleCharas = TargetMgr.Instance.EnemysIn12.Values.Where(x => x.DataId == 怪物ID.m7s_小怪 && x.IsValid() && x is { IsDead: false, IsTargetable: true });
+                    IEnumerable<IBattleChara> battleCharas = TargetMgr.Instance.EnemysIn25.Values.Where(x => x.DataId == 怪物ID.m7s_小怪 && x.IsValid() && x is { IsDead: false, IsTargetable: true });
                     foreach (var battleChara in battleCharas)
                     {
+                        float 和我的距离 = TargetHelper.GetTargetDistanceFromMeTest2D(battleChara, Core.Me);
                         //南 P1 
                         {
                             Vector3 vector3 = new Vector3(97.718f, 0, 116.466f);
                             float distance = Vector3.Distance(battleChara.Position, vector3);
-                            if (distance <= 10 && (!battleChara.仇恨是否在自己身上() || battleChara.CurrentHp == battleChara.MaxHp))
+                            if (distance <= 10 && 和我的距离 <= 15 &&(!battleChara.仇恨是否在自己身上() || battleChara.CurrentHp == battleChara.MaxHp))
                             {
                                 return new Spell(伤残, battleChara);
                             }
@@ -259,7 +263,7 @@ public class DK_Always_M7S : DRKBaseSlotResolvers
                         {
                             Vector3 vector3 = new Vector3(102.255f, -200f, 21.839f);
                             float distance = Vector3.Distance(battleChara.Position, vector3);
-                            if (distance <= 10 && (!battleChara.仇恨是否在自己身上() || battleChara.CurrentHp == battleChara.MaxHp))
+                            if (distance <= 10 && 和我的距离 <= 15 &&(!battleChara.仇恨是否在自己身上() || battleChara.CurrentHp == battleChara.MaxHp))
                             {
                                 return new Spell(伤残, battleChara);
                             }

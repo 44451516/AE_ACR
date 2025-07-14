@@ -36,8 +36,7 @@ public class GCD_大宝剑连击_圣灵_圣环 : PLDBaseSlotResolvers
 
         if (HasEffect(Buffs.Requiescat) && GetResourceCost(圣灵HolySpirit) <= Core.Me.CurrentMp)
         {
-            if (大保健连击Confiteor.IsUnlock() == false 
-                || (大保健连击Confiteor.IsUnlock() && 信念之剑BladeOfFaith.IsUnlock() == false && Core.Me.GetAuraStack(Buffs.Requiescat) <= 4))
+            if (大保健连击Confiteor.IsUnlock() == false || (大保健连击Confiteor.IsUnlock() && 信念之剑BladeOfFaith.IsUnlock() == false && Core.Me.GetAuraStack(Buffs.Requiescat) <= 4))
             {
                 if (和目标的距离() > 25f)
                 {
